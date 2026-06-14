@@ -55,14 +55,48 @@ function saveCompletedSteps(slug, state) {
   localStorage.setItem(getCompletedStepsKey(slug), JSON.stringify(state));
 }
 
-function renderList(items, ordered = false) {
+function normalizeStep(step) {
+  return typeof step === 'string' ? { text: step } : step;
+}
+
+function renderStepContent(step) {
+  const normalized = normalizeStep(step);
+
+  if (normalized.text) {
+    return `<p class="step-text">${escapeHtml(normalized.text)}</p>`;
+  }
+
+  const lead = normalized.lead
+    ? `<p class="step-lead">${escapeHtml(normalized.lead)}</p>`
+    : '';
+
+  const items = normalized.items?.length
+    ? `<ul class="step-items">${normalized.items
+        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .join('')}</ul>`
+    : '';
+
+  const after = normalized.after
+    ? `<p class="step-after">${escapeHtml(normalized.after)}</p>`
+    : '';
+
+  return `${lead}${items}${after}`;
+}
+
+function renderStepList(items) {
   if (!items?.length) return '';
 
-  const tag = ordered ? 'ol' : 'ul';
+  return `<ol class="structured-steps">${items
+    .map((step) => `<li>${renderStepContent(step)}</li>`)
+    .join('')}</ol>`;
+}
 
-  return `<${tag}>${items
+function renderSimpleList(items) {
+  if (!items?.length) return '';
+
+  return `<ul>${items
     .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join('')}</${tag}>`;
+    .join('')}</ul>`;
 }
 
 function renderIngredientChecklist(recipe) {
@@ -201,17 +235,17 @@ function initialiseCookingMode(recipe) {
   const previousButton = recipeContent.querySelector('#previousCookingStep');
   const nextButton = recipeContent.querySelector('#nextCookingStep');
   const completeButton = recipeContent.querySelector('#completeCookingStep');
-  const stepText = recipeContent.querySelector('#cookingStepText');
+  const stepBody = recipeContent.querySelector('#cookingStepBody');
   const stepLabel = recipeContent.querySelector('#cookingStepLabel');
   const progressBar = recipeContent.querySelector('#cookingProgressBar');
 
-  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !completeButton || !stepText || !stepLabel || !progressBar) {
+  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !completeButton || !stepBody || !stepLabel || !progressBar) {
     return;
   }
 
   const steps = [
-    ...(recipe.preparation || []).map((text) => ({ phase: 'Preparation', text })),
-    ...(recipe.cookingMethod || []).map((text) => ({ phase: 'Cooking', text }))
+    ...(recipe.preparation || []).map((step) => ({ phase: 'Preparation', content: normalizeStep(step) })),
+    ...(recipe.cookingMethod || []).map((step) => ({ phase: 'Cooking', content: normalizeStep(step) }))
   ];
 
   let currentStep = loadCookingStep(recipe.slug, steps.length);
@@ -224,7 +258,7 @@ function initialiseCookingMode(recipe) {
     const isComplete = Boolean(completedSteps[currentStep]);
 
     stepLabel.textContent = `${step.phase} • Step ${currentStep + 1} of ${steps.length}`;
-    stepText.textContent = step.text;
+    stepBody.innerHTML = renderStepContent(step.content);
     progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
     previousButton.disabled = currentStep === 0;
     nextButton.textContent = currentStep === steps.length - 1 ? 'Finish' : 'Next';
@@ -335,22 +369,22 @@ function renderRecipe(recipe) {
 
       <section id="preparation" class="recipe-section anchor-section">
         <h2>Preparation</h2>
-        ${renderList(recipe.preparation, true)}
+        ${renderStepList(recipe.preparation)}
       </section>
 
       <section id="method" class="recipe-section anchor-section">
         <h2>Cooking Method</h2>
-        ${renderList(recipe.cookingMethod, true)}
+        ${renderStepList(recipe.cookingMethod)}
       </section>
 
       <section id="serving" class="recipe-section anchor-section">
         <h2>Serving Suggestions</h2>
-        ${renderList(recipe.servingSuggestions)}
+        ${renderSimpleList(recipe.servingSuggestions)}
       </section>
 
       <section id="notes" class="recipe-section anchor-section">
         <h2>Notes</h2>
-        ${renderList(recipe.notes)}
+        ${renderSimpleList(recipe.notes)}
       </section>
     </article>
 
@@ -370,7 +404,7 @@ function renderRecipe(recipe) {
 
         <div class="cooking-step-card">
           <p id="cookingStepLabel" class="cooking-step-label"></p>
-          <p id="cookingStepText" class="cooking-step-text"></p>
+          <div id="cookingStepBody" class="cooking-step-body"></div>
           <button id="completeCookingStep" class="complete-step-button" type="button" aria-pressed="false">Mark Complete</button>
         </div>
 
