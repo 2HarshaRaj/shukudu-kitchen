@@ -12,6 +12,39 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.6.0 — 2026-06-15
+
+### Added
+
+- Live recipe scaling controls with 0.5×, 0.75×, 1×, 1.25×, 1.5×, and 2× options
+- Per-recipe scale persistence using `localStorage`
+- Structured scalable ingredient schema with stable ingredient IDs
+- Ingredient references inside Preparation, Cooking Method, and Cooking Mode
+- Practical kitchen rounding for large produce and small whole ingredients
+- Optional gram display for count-based ingredients
+- Optional gram display for unit-based ingredients
+- Common ingredient weight reference in `docs/INGREDIENT_REFERENCE.md`
+
+### Changed
+
+- Tomato Bath converted into the pilot scalable recipe
+- Recipe Scale panel and buttons styled to match the Shukudu Kitchen design system
+- Ingredient quantities now update consistently across Ingredients, Preparation, Cooking Method, and Cooking Mode
+- Gram values scale automatically and round sensibly for display
+
+### Improved
+
+- Large produce counts remain practical while grams remain the precise scaled target
+- Small whole ingredients use practical half or whole counts
+- Exact ingredients continue to use readable fractions
+- Scaling does not alter cooking times, temperatures, induction wattage, or pressure-release instructions
+
+### In Progress
+
+- Additional Tomato Bath validation and refinements
+- Decision on whether rice recipes should be authored primarily from standard cups or rice cups
+- Migration of Vangi Bath and Curd Rice to the scalable schema
+
 ## 1.5.1 — 2026-06-15
 
 ### Added
