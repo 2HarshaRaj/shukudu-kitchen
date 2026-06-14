@@ -8,87 +8,212 @@
     "Meal Type": "Lunch / Dinner",
     "Status": "Initial website version"
   },
+  "scaling": {
+    "enabled": true,
+    "baseScale": 1,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
   "ingredients": [
     {
       "section": "Main Ingredients",
       "items": [
-        "1 standard cup sona masuri rice (0.75 rice cup)",
-        "2½ standard cups water (1.875 rice cups)",
-        "3 medium ripe tomatoes (about 300 g), chopped",
-        "1 medium onion (about 120 g), sliced",
-        "1 inch ginger, finely grated",
-        "5 garlic cloves, finely chopped",
-        "2 tablespoons oil",
-        "Salt, as required"
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "standard cup",
+          "riceCupEquivalent": 0.75,
+          "ingredient": "sona masuri rice",
+          "scalable": true
+        },
+        {
+          "id": "water",
+          "quantity": 2.5,
+          "unit": "standard cup",
+          "riceCupEquivalent": 1.875,
+          "ingredient": "water",
+          "scalable": true
+        },
+        {
+          "id": "tomatoes",
+          "quantity": 3,
+          "countLabel": "medium ripe tomatoes",
+          "weightGrams": 300,
+          "preparation": "chopped",
+          "ingredient": "tomatoes",
+          "scalable": true,
+          "rounding": "quarter-count"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "preparation": "sliced",
+          "ingredient": "onion",
+          "scalable": true,
+          "rounding": "quarter-count"
+        },
+        {
+          "id": "ginger",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "ginger",
+          "preparation": "finely grated",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "garlic",
+          "quantity": 5,
+          "unit": "clove",
+          "ingredient": "garlic",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "rounding": "whole"
+        },
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "salt",
+          "displayText": "Salt, as required",
+          "ingredient": "salt",
+          "scalable": false
+        }
       ]
     },
     {
       "section": "Spices and Finishing",
       "items": [
-        "1 teaspoon mustard seeds",
-        "1 teaspoon cumin seeds",
-        "½ teaspoon turmeric powder",
-        "1 teaspoon red chilli powder",
-        "1 teaspoon garam masala",
-        "1 small lemon"
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "turmeric",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "rounding": "quarter"
+        },
+        {
+          "id": "lemon",
+          "quantity": 1,
+          "countLabel": "small lemon",
+          "ingredient": "lemon",
+          "scalable": true,
+          "rounding": "half-count"
+        }
       ]
     }
   ],
   "preparation": [
     {
-      "text": "Rinse 1 standard cup sona masuri rice (0.75 rice cup) and soak it for 20 minutes."
+      "lead": "Rinse and soak:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Soak for 20 minutes."
     },
     {
       "lead": "Prepare:",
-      "items": [
-        "3 medium ripe tomatoes (about 300 g), chopped",
-        "1 medium onion (about 120 g), sliced",
-        "1 inch ginger, finely grated",
-        "5 garlic cloves, finely chopped"
+      "ingredientIds": [
+        "tomatoes",
+        "onion",
+        "ginger",
+        "garlic"
       ]
     }
   ],
   "cookingMethod": [
     {
-      "lead": "Heat 2 tablespoons oil in a pressure cooker. Add:",
-      "items": [
-        "1 teaspoon mustard seeds",
-        "1 teaspoon cumin seeds"
+      "lead": "Heat in a pressure cooker:",
+      "ingredientIds": [
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds",
+        "cumin-seeds"
       ],
       "after": "Allow them to splutter."
     },
     {
       "lead": "Add:",
-      "items": [
-        "1 medium onion (about 120 g), sliced",
-        "1 inch ginger, finely grated",
-        "5 garlic cloves, finely chopped"
+      "ingredientIds": [
+        "onion",
+        "ginger",
+        "garlic"
       ],
       "after": "Sauté until the onion softens."
     },
     {
       "lead": "Add:",
-      "items": [
-        "3 medium ripe tomatoes (about 300 g), chopped",
-        "½ teaspoon turmeric powder",
-        "1 teaspoon red chilli powder",
-        "1 teaspoon garam masala",
-        "Salt, as required"
+      "ingredientIds": [
+        "tomatoes",
+        "turmeric",
+        "red-chilli-powder",
+        "garam-masala",
+        "salt"
       ],
       "after": "Cook until the tomatoes soften and the oil begins to separate."
     },
     {
-      "text": "Drain and add the soaked 1 standard cup sona masuri rice (0.75 rice cup). Mix gently for 1 minute."
+      "lead": "Drain and add:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Mix gently for 1 minute."
     },
     {
       "lead": "Add:",
-      "items": [
-        "2½ standard cups water (1.875 rice cups)"
+      "ingredientIds": [
+        "water"
       ],
       "after": "Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow the pressure to release naturally."
     },
     {
-      "text": "Fluff gently and finish with the juice of 1 small lemon."
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "lemon"
+      ],
+      "after": "Fluff gently and mix in the lemon juice."
     }
   ],
   "servingSuggestions": [
