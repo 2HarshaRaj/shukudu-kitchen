@@ -2,25 +2,34 @@
 
 ## Purpose
 
-This roadmap captures planned functionality for Shukudu Kitchen so that future development decisions remain in the repository instead of being spread across chat history.
+This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current State — Version 1
+## Current Version — v1.5.1
 
 Shukudu Kitchen currently includes:
 
 - JSON-driven recipe storage
+- One recipe file per recipe
+- Lightweight homepage recipe index
 - Homepage with recipe cards
 - Search by recipe name, category, and summary
 - Category filtering
 - Individual recipe pages
 - Anytype-inspired recipe layout
 - Mobile-responsive styling
+- Functional ingredient checkboxes
+- Sticky pill-style section navigation
+- Cooking Mode
+- Cooking progress persistence
+- Step completion tracking
+- Structured preparation and cooking steps
+- Bullet rendering in recipe pages and Cooking Mode
 - Three initial recipes:
   - Tomato Bath
   - Vangi Bath
   - Curd Rice
 
-## Version 2 — Kitchen Usability
+## Completed Features
 
 ### Functional Ingredient Checkboxes — Completed
 
@@ -32,66 +41,68 @@ Implemented behaviour:
 - Checklist state is stored separately for each recipe
 - A `Reset ingredients` action clears the checklist
 - Ingredient rows use larger mobile-friendly tap targets
-- The old decorative checkbox style was removed to avoid duplicate checkboxes
 
-Implementation files:
+### Sticky Section Navigation — Completed
 
-- `recipe.js`
-- `style.css`
+Implemented behaviour:
 
-### Sticky Section Navigation — Next
-
-Add a sticky navigation bar on recipe pages.
-
-Planned sections:
-
-- Recipe Details
-- Ingredients
-- Preparation
-- Cooking Method
-- Serving Suggestions
-- Notes
-
-Planned behaviour:
-
+- Sticky pill-style navigation on recipe pages
 - Tap a section to scroll to it
-- Highlight the current section where practical
-- Keep the navigation compact on mobile
-- Avoid covering section headings when scrolling
-- Allow horizontal scrolling on narrow screens if needed
+- Active section highlighting while scrolling
+- Horizontal scrolling on narrow screens
+- Mobile-active pill positioning
+- Stable section tracking without flicker
 
-### Cooking Mode
+### Cooking Mode — Completed
 
-Add a dedicated cooking experience launched with a `Start Cooking` button.
+Implemented behaviour:
 
-Planned behaviour:
+- One preparation or cooking step at a time
+- Large mobile-friendly text
+- Previous, Next, and Finish controls
+- Step number and progress bar
+- Resume current step using `localStorage`
+- Mark individual steps complete
+- Persistent completed-step state
+- Clear exit back to the full recipe
+- Mobile-safe bottom controls above browser navigation UI
 
-- Show one preparation or cooking step at a time
-- Use larger text for kitchen viewing
-- Provide Previous and Next controls
-- Show step number and progress
-- Show ingredients relevant to the current step where data supports it
-- Allow steps to be marked complete
-- Preserve progress locally in the browser
-- Offer a clear exit back to the full recipe
+Step-specific ingredient display was removed from the plan because cooking instructions already repeat exact ingredient quantities.
 
-### Mobile Refinement
+### Structured Recipe Steps — Completed
 
-Improve active-cooking usability on phones.
+Implemented behaviour:
 
-Planned work:
+- Simple steps using `text`
+- Structured steps using `lead`, `items`, and `after`
+- Bulleted ingredient lists within preparation and cooking steps
+- Structured-step rendering in normal recipe pages
+- Structured-step rendering in Cooking Mode
+- Backward compatibility for text-only steps
 
-- Larger tap targets
-- Better spacing between checklist items
-- Improved section padding
-- Reduced unnecessary scrolling
-- Clearer sticky controls
+### Recipe Data Architecture — Completed
 
-## Version 3 — Scaling and Measurement Tools
+Implemented structure:
 
-### Ingredient Scaling
+```text
+data/
+├─ recipe-index.json
+└─ recipes/
+   ├─ tomato-bath.json
+   ├─ vangi-bath.json
+   └─ curd-rice.json
+```
 
-Add scaling controls such as:
+Benefits:
+
+- Each recipe is maintained independently
+- The homepage loads only lightweight metadata
+- Updating one recipe does not require changing unrelated recipes
+- The site can scale to a much larger cookbook
+
+## Next Feature — Recipe Scaling
+
+### Planned Scale Options
 
 - 0.5×
 - 0.75×
@@ -100,24 +111,44 @@ Add scaling controls such as:
 - 1.5×
 - 2×
 
-Planned behaviour:
+### Planned Behaviour
 
-- Recalculate ingredient quantities automatically
-- Preserve readable fractions where possible
+- Recalculate scalable ingredient quantities automatically
+- Update matching quantities in Preparation and Cooking Method
+- Preserve readable fractions where practical
 - Scale rice, water, vegetables, spices, and finishing ingredients consistently
-- Keep cooking times unchanged unless a recipe-specific rule says otherwise
+- Keep temperatures and cooking timings unchanged unless a recipe-specific rule says otherwise
 - Show the selected scale clearly throughout the page
+- Save the selected scale per recipe
 
-This feature requires restructuring ingredient data from complete text sentences into structured quantity, unit, ingredient, and note fields.
+### Data Work Required
+
+Ingredient data must be upgraded from plain text into structured quantity data before reliable scaling is possible.
+
+A future ingredient model may look like:
+
+```json
+{
+  "id": "sona-masuri-rice",
+  "quantity": 1,
+  "unit": "standard cup",
+  "riceCupEquivalent": 0.75,
+  "ingredient": "sona masuri rice",
+  "preparation": "",
+  "scalable": true
+}
+```
+
+Scaling should be piloted on Tomato Bath before migrating the remaining recipes.
+
+## Future Features
 
 ### Standard Cup and Rice Cup Display
 
-Add a measurement display control.
-
 Possible options:
 
-- Show standard cup first with rice cup equivalent in brackets
-- Show rice cup first with standard cup equivalent in brackets
+- Standard cup first with rice cup equivalent in brackets
+- Rice cup first with standard cup equivalent in brackets
 - Show both
 
 Default rule:
@@ -126,15 +157,11 @@ Default rule:
 
 ### Serving Adjustment
 
-Allow recipes to be adjusted by serving count where that model makes sense.
-
 Planned considerations:
 
 - Distinguish serving-based recipes from rice-quantity-based recipes
-- Avoid implying that pressure-cooking time always scales linearly
+- Avoid implying that pressure-cooking time scales linearly
 - Preserve recipe-specific water ratios
-
-## Version 4 — Presentation and Convenience
 
 ### Improved Recipe Cards
 
@@ -150,8 +177,6 @@ Possible metadata:
 
 ### Print View
 
-Add a print-friendly recipe format.
-
 Planned behaviour:
 
 - Hide search, filters, sticky navigation, and decorative controls
@@ -161,8 +186,6 @@ Planned behaviour:
 
 ### Recipe Images
 
-Add optional images to recipe cards and recipe pages.
-
 Planned structure:
 
 - Store image paths in recipe data
@@ -171,56 +194,21 @@ Planned structure:
 
 ### Direct Edit Link
 
-Add an owner-focused link to the relevant recipe data in GitHub.
-
-This is optional because recipes are expected to be maintained through chat and committed to GitHub rather than edited manually on the live website.
-
-## Data Architecture Changes
-
-The current `recipes.json` stores ingredient lines as complete text strings. This works for display but limits scaling and step-specific ingredient linking.
-
-A future structured ingredient model may look like:
-
-```json
-{
-  "id": "sona-masuri-rice",
-  "quantity": 1,
-  "unit": "standard cup",
-  "riceCupEquivalent": 0.75,
-  "ingredient": "sona masuri rice",
-  "preparation": "rinsed and soaked for 20 minutes",
-  "scalable": true
-}
-```
-
-Cooking steps may later reference ingredient IDs:
-
-```json
-{
-  "instruction": "Add the soaked rice and mix gently for 1 minute.",
-  "ingredientIds": ["sona-masuri-rice"]
-}
-```
-
-This would support:
-
-- Automatic scaling
-- Step-specific ingredient display
-- Measurement toggles
-- Better validation between ingredients and method steps
+Optional owner-focused link to the relevant recipe file in GitHub.
 
 ## Recommended Development Order
 
 1. Functional ingredient checkboxes — completed
-2. Sticky section navigation — next
-3. Cooking mode
-4. Mobile refinement
-5. Structured recipe data migration
-6. Ingredient scaling
-7. Standard cup and rice cup display controls
-8. Serving adjustment
-9. Print view
-10. Recipe images and richer cards
+2. Sticky section navigation — completed
+3. Cooking Mode — completed
+4. Mobile refinements — completed
+5. Recipe-per-file architecture — completed
+6. Structured recipe steps — completed
+7. Ingredient scaling — next
+8. Standard cup and rice cup display controls
+9. Serving adjustment
+10. Print view
+11. Recipe images and richer cards
 
 ## Development Principle
 
