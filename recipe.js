@@ -110,7 +110,11 @@ function initialiseSectionNavigation() {
     link.addEventListener('click', (event) => {
       event.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
-      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target) return;
+
+      const navHeight = nav.offsetHeight;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 18;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 
@@ -125,13 +129,10 @@ function initialiseSectionNavigation() {
       links.forEach((link) => {
         const isActive = link.getAttribute('href') === `#${visible.target.id}`;
         link.classList.toggle('is-active', isActive);
-        if (isActive) {
-          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
       });
     },
     {
-      rootMargin: '-18% 0px -68% 0px',
+      rootMargin: '-22% 0px -65% 0px',
       threshold: [0, 0.1, 0.25]
     }
   );
