@@ -35,17 +35,60 @@
     }
   ],
   "preparation": [
-    "Rinse 1⅓ standard cups sona masuri rice (1 rice cup).",
-    "Slice 250 g small round purple brinjal, 100 g capsicum and 1 medium onion (about 120 g). Keep the brinjal in water until needed to prevent discolouration."
+    {
+      "text": "Rinse 1⅓ standard cups sona masuri rice (1 rice cup)."
+    },
+    {
+      "lead": "Prepare:",
+      "items": [
+        "250 g small round purple brinjal, sliced",
+        "100 g capsicum, sliced",
+        "1 medium onion (about 120 g), sliced"
+      ],
+      "after": "Keep the sliced brinjal in water until needed to prevent discolouration."
+    }
   ],
   "cookingMethod": [
-    "Cook 1⅓ standard cups sona masuri rice (1 rice cup) with 3⅓ standard cups water (2.5 rice cups). Build pressure, reduce to 100°C / 300 W for 10 minutes and allow natural pressure release. Spread the cooked rice gently so it does not become mushy.",
-    "Heat 2 tablespoons oil in a wide kadai. Add 1 teaspoon mustard seeds, 1 teaspoon urad dal, 1 teaspoon chana dal and 10 curry leaves.",
-    "Add 1 medium sliced onion (about 120 g) and sauté until softened.",
-    "Add 250 g sliced brinjal, 100 g sliced capsicum, ¼ teaspoon turmeric powder and salt as required. Cook covered until the brinjal is tender while retaining its shape.",
-    "Add 3½ tablespoons vangi bath powder and mix on low heat for 1–2 minutes.",
-    "Add the cooked rice gradually and fold gently until evenly coated.",
-    "Turn off the heat and finish with the juice of 1 small lemon."
+    {
+      "lead": "Cook together:",
+      "items": [
+        "1⅓ standard cups sona masuri rice (1 rice cup)",
+        "3⅓ standard cups water (2.5 rice cups)"
+      ],
+      "after": "Build pressure, reduce to 100°C / 300 W for 10 minutes and allow natural pressure release. Spread the cooked rice gently so it does not become mushy."
+    },
+    {
+      "lead": "Heat 2 tablespoons oil in a wide kadai. Add:",
+      "items": [
+        "1 teaspoon mustard seeds",
+        "1 teaspoon urad dal",
+        "1 teaspoon chana dal",
+        "10 curry leaves"
+      ],
+      "after": "Allow the tempering ingredients to sizzle."
+    },
+    {
+      "text": "Add 1 medium onion (about 120 g), sliced, and sauté until softened."
+    },
+    {
+      "lead": "Add:",
+      "items": [
+        "250 g small round purple brinjal, sliced",
+        "100 g capsicum, sliced",
+        "¼ teaspoon turmeric powder",
+        "Salt, as required"
+      ],
+      "after": "Cook covered until the brinjal is tender while retaining its shape."
+    },
+    {
+      "text": "Add 3½ tablespoons vangi bath powder and mix on low heat for 1–2 minutes."
+    },
+    {
+      "text": "Add the cooked rice gradually and fold gently until evenly coated."
+    },
+    {
+      "text": "Turn off the heat and finish with the juice of 1 small lemon."
+    }
   ],
   "servingSuggestions": [
     "Serve with plain curd, cucumber raita or potato chips."
