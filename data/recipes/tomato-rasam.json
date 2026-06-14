@@ -1,0 +1,303 @@
+{
+  "name": "Tomato Rasam",
+  "slug": "tomato-rasam",
+  "category": "Rasam",
+  "summary": "A quick tomato rasam made with rasam powder, pressure-cooked tomatoes and garlic tempering.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Finalized"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseScale": 1,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Pressure Cook",
+      "items": [
+        {
+          "id": "tomatoes",
+          "quantity": 5,
+          "countLabel": "medium ripe tomato",
+          "weightGrams": 500,
+          "ingredient": "tomatoes",
+          "preparation": "roughly chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "curry-leaves-pressure",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "coriander-pressure",
+          "quantity": 0.25,
+          "unit": "cup",
+          "weightGrams": 15,
+          "ingredient": "coriander leaves with tender stems",
+          "preparation": "roughly chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water-pressure",
+          "quantity": 0.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Rasam Base",
+      "items": [
+        {
+          "id": "rasam-powder",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "rasam powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "turmeric",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "black-pepper-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "black pepper powder",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin powder",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tamarind-paste",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "tamarind paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "jaggery",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "jaggery",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – 1 pinch",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water-base",
+          "quantity": 4.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "ghee-or-oil",
+          "quantity": 2.5,
+          "unit": "teaspoon",
+          "ingredient": "ghee or oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic",
+          "quantity": 4,
+          "countLabel": "garlic clove",
+          "weightGrams": 12,
+          "ingredient": "garlic",
+          "preparation": "lightly crushed",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "dried-red-chilli",
+          "quantity": 1,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chilli",
+          "preparation": "broken",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "curry-leaves-tempering",
+          "quantity": 6,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        }
+      ]
+    },
+    {
+      "section": "Garnish",
+      "items": [
+        {
+          "id": "coriander-garnish",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 10,
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare for pressure cooking:",
+      "ingredientIds": [
+        "tomatoes",
+        "curry-leaves-pressure",
+        "coriander-pressure",
+        "water-pressure"
+      ]
+    },
+    {
+      "lead": "Prepare for tempering and garnish:",
+      "ingredientIds": [
+        "garlic",
+        "dried-red-chilli",
+        "curry-leaves-tempering",
+        "coriander-garnish"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Add to a pressure cooker:",
+      "ingredientIds": [
+        "tomatoes",
+        "curry-leaves-pressure",
+        "coriander-pressure",
+        "water-pressure"
+      ],
+      "after": "Pressure cook for 2 whistles and allow the pressure to release naturally. Mash the cooked mixture well."
+    },
+    {
+      "lead": "Transfer the mashed mixture to a pot and add:",
+      "ingredientIds": [
+        "rasam-powder",
+        "turmeric",
+        "black-pepper-powder",
+        "cumin-powder",
+        "tamarind-paste",
+        "jaggery",
+        "hing",
+        "salt",
+        "water-base"
+      ],
+      "after": "Bring to a boil for 3–4 minutes, then simmer gently for 2–3 minutes until slightly frothy. Turn off the heat."
+    },
+    {
+      "lead": "Heat for tempering:",
+      "ingredientIds": [
+        "ghee-or-oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ],
+      "after": "Allow the mustard seeds to splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "cumin-seeds",
+        "garlic"
+      ],
+      "after": "Sauté for 20–30 seconds until the garlic becomes aromatic and lightly golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "dried-red-chilli",
+        "curry-leaves-tempering"
+      ],
+      "after": "Let them splutter briefly, then pour the tempering over the rasam."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "coriander-garnish"
+      ],
+      "after": "Close the lid immediately and rest for 2–3 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain rice, potato fry, beans palya or papad.",
+    "It can also be served in a cup as a light, warming soup."
+  ],
+  "notes": [
+    "This is a non-rice recipe, so the website uses generic multiplier controls such as 0.5×, 1× and 1.5×.",
+    "The recipe makes about 5 cups of rasam at the 1× base quantity.",
+    "Pressure cooking part of the coriander creates a deeper flavour, while fresh coriander added at the end preserves aroma.",
+    "Garlic is added only during tempering for a stronger roasted aroma.",
+    "If the rasam powder is particularly strong or spicy, begin with a slightly smaller amount and adjust after tasting.",
+    "Refrigerate leftovers within 2 hours and reheat only the required portion."
+  ]
+}
