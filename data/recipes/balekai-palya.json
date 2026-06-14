@@ -1,0 +1,235 @@
+{
+  "name": "Balekai Palya",
+  "slug": "balekai-palya",
+  "category": "Palya",
+  "summary": "Karnataka-style raw banana stir fry with simple tempering, coconut and coriander.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Finalized"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseScale": 1,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Vegetable",
+      "items": [
+        {
+          "id": "raw-banana",
+          "quantity": 4,
+          "countLabel": "medium raw banana",
+          "weightGrams": 500,
+          "ingredient": "raw banana / balekai",
+          "preparation": "peeled and cut into 1–1.5 cm cubes",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dried-red-chilli",
+          "quantity": 2,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chilli",
+          "preparation": "broken",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – ¼ teaspoon",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        }
+      ]
+    },
+    {
+      "section": "Spice Mix",
+      "items": [
+        {
+          "id": "turmeric",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 5,
+          "unit": "tablespoon",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Finishing",
+      "items": [
+        {
+          "id": "fresh-coconut",
+          "quantity": 0.25,
+          "unit": "cup",
+          "weightGrams": 20,
+          "ingredient": "fresh grated coconut",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 10,
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "raw-banana"
+      ],
+      "after": "Keep the cut raw banana pieces in water until cooking to prevent discolouration. Drain before adding to the kadai."
+    },
+    {
+      "lead": "Keep ready:",
+      "ingredientIds": [
+        "dried-red-chilli",
+        "curry-leaves",
+        "fresh-coconut",
+        "coriander-leaves"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat in a kadai:",
+      "ingredientIds": [
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds",
+        "urad-dal",
+        "chana-dal",
+        "dried-red-chilli",
+        "hing",
+        "curry-leaves"
+      ],
+      "after": "Sauté until the dals turn light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "raw-banana",
+        "turmeric",
+        "salt"
+      ],
+      "after": "Mix well for 1 minute."
+    },
+    {
+      "lead": "Sprinkle:",
+      "ingredientIds": [
+        "water"
+      ],
+      "after": "Cover and cook on low flame for 12–15 minutes, stirring every 4–5 minutes, until the raw banana becomes tender."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "red-chilli-powder"
+      ],
+      "after": "Mix well and cook uncovered for 2–3 minutes to remove excess moisture."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "fresh-coconut",
+        "coriander-leaves"
+      ],
+      "after": "Mix gently and switch off the heat."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with hot rice and sambar.",
+    "Serve with rasam and curd rice.",
+    "Use as a dry side dish with chapati."
+  ],
+  "notes": [
+    "This is a non-rice recipe, so the website uses generic multiplier controls such as 0.5×, 1× and 1.5×.",
+    "Do not add too much water; the raw banana should stay separate and not become mushy.",
+    "If the raw bananas are very tender, reduce the covered cooking time by 2–3 minutes.",
+    "Fresh grated coconut gives the traditional Karnataka-style finish and is recommended."
+  ]
+}
