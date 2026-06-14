@@ -391,17 +391,20 @@ async function loadRecipe() {
   const slug = new URLSearchParams(window.location.search).get('slug');
 
   try {
-    const response = await fetch('recipes.json');
-
-    if (!response.ok) {
-      throw new Error('Unable to load recipe data.');
+    if (!slug || !/^[a-z0-9-]+$/.test(slug)) {
+      throw new Error('Recipe not found.');
     }
 
-    const recipes = await response.json();
-    const recipe = recipes.find((item) => item.slug === slug);
+    const response = await fetch(`data/recipes/${slug}.json`);
 
-    if (!recipe) {
-      throw new Error('Recipe not found.');
+    if (!response.ok) {
+      throw new Error(response.status === 404 ? 'Recipe not found.' : 'Unable to load recipe data.');
+    }
+
+    const recipe = await response.json();
+
+    if (recipe.slug !== slug) {
+      throw new Error('Recipe data is invalid.');
     }
 
     renderRecipe(recipe);
