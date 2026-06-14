@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Tomato Bath",
+    "slug": "tomato-bath",
+    "category": "Rice",
+    "summary": "A Karnataka-style tomato rice prepared with sona masuri rice, fresh ginger and garlic."
+  },
+  {
+    "name": "Vangi Bath",
+    "slug": "vangi-bath",
+    "category": "Rice",
+    "summary": "Karnataka-style brinjal rice with capsicum and vangi bath powder."
+  },
+  {
+    "name": "Curd Rice",
+    "slug": "curd-rice",
+    "category": "Rice",
+    "summary": "Soft, cooling curd rice designed for a small portion and a very soft texture."
+  }
+]
