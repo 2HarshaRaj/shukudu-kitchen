@@ -182,6 +182,18 @@ When a step uses more than one ingredient:
 
 Do not place multiple ingredients in one long sentence when they can be separated clearly.
 
+### Cooking Mode Step Length Rule
+
+Keep each step short enough to follow comfortably on a phone.
+
+Use these rules:
+
+- one cooking action per step
+- bullet the ingredients used in that action
+- split the step when it contains two distinct cooking actions
+
+A step may scroll in Cooking Mode when needed, but excessive scrolling should be avoided. Clear, focused steps make Cooking Mode easier to follow while actively cooking.
+
 ## Tamarind Rule
 
 Use tamarind paste whenever tamarind is required.
@@ -226,10 +238,12 @@ Before adding a new recipe:
 4. Confirm rice and rice-cooking water use standard cup first and rice cup in brackets
 5. Confirm preparation and cooking steps reuse exact ingredient quantities
 6. Use bullet items for any step with multiple ingredients
-7. Confirm no ingredient is omitted
-8. Add the recipe file under `data/recipes/`
-9. Add metadata to `data/recipe-index.json`
-10. Test the normal recipe page and Cooking Mode
+7. Keep one cooking action per step
+8. Split steps that contain two distinct cooking actions
+9. Confirm no ingredient is omitted
+10. Add the recipe file under `data/recipes/`
+11. Add metadata to `data/recipe-index.json`
+12. Test the normal recipe page and Cooking Mode
 
 ## Required References
 
