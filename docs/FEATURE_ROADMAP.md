@@ -141,37 +141,74 @@ Still to do:
 - migrate Curd Rice to the scalable schema
 - validate all supported scales across all three recipes
 
-### Open Design Decision — Standard Cup or Rice Cup Base
+### Finalized Design Decision — Rice Cup Scaling Base
 
-Discuss and decide whether scalable rice recipes should be authored primarily from:
+Rice-based recipes are authored and scaled using **rice cup quantities as the canonical base**.
 
-- standard cup quantities, with rice cup equivalents shown in brackets
-- rice cup quantities, with standard cup equivalents calculated for display
-- a neutral base quantity model that stores both and allows the website to choose the display order
+New rice recipes should generally default to **1 rice cup** as the base quantity, unless another rice-cup quantity better represents the finalized recipe.
 
-Current project rule remains:
+Current behaviour:
+
+- Rice recipes store explicit scaling metadata.
+- Rice and rice-cooking water use rice cup measurements as the scaling basis.
+- Standard cup equivalents are calculated for display.
+- Other ingredients continue using their natural units.
+- Public recipe links remain understandable because standard cup equivalents are shown in brackets.
+
+Example:
+
+```text
+Rice – 1 rice cup (1⅓ standard cups)
+Water – 2 rice cups (2⅔ standard cups)
+```
+
+Required scaling metadata:
+
+```json
+"scaling": {
+  "baseIngredient": "rice",
+  "baseQuantity": 1,
+  "baseUnit": "riceCup"
+}
+```
+
+The engine must use this metadata rather than infer the scaling base from display text.
+
+Rationale:
+
+Shukudu Kitchen is intended to optimize recipes for practical day-to-day cooking rather than preserve internet recipe measurement systems exactly. Internet recipes are treated as source material; GitHub stores the adapted cooking-ready version.
+
+The conversion rule remains:
 
 ```text
 1 standard cup = 0.75 rice cup
 ```
 
-Current display convention remains:
-
-```text
-Standard cup first (rice cup equivalent in brackets)
-```
-
-This should be reviewed before scaling is rolled out broadly to more rice recipes.
-
 ## Future Features
+
+### Future Enhancement — Standard Cup Scaling Input
+
+A future enhancement may allow users to enter the desired rice quantity using standard cups.
+
+The engine would:
+
+1. Convert the standard cup input into rice cups.
+2. Calculate the scale factor against the stored rice-cup base.
+3. Reuse the existing scaling engine for all ingredients.
+4. Render the result in the selected display format.
+
+This enhancement is intentionally deferred. Because the current recipe model stores the canonical base explicitly, adding standard-cup input later would extend the existing architecture rather than require a redesign.
 
 ### Standard Cup and Rice Cup Display
 
-Possible options:
+Current direction:
 
-- Standard cup first with rice cup equivalent in brackets
 - Rice cup first with standard cup equivalent in brackets
-- Show both with a user-selectable preference
+- Standard cup values remain derived display equivalents
+
+Possible future enhancement:
+
+- user-selectable display order without changing the canonical scaling base
 
 Default rule:
 
@@ -227,11 +264,12 @@ Optional owner-focused link to the relevant recipe file in GitHub.
 5. Recipe-per-file architecture — completed
 6. Structured recipe steps — completed
 7. Ingredient scaling — in progress
-8. Standard cup and rice cup base-model decision
+8. Rice cup scaling base decision — completed
 9. Migrate remaining recipes to scaling
 10. Serving adjustment
 11. Print view
 12. Recipe images and richer cards
+13. Optional standard-cup scaling input
 
 ## Development Principle
 
