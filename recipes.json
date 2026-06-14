@@ -1,0 +1,169 @@
+[
+  {
+    "name": "Tomato Bath",
+    "slug": "tomato-bath",
+    "category": "Rice",
+    "summary": "A Karnataka-style tomato rice prepared with sona masuri rice, fresh ginger and garlic.",
+    "details": {
+      "Cuisine": "South Indian · Karnataka",
+      "Meal Type": "Lunch / Dinner",
+      "Status": "Initial website version"
+    },
+    "ingredients": [
+      {
+        "section": "Main Ingredients",
+        "items": [
+          "1 standard cup sona masuri rice (0.75 rice cup)",
+          "2½ standard cups water (1.875 rice cups)",
+          "3 medium ripe tomatoes (about 300 g), chopped",
+          "1 medium onion (about 120 g), sliced",
+          "1 inch ginger, finely grated",
+          "5 garlic cloves, finely chopped",
+          "2 tablespoons oil",
+          "Salt, as required"
+        ]
+      },
+      {
+        "section": "Spices and Finishing",
+        "items": [
+          "1 teaspoon mustard seeds",
+          "1 teaspoon cumin seeds",
+          "½ teaspoon turmeric powder",
+          "1 teaspoon red chilli powder",
+          "1 teaspoon garam masala",
+          "1 small lemon"
+        ]
+      }
+    ],
+    "preparation": [
+      "Rinse 1 standard cup sona masuri rice (0.75 rice cup) and soak it for 20 minutes.",
+      "Chop 3 medium ripe tomatoes (about 300 g), slice 1 medium onion (about 120 g), grate 1 inch ginger and finely chop 5 garlic cloves."
+    ],
+    "cookingMethod": [
+      "Heat 2 tablespoons oil in a pressure cooker. Add 1 teaspoon mustard seeds and 1 teaspoon cumin seeds; allow them to splutter.",
+      "Add 1 medium sliced onion (about 120 g), 1 inch grated ginger and 5 chopped garlic cloves. Sauté until the onion softens.",
+      "Add 3 chopped tomatoes (about 300 g), ½ teaspoon turmeric powder, 1 teaspoon red chilli powder, 1 teaspoon garam masala and salt as required. Cook until the tomatoes soften and the oil begins to separate.",
+      "Drain and add the soaked 1 standard cup sona masuri rice (0.75 rice cup). Mix gently for 1 minute.",
+      "Add 2½ standard cups water (1.875 rice cups). Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow the pressure to release naturally.",
+      "Fluff gently and finish with the juice of 1 small lemon."
+    ],
+    "servingSuggestions": [
+      "Serve hot with onion-cucumber raita, plain curd or papad."
+    ],
+    "notes": [
+      "This is the initial website version and can be replaced with the fully finalized chat version after review.",
+      "The standard cup conversion used throughout Shukudu Kitchen is 1 standard cup = 0.75 rice cup."
+    ]
+  },
+  {
+    "name": "Vangi Bath",
+    "slug": "vangi-bath",
+    "category": "Rice",
+    "summary": "Karnataka-style brinjal rice with capsicum and vangi bath powder.",
+    "details": {
+      "Cuisine": "South Indian · Karnataka",
+      "Meal Type": "Lunch / Dinner",
+      "Status": "Initial website version"
+    },
+    "ingredients": [
+      {
+        "section": "Rice and Vegetables",
+        "items": [
+          "1⅓ standard cups sona masuri rice (1 rice cup)",
+          "3⅓ standard cups water (2.5 rice cups)",
+          "250 g small round purple brinjal, sliced",
+          "100 g capsicum, sliced",
+          "1 medium onion (about 120 g), sliced"
+        ]
+      },
+      {
+        "section": "Tempering and Masala",
+        "items": [
+          "2 tablespoons oil",
+          "1 teaspoon mustard seeds",
+          "1 teaspoon urad dal",
+          "1 teaspoon chana dal",
+          "10 curry leaves",
+          "¼ teaspoon turmeric powder",
+          "3½ tablespoons vangi bath powder",
+          "Salt, as required",
+          "1 small lemon"
+        ]
+      }
+    ],
+    "preparation": [
+      "Rinse 1⅓ standard cups sona masuri rice (1 rice cup).",
+      "Slice 250 g small round purple brinjal, 100 g capsicum and 1 medium onion (about 120 g). Keep the brinjal in water until needed to prevent discolouration."
+    ],
+    "cookingMethod": [
+      "Cook 1⅓ standard cups sona masuri rice (1 rice cup) with 3⅓ standard cups water (2.5 rice cups). Build pressure, reduce to 100°C / 300 W for 10 minutes and allow natural pressure release. Spread the cooked rice gently so it does not become mushy.",
+      "Heat 2 tablespoons oil in a wide kadai. Add 1 teaspoon mustard seeds, 1 teaspoon urad dal, 1 teaspoon chana dal and 10 curry leaves.",
+      "Add 1 medium sliced onion (about 120 g) and sauté until softened.",
+      "Add 250 g sliced brinjal, 100 g sliced capsicum, ¼ teaspoon turmeric powder and salt as required. Cook covered until the brinjal is tender while retaining its shape.",
+      "Add 3½ tablespoons vangi bath powder and mix on low heat for 1–2 minutes.",
+      "Add the cooked rice gradually and fold gently until evenly coated.",
+      "Turn off the heat and finish with the juice of 1 small lemon."
+    ],
+    "servingSuggestions": [
+      "Serve with plain curd, cucumber raita or potato chips."
+    ],
+    "notes": [
+      "This version uses 250 g brinjal and 100 g capsicum.",
+      "Add lemon only after turning off the heat, especially when the vangi bath powder tastes slightly flat or old."
+    ]
+  },
+  {
+    "name": "Curd Rice",
+    "slug": "curd-rice",
+    "category": "Rice",
+    "summary": "Soft, cooling curd rice designed for a small portion and a very soft texture.",
+    "details": {
+      "Cuisine": "South Indian",
+      "Meal Type": "Lunch / Dinner",
+      "Status": "Initial website version"
+    },
+    "ingredients": [
+      {
+        "section": "Rice Mixture",
+        "items": [
+          "⅓ standard cup sona masuri rice (0.25 rice cup)",
+          "1⅓ standard cups water (1 rice cup)",
+          "½ standard cup thick curd (0.375 rice cup)",
+          "¼ standard cup milk (0.1875 rice cup)",
+          "Salt, as required"
+        ]
+      },
+      {
+        "section": "Tempering",
+        "items": [
+          "1 teaspoon oil",
+          "½ teaspoon mustard seeds",
+          "½ teaspoon urad dal",
+          "½ teaspoon finely chopped ginger",
+          "1 green chilli, finely chopped",
+          "6 curry leaves",
+          "1 tablespoon finely chopped coriander leaves"
+        ]
+      }
+    ],
+    "preparation": [
+      "Rinse ⅓ standard cup sona masuri rice (0.25 rice cup).",
+      "Finely chop ½ teaspoon ginger, 1 green chilli and 1 tablespoon coriander leaves."
+    ],
+    "cookingMethod": [
+      "Add ⅓ standard cup sona masuri rice (0.25 rice cup) and 1⅓ standard cups water (1 rice cup) to the pressure cooker.",
+      "Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow natural pressure release. The rice should be very soft.",
+      "Mash the hot cooked rice thoroughly. Allow it to cool until warm.",
+      "Mix in ¼ standard cup milk (0.1875 rice cup), ½ standard cup thick curd (0.375 rice cup) and salt as required.",
+      "Heat 1 teaspoon oil. Add ½ teaspoon mustard seeds, ½ teaspoon urad dal, ½ teaspoon chopped ginger, 1 chopped green chilli and 6 curry leaves.",
+      "Pour the tempering over the curd rice and mix in 1 tablespoon chopped coriander leaves."
+    ],
+    "servingSuggestions": [
+      "Serve at room temperature with pickle, pomegranate or grated carrot."
+    ],
+    "notes": [
+      "The 1:3 rice-to-water ratio is intentional because the rice must become very soft for curd rice.",
+      "Add a little more milk or curd before serving if the rice thickens after resting."
+    ]
+  }
+]
