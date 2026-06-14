@@ -17,6 +17,10 @@ function getCookingStepKey(slug) {
   return `shukudu-kitchen:${slug}:cooking-step`;
 }
 
+function getCompletedStepsKey(slug) {
+  return `shukudu-kitchen:${slug}:completed-steps`;
+}
+
 function loadChecklistState(slug) {
   try {
     return JSON.parse(localStorage.getItem(getChecklistKey(slug))) || {};
@@ -37,6 +41,18 @@ function loadCookingStep(slug, stepCount) {
 
 function saveCookingStep(slug, stepIndex) {
   localStorage.setItem(getCookingStepKey(slug), String(stepIndex));
+}
+
+function loadCompletedSteps(slug) {
+  try {
+    return JSON.parse(localStorage.getItem(getCompletedStepsKey(slug))) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveCompletedSteps(slug, state) {
+  localStorage.setItem(getCompletedStepsKey(slug), JSON.stringify(state));
 }
 
 function renderList(items, ordered = false) {
@@ -184,11 +200,12 @@ function initialiseCookingMode(recipe) {
   const exitButton = recipeContent.querySelector('#exitCooking');
   const previousButton = recipeContent.querySelector('#previousCookingStep');
   const nextButton = recipeContent.querySelector('#nextCookingStep');
+  const completeButton = recipeContent.querySelector('#completeCookingStep');
   const stepText = recipeContent.querySelector('#cookingStepText');
   const stepLabel = recipeContent.querySelector('#cookingStepLabel');
   const progressBar = recipeContent.querySelector('#cookingProgressBar');
 
-  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !stepText || !stepLabel || !progressBar) {
+  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !completeButton || !stepText || !stepLabel || !progressBar) {
     return;
   }
 
@@ -198,16 +215,22 @@ function initialiseCookingMode(recipe) {
   ];
 
   let currentStep = loadCookingStep(recipe.slug, steps.length);
+  let completedSteps = loadCompletedSteps(recipe.slug);
 
   function updateCookingStep() {
     const step = steps[currentStep];
     if (!step) return;
+
+    const isComplete = Boolean(completedSteps[currentStep]);
 
     stepLabel.textContent = `${step.phase} • Step ${currentStep + 1} of ${steps.length}`;
     stepText.textContent = step.text;
     progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
     previousButton.disabled = currentStep === 0;
     nextButton.textContent = currentStep === steps.length - 1 ? 'Finish' : 'Next';
+    completeButton.textContent = isComplete ? 'Completed ✓' : 'Mark Complete';
+    completeButton.classList.toggle('is-complete', isComplete);
+    completeButton.setAttribute('aria-pressed', String(isComplete));
     saveCookingStep(recipe.slug, currentStep);
   }
 
@@ -227,6 +250,12 @@ function initialiseCookingMode(recipe) {
   startButton.addEventListener('click', openCookingMode);
   exitButton.addEventListener('click', closeCookingMode);
 
+  completeButton.addEventListener('click', () => {
+    completedSteps[currentStep] = !completedSteps[currentStep];
+    saveCompletedSteps(recipe.slug, completedSteps);
+    updateCookingStep();
+  });
+
   previousButton.addEventListener('click', () => {
     if (currentStep === 0) return;
     currentStep -= 1;
@@ -236,6 +265,8 @@ function initialiseCookingMode(recipe) {
   nextButton.addEventListener('click', () => {
     if (currentStep === steps.length - 1) {
       localStorage.removeItem(getCookingStepKey(recipe.slug));
+      localStorage.removeItem(getCompletedStepsKey(recipe.slug));
+      completedSteps = {};
       currentStep = 0;
       closeCookingMode();
       return;
@@ -340,6 +371,7 @@ function renderRecipe(recipe) {
         <div class="cooking-step-card">
           <p id="cookingStepLabel" class="cooking-step-label"></p>
           <p id="cookingStepText" class="cooking-step-text"></p>
+          <button id="completeCookingStep" class="complete-step-button" type="button" aria-pressed="false">Mark Complete</button>
         </div>
 
         <div class="cooking-actions">
