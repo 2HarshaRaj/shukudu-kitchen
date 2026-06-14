@@ -59,7 +59,85 @@ function normalizeStep(step) {
   return typeof step === 'string' ? { text: step } : step;
 }
 
-function renderStepContent(step) {
+function formatNumber(value) {
+  if (Number.isInteger(value)) return String(value);
+
+  const rounded = Math.round(value * 1000) / 1000;
+  const fractions = new Map([
+    [0.125, '⅛'],
+    [0.25, '¼'],
+    [0.333, '⅓'],
+    [0.375, '⅜'],
+    [0.5, '½'],
+    [0.625, '⅝'],
+    [0.667, '⅔'],
+    [0.75, '¾'],
+    [0.875, '⅞']
+  ]);
+
+  const whole = Math.floor(rounded);
+  const fraction = Math.round((rounded - whole) * 1000) / 1000;
+  const symbol = fractions.get(fraction);
+
+  if (symbol) return whole ? `${whole}${symbol}` : symbol;
+  return String(rounded).replace(/\.0+$/, '');
+}
+
+function pluralizeUnit(unit, quantity) {
+  if (!unit) return '';
+  if (quantity === 1) return unit;
+
+  const irregular = {
+    inch: 'inches',
+    clove: 'cloves',
+    tablespoon: 'tablespoons',
+    teaspoon: 'teaspoons',
+    'standard cup': 'standard cups',
+    'rice cup': 'rice cups'
+  };
+
+  return irregular[unit] || `${unit}s`;
+}
+
+function formatIngredient(item, scale = 1) {
+  if (typeof item === 'string') return item;
+  if (item.displayText) return item.displayText;
+
+  const quantity = item.scalable === false ? item.quantity : item.quantity * scale;
+  const formattedQuantity = formatNumber(quantity);
+  const preparation = item.preparation ? `, ${item.preparation}` : '';
+
+  if (item.countLabel) {
+    const label = quantity === 1 ? item.countLabel : item.countLabel.replace(/\b(onion|tomato|lemon)\b/, '$1s');
+    const grams = item.weightGrams
+      ? ` (${formatNumber((item.scalable === false ? item.weightGrams : item.weightGrams * scale))} g)`
+      : '';
+    return `${formattedQuantity} ${label}${grams}${preparation}`;
+  }
+
+  const unit = pluralizeUnit(item.unit, quantity);
+  const riceCup = item.riceCupEquivalent != null
+    ? ` (${formatNumber((item.scalable === false ? item.riceCupEquivalent : item.riceCupEquivalent * scale))} ${pluralizeUnit('rice cup', item.riceCupEquivalent * scale)})`
+    : '';
+
+  return `${formattedQuantity} ${unit} ${item.ingredient}${riceCup}${preparation}`.replace(/\s+/g, ' ').trim();
+}
+
+function buildIngredientMap(recipe) {
+  const map = new Map();
+
+  (recipe.ingredients || []).forEach((section) => {
+    (section.items || []).forEach((item) => {
+      if (typeof item === 'object' && item.id) {
+        map.set(item.id, item);
+      }
+    });
+  });
+
+  return map;
+}
+
+function renderStepContent(step, ingredientMap = new Map(), scale = 1) {
   const normalized = normalizeStep(step);
 
   if (normalized.text) {
@@ -70,8 +148,15 @@ function renderStepContent(step) {
     ? `<p class="step-lead">${escapeHtml(normalized.lead)}</p>`
     : '';
 
-  const items = normalized.items?.length
-    ? `<ul class="step-items">${normalized.items
+  const stepItems = normalized.ingredientIds?.length
+    ? normalized.ingredientIds
+        .map((id) => ingredientMap.get(id))
+        .filter(Boolean)
+        .map((item) => formatIngredient(item, scale))
+    : normalized.items || [];
+
+  const items = stepItems.length
+    ? `<ul class="step-items">${stepItems
         .map((item) => `<li>${escapeHtml(item)}</li>`)
         .join('')}</ul>`
     : '';
@@ -83,11 +168,11 @@ function renderStepContent(step) {
   return `${lead}${items}${after}`;
 }
 
-function renderStepList(items) {
+function renderStepList(items, ingredientMap = new Map(), scale = 1) {
   if (!items?.length) return '';
 
   return `<ol class="structured-steps">${items
-    .map((step) => `<li>${renderStepContent(step)}</li>`)
+    .map((step) => `<li>${renderStepContent(step, ingredientMap, scale)}</li>`)
     .join('')}</ol>`;
 }
 
@@ -99,7 +184,7 @@ function renderSimpleList(items) {
     .join('')}</ul>`;
 }
 
-function renderIngredientChecklist(recipe) {
+function renderIngredientChecklist(recipe, scale = 1) {
   const savedState = loadChecklistState(recipe.slug);
   let itemIndex = 0;
 
@@ -119,7 +204,7 @@ function renderIngredientChecklist(recipe) {
                   data-ingredient-id="${id}"
                   ${checked ? 'checked' : ''}
                 >
-                <span>${escapeHtml(item)}</span>
+                <span>${escapeHtml(formatIngredient(item, scale))}</span>
               </label>
             </li>
           `;
@@ -228,7 +313,7 @@ function initialiseSectionNavigation() {
   updateActiveSection();
 }
 
-function initialiseCookingMode(recipe) {
+function initialiseCookingMode(recipe, ingredientMap, scale = 1) {
   const startButton = recipeContent.querySelector('#startCooking');
   const modal = recipeContent.querySelector('#cookingMode');
   const exitButton = recipeContent.querySelector('#exitCooking');
@@ -258,7 +343,7 @@ function initialiseCookingMode(recipe) {
     const isComplete = Boolean(completedSteps[currentStep]);
 
     stepLabel.textContent = `${step.phase} • Step ${currentStep + 1} of ${steps.length}`;
-    stepBody.innerHTML = renderStepContent(step.content);
+    stepBody.innerHTML = renderStepContent(step.content, ingredientMap, scale);
     progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
     previousButton.disabled = currentStep === 0;
     nextButton.textContent = currentStep === steps.length - 1 ? 'Finish' : 'Next';
@@ -324,6 +409,8 @@ function initialiseCookingMode(recipe) {
 
 function renderRecipe(recipe) {
   document.title = `${recipe.name} | Shukudu Kitchen`;
+  const ingredientMap = buildIngredientMap(recipe);
+  const scale = 1;
 
   const details = Object.entries(recipe.details || {})
     .map(
@@ -364,17 +451,17 @@ function renderRecipe(recipe) {
           <h2>Ingredients</h2>
           <button id="resetIngredients" class="text-button" type="button">Reset ingredients</button>
         </div>
-        ${renderIngredientChecklist(recipe)}
+        ${renderIngredientChecklist(recipe, scale)}
       </section>
 
       <section id="preparation" class="recipe-section anchor-section">
         <h2>Preparation</h2>
-        ${renderStepList(recipe.preparation)}
+        ${renderStepList(recipe.preparation, ingredientMap, scale)}
       </section>
 
       <section id="method" class="recipe-section anchor-section">
         <h2>Cooking Method</h2>
-        ${renderStepList(recipe.cookingMethod)}
+        ${renderStepList(recipe.cookingMethod, ingredientMap, scale)}
       </section>
 
       <section id="serving" class="recipe-section anchor-section">
@@ -418,7 +505,7 @@ function renderRecipe(recipe) {
 
   initialiseIngredientChecklist(recipe);
   initialiseSectionNavigation();
-  initialiseCookingMode(recipe);
+  initialiseCookingMode(recipe, ingredientMap, scale);
 }
 
 async function loadRecipe() {
