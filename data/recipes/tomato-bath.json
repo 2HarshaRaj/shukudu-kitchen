@@ -57,6 +57,7 @@
           "id": "ginger",
           "quantity": 1,
           "unit": "inch",
+          "weightGrams": 15,
           "ingredient": "ginger",
           "preparation": "finely grated",
           "scalable": true,
