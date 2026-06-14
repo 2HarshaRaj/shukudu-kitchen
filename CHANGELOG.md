@@ -12,6 +12,38 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.7.0 — 2026-06-15
+
+### Added
+
+- Rice-cup-first scaling architecture for rice-based recipes
+- Explicit rice scaling metadata using `baseIngredient`, `baseQuantity`, and `baseUnit`
+- Automatic standard cup equivalents for rice and rice-cooking water
+- Recipe-aware scale controls that show rice quantities only for rice-cup-based recipes
+- Generic multiplier controls retained for non-rice recipes
+- Future-ready path for optional standard-cup scaling input without redesigning the scaling engine
+
+### Changed
+
+- Tomato Bath migrated from a 0.75 rice cup source base to a canonical 1 rice cup base
+- Tomato Bath ingredients rescaled to match the new 1 rice cup base
+- Rice recipes now display rice cup first with standard cup equivalents in brackets
+- Recipe data standards, architecture documentation, and feature roadmap aligned to the finalized rice-cup decision
+- Scale controls now derive the visible rice quantity from recipe metadata instead of assuming every recipe uses rice
+
+### Improved
+
+- Public recipe links remain understandable through automatic standard cup equivalents
+- Rice recipe scaling now matches the primary day-to-day cooking workflow
+- Non-rice recipes remain compatible with the same generic scaling engine
+- Future standard-cup input can be added as an input-layer enhancement rather than a new architecture
+
+### In Progress
+
+- Validate Tomato Bath across all supported rice quantities
+- Migrate Vangi Bath and Curd Rice to the scalable schema where appropriate
+- Refine practical ingredient quantities after real cooking tests
+
 ## 1.6.0 — 2026-06-15
 
 ### Added
