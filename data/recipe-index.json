@@ -16,5 +16,11 @@
     "slug": "curd-rice",
     "category": "Rice",
     "summary": "Soft, cooling curd rice designed for a small portion and a very soft texture."
+  },
+  {
+    "name": "Tomato Rasam",
+    "slug": "tomato-rasam",
+    "category": "Rasam",
+    "summary": "A quick tomato rasam made with rasam powder, pressure-cooked tomatoes and garlic tempering."
   }
 ]
