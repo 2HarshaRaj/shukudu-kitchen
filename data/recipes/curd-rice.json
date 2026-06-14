@@ -33,16 +33,59 @@
     }
   ],
   "preparation": [
-    "Rinse ⅓ standard cup sona masuri rice (0.25 rice cup).",
-    "Finely chop ½ teaspoon ginger, 1 green chilli and 1 tablespoon coriander leaves."
+    {
+      "text": "Rinse ⅓ standard cup sona masuri rice (0.25 rice cup)."
+    },
+    {
+      "lead": "Prepare:",
+      "items": [
+        "½ teaspoon finely chopped ginger",
+        "1 green chilli, finely chopped",
+        "1 tablespoon finely chopped coriander leaves"
+      ]
+    }
   ],
   "cookingMethod": [
-    "Add ⅓ standard cup sona masuri rice (0.25 rice cup) and 1⅓ standard cups water (1 rice cup) to the pressure cooker.",
-    "Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow natural pressure release. The rice should be very soft.",
-    "Mash the hot cooked rice thoroughly. Allow it to cool until warm.",
-    "Mix in ¼ standard cup milk (0.1875 rice cup), ½ standard cup thick curd (0.375 rice cup) and salt as required.",
-    "Heat 1 teaspoon oil. Add ½ teaspoon mustard seeds, ½ teaspoon urad dal, ½ teaspoon chopped ginger, 1 chopped green chilli and 6 curry leaves.",
-    "Pour the tempering over the curd rice and mix in 1 tablespoon chopped coriander leaves."
+    {
+      "lead": "Add to the pressure cooker:",
+      "items": [
+        "⅓ standard cup sona masuri rice (0.25 rice cup)",
+        "1⅓ standard cups water (1 rice cup)"
+      ]
+    },
+    {
+      "text": "Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow natural pressure release. The rice should be very soft."
+    },
+    {
+      "text": "Mash the hot cooked rice thoroughly. Allow it to cool until warm."
+    },
+    {
+      "lead": "Mix in:",
+      "items": [
+        "¼ standard cup milk (0.1875 rice cup)",
+        "½ standard cup thick curd (0.375 rice cup)",
+        "Salt, as required"
+      ]
+    },
+    {
+      "lead": "Heat 1 teaspoon oil. Add:",
+      "items": [
+        "½ teaspoon mustard seeds",
+        "½ teaspoon urad dal",
+        "½ teaspoon finely chopped ginger",
+        "1 green chilli, finely chopped",
+        "6 curry leaves"
+      ],
+      "after": "Allow the tempering ingredients to sizzle."
+    },
+    {
+      "lead": "Finish by adding:",
+      "items": [
+        "Prepared tempering",
+        "1 tablespoon finely chopped coriander leaves"
+      ],
+      "after": "Mix well into the curd rice."
+    }
   ],
   "servingSuggestions": [
     "Serve at room temperature with pickle, pomegranate or grated carrot."
