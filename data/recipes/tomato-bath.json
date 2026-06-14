@@ -10,6 +10,9 @@
   },
   "scaling": {
     "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
     "baseScale": 1,
     "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
   },
@@ -20,24 +23,22 @@
         {
           "id": "rice",
           "quantity": 1,
-          "unit": "standard cup",
-          "riceCupEquivalent": 0.75,
+          "unit": "rice cup",
           "ingredient": "sona masuri rice",
           "scalable": true
         },
         {
           "id": "water",
           "quantity": 2.5,
-          "unit": "standard cup",
-          "riceCupEquivalent": 1.875,
+          "unit": "rice cup",
           "ingredient": "water",
           "scalable": true
         },
         {
           "id": "tomatoes",
-          "quantity": 3,
+          "quantity": 4,
           "countLabel": "medium ripe tomato",
-          "weightGrams": 300,
+          "weightGrams": 400,
           "preparation": "chopped",
           "ingredient": "tomatoes",
           "scalable": true,
@@ -45,9 +46,9 @@
         },
         {
           "id": "onion",
-          "quantity": 1,
+          "quantity": 1.333,
           "countLabel": "medium onion",
-          "weightGrams": 120,
+          "weightGrams": 160,
           "preparation": "sliced",
           "ingredient": "onion",
           "scalable": true,
@@ -55,9 +56,9 @@
         },
         {
           "id": "ginger",
-          "quantity": 1,
+          "quantity": 1.333,
           "unit": "inch",
-          "weightGrams": 15,
+          "weightGrams": 20,
           "ingredient": "ginger",
           "preparation": "finely grated",
           "scalable": true,
@@ -65,9 +66,9 @@
         },
         {
           "id": "garlic",
-          "quantity": 5,
+          "quantity": 6.667,
           "countLabel": "garlic clove",
-          "weightGrams": 15,
+          "weightGrams": 20,
           "ingredient": "garlic",
           "preparation": "finely chopped",
           "scalable": true,
@@ -75,7 +76,7 @@
         },
         {
           "id": "oil",
-          "quantity": 2,
+          "quantity": 2.667,
           "unit": "tablespoon",
           "ingredient": "oil",
           "scalable": true,
@@ -94,7 +95,7 @@
       "items": [
         {
           "id": "mustard-seeds",
-          "quantity": 1,
+          "quantity": 1.333,
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
@@ -102,7 +103,7 @@
         },
         {
           "id": "cumin-seeds",
-          "quantity": 1,
+          "quantity": 1.333,
           "unit": "teaspoon",
           "ingredient": "cumin seeds",
           "scalable": true,
@@ -110,7 +111,7 @@
         },
         {
           "id": "turmeric",
-          "quantity": 0.5,
+          "quantity": 0.667,
           "unit": "teaspoon",
           "ingredient": "turmeric powder",
           "scalable": true,
@@ -118,7 +119,7 @@
         },
         {
           "id": "red-chilli-powder",
-          "quantity": 1,
+          "quantity": 1.333,
           "unit": "teaspoon",
           "ingredient": "red chilli powder",
           "scalable": true,
@@ -126,7 +127,7 @@
         },
         {
           "id": "garam-masala",
-          "quantity": 1,
+          "quantity": 1.333,
           "unit": "teaspoon",
           "ingredient": "garam masala",
           "scalable": true,
@@ -134,9 +135,9 @@
         },
         {
           "id": "lemon",
-          "quantity": 1,
+          "quantity": 1.333,
           "countLabel": "small lemon",
-          "weightGrams": 60,
+          "weightGrams": 80,
           "ingredient": "lemon",
           "scalable": true,
           "roundingType": "small-whole"
@@ -224,7 +225,7 @@
   ],
   "notes": [
     "This is the initial website version and can be replaced with the fully finalized chat version after review.",
-    "The standard cup conversion used throughout Shukudu Kitchen is 1 standard cup = 0.75 rice cup.",
+    "This recipe uses 1 rice cup as the canonical scaling base. Standard cup equivalents are calculated for display.",
     "Whole-produce counts use practical kitchen rounding, while gram values remain the precise scaled target."
   ]
 }
