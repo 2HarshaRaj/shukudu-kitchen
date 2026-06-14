@@ -13,6 +13,10 @@ function getChecklistKey(slug) {
   return `shukudu-kitchen:${slug}:ingredients`;
 }
 
+function getCookingStepKey(slug) {
+  return `shukudu-kitchen:${slug}:cooking-step`;
+}
+
 function loadChecklistState(slug) {
   try {
     return JSON.parse(localStorage.getItem(getChecklistKey(slug))) || {};
@@ -23,6 +27,16 @@ function loadChecklistState(slug) {
 
 function saveChecklistState(slug, state) {
   localStorage.setItem(getChecklistKey(slug), JSON.stringify(state));
+}
+
+function loadCookingStep(slug, stepCount) {
+  const savedStep = Number.parseInt(localStorage.getItem(getCookingStepKey(slug)), 10);
+  if (Number.isNaN(savedStep)) return 0;
+  return Math.min(Math.max(savedStep, 0), Math.max(stepCount - 1, 0));
+}
+
+function saveCookingStep(slug, stepIndex) {
+  localStorage.setItem(getCookingStepKey(slug), String(stepIndex));
 }
 
 function renderList(items, ordered = false) {
@@ -164,6 +178,85 @@ function initialiseSectionNavigation() {
   updateActiveSection();
 }
 
+function initialiseCookingMode(recipe) {
+  const startButton = recipeContent.querySelector('#startCooking');
+  const modal = recipeContent.querySelector('#cookingMode');
+  const exitButton = recipeContent.querySelector('#exitCooking');
+  const previousButton = recipeContent.querySelector('#previousCookingStep');
+  const nextButton = recipeContent.querySelector('#nextCookingStep');
+  const stepText = recipeContent.querySelector('#cookingStepText');
+  const stepLabel = recipeContent.querySelector('#cookingStepLabel');
+  const progressBar = recipeContent.querySelector('#cookingProgressBar');
+
+  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !stepText || !stepLabel || !progressBar) {
+    return;
+  }
+
+  const steps = [
+    ...(recipe.preparation || []).map((text) => ({ phase: 'Preparation', text })),
+    ...(recipe.cookingMethod || []).map((text) => ({ phase: 'Cooking', text }))
+  ];
+
+  let currentStep = loadCookingStep(recipe.slug, steps.length);
+
+  function updateCookingStep() {
+    const step = steps[currentStep];
+    if (!step) return;
+
+    stepLabel.textContent = `${step.phase} • Step ${currentStep + 1} of ${steps.length}`;
+    stepText.textContent = step.text;
+    progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+    previousButton.disabled = currentStep === 0;
+    nextButton.textContent = currentStep === steps.length - 1 ? 'Finish' : 'Next';
+    saveCookingStep(recipe.slug, currentStep);
+  }
+
+  function openCookingMode() {
+    modal.hidden = false;
+    document.body.classList.add('cooking-mode-open');
+    updateCookingStep();
+    exitButton.focus();
+  }
+
+  function closeCookingMode() {
+    modal.hidden = true;
+    document.body.classList.remove('cooking-mode-open');
+    startButton.focus();
+  }
+
+  startButton.addEventListener('click', openCookingMode);
+  exitButton.addEventListener('click', closeCookingMode);
+
+  previousButton.addEventListener('click', () => {
+    if (currentStep === 0) return;
+    currentStep -= 1;
+    updateCookingStep();
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (currentStep === steps.length - 1) {
+      localStorage.removeItem(getCookingStepKey(recipe.slug));
+      currentStep = 0;
+      closeCookingMode();
+      return;
+    }
+
+    currentStep += 1;
+    updateCookingStep();
+  });
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) closeCookingMode();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (modal.hidden) return;
+    if (event.key === 'Escape') closeCookingMode();
+    if (event.key === 'ArrowLeft') previousButton.click();
+    if (event.key === 'ArrowRight') nextButton.click();
+  });
+}
+
 function renderRecipe(recipe) {
   document.title = `${recipe.name} | Shukudu Kitchen`;
 
@@ -184,6 +277,7 @@ function renderRecipe(recipe) {
         <p class="eyebrow">${escapeHtml(recipe.category)}</p>
         <h1>${escapeHtml(recipe.name)}</h1>
         <p class="meta">${escapeHtml(recipe.summary)}</p>
+        <button id="startCooking" class="primary-button" type="button">Start Cooking</button>
       </header>
 
       <nav class="section-nav" aria-label="Recipe sections">
@@ -228,10 +322,37 @@ function renderRecipe(recipe) {
         ${renderList(recipe.notes)}
       </section>
     </article>
+
+    <div id="cookingMode" class="cooking-mode" hidden>
+      <div class="cooking-panel" role="dialog" aria-modal="true" aria-labelledby="cookingModeTitle">
+        <div class="cooking-topbar">
+          <div>
+            <p class="eyebrow">Cooking Mode</p>
+            <h2 id="cookingModeTitle">${escapeHtml(recipe.name)}</h2>
+          </div>
+          <button id="exitCooking" class="icon-button" type="button" aria-label="Exit cooking mode">×</button>
+        </div>
+
+        <div class="cooking-progress" aria-hidden="true">
+          <span id="cookingProgressBar"></span>
+        </div>
+
+        <div class="cooking-step-card">
+          <p id="cookingStepLabel" class="cooking-step-label"></p>
+          <p id="cookingStepText" class="cooking-step-text"></p>
+        </div>
+
+        <div class="cooking-actions">
+          <button id="previousCookingStep" class="secondary-button" type="button">Previous</button>
+          <button id="nextCookingStep" class="primary-button" type="button">Next</button>
+        </div>
+      </div>
+    </div>
   `;
 
   initialiseIngredientChecklist(recipe);
   initialiseSectionNavigation();
+  initialiseCookingMode(recipe);
 }
 
 async function loadRecipe() {
