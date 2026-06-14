@@ -25,6 +25,12 @@ a {
   color: inherit;
 }
 
+button,
+input,
+select {
+  font: inherit;
+}
+
 .container {
   width: min(1100px, calc(100% - 32px));
   margin: 0 auto;
@@ -76,7 +82,7 @@ a {
   font-weight: 700;
 }
 
-input,
+input[type="search"],
 select {
   width: 100%;
   padding: 14px 15px;
@@ -84,7 +90,6 @@ select {
   border-radius: 12px;
   background: var(--surface);
   color: var(--text);
-  font: inherit;
 }
 
 .section-heading {
@@ -192,7 +197,7 @@ select {
 }
 
 .recipe-section h3 {
-  margin: 22px 0 10px;
+  margin: 26px 0 12px;
 }
 
 .recipe-section ul,
@@ -204,22 +209,86 @@ select {
   margin-bottom: 9px;
 }
 
-.checklist {
-  list-style: none;
-  padding-left: 0 !important;
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
 
-.checklist li {
-  position: relative;
-  padding-left: 30px;
+.section-title-row h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
-.checklist li::before {
-  content: "☐";
-  position: absolute;
-  left: 0;
+.text-button {
+  border: 0;
+  padding: 0;
+  background: transparent;
   color: var(--accent);
-  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.text-button:hover {
+  text-decoration: underline;
+}
+
+.checklist {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.ingredient-item {
+  margin: 0 !important;
+}
+
+.ingredient-check {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  align-items: start;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fffaf4;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.ingredient-check:hover {
+  background: #fff5ec;
+  border-color: #cdbcb0;
+}
+
+.ingredient-check input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.ingredient-check span {
+  display: block;
+  line-height: 1.45;
+}
+
+.ingredient-item.is-complete .ingredient-check {
+  background: #f1ede7;
+  opacity: 0.72;
+}
+
+.ingredient-item.is-complete .ingredient-check span {
+  text-decoration: line-through;
+  color: var(--muted);
 }
 
 .details-grid {
@@ -270,5 +339,16 @@ select {
   .recipe-section {
     padding: 20px;
     border-radius: 14px;
+  }
+
+  .section-title-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ingredient-check {
+    min-height: 52px;
+    padding: 13px 12px;
   }
 }
