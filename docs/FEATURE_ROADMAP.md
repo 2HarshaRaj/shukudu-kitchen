@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version — v1.5.1
+## Current Version — v1.6.0
 
 Shukudu Kitchen currently includes:
 
@@ -24,6 +24,11 @@ Shukudu Kitchen currently includes:
 - Step completion tracking
 - Structured preparation and cooking steps
 - Bullet rendering in recipe pages and Cooking Mode
+- Scalable ingredient schema
+- Live scale controls with per-recipe persistence
+- Practical rounding for whole produce and small whole ingredients
+- Optional gram display for count-based and unit-based ingredients
+- Ingredient reference standards
 - Three initial recipes:
   - Tomato Bath
   - Vangi Bath
@@ -100,9 +105,9 @@ Benefits:
 - Updating one recipe does not require changing unrelated recipes
 - The site can scale to a much larger cookbook
 
-## Next Feature — Recipe Scaling
+## Current Feature — Recipe Scaling
 
-### Planned Scale Options
+### Implemented Scale Options
 
 - 0.5×
 - 0.75×
@@ -111,35 +116,52 @@ Benefits:
 - 1.5×
 - 2×
 
-### Planned Behaviour
+### Implemented Behaviour
 
 - Recalculate scalable ingredient quantities automatically
 - Update matching quantities in Preparation and Cooking Method
 - Preserve readable fractions where practical
 - Scale rice, water, vegetables, spices, and finishing ingredients consistently
 - Keep temperatures and cooking timings unchanged unless a recipe-specific rule says otherwise
-- Show the selected scale clearly throughout the page
+- Show the selected scale clearly on the recipe page
 - Save the selected scale per recipe
+- Apply scaled quantities inside Cooking Mode
+- Use practical kitchen rounding for whole produce and small whole ingredients
+- Keep gram values as the precise scaled target
+- Render optional gram values for both count-based and unit-based ingredients
 
-### Data Work Required
+### Current Pilot Status
 
-Ingredient data must be upgraded from plain text into structured quantity data before reliable scaling is possible.
+Tomato Bath is the reference implementation and testing recipe for scaling.
 
-A future ingredient model may look like:
+Still to do:
 
-```json
-{
-  "id": "sona-masuri-rice",
-  "quantity": 1,
-  "unit": "standard cup",
-  "riceCupEquivalent": 0.75,
-  "ingredient": "sona masuri rice",
-  "preparation": "",
-  "scalable": true
-}
+- continue testing and refining Tomato Bath scaling data
+- migrate Vangi Bath to the scalable schema
+- migrate Curd Rice to the scalable schema
+- validate all supported scales across all three recipes
+
+### Open Design Decision — Standard Cup or Rice Cup Base
+
+Discuss and decide whether scalable rice recipes should be authored primarily from:
+
+- standard cup quantities, with rice cup equivalents shown in brackets
+- rice cup quantities, with standard cup equivalents calculated for display
+- a neutral base quantity model that stores both and allows the website to choose the display order
+
+Current project rule remains:
+
+```text
+1 standard cup = 0.75 rice cup
 ```
 
-Scaling should be piloted on Tomato Bath before migrating the remaining recipes.
+Current display convention remains:
+
+```text
+Standard cup first (rice cup equivalent in brackets)
+```
+
+This should be reviewed before scaling is rolled out broadly to more rice recipes.
 
 ## Future Features
 
@@ -149,7 +171,7 @@ Possible options:
 
 - Standard cup first with rice cup equivalent in brackets
 - Rice cup first with standard cup equivalent in brackets
-- Show both
+- Show both with a user-selectable preference
 
 Default rule:
 
@@ -204,11 +226,12 @@ Optional owner-focused link to the relevant recipe file in GitHub.
 4. Mobile refinements — completed
 5. Recipe-per-file architecture — completed
 6. Structured recipe steps — completed
-7. Ingredient scaling — next
-8. Standard cup and rice cup display controls
-9. Serving adjustment
-10. Print view
-11. Recipe images and richer cards
+7. Ingredient scaling — in progress
+8. Standard cup and rice cup base-model decision
+9. Migrate remaining recipes to scaling
+10. Serving adjustment
+11. Print view
+12. Recipe images and richer cards
 
 ## Development Principle
 
