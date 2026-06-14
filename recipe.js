@@ -9,15 +9,92 @@ function escapeHtml(value = '') {
     .replaceAll("'", '&#039;');
 }
 
-function renderList(items, ordered = false, checklist = false) {
+function getChecklistKey(slug) {
+  return `shukudu-kitchen:${slug}:ingredients`;
+}
+
+function loadChecklistState(slug) {
+  try {
+    return JSON.parse(localStorage.getItem(getChecklistKey(slug))) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveChecklistState(slug, state) {
+  localStorage.setItem(getChecklistKey(slug), JSON.stringify(state));
+}
+
+function renderList(items, ordered = false) {
   if (!items?.length) return '';
 
   const tag = ordered ? 'ol' : 'ul';
-  const className = checklist ? ' class="checklist"' : '';
 
-  return `<${tag}${className}>${items
+  return `<${tag}>${items
     .map((item) => `<li>${escapeHtml(item)}</li>`)
     .join('')}</${tag}>`;
+}
+
+function renderIngredientChecklist(recipe) {
+  const savedState = loadChecklistState(recipe.slug);
+  let itemIndex = 0;
+
+  return (recipe.ingredients || [])
+    .map((section) => {
+      const items = section.items
+        .map((item) => {
+          const id = `ingredient-${itemIndex}`;
+          const checked = Boolean(savedState[id]);
+          itemIndex += 1;
+
+          return `
+            <li class="ingredient-item${checked ? ' is-complete' : ''}">
+              <label class="ingredient-check">
+                <input
+                  type="checkbox"
+                  data-ingredient-id="${id}"
+                  ${checked ? 'checked' : ''}
+                >
+                <span>${escapeHtml(item)}</span>
+              </label>
+            </li>
+          `;
+        })
+        .join('');
+
+      return `
+        <h3>${escapeHtml(section.section)}</h3>
+        <ul class="checklist">${items}</ul>
+      `;
+    })
+    .join('');
+}
+
+function initialiseIngredientChecklist(recipe) {
+  const checklist = recipeContent.querySelector('.ingredient-checklist');
+  const resetButton = recipeContent.querySelector('#resetIngredients');
+
+  if (!checklist || !resetButton) return;
+
+  checklist.addEventListener('change', (event) => {
+    const checkbox = event.target.closest('input[type="checkbox"][data-ingredient-id]');
+    if (!checkbox) return;
+
+    const state = loadChecklistState(recipe.slug);
+    state[checkbox.dataset.ingredientId] = checkbox.checked;
+    saveChecklistState(recipe.slug, state);
+
+    checkbox.closest('.ingredient-item')?.classList.toggle('is-complete', checkbox.checked);
+  });
+
+  resetButton.addEventListener('click', () => {
+    localStorage.removeItem(getChecklistKey(recipe.slug));
+
+    checklist.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+      checkbox.checked = false;
+      checkbox.closest('.ingredient-item')?.classList.remove('is-complete');
+    });
+  });
 }
 
 function renderRecipe(recipe) {
@@ -30,15 +107,6 @@ function renderRecipe(recipe) {
           <span class="detail-label">${escapeHtml(label)}:</span>
           <span>${escapeHtml(value)}</span>
         </div>
-      `
-    )
-    .join('');
-
-  const ingredientSections = (recipe.ingredients || [])
-    .map(
-      (section) => `
-        <h3>${escapeHtml(section.section)}</h3>
-        ${renderList(section.items, false, true)}
       `
     )
     .join('');
@@ -56,9 +124,12 @@ function renderRecipe(recipe) {
         <div class="details-grid">${details}</div>
       </section>
 
-      <section class="recipe-section">
-        <h2>Ingredients</h2>
-        ${ingredientSections}
+      <section class="recipe-section ingredient-checklist">
+        <div class="section-title-row">
+          <h2>Ingredients</h2>
+          <button id="resetIngredients" class="text-button" type="button">Reset ingredients</button>
+        </div>
+        ${renderIngredientChecklist(recipe)}
       </section>
 
       <section class="recipe-section">
@@ -82,6 +153,8 @@ function renderRecipe(recipe) {
       </section>
     </article>
   `;
+
+  initialiseIngredientChecklist(recipe);
 }
 
 async function loadRecipe() {
