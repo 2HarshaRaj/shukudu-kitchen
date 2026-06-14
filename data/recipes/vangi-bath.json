@@ -6,95 +6,218 @@
   "details": {
     "Cuisine": "South Indian · Karnataka",
     "Meal Type": "Lunch / Dinner",
-    "Status": "Initial website version"
+    "Status": "Finalized"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
   },
   "ingredients": [
     {
       "section": "Rice and Vegetables",
       "items": [
-        "1⅓ standard cups sona masuri rice (1 rice cup)",
-        "3⅓ standard cups water (2.5 rice cups)",
-        "250 g small round purple brinjal, sliced",
-        "100 g capsicum, sliced",
-        "1 medium onion (about 120 g), sliced"
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "sona masuri rice",
+          "scalable": true
+        },
+        {
+          "id": "water",
+          "quantity": 2.5,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true
+        },
+        {
+          "id": "brinjal",
+          "quantity": 250,
+          "unit": "g",
+          "ingredient": "small round purple brinjal",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 100,
+          "unit": "g",
+          "ingredient": "capsicum",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
       ]
     },
     {
       "section": "Tempering and Masala",
       "items": [
-        "2 tablespoons oil",
-        "1 teaspoon mustard seeds",
-        "1 teaspoon urad dal",
-        "1 teaspoon chana dal",
-        "10 curry leaves",
-        "¼ teaspoon turmeric powder",
-        "3½ tablespoons vangi bath powder",
-        "Salt, as required",
-        "1 small lemon"
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 10,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "turmeric",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true
+        },
+        {
+          "id": "vangi-bath-powder",
+          "quantity": 3.5,
+          "unit": "tablespoon",
+          "ingredient": "vangi bath powder",
+          "scalable": true
+        },
+        {
+          "id": "salt",
+          "displayText": "Salt, as required",
+          "ingredient": "salt",
+          "scalable": false
+        },
+        {
+          "id": "lemon",
+          "quantity": 1,
+          "countLabel": "small lemon",
+          "weightGrams": 60,
+          "ingredient": "lemon",
+          "scalable": true,
+          "roundingType": "small-whole"
+        }
       ]
     }
   ],
   "preparation": [
     {
-      "text": "Rinse 1⅓ standard cups sona masuri rice (1 rice cup)."
+      "lead": "Rinse:",
+      "ingredientIds": [
+        "rice"
+      ]
     },
     {
       "lead": "Prepare:",
-      "items": [
-        "250 g small round purple brinjal, sliced",
-        "100 g capsicum, sliced",
-        "1 medium onion (about 120 g), sliced"
+      "ingredientIds": [
+        "brinjal",
+        "capsicum",
+        "onion"
       ],
-      "after": "Keep the sliced brinjal in water until needed to prevent discolouration."
+      "after": "Keep the sliced brinjal in water until needed to prevent discolouration. Drain before cooking."
     }
   ],
   "cookingMethod": [
     {
       "lead": "Cook together:",
-      "items": [
-        "1⅓ standard cups sona masuri rice (1 rice cup)",
-        "3⅓ standard cups water (2.5 rice cups)"
+      "ingredientIds": [
+        "rice",
+        "water"
       ],
       "after": "Build pressure, reduce to 100°C / 300 W for 10 minutes and allow natural pressure release. Spread the cooked rice gently so it does not become mushy."
     },
     {
-      "lead": "Heat 2 tablespoons oil in a wide kadai. Add:",
-      "items": [
-        "1 teaspoon mustard seeds",
-        "1 teaspoon urad dal",
-        "1 teaspoon chana dal",
-        "10 curry leaves"
+      "lead": "Heat in a wide kadai:",
+      "ingredientIds": [
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds",
+        "urad-dal",
+        "chana-dal",
+        "curry-leaves"
       ],
       "after": "Allow the tempering ingredients to sizzle."
     },
     {
-      "text": "Add 1 medium onion (about 120 g), sliced, and sauté until softened."
+      "lead": "Add:",
+      "ingredientIds": [
+        "onion"
+      ],
+      "after": "Sauté until softened."
     },
     {
       "lead": "Add:",
-      "items": [
-        "250 g small round purple brinjal, sliced",
-        "100 g capsicum, sliced",
-        "¼ teaspoon turmeric powder",
-        "Salt, as required"
+      "ingredientIds": [
+        "brinjal",
+        "capsicum",
+        "turmeric",
+        "salt"
       ],
       "after": "Cook covered until the brinjal is tender while retaining its shape."
     },
     {
-      "text": "Add 3½ tablespoons vangi bath powder and mix on low heat for 1–2 minutes."
+      "lead": "Add:",
+      "ingredientIds": [
+        "vangi-bath-powder"
+      ],
+      "after": "Mix on low heat for 1–2 minutes."
     },
     {
       "text": "Add the cooked rice gradually and fold gently until evenly coated."
     },
     {
-      "text": "Turn off the heat and finish with the juice of 1 small lemon."
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "lemon"
+      ],
+      "after": "Turn off the heat before adding the lemon juice."
     }
   ],
   "servingSuggestions": [
     "Serve with plain curd, cucumber raita or potato chips."
   ],
   "notes": [
-    "This version uses 250 g brinjal and 100 g capsicum.",
-    "Add lemon only after turning off the heat, especially when the vangi bath powder tastes slightly flat or old."
+    "This version uses 250 g brinjal and 100 g capsicum at the 1 rice cup base.",
+    "Add lemon only after turning off the heat, especially when the vangi bath powder tastes slightly flat or old.",
+    "Standard cup equivalents for rice and rice-cooking water are calculated automatically for display."
   ]
 }
