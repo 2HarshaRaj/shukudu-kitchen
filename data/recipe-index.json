@@ -22,5 +22,11 @@
     "slug": "tomato-rasam",
     "category": "Rasam",
     "summary": "A quick tomato rasam made with rasam powder, pressure-cooked tomatoes and garlic tempering."
+  },
+  {
+    "name": "Balekai Palya",
+    "slug": "balekai-palya",
+    "category": "Palya",
+    "summary": "Karnataka-style raw banana stir fry with simple tempering, coconut and coriander."
   }
 ]
