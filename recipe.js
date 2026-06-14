@@ -97,6 +97,48 @@ function initialiseIngredientChecklist(recipe) {
   });
 }
 
+function initialiseSectionNavigation() {
+  const nav = recipeContent.querySelector('.section-nav');
+  if (!nav) return;
+
+  const links = [...nav.querySelectorAll('a[href^="#"]')];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  links.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      links.forEach((link) => {
+        const isActive = link.getAttribute('href') === `#${visible.target.id}`;
+        link.classList.toggle('is-active', isActive);
+        if (isActive) {
+          link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    },
+    {
+      rootMargin: '-18% 0px -68% 0px',
+      threshold: [0, 0.1, 0.25]
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
 function renderRecipe(recipe) {
   document.title = `${recipe.name} | Shukudu Kitchen`;
 
@@ -119,12 +161,21 @@ function renderRecipe(recipe) {
         <p class="meta">${escapeHtml(recipe.summary)}</p>
       </header>
 
-      <section class="recipe-section">
+      <nav class="section-nav" aria-label="Recipe sections">
+        <a href="#details">Details</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#preparation">Preparation</a>
+        <a href="#method">Method</a>
+        <a href="#serving">Serving</a>
+        <a href="#notes">Notes</a>
+      </nav>
+
+      <section id="details" class="recipe-section anchor-section">
         <h2>Recipe Details</h2>
         <div class="details-grid">${details}</div>
       </section>
 
-      <section class="recipe-section ingredient-checklist">
+      <section id="ingredients" class="recipe-section ingredient-checklist anchor-section">
         <div class="section-title-row">
           <h2>Ingredients</h2>
           <button id="resetIngredients" class="text-button" type="button">Reset ingredients</button>
@@ -132,22 +183,22 @@ function renderRecipe(recipe) {
         ${renderIngredientChecklist(recipe)}
       </section>
 
-      <section class="recipe-section">
+      <section id="preparation" class="recipe-section anchor-section">
         <h2>Preparation</h2>
         ${renderList(recipe.preparation, true)}
       </section>
 
-      <section class="recipe-section">
+      <section id="method" class="recipe-section anchor-section">
         <h2>Cooking Method</h2>
         ${renderList(recipe.cookingMethod, true)}
       </section>
 
-      <section class="recipe-section">
+      <section id="serving" class="recipe-section anchor-section">
         <h2>Serving Suggestions</h2>
         ${renderList(recipe.servingSuggestions)}
       </section>
 
-      <section class="recipe-section">
+      <section id="notes" class="recipe-section anchor-section">
         <h2>Notes</h2>
         ${renderList(recipe.notes)}
       </section>
@@ -155,6 +206,7 @@ function renderRecipe(recipe) {
   `;
 
   initialiseIngredientChecklist(recipe);
+  initialiseSectionNavigation();
 }
 
 async function loadRecipe() {
