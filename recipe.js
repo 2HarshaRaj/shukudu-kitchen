@@ -113,22 +113,76 @@ function pluralizeUnit(unit, quantity) {
   return irregular[unit] || `${unit}s`;
 }
 
+function roundToNearest(value, increment) {
+  return Math.round(value / increment) * increment;
+}
+
+function formatGramWeight(item, scale) {
+  if (item.weightGrams == null) return '';
+
+  const raw = item.scalable === false ? item.weightGrams : item.weightGrams * scale;
+  const rounded = raw < 10 ? Math.round(raw * 2) / 2 : Math.round(raw);
+  return `${formatNumber(rounded)} g`;
+}
+
+function formatPracticalCount(item, scale) {
+  const raw = item.scalable === false ? item.quantity : item.quantity * scale;
+  const type = item.roundingType || item.rounding || 'exact';
+
+  if (type === 'large-produce') {
+    const rounded = Math.max(1, Math.round(raw));
+    return { text: String(rounded), numeric: rounded };
+  }
+
+  if (type === 'small-whole') {
+    const rounded = Math.max(0.5, roundToNearest(raw, 0.5));
+    return { text: formatNumber(rounded), numeric: rounded };
+  }
+
+  if (type === 'whole') {
+    const rounded = Math.max(1, Math.round(raw));
+    return { text: String(rounded), numeric: rounded };
+  }
+
+  if (type === 'half-count') {
+    const rounded = Math.max(0.5, roundToNearest(raw, 0.5));
+    return { text: formatNumber(rounded), numeric: rounded };
+  }
+
+  if (type === 'quarter-count') {
+    const rounded = Math.max(0.25, roundToNearest(raw, 0.25));
+    return { text: formatNumber(rounded), numeric: rounded };
+  }
+
+  return { text: formatNumber(raw), numeric: raw };
+}
+
+function pluralizeCountLabel(label, quantity) {
+  if (quantity === 1) return label;
+
+  return label
+    .replace(/\b(onion|tomato|lemon|chilli|clove|leaf)\b/g, '$1s')
+    .replace(/\bmedium onion\b/, 'medium onions')
+    .replace(/\bmedium ripe tomato\b/, 'medium ripe tomatoes')
+    .replace(/\bsmall lemon\b/, 'small lemons');
+}
+
 function formatIngredient(item, scale = 1) {
   if (typeof item === 'string') return item;
   if (item.displayText) return item.displayText;
 
-  const quantity = item.scalable === false ? item.quantity : item.quantity * scale;
-  const formattedQuantity = formatNumber(quantity);
   const preparation = item.preparation ? `, ${item.preparation}` : '';
 
   if (item.countLabel) {
-    const label = quantity === 1 ? item.countLabel : item.countLabel.replace(/\b(onion|tomato|lemon)\b/, '$1s');
-    const grams = item.weightGrams
-      ? ` (${formatNumber(item.scalable === false ? item.weightGrams : item.weightGrams * scale)} g)`
-      : '';
-    return `${formattedQuantity} ${label}${grams}${preparation}`;
+    const count = formatPracticalCount(item, scale);
+    const label = pluralizeCountLabel(item.countLabel, count.numeric);
+    const grams = formatGramWeight(item, scale);
+    const gramsText = grams ? ` (${grams})` : '';
+    return `${count.text} ${label}${gramsText}${preparation}`;
   }
 
+  const quantity = item.scalable === false ? item.quantity : item.quantity * scale;
+  const formattedQuantity = formatNumber(quantity);
   const unit = pluralizeUnit(item.unit, quantity);
   const riceCupQuantity = item.riceCupEquivalent == null
     ? null
