@@ -106,38 +106,62 @@ function initialiseSectionNavigation() {
     .map((link) => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
 
+  let activeId = '';
+  let ticking = false;
+
+  function setActiveSection(sectionId, keepVisible = true) {
+    if (!sectionId || activeId === sectionId) return;
+    activeId = sectionId;
+
+    links.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${sectionId}`;
+      link.classList.toggle('is-active', isActive);
+
+      if (isActive && keepVisible) {
+        const left = link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2;
+        nav.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+      }
+    });
+  }
+
+  function updateActiveSection() {
+    const marker = nav.offsetHeight + 28;
+    let current = sections[0];
+
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= marker) {
+        current = section;
+      }
+    });
+
+    setActiveSection(current?.id);
+    ticking = false;
+  }
+
   links.forEach((link) => {
     link.addEventListener('click', (event) => {
       event.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (!target) return;
 
-      const navHeight = nav.offsetHeight;
-      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 18;
+      setActiveSection(target.id, false);
+      const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 18;
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-      if (!visible) return;
-
-      links.forEach((link) => {
-        const isActive = link.getAttribute('href') === `#${visible.target.id}`;
-        link.classList.toggle('is-active', isActive);
-      });
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateActiveSection);
     },
-    {
-      rootMargin: '-22% 0px -65% 0px',
-      threshold: [0, 0.1, 0.25]
-    }
+    { passive: true }
   );
 
-  sections.forEach((section) => observer.observe(section));
+  window.addEventListener('resize', updateActiveSection);
+  updateActiveSection();
 }
 
 function renderRecipe(recipe) {
