@@ -190,8 +190,10 @@ function formatIngredient(item, scale = 1) {
   const riceCup = riceCupQuantity == null
     ? ''
     : ` (${formatNumber(riceCupQuantity)} ${pluralizeUnit('rice cup', riceCupQuantity)})`;
+  const grams = formatGramWeight(item, scale);
+  const gramsText = grams ? ` (${grams})` : '';
 
-  return `${formattedQuantity} ${unit} ${item.ingredient}${riceCup}${preparation}`.replace(/\s+/g, ' ').trim();
+  return `${formattedQuantity} ${unit} ${item.ingredient}${riceCup}${gramsText}${preparation}`.replace(/\s+/g, ' ').trim();
 }
 
 function buildIngredientMap(recipe) {
