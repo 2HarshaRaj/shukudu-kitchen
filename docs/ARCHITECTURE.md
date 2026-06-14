@@ -87,6 +87,75 @@ tomatoes ingredient object
 → Cooking Mode bullet
 ```
 
+## Rice Recipe Scaling Architecture
+
+### Canonical Base
+
+Rice-based recipes use **rice cup quantities as the canonical scaling base**.
+
+New rice recipes should generally default to **1 rice cup** as the base quantity, unless another rice-cup quantity better represents the finalized recipe.
+
+The recipe must store its scaling base explicitly.
+
+Example:
+
+```json
+"scaling": {
+  "baseIngredient": "rice",
+  "baseQuantity": 1,
+  "baseUnit": "riceCup"
+}
+```
+
+The scaling engine uses this metadata to calculate the scale factor. It must not infer the base from display text or ingredient order.
+
+### Scope
+
+This approach applies to:
+
+- rice quantities
+- rice-cooking water quantities
+
+Other ingredients continue to use their natural units, such as:
+
+- grams
+- counts
+- teaspoons
+- tablespoons
+- other recipe-specific units
+
+### Standard Cup Display
+
+Standard cup values are derived display equivalents rather than the internal scaling basis.
+
+The conversion rule is:
+
+```text
+1 standard cup = 0.75 rice cup
+```
+
+Example display:
+
+```text
+Rice – 1 rice cup (1⅓ standard cups)
+Water – 2 rice cups (2⅔ standard cups)
+```
+
+This keeps recipes practical for the primary cooking workflow while making public recipe links understandable to readers who use standard cups.
+
+### Future Extensibility
+
+A future enhancement may allow users to enter a desired rice quantity in standard cups.
+
+The input layer would:
+
+1. Convert the standard cup input to rice cups.
+2. Calculate the scale factor against the stored rice-cup base.
+3. Reuse the existing scaling engine for all ingredients.
+4. Render the result in the selected display format.
+
+Because the canonical base and unit are stored explicitly, this is an enhancement to the current model rather than a replacement architecture.
+
 ## Add a New Recipe
 
 1. Create `data/recipes/<slug>.json`.
@@ -173,6 +242,7 @@ The recipe file defines:
 - whether each ingredient is scalable
 - count labels, units, gram weights, and rounding types
 - ingredient IDs referenced by steps
+- explicit scaling base metadata for rice-based recipes
 
 ### `recipe.js`
 
@@ -207,6 +277,7 @@ Unless explicitly configured otherwise, these remain unchanged:
 - Use stable ingredient IDs for scalable recipes
 - Keep ingredient quantities consistent through ingredient references
 - Use recipe-specific measurements before default reference weights
+- Store explicit rice scaling metadata for scalable rice recipes
 - Update the changelog for notable changes
 - Update the website footer when the release version changes
 - Test the homepage and recipe pages after structural changes
