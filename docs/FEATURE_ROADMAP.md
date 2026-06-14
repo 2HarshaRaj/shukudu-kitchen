@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version — v1.6.0
+## Current Version — v1.7.0
 
 Shukudu Kitchen currently includes:
 
@@ -29,6 +29,10 @@ Shukudu Kitchen currently includes:
 - Practical rounding for whole produce and small whole ingredients
 - Optional gram display for count-based and unit-based ingredients
 - Ingredient reference standards
+- Rice-cup-first scaling architecture for rice recipes
+- Automatic standard cup equivalents for rice and rice-cooking water
+- Recipe-aware scale controls for rice and non-rice recipes
+- Explicit rice scaling metadata using `baseIngredient`, `baseQuantity`, and `baseUnit`
 - Three initial recipes:
   - Tomato Bath
   - Vangi Bath
@@ -105,6 +109,18 @@ Benefits:
 - Updating one recipe does not require changing unrelated recipes
 - The site can scale to a much larger cookbook
 
+### Rice-Cup Scaling Base — Completed
+
+Implemented behaviour:
+
+- Rice-based recipes use rice cup quantities as the canonical base
+- New rice recipes generally default to 1 rice cup unless another rice-cup base better fits the finalized recipe
+- Standard cup equivalents are derived automatically for display
+- Scale controls show rice quantities only for recipes with a rice-cup scaling base
+- Non-rice recipes retain generic multiplier controls
+- Tomato Bath has been migrated to a canonical 1 rice cup base
+- The current model supports future standard-cup input without requiring a redesign
+
 ## Current Feature — Recipe Scaling
 
 ### Implemented Scale Options
@@ -115,6 +131,8 @@ Benefits:
 - 1.25×
 - 1.5×
 - 2×
+
+For rice-cup-based recipes, these internal scale values are displayed as rice quantities derived from the stored base quantity.
 
 ### Implemented Behaviour
 
@@ -129,10 +147,19 @@ Benefits:
 - Use practical kitchen rounding for whole produce and small whole ingredients
 - Keep gram values as the precise scaled target
 - Render optional gram values for both count-based and unit-based ingredients
+- Calculate standard cup equivalents automatically for rice and rice-cooking water
+- Use recipe-specific labels for rice-based and non-rice scaling controls
 
 ### Current Pilot Status
 
 Tomato Bath is the reference implementation and testing recipe for scaling.
+
+Completed:
+
+- migrated Tomato Bath to a canonical 1 rice cup base
+- added explicit rice scaling metadata
+- added rice-cup-first display with automatic standard cup equivalents
+- added recipe-aware scale controls
 
 Still to do:
 
@@ -201,7 +228,7 @@ This enhancement is intentionally deferred. Because the current recipe model sto
 
 ### Standard Cup and Rice Cup Display
 
-Current direction:
+Current behaviour:
 
 - Rice cup first with standard cup equivalent in brackets
 - Standard cup values remain derived display equivalents
@@ -263,13 +290,16 @@ Optional owner-focused link to the relevant recipe file in GitHub.
 4. Mobile refinements — completed
 5. Recipe-per-file architecture — completed
 6. Structured recipe steps — completed
-7. Ingredient scaling — in progress
+7. Ingredient scaling engine — completed for pilot use
 8. Rice cup scaling base decision — completed
-9. Migrate remaining recipes to scaling
-10. Serving adjustment
-11. Print view
-12. Recipe images and richer cards
-13. Optional standard-cup scaling input
+9. Tomato Bath migration to 1 rice cup base — completed
+10. Validate and refine Tomato Bath scales — in progress
+11. Migrate remaining recipes to scaling
+12. Serving adjustment
+13. Print view
+14. Recipe images and richer cards
+15. Optional standard-cup scaling input
+16. Optional cup display-order preference
 
 ## Development Principle
 
