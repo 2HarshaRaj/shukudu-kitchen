@@ -10,7 +10,7 @@ This document defines how every recipe must be written and stored so that:
 - future scaling can be added safely
 - new recipes follow the same format without relying on chat history
 
-## Standard Cup Conversion
+## Rice Cup and Standard Cup Conversion
 
 Use this conversion for all recipes:
 
@@ -18,20 +18,22 @@ Use this conversion for all recipes:
 1 standard cup = 0.75 rice cup
 ```
 
-All rice quantities must show the standard cup first and the rice cup equivalent in brackets.
+For rice-based recipes, rice cup quantities are the canonical authoring and scaling base.
+
+Rice and rice-cooking water must show rice cup first and the standard cup equivalent in brackets.
 
 Example:
 
 ```text
-1 standard cup rice (0.75 rice cup)
+1 rice cup rice (1⅓ standard cups)
 ```
 
-All water used for cooking rice must follow the same rule.
+Rice-cooking water follows the same display rule.
 
 Example:
 
 ```text
-2 standard cups water (1.5 rice cups)
+2 rice cups water (2⅔ standard cups)
 ```
 
 This format must be used consistently in:
@@ -40,6 +42,8 @@ This format must be used consistently in:
 - Preparation
 - Cooking Method
 - Cooking Mode
+
+Standard cup values are derived display equivalents. They are not the internal scaling basis for rice recipes.
 
 ## Recipe JSON Structure
 
@@ -64,6 +68,23 @@ Each recipe file must contain:
 }
 ```
 
+Rice-based recipes that support scaling must also include explicit scaling-base metadata.
+
+Example:
+
+```json
+"scaling": {
+  "enabled": true,
+  "baseIngredient": "rice",
+  "baseQuantity": 1,
+  "baseUnit": "riceCup",
+  "baseScale": 1,
+  "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+}
+```
+
+New rice recipes should generally default to 1 rice cup as the base quantity unless another rice-cup quantity better represents the finalized recipe.
+
 ## Ingredient Rules
 
 Ingredients are grouped into sections.
@@ -72,7 +93,7 @@ Ingredients are grouped into sections.
 {
   "section": "Main Ingredients",
   "items": [
-    "1 standard cup sona masuri rice (0.75 rice cup)",
+    "1 rice cup sona masuri rice (1⅓ standard cups)",
     "2 medium tomatoes (180 g), chopped"
   ]
 }
@@ -112,7 +133,7 @@ Preparation steps may be simple text:
 
 ```json
 {
-  "text": "Rinse 1 standard cup sona masuri rice (0.75 rice cup) and soak it for 20 minutes."
+  "text": "Rinse 1 rice cup sona masuri rice (1⅓ standard cups) and soak it for 20 minutes."
 }
 ```
 
@@ -198,23 +219,32 @@ A step may scroll in Cooking Mode when needed, but excessive scrolling should be
 
 Use structured ingredient objects for recipes that support scaling.
 
-Example:
+Rice ingredient example:
 
 ```json
 {
-  "id": "sona-masuri-rice",
+  "id": "rice",
   "quantity": 1,
-  "unit": "standard cup",
-  "riceCupEquivalent": 0.75,
+  "unit": "rice cup",
   "ingredient": "sona masuri rice",
   "preparation": "",
-  "scalable": true,
-  "display": {
-    "singularUnit": "standard cup",
-    "pluralUnit": "standard cups"
-  }
+  "scalable": true
 }
 ```
+
+Rice-cooking water example:
+
+```json
+{
+  "id": "water",
+  "quantity": 2.5,
+  "unit": "rice cup",
+  "ingredient": "water",
+  "scalable": true
+}
+```
+
+The renderer calculates and displays the standard cup equivalent automatically.
 
 ### Required Fields
 
@@ -224,15 +254,22 @@ Example:
 - `ingredient`: ingredient name
 - `scalable`: whether the quantity changes with the selected scale
 
+For scalable rice recipes, the `scaling` object must also include:
+
+- `baseIngredient`: stable ingredient ID used as the scaling reference
+- `baseQuantity`: base quantity of that ingredient
+- `baseUnit`: canonical unit of that ingredient
+
 ### Optional Fields
 
-- `riceCupEquivalent`: numeric rice-cup value at 1×
 - `preparation`: chopped, sliced, grated, soaked, etc.
 - `countLabel`: medium tomato, garlic clove, curry leaf, etc.
 - `weightGrams`: vegetable weight at 1×
 - `display.singularUnit`: singular label
 - `display.pluralUnit`: plural label
 - `rounding`: recipe-specific display rule
+
+Do not store a separate standard-cup equivalent for rice or rice-cooking water in new rice-based recipes. The renderer must derive it from the canonical rice-cup quantity.
 
 ### Non-Scalable Ingredients
 
@@ -294,13 +331,57 @@ This keeps quantities consistent at every scale.
 
 - Use 1× as the stored base recipe
 - Multiply only ingredients marked `scalable: true`
-- Preserve rice-cup equivalents when present
+- Use rice cup as the canonical base for rice-based recipes
+- Store `baseIngredient`, `baseQuantity`, and `baseUnit` explicitly for scalable rice recipes
+- Calculate standard cup equivalents from rice cup quantities for display
 - Preserve readable fractions where practical
 - Prefer grams for scaled vegetable accuracy
 - Keep count and gram values together for vegetables
 - Use practical kitchen rounding instead of exact mathematical fractions for whole produce
 - Use recipe-specific rounding when a fractional whole ingredient is impractical
 - Do not change recipe intent while scaling
+
+### Scale Control Display Rule
+
+The scaling engine remains generic and uses multiplier values internally.
+
+For a rice-based recipe where:
+
+```json
+"baseIngredient": "rice",
+"baseQuantity": 1,
+"baseUnit": "riceCup"
+```
+
+the UI may present the available options as rice quantities, such as:
+
+```text
+0.5 rice cup
+0.75 rice cup
+1 rice cup
+1.25 rice cups
+1.5 rice cups
+2 rice cups
+```
+
+For recipes without a rice-cup scaling base, the UI must continue to show generic scale multipliers:
+
+```text
+0.5×
+0.75×
+1×
+1.25×
+1.5×
+2×
+```
+
+The visible rice quantity must always be calculated as:
+
+```text
+baseQuantity × selected scale
+```
+
+Do not assume that the selected scale value itself always equals the rice quantity.
 
 ### Practical Kitchen Rounding Rule
 
@@ -413,7 +494,7 @@ Before adding a new recipe:
 1. Confirm the recipe name and slug
 2. Confirm all ingredient quantities
 3. Confirm all vegetables include grams in parentheses
-4. Confirm rice and rice-cooking water use standard cup first and rice cup in brackets
+4. For rice recipes, confirm rice and rice-cooking water use rice cup first with standard cup in brackets
 5. Confirm preparation and cooking steps reuse exact ingredient quantities
 6. Use bullet items for any step with multiple ingredients
 7. Keep one cooking action per step
@@ -422,12 +503,14 @@ Before adding a new recipe:
 10. For scalable recipes, assign stable ingredient IDs
 11. For scalable recipes, mark each ingredient as scalable or non-scalable
 12. For scalable recipes, reference ingredient IDs from steps
-13. For scalable recipes, define practical rounding for whole produce and small whole ingredients
-14. Add the recipe file under `data/recipes/`
-15. Add metadata to `data/recipe-index.json`
-16. Test the normal recipe page and Cooking Mode
-17. Test every supported scale when scaling is enabled
-18. Verify that whole-produce counts are practical and gram values are accurate
+13. For scalable rice recipes, define `baseIngredient`, `baseQuantity`, and `baseUnit`
+14. For scalable recipes, define practical rounding for whole produce and small whole ingredients
+15. Add the recipe file under `data/recipes/`
+16. Add metadata to `data/recipe-index.json`
+17. Test the normal recipe page and Cooking Mode
+18. Test every supported scale when scaling is enabled
+19. Verify that whole-produce counts are practical and gram values are accurate
+20. Verify that rice-based scale controls show rice quantities and non-rice recipes retain generic multipliers
 
 ## Required References
 
