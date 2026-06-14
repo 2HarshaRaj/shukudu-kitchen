@@ -22,19 +22,24 @@ Shukudu Kitchen currently includes:
 
 ## Version 2 — Kitchen Usability
 
-### Functional Ingredient Checkboxes
+### Functional Ingredient Checkboxes — Completed
 
-Convert decorative ingredient checkboxes into interactive controls.
-
-Planned behaviour:
+Implemented behaviour:
 
 - Tap an ingredient to mark it complete
-- Visually dim or strike completed ingredients
-- Save checklist state in the browser using `localStorage`
-- Keep checklist state separate for each recipe
-- Provide a reset option
+- Completed ingredients are dimmed and struck through
+- Checklist state is saved in the browser using `localStorage`
+- Checklist state is stored separately for each recipe
+- A `Reset ingredients` action clears the checklist
+- Ingredient rows use larger mobile-friendly tap targets
+- The old decorative checkbox style was removed to avoid duplicate checkboxes
 
-### Sticky Section Navigation
+Implementation files:
+
+- `recipe.js`
+- `style.css`
+
+### Sticky Section Navigation — Next
 
 Add a sticky navigation bar on recipe pages.
 
@@ -52,6 +57,8 @@ Planned behaviour:
 - Tap a section to scroll to it
 - Highlight the current section where practical
 - Keep the navigation compact on mobile
+- Avoid covering section headings when scrolling
+- Allow horizontal scrolling on narrow screens if needed
 
 ### Cooking Mode
 
@@ -204,8 +211,8 @@ This would support:
 
 ## Recommended Development Order
 
-1. Functional ingredient checkboxes
-2. Sticky section navigation
+1. Functional ingredient checkboxes — completed
+2. Sticky section navigation — next
 3. Cooking mode
 4. Mobile refinement
 5. Structured recipe data migration
