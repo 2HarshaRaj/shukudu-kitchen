@@ -1,0 +1,56 @@
+{
+  "name": "Tomato Bath",
+  "slug": "tomato-bath",
+  "category": "Rice",
+  "summary": "A Karnataka-style tomato rice prepared with sona masuri rice, fresh ginger and garlic.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Initial website version"
+  },
+  "ingredients": [
+    {
+      "section": "Main Ingredients",
+      "items": [
+        "1 standard cup sona masuri rice (0.75 rice cup)",
+        "2½ standard cups water (1.875 rice cups)",
+        "3 medium ripe tomatoes (about 300 g), chopped",
+        "1 medium onion (about 120 g), sliced",
+        "1 inch ginger, finely grated",
+        "5 garlic cloves, finely chopped",
+        "2 tablespoons oil",
+        "Salt, as required"
+      ]
+    },
+    {
+      "section": "Spices and Finishing",
+      "items": [
+        "1 teaspoon mustard seeds",
+        "1 teaspoon cumin seeds",
+        "½ teaspoon turmeric powder",
+        "1 teaspoon red chilli powder",
+        "1 teaspoon garam masala",
+        "1 small lemon"
+      ]
+    }
+  ],
+  "preparation": [
+    "Rinse 1 standard cup sona masuri rice (0.75 rice cup) and soak it for 20 minutes.",
+    "Chop 3 medium ripe tomatoes (about 300 g), slice 1 medium onion (about 120 g), grate 1 inch ginger and finely chop 5 garlic cloves."
+  ],
+  "cookingMethod": [
+    "Heat 2 tablespoons oil in a pressure cooker. Add 1 teaspoon mustard seeds and 1 teaspoon cumin seeds; allow them to splutter.",
+    "Add 1 medium sliced onion (about 120 g), 1 inch grated ginger and 5 chopped garlic cloves. Sauté until the onion softens.",
+    "Add 3 chopped tomatoes (about 300 g), ½ teaspoon turmeric powder, 1 teaspoon red chilli powder, 1 teaspoon garam masala and salt as required. Cook until the tomatoes soften and the oil begins to separate.",
+    "Drain and add the soaked 1 standard cup sona masuri rice (0.75 rice cup). Mix gently for 1 minute.",
+    "Add 2½ standard cups water (1.875 rice cups). Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow the pressure to release naturally.",
+    "Fluff gently and finish with the juice of 1 small lemon."
+  ],
+  "servingSuggestions": [
+    "Serve hot with onion-cucumber raita, plain curd or papad."
+  ],
+  "notes": [
+    "This is the initial website version and can be replaced with the fully finalized chat version after review.",
+    "The standard cup conversion used throughout Shukudu Kitchen is 1 standard cup = 0.75 rice cup."
+  ]
+}
