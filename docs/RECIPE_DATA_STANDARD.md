@@ -298,8 +298,68 @@ This keeps quantities consistent at every scale.
 - Preserve readable fractions where practical
 - Prefer grams for scaled vegetable accuracy
 - Keep count and gram values together for vegetables
+- Use practical kitchen rounding instead of exact mathematical fractions for whole produce
 - Use recipe-specific rounding when a fractional whole ingredient is impractical
 - Do not change recipe intent while scaling
+
+### Practical Kitchen Rounding Rule
+
+For large vegetables and whole produce, the displayed count is practical guidance, while grams remain the precise scaled value.
+
+Example mathematical result:
+
+```text
+3⅜ medium tomatoes (337.5 g)
+```
+
+Preferred display:
+
+```text
+3 medium tomatoes (338 g)
+```
+
+or, when one whole number would be misleading:
+
+```text
+3–4 medium tomatoes (338 g)
+```
+
+Rules:
+
+- do not show awkward fractions such as `3⅜ tomatoes`
+- round the count to a practical whole number where sensible
+- use a whole-number range when that better communicates the required amount
+- always scale and display the gram weight accurately
+- round grams sensibly, normally to the nearest whole gram
+- treat the count as guidance and the gram value as the precise target
+
+This rule applies to ingredients such as:
+
+- tomato
+- onion
+- potato
+- brinjal
+- capsicum
+- carrot
+- beans
+- other large vegetables or whole produce
+
+Small whole ingredients require practical recipe-specific rounding.
+
+Examples:
+
+```text
+Green chilli
+Lemon
+Garlic cloves
+Curry leaves
+```
+
+For these ingredients:
+
+- avoid impractical values such as `0.25 green chilli` unless that is genuinely usable
+- prefer practical values such as `½ green chilli`, `1 small chilli`, or `1–2 chillies`
+- preserve exact scaling for powders, liquids, cups, teaspoons, tablespoons, rice, and water where readable fractions are practical
 
 ### Planned Scale Options
 
@@ -362,10 +422,12 @@ Before adding a new recipe:
 10. For scalable recipes, assign stable ingredient IDs
 11. For scalable recipes, mark each ingredient as scalable or non-scalable
 12. For scalable recipes, reference ingredient IDs from steps
-13. Add the recipe file under `data/recipes/`
-14. Add metadata to `data/recipe-index.json`
-15. Test the normal recipe page and Cooking Mode
-16. Test every supported scale when scaling is enabled
+13. For scalable recipes, define practical rounding for whole produce and small whole ingredients
+14. Add the recipe file under `data/recipes/`
+15. Add metadata to `data/recipe-index.json`
+16. Test the normal recipe page and Cooking Mode
+17. Test every supported scale when scaling is enabled
+18. Verify that whole-produce counts are practical and gram values are accurate
 
 ## Required References
 
