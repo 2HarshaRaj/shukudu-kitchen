@@ -194,6 +194,124 @@ Use these rules:
 
 A step may scroll in Cooking Mode when needed, but excessive scrolling should be avoided. Clear, focused steps make Cooking Mode easier to follow while actively cooking.
 
+## Scalable Ingredient Schema
+
+Use structured ingredient objects for recipes that support scaling.
+
+Example:
+
+```json
+{
+  "id": "sona-masuri-rice",
+  "quantity": 1,
+  "unit": "standard cup",
+  "riceCupEquivalent": 0.75,
+  "ingredient": "sona masuri rice",
+  "preparation": "",
+  "scalable": true,
+  "display": {
+    "singularUnit": "standard cup",
+    "pluralUnit": "standard cups"
+  }
+}
+```
+
+### Required Fields
+
+- `id`: stable unique identifier used by steps
+- `quantity`: numeric base quantity at 1×
+- `unit`: base unit used for calculation
+- `ingredient`: ingredient name
+- `scalable`: whether the quantity changes with the selected scale
+
+### Optional Fields
+
+- `riceCupEquivalent`: numeric rice-cup value at 1×
+- `preparation`: chopped, sliced, grated, soaked, etc.
+- `countLabel`: medium tomato, garlic clove, curry leaf, etc.
+- `weightGrams`: vegetable weight at 1×
+- `display.singularUnit`: singular label
+- `display.pluralUnit`: plural label
+- `rounding`: recipe-specific display rule
+
+### Non-Scalable Ingredients
+
+Use `scalable: false` for wording that should not be multiplied automatically.
+
+Example:
+
+```json
+{
+  "id": "salt",
+  "ingredient": "salt",
+  "displayText": "Salt, as required",
+  "scalable": false
+}
+```
+
+### Values That Must Not Scale Automatically
+
+Unless a recipe explicitly defines otherwise, do not scale:
+
+- cooking time
+- soaking time
+- temperature
+- induction wattage
+- pressure-cooking duration
+- natural-release instruction
+- subjective doneness descriptions
+
+### Step Ingredient References
+
+Scaled steps must reference ingredient IDs rather than repeat hard-coded quantities.
+
+Example:
+
+```json
+{
+  "lead": "Add:",
+  "ingredientIds": [
+    "tomatoes",
+    "turmeric",
+    "red-chilli-powder",
+    "garam-masala",
+    "salt"
+  ],
+  "after": "Cook until the tomatoes soften and the oil begins to separate."
+}
+```
+
+The renderer must use the same formatted ingredient values in:
+
+- Ingredients
+- Preparation
+- Cooking Method
+- Cooking Mode
+
+This keeps quantities consistent at every scale.
+
+### Scaling Rules
+
+- Use 1× as the stored base recipe
+- Multiply only ingredients marked `scalable: true`
+- Preserve rice-cup equivalents when present
+- Preserve readable fractions where practical
+- Prefer grams for scaled vegetable accuracy
+- Keep count and gram values together for vegetables
+- Use recipe-specific rounding when a fractional whole ingredient is impractical
+- Do not change recipe intent while scaling
+
+### Planned Scale Options
+
+```text
+0.5×
+0.75×
+1×
+1.25×
+1.5×
+2×
+```
+
 ## Tamarind Rule
 
 Use tamarind paste whenever tamarind is required.
@@ -241,9 +359,13 @@ Before adding a new recipe:
 7. Keep one cooking action per step
 8. Split steps that contain two distinct cooking actions
 9. Confirm no ingredient is omitted
-10. Add the recipe file under `data/recipes/`
-11. Add metadata to `data/recipe-index.json`
-12. Test the normal recipe page and Cooking Mode
+10. For scalable recipes, assign stable ingredient IDs
+11. For scalable recipes, mark each ingredient as scalable or non-scalable
+12. For scalable recipes, reference ingredient IDs from steps
+13. Add the recipe file under `data/recipes/`
+14. Add metadata to `data/recipe-index.json`
+15. Test the normal recipe page and Cooking Mode
+16. Test every supported scale when scaling is enabled
 
 ## Required References
 
