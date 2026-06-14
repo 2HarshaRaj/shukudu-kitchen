@@ -36,12 +36,12 @@
         {
           "id": "tomatoes",
           "quantity": 3,
-          "countLabel": "medium ripe tomatoes",
+          "countLabel": "medium ripe tomato",
           "weightGrams": 300,
           "preparation": "chopped",
           "ingredient": "tomatoes",
           "scalable": true,
-          "rounding": "quarter-count"
+          "roundingType": "large-produce"
         },
         {
           "id": "onion",
@@ -51,7 +51,7 @@
           "preparation": "sliced",
           "ingredient": "onion",
           "scalable": true,
-          "rounding": "quarter-count"
+          "roundingType": "large-produce"
         },
         {
           "id": "ginger",
@@ -60,16 +60,17 @@
           "ingredient": "ginger",
           "preparation": "finely grated",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "garlic",
           "quantity": 5,
-          "unit": "clove",
+          "countLabel": "garlic clove",
+          "weightGrams": 15,
           "ingredient": "garlic",
           "preparation": "finely chopped",
           "scalable": true,
-          "rounding": "whole"
+          "roundingType": "small-whole"
         },
         {
           "id": "oil",
@@ -77,7 +78,7 @@
           "unit": "tablespoon",
           "ingredient": "oil",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "salt",
@@ -96,7 +97,7 @@
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "cumin-seeds",
@@ -104,7 +105,7 @@
           "unit": "teaspoon",
           "ingredient": "cumin seeds",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "turmeric",
@@ -112,7 +113,7 @@
           "unit": "teaspoon",
           "ingredient": "turmeric powder",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "red-chilli-powder",
@@ -120,7 +121,7 @@
           "unit": "teaspoon",
           "ingredient": "red chilli powder",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "garam-masala",
@@ -128,15 +129,16 @@
           "unit": "teaspoon",
           "ingredient": "garam masala",
           "scalable": true,
-          "rounding": "quarter"
+          "roundingType": "exact"
         },
         {
           "id": "lemon",
           "quantity": 1,
           "countLabel": "small lemon",
+          "weightGrams": 60,
           "ingredient": "lemon",
           "scalable": true,
-          "rounding": "half-count"
+          "roundingType": "small-whole"
         }
       ]
     }
@@ -221,6 +223,7 @@
   ],
   "notes": [
     "This is the initial website version and can be replaced with the fully finalized chat version after review.",
-    "The standard cup conversion used throughout Shukudu Kitchen is 1 standard cup = 0.75 rice cup."
+    "The standard cup conversion used throughout Shukudu Kitchen is 1 standard cup = 0.75 rice cup.",
+    "Whole-produce counts use practical kitchen rounding, while gram values remain the precise scaled target."
   ]
 }
