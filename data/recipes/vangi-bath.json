@@ -1,0 +1,57 @@
+{
+  "name": "Vangi Bath",
+  "slug": "vangi-bath",
+  "category": "Rice",
+  "summary": "Karnataka-style brinjal rice with capsicum and vangi bath powder.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Initial website version"
+  },
+  "ingredients": [
+    {
+      "section": "Rice and Vegetables",
+      "items": [
+        "1⅓ standard cups sona masuri rice (1 rice cup)",
+        "3⅓ standard cups water (2.5 rice cups)",
+        "250 g small round purple brinjal, sliced",
+        "100 g capsicum, sliced",
+        "1 medium onion (about 120 g), sliced"
+      ]
+    },
+    {
+      "section": "Tempering and Masala",
+      "items": [
+        "2 tablespoons oil",
+        "1 teaspoon mustard seeds",
+        "1 teaspoon urad dal",
+        "1 teaspoon chana dal",
+        "10 curry leaves",
+        "¼ teaspoon turmeric powder",
+        "3½ tablespoons vangi bath powder",
+        "Salt, as required",
+        "1 small lemon"
+      ]
+    }
+  ],
+  "preparation": [
+    "Rinse 1⅓ standard cups sona masuri rice (1 rice cup).",
+    "Slice 250 g small round purple brinjal, 100 g capsicum and 1 medium onion (about 120 g). Keep the brinjal in water until needed to prevent discolouration."
+  ],
+  "cookingMethod": [
+    "Cook 1⅓ standard cups sona masuri rice (1 rice cup) with 3⅓ standard cups water (2.5 rice cups). Build pressure, reduce to 100°C / 300 W for 10 minutes and allow natural pressure release. Spread the cooked rice gently so it does not become mushy.",
+    "Heat 2 tablespoons oil in a wide kadai. Add 1 teaspoon mustard seeds, 1 teaspoon urad dal, 1 teaspoon chana dal and 10 curry leaves.",
+    "Add 1 medium sliced onion (about 120 g) and sauté until softened.",
+    "Add 250 g sliced brinjal, 100 g sliced capsicum, ¼ teaspoon turmeric powder and salt as required. Cook covered until the brinjal is tender while retaining its shape.",
+    "Add 3½ tablespoons vangi bath powder and mix on low heat for 1–2 minutes.",
+    "Add the cooked rice gradually and fold gently until evenly coated.",
+    "Turn off the heat and finish with the juice of 1 small lemon."
+  ],
+  "servingSuggestions": [
+    "Serve with plain curd, cucumber raita or potato chips."
+  ],
+  "notes": [
+    "This version uses 250 g brinjal and 100 g capsicum.",
+    "Add lemon only after turning off the heat, especially when the vangi bath powder tastes slightly flat or old."
+  ]
+}
