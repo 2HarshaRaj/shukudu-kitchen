@@ -46,7 +46,7 @@ function applyFilters() {
 
 async function loadRecipes() {
   try {
-    const response = await fetch('recipes.json');
+    const response = await fetch('data/recipe-index.json');
 
     if (!response.ok) {
       throw new Error('Unable to load recipes.');
