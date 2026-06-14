@@ -196,14 +196,15 @@ select {
 
 .primary-button,
 .secondary-button,
-.icon-button {
+.icon-button,
+.complete-step-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .primary-button {
@@ -250,6 +251,29 @@ select {
 
 .icon-button:hover {
   background: #eaded4;
+}
+
+.complete-step-button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 22px;
+  padding: 11px 18px;
+  border: 1px solid #d8c4b8;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.complete-step-button:hover {
+  transform: translateY(-1px);
+  background: #ead4cc;
+  box-shadow: 0 8px 18px rgba(159, 63, 47, 0.12);
+}
+
+.complete-step-button.is-complete {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(159, 63, 47, 0.22);
 }
 
 .recipe-hero .primary-button {
