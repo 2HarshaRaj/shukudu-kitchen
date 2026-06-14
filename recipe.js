@@ -21,6 +21,10 @@ function getCompletedStepsKey(slug) {
   return `shukudu-kitchen:${slug}:completed-steps`;
 }
 
+function getScaleKey(slug) {
+  return `shukudu-kitchen:${slug}:scale`;
+}
+
 function loadChecklistState(slug) {
   try {
     return JSON.parse(localStorage.getItem(getChecklistKey(slug))) || {};
@@ -53,6 +57,16 @@ function loadCompletedSteps(slug) {
 
 function saveCompletedSteps(slug, state) {
   localStorage.setItem(getCompletedStepsKey(slug), JSON.stringify(state));
+}
+
+function loadScale(recipe) {
+  const options = recipe.scaling?.options || [1];
+  const saved = Number.parseFloat(localStorage.getItem(getScaleKey(recipe.slug)));
+  return options.includes(saved) ? saved : (recipe.scaling?.baseScale || 1);
+}
+
+function saveScale(slug, scale) {
+  localStorage.setItem(getScaleKey(slug), String(scale));
 }
 
 function normalizeStep(step) {
@@ -110,15 +124,18 @@ function formatIngredient(item, scale = 1) {
   if (item.countLabel) {
     const label = quantity === 1 ? item.countLabel : item.countLabel.replace(/\b(onion|tomato|lemon)\b/, '$1s');
     const grams = item.weightGrams
-      ? ` (${formatNumber((item.scalable === false ? item.weightGrams : item.weightGrams * scale))} g)`
+      ? ` (${formatNumber(item.scalable === false ? item.weightGrams : item.weightGrams * scale)} g)`
       : '';
     return `${formattedQuantity} ${label}${grams}${preparation}`;
   }
 
   const unit = pluralizeUnit(item.unit, quantity);
-  const riceCup = item.riceCupEquivalent != null
-    ? ` (${formatNumber((item.scalable === false ? item.riceCupEquivalent : item.riceCupEquivalent * scale))} ${pluralizeUnit('rice cup', item.riceCupEquivalent * scale)})`
-    : '';
+  const riceCupQuantity = item.riceCupEquivalent == null
+    ? null
+    : (item.scalable === false ? item.riceCupEquivalent : item.riceCupEquivalent * scale);
+  const riceCup = riceCupQuantity == null
+    ? ''
+    : ` (${formatNumber(riceCupQuantity)} ${pluralizeUnit('rice cup', riceCupQuantity)})`;
 
   return `${formattedQuantity} ${unit} ${item.ingredient}${riceCup}${preparation}`.replace(/\s+/g, ' ').trim();
 }
@@ -128,9 +145,7 @@ function buildIngredientMap(recipe) {
 
   (recipe.ingredients || []).forEach((section) => {
     (section.items || []).forEach((item) => {
-      if (typeof item === 'object' && item.id) {
-        map.set(item.id, item);
-      }
+      if (typeof item === 'object' && item.id) map.set(item.id, item);
     });
   });
 
@@ -199,11 +214,7 @@ function renderIngredientChecklist(recipe, scale = 1) {
           return `
             <li class="ingredient-item${checked ? ' is-complete' : ''}">
               <label class="ingredient-check">
-                <input
-                  type="checkbox"
-                  data-ingredient-id="${id}"
-                  ${checked ? 'checked' : ''}
-                >
+                <input type="checkbox" data-ingredient-id="${id}" ${checked ? 'checked' : ''}>
                 <span>${escapeHtml(formatIngredient(item, scale))}</span>
               </label>
             </li>
@@ -219,10 +230,35 @@ function renderIngredientChecklist(recipe, scale = 1) {
     .join('');
 }
 
+function renderScaleControls(recipe, scale) {
+  if (!recipe.scaling?.enabled) return '';
+
+  const options = recipe.scaling.options || [1];
+  return `
+    <section class="scale-panel" aria-label="Recipe scaling">
+      <div>
+        <p class="eyebrow">Recipe scale</p>
+        <p class="scale-current">Current: <strong>${formatNumber(scale)}×</strong></p>
+      </div>
+      <div class="scale-options" role="group" aria-label="Choose recipe scale">
+        ${options
+          .map((option) => `
+            <button
+              class="scale-button${option === scale ? ' is-active' : ''}"
+              type="button"
+              data-scale="${option}"
+              aria-pressed="${option === scale}"
+            >${formatNumber(option)}×</button>
+          `)
+          .join('')}
+      </div>
+    </section>
+  `;
+}
+
 function initialiseIngredientChecklist(recipe) {
   const checklist = recipeContent.querySelector('.ingredient-checklist');
   const resetButton = recipeContent.querySelector('#resetIngredients');
-
   if (!checklist || !resetButton) return;
 
   checklist.addEventListener('change', (event) => {
@@ -232,7 +268,6 @@ function initialiseIngredientChecklist(recipe) {
     const state = loadChecklistState(recipe.slug);
     state[checkbox.dataset.ingredientId] = checkbox.checked;
     saveChecklistState(recipe.slug, state);
-
     checkbox.closest('.ingredient-item')?.classList.toggle('is-complete', checkbox.checked);
   });
 
@@ -243,6 +278,22 @@ function initialiseIngredientChecklist(recipe) {
       checkbox.checked = false;
       checkbox.closest('.ingredient-item')?.classList.remove('is-complete');
     });
+  });
+}
+
+function initialiseScaleControls(recipe, scale, onScaleChange) {
+  const panel = recipeContent.querySelector('.scale-panel');
+  if (!panel) return;
+
+  panel.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-scale]');
+    if (!button) return;
+
+    const nextScale = Number.parseFloat(button.dataset.scale);
+    if (!Number.isFinite(nextScale) || nextScale === scale) return;
+
+    saveScale(recipe.slug, nextScale);
+    onScaleChange(nextScale);
   });
 }
 
@@ -278,9 +329,7 @@ function initialiseSectionNavigation() {
     let current = sections[0];
 
     sections.forEach((section) => {
-      if (section.getBoundingClientRect().top <= marker) {
-        current = section;
-      }
+      if (section.getBoundingClientRect().top <= marker) current = section;
     });
 
     setActiveSection(current?.id);
@@ -299,21 +348,17 @@ function initialiseSectionNavigation() {
     });
   });
 
-  window.addEventListener(
-    'scroll',
-    () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(updateActiveSection);
-    },
-    { passive: true }
-  );
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateActiveSection);
+  }, { passive: true });
 
   window.addEventListener('resize', updateActiveSection);
   updateActiveSection();
 }
 
-function initialiseCookingMode(recipe, ingredientMap, scale = 1) {
+function initialiseCookingMode(recipe, ingredientMap, getScale) {
   const startButton = recipeContent.querySelector('#startCooking');
   const modal = recipeContent.querySelector('#cookingMode');
   const exitButton = recipeContent.querySelector('#exitCooking');
@@ -324,9 +369,7 @@ function initialiseCookingMode(recipe, ingredientMap, scale = 1) {
   const stepLabel = recipeContent.querySelector('#cookingStepLabel');
   const progressBar = recipeContent.querySelector('#cookingProgressBar');
 
-  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !completeButton || !stepBody || !stepLabel || !progressBar) {
-    return;
-  }
+  if (!startButton || !modal || !exitButton || !previousButton || !nextButton || !completeButton || !stepBody || !stepLabel || !progressBar) return;
 
   const steps = [
     ...(recipe.preparation || []).map((step) => ({ phase: 'Preparation', content: normalizeStep(step) })),
@@ -341,9 +384,8 @@ function initialiseCookingMode(recipe, ingredientMap, scale = 1) {
     if (!step) return;
 
     const isComplete = Boolean(completedSteps[currentStep]);
-
     stepLabel.textContent = `${step.phase} • Step ${currentStep + 1} of ${steps.length}`;
-    stepBody.innerHTML = renderStepContent(step.content, ingredientMap, scale);
+    stepBody.innerHTML = renderStepContent(step.content, ingredientMap, getScale());
     progressBar.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
     previousButton.disabled = currentStep === 0;
     nextButton.textContent = currentStep === steps.length - 1 ? 'Finish' : 'Next';
@@ -405,22 +447,22 @@ function initialiseCookingMode(recipe, ingredientMap, scale = 1) {
     if (event.key === 'ArrowLeft') previousButton.click();
     if (event.key === 'ArrowRight') nextButton.click();
   });
+
+  return { refresh: updateCookingStep };
 }
 
-function renderRecipe(recipe) {
+function renderRecipe(recipe, initialScale = null) {
   document.title = `${recipe.name} | Shukudu Kitchen`;
   const ingredientMap = buildIngredientMap(recipe);
-  const scale = 1;
+  let currentScale = initialScale ?? loadScale(recipe);
 
   const details = Object.entries(recipe.details || {})
-    .map(
-      ([label, value]) => `
-        <div>
-          <span class="detail-label">${escapeHtml(label)}:</span>
-          <span>${escapeHtml(value)}</span>
-        </div>
-      `
-    )
+    .map(([label, value]) => `
+      <div>
+        <span class="detail-label">${escapeHtml(label)}:</span>
+        <span>${escapeHtml(value)}</span>
+      </div>
+    `)
     .join('');
 
   recipeContent.innerHTML = `
@@ -431,6 +473,8 @@ function renderRecipe(recipe) {
         <p class="meta">${escapeHtml(recipe.summary)}</p>
         <button id="startCooking" class="primary-button" type="button">Start Cooking</button>
       </header>
+
+      ${renderScaleControls(recipe, currentScale)}
 
       <nav class="section-nav" aria-label="Recipe sections">
         <a href="#details">Details</a>
@@ -451,17 +495,17 @@ function renderRecipe(recipe) {
           <h2>Ingredients</h2>
           <button id="resetIngredients" class="text-button" type="button">Reset ingredients</button>
         </div>
-        ${renderIngredientChecklist(recipe, scale)}
+        ${renderIngredientChecklist(recipe, currentScale)}
       </section>
 
       <section id="preparation" class="recipe-section anchor-section">
         <h2>Preparation</h2>
-        ${renderStepList(recipe.preparation, ingredientMap, scale)}
+        ${renderStepList(recipe.preparation, ingredientMap, currentScale)}
       </section>
 
       <section id="method" class="recipe-section anchor-section">
         <h2>Cooking Method</h2>
-        ${renderStepList(recipe.cookingMethod, ingredientMap, scale)}
+        ${renderStepList(recipe.cookingMethod, ingredientMap, currentScale)}
       </section>
 
       <section id="serving" class="recipe-section anchor-section">
@@ -505,7 +549,12 @@ function renderRecipe(recipe) {
 
   initialiseIngredientChecklist(recipe);
   initialiseSectionNavigation();
-  initialiseCookingMode(recipe, ingredientMap, scale);
+  const cookingMode = initialiseCookingMode(recipe, ingredientMap, () => currentScale);
+  initialiseScaleControls(recipe, currentScale, (nextScale) => {
+    currentScale = nextScale;
+    renderRecipe(recipe, currentScale);
+    cookingMode?.refresh?.();
+  });
 }
 
 async function loadRecipe() {
