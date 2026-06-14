@@ -14,6 +14,7 @@ shukudu-kitchen/
 ├─ recipe.html
 ├─ script.js
 ├─ recipe.js
+├─ recipe-scaling.js
 ├─ style.css
 ├─ CHANGELOG.md
 └─ docs/
@@ -23,18 +24,25 @@ shukudu-kitchen/
 
 - `index.html`: homepage structure
 - `script.js`: loads recipe metadata, search, filters, and cards
-- `recipe.html`: shell for individual recipe pages
-- `recipe.js`: loads one recipe and controls all recipe-page behaviour, including:
-  - recipe rendering
+- `recipe.html`: shell for individual recipe pages and loads both recipe scripts
+- `recipe.js`: core recipe-page engine, including:
+  - recipe loading and rendering
   - ingredient checklists
   - sticky section navigation
   - Cooking Mode
   - step completion and progress persistence
-  - scalable ingredient formatting
-  - scale selector behaviour
+  - generic scalable ingredient formatting
+  - generic scale selector behaviour
   - practical count rounding
   - gram-weight formatting
   - ingredient references inside Preparation, Cooking Method, and Cooking Mode
+- `recipe-scaling.js`: scaling-display extension layer, including:
+  - rice-cup-first display formatting
+  - automatic standard cup equivalents
+  - backward compatibility for legacy `riceCupEquivalent` data
+  - recipe-aware scale labels
+  - rice quantity controls for rice-cup-based recipes
+  - generic multiplier controls for non-rice recipes
 - `style.css`: site styling and responsive behaviour, including scale controls and mobile Cooking Mode
 - `data/recipe-index.json`: lightweight homepage metadata
 - `data/recipes/<slug>.json`: complete data for one recipe
@@ -56,10 +64,13 @@ index.html
 ```text
 recipe.html?slug=tomato-bath
 → recipe.js
+→ recipe-scaling.js
 → data/recipes/tomato-bath.json
 → ingredient map and formatter
 → rendered recipe page and Cooking Mode
 ```
+
+`recipe.js` provides the core rendering and scaling functions. `recipe-scaling.js` extends the display layer after `recipe.js` loads so recipe-specific scale labels and cup equivalents can be added without duplicating the full recipe engine.
 
 ## Scaling Flow
 
@@ -69,6 +80,7 @@ For recipes with scaling enabled:
 recipe JSON base quantities at 1×
 → selected scale from localStorage or recipe default
 → recipe.js quantity and rounding functions
+→ recipe-scaling.js recipe-aware labels and cup display
 → Ingredients
 → Preparation
 → Cooking Method
@@ -142,6 +154,39 @@ Water – 2 rice cups (2⅔ standard cups)
 ```
 
 This keeps recipes practical for the primary cooking workflow while making public recipe links understandable to readers who use standard cups.
+
+### Recipe-Aware Scale Controls
+
+The scaling engine remains generic and continues to store multiplier values such as `0.5`, `1`, and `1.25`.
+
+The visible control labels depend on recipe metadata:
+
+- rice-cup-based recipes show the derived rice quantity
+- non-rice recipes show generic multiplier labels
+
+Example for a rice recipe with a 1 rice cup base:
+
+```text
+0.5 rice cup
+0.75 rice cup
+1 rice cup
+1.25 rice cups
+```
+
+Example for a non-rice recipe:
+
+```text
+0.5×
+0.75×
+1×
+1.25×
+```
+
+The visible rice quantity is always calculated as:
+
+```text
+baseQuantity × selected scale
+```
 
 ### Future Extensibility
 
@@ -246,15 +291,26 @@ The recipe file defines:
 
 ### `recipe.js`
 
-The renderer is responsible for:
+The core renderer is responsible for:
 
 - multiplying scalable quantities
 - preserving non-scalable wording
 - formatting readable fractions
-- maintaining standard cup and rice cup equivalents
 - applying practical count rounding
 - scaling and rounding gram weights
 - ensuring all recipe sections use the same formatted ingredient value
+- loading, saving, and applying the selected scale
+
+### `recipe-scaling.js`
+
+The scaling display extension is responsible for:
+
+- converting rice cup quantities to standard cup equivalents for display
+- showing rice cup first for rice-based recipes
+- preserving compatibility with legacy standard-cup-first recipe data during migration
+- identifying whether a recipe uses a rice-cup scaling base
+- showing rice quantity labels for rice-based recipes
+- retaining multiplier labels for non-rice recipes
 
 ### Non-Scaling Values
 
@@ -278,8 +334,11 @@ Unless explicitly configured otherwise, these remain unchanged:
 - Keep ingredient quantities consistent through ingredient references
 - Use recipe-specific measurements before default reference weights
 - Store explicit rice scaling metadata for scalable rice recipes
+- Keep `recipe.js` as the core engine and `recipe-scaling.js` limited to scaling-display extensions
+- Load `recipe-scaling.js` after `recipe.js`
 - Update the changelog for notable changes
 - Update the website footer when the release version changes
 - Test the homepage and recipe pages after structural changes
 - Test Cooking Mode after changes to steps or ingredient formatting
+- Test rice-based and non-rice scale labels after changes to scaling controls
 - Test all supported scales after changes to scaling or rounding logic
