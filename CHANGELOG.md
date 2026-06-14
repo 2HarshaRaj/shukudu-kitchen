@@ -12,6 +12,30 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.5.1 — 2026-06-15
+
+### Added
+
+- Structured preparation and cooking steps using `text` or `lead` + `items` + `after`
+- Bullet rendering inside normal recipe pages
+- Bullet rendering inside Cooking Mode
+- Recipe authoring standard in `docs/RECIPE_DATA_STANDARD.md`
+- Cooking Mode step-length rules for mobile readability
+
+### Changed
+
+- Tomato Bath converted to structured steps
+- Vangi Bath converted to structured steps
+- Curd Rice converted to structured steps
+- Multi-ingredient actions now display each ingredient as a separate bullet
+
+### Improved
+
+- Better readability while actively cooking
+- Reduced long instruction paragraphs
+- Stronger consistency between Ingredients, Preparation, Cooking Method, and Cooking Mode
+- Better foundation for future recipe scaling
+
 ## 1.5.0 — 2026-06-15
 
 ### Added
