@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shukudu Kitchen — recipes refined through real cooking.">
+  <title>Shukudu Kitchen</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">Personal cookbook</p>
+      <h1>Shukudu Kitchen</h1>
+      <p class="subtitle">Recipes refined through real cooking.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls" aria-label="Recipe controls">
+      <label>
+        <span>Search recipes</span>
+        <input id="searchInput" type="search" placeholder="Search by name or category">
+      </label>
+
+      <label>
+        <span>Category</span>
+        <select id="categoryFilter">
+          <option value="all">All categories</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Finalized recipes</p>
+          <h2>Cook from the collection</h2>
+        </div>
+        <p id="recipeCount" class="recipe-count"></p>
+      </div>
+
+      <div id="recipeGrid" class="recipe-grid" aria-live="polite"></div>
+      <p id="emptyState" class="empty-state" hidden>No recipes match your search.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Shukudu Kitchen</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
