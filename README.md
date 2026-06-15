@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.8.0`
+`v1.9.0`
 
 ## Overview
 
@@ -19,6 +19,7 @@ Recipes are adapted to match real kitchen use, including:
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
 - mobile-friendly Cooking Mode
+- saved light and dark themes for comfortable kitchen use
 
 ## Main Features
 
@@ -34,6 +35,9 @@ Recipes are adapted to match real kitchen use, including:
 - Exact base-ingredient quantity input for supported recipes
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
+- Light and dark themes with device-theme fallback
+- Saved theme preference across the homepage, recipe pages, and Cooking Mode
+- Header-level theme controls with compact circular controls on mobile
 
 ## Project Structure
 
@@ -49,6 +53,9 @@ shukudu-kitchen/
 ├─ recipe.js
 ├─ recipe-scaling.js
 ├─ recipe-scaling.css
+├─ theme.js
+├─ theme.css
+├─ theme-toggle-fix.css
 ├─ style.css
 └─ CHANGELOG.md
 ```
@@ -85,6 +92,15 @@ selected scale = entered quantity ÷ base quantity
 ```
 
 This is intended for recipes with one clear dominant ingredient, such as a single-vegetable palya. Mixed-vegetable recipes use this mode only when the entered quantity represents a defined total vegetable mix.
+
+## Theme Behaviour
+
+- The first visit follows the device light or dark preference.
+- Manual theme selection is stored in `localStorage` under `shukudu-theme`.
+- The selected theme is reused across the homepage and recipe pages.
+- Cooking Mode inherits the active theme and does not show a separate toggle.
+- Desktop controls use a stable fixed width so the button does not resize between `Dark` and `Light`.
+- Mobile controls use a fixed circular icon button.
 
 ## Documentation
 
