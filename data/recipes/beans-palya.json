@@ -1,0 +1,209 @@
+{
+  "name": "Beans Palya",
+  "slug": "beans-palya",
+  "category": "Palya",
+  "summary": "Classic Karnataka-style beans palya with onion, tempering, and fresh coconut.",
+  "details": {
+    "Cuisine": "South Indian / Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Finalized",
+    "Base Quantity": "500 g beans"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "beans",
+    "baseQuantity": 500,
+    "baseUnit": "gram",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Beans available",
+    "inputMin": 50,
+    "inputStep": 10
+  },
+  "ingredients": [
+    {
+      "category": "Vegetables",
+      "items": [
+        {
+          "id": "beans",
+          "quantity": 500,
+          "unit": "g",
+          "ingredient": "French beans",
+          "preparation": "trimmed and finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "category": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tbsp",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "tsp",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "tsp",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "tsp",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dry-red-chilli",
+          "quantity": 2,
+          "countLabel": "dry red chilli",
+          "ingredient": "dry red chilli",
+          "preparation": "broken",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "curry-leaves",
+          "displayText": "10-12 curry leaves",
+          "ingredient": "curry leaves",
+          "scalable": false
+        }
+      ]
+    },
+    {
+      "category": "Spices",
+      "items": [
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "tsp",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "tsp",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "category": "Finish",
+      "items": [
+        {
+          "id": "fresh-coconut",
+          "quantity": 60,
+          "unit": "g",
+          "ingredient": "fresh coconut",
+          "preparation": "grated",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "text": "Wash the beans thoroughly."
+    },
+    {
+      "lead": "Trim and prepare:",
+      "ingredientIds": [
+        "beans"
+      ],
+      "after": "Trim both ends and finely chop the beans into small pieces."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "onion"
+      ],
+      "after": "Finely chop the onion."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat a pan and add:",
+      "ingredientIds": [
+        "oil",
+        "mustard-seeds",
+        "urad-dal",
+        "chana-dal",
+        "dry-red-chilli",
+        "curry-leaves"
+      ],
+      "after": "Allow the mustard seeds to splutter and the dals to turn light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "onion"
+      ],
+      "after": "Saute for 2-3 minutes until the onion softens."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "beans",
+        "turmeric-powder",
+        "salt"
+      ],
+      "after": "Mix well to coat the beans evenly."
+    },
+    {
+      "text": "Sprinkle 3 tbsp water, cover, and cook on low heat for 10-12 minutes, stirring every 3-4 minutes until the beans are tender but still retain a slight bite."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "fresh-coconut"
+      ],
+      "after": "Mix well and cook uncovered for 1-2 minutes."
+    },
+    {
+      "text": "Switch off the heat and serve hot."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with hot rice and rasam.",
+    "Serve as a side dish with sambar rice or curd rice.",
+    "Can also be served with chapati."
+  ],
+  "notes": [
+    "Avoid adding too much water to prevent the palya from becoming soggy.",
+    "Fresh coconut gives the authentic Karnataka-style flavour.",
+    "For extra heat, add green chilli only after adjusting the recipe intentionally."
+  ]
+}
