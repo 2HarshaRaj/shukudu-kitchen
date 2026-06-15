@@ -56,7 +56,7 @@ Each recipe file must contain:
 }
 ```
 
-Rice-based scalable recipes must also include explicit scaling metadata:
+Scalable recipes must also include explicit scaling metadata. Rice-based recipes may use option buttons:
 
 ```json
 "scaling": {
@@ -65,11 +65,66 @@ Rice-based scalable recipes must also include explicit scaling metadata:
   "baseQuantity": 1,
   "baseUnit": "riceCup",
   "baseScale": 1,
+  "inputMode": "options",
   "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
 }
 ```
 
+Recipes that should scale from the exact amount of a base ingredient may use quantity input:
+
+```json
+"scaling": {
+  "enabled": true,
+  "baseIngredient": "raw-banana",
+  "baseQuantity": 500,
+  "baseUnit": "gram",
+  "baseScale": 1,
+  "inputMode": "quantity",
+  "inputLabel": "Raw banana available",
+  "inputMin": 50,
+  "inputStep": 10
+}
+```
+
+### Scaling Metadata Fields
+
+- `baseIngredient`: stable ingredient ID used as the scaling reference
+- `baseQuantity`: finalized recipe quantity of the base ingredient at 1×
+- `baseUnit`: canonical unit used for the base quantity, such as `riceCup`, `gram`, or `count`
+- `baseScale`: multiplier represented by the stored recipe quantities; normally `1`
+- `inputMode`: scaling UI mode; use `options` for preset multipliers or quantities, and `quantity` for direct base-ingredient entry
+- `inputLabel`: user-facing label shown beside the exact quantity input
+- `inputMin`: smallest supported input quantity
+- `inputStep`: practical increment used by the quantity input control
+- `options`: supported preset scale values when `inputMode` is `options`
+
 New rice recipes should generally default to 1 rice cup unless another rice-cup base better represents the finalized recipe.
+
+### When Exact Quantity Input Is Appropriate
+
+Use `inputMode: "quantity"` when:
+
+- the cook normally starts with the amount of one dominant ingredient already available
+- the ingredient can be measured reliably in one unit, especially grams
+- the whole recipe can reasonably scale from that ingredient
+- examples include raw banana palya, beans palya, cabbage palya, and other single-vegetable dishes
+
+Avoid exact quantity input when:
+
+- the recipe depends on several co-equal vegetables whose proportions matter
+- changing one ingredient alone would make the recipe unbalanced
+- the base ingredient is difficult to measure consistently
+- the recipe requires culinary judgement rather than uniform proportional scaling
+
+For mixed-vegetable recipes, use exact quantity input only when the entered quantity represents the total combined vegetable weight and the recipe defines a fixed vegetable mix. Otherwise keep preset scaling and handle ingredient substitutions or imbalanced quantities manually.
+
+The scale calculation for quantity input is:
+
+```text
+selected scale = entered quantity ÷ baseQuantity
+```
+
+The entered quantity and resulting arbitrary scale may be persisted by the website so the same recipe state is restored on return.
 
 ## Ingredient Structure
 
@@ -444,7 +499,9 @@ The engine stores scale multipliers internally.
 
 For rice-cup-based recipes, the UI shows derived rice quantities using the cup-display rules above.
 
-For non-rice recipes, the UI shows generic multipliers such as:
+For quantity-input recipes, the UI shows the entered base-ingredient quantity and derives the scale internally.
+
+For non-rice preset recipes, the UI shows generic multipliers such as:
 
 ```text
 0.5×
@@ -478,16 +535,20 @@ Before adding or updating a recipe:
 3. Add grams for vegetables where useful
 4. Use rice cup as the canonical base for rice recipes
 5. Define `baseIngredient`, `baseQuantity`, and `baseUnit`
-6. Choose practical recipe-level scale options
-7. Mark each ingredient scalable or non-scalable
-8. Use `scaleQuantities` where linear scaling is unsuitable
-9. Ensure override keys cover every recipe scale option
-10. Use stable ingredient IDs
-11. Reference ingredient IDs from Preparation and Cooking Method
-12. Keep one cooking action per step
-13. Test the normal recipe page and Cooking Mode
-14. Test every supported scale
-15. Verify cup, spoon, inch, produce, gram, and override formatting
+6. Choose `inputMode: "options"` or `inputMode: "quantity"`
+7. For quantity input, define `inputLabel`, `inputMin`, and `inputStep`
+8. Confirm that exact quantity input is suitable for the recipe composition
+9. Choose practical recipe-level scale options when using preset mode
+10. Mark each ingredient scalable or non-scalable
+11. Use `scaleQuantities` where linear scaling is unsuitable
+12. Ensure override keys cover every recipe scale option
+13. Use stable ingredient IDs
+14. Reference ingredient IDs from Preparation and Cooking Method
+15. Keep one cooking action per step
+16. Test the normal recipe page and Cooking Mode
+17. Test every supported preset and arbitrary quantity scale
+18. Verify cup, spoon, inch, produce, gram, and override formatting
+19. Verify the entered quantity and arbitrary scale restore correctly after reload
 
 ## Required References
 
@@ -496,3 +557,4 @@ Use together with:
 - `docs/ARCHITECTURE.md`
 - `docs/INGREDIENT_REFERENCE.md`
 - `docs/FEATURE_ROADMAP.md`
+- `docs/BASE_INGREDIENT_SCALING.md`
