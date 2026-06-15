@@ -1,7 +1,48 @@
 const STANDARD_CUP_TO_RICE_CUP = 0.75;
+const DISPLAY_EPSILON = 0.0005;
 
 function normalizeScalingUnit(unit = '') {
   return String(unit).replace(/[\s_-]/g, '').toLowerCase();
+}
+
+function roundToIncrement(value, increment) {
+  return Math.round(value / increment) * increment;
+}
+
+function isNearlyEqual(a, b, epsilon = DISPLAY_EPSILON) {
+  return Math.abs(a - b) <= epsilon;
+}
+
+function trimDecimal(value, maximumFractionDigits) {
+  return Number(value.toFixed(maximumFractionDigits)).toString();
+}
+
+function formatCupQuantity(quantity) {
+  const quarterValue = roundToIncrement(quantity, 0.25);
+  if (isNearlyEqual(quantity, quarterValue)) {
+    return formatNumber(quarterValue);
+  }
+
+  const eighthValue = roundToIncrement(quantity, 0.125);
+  if (isNearlyEqual(quantity, eighthValue)) {
+    return trimDecimal(eighthValue, 3);
+  }
+
+  return trimDecimal(quantity, 2);
+}
+
+function formatPracticalMeasuredQuantity(quantity, unit = '') {
+  const normalizedUnit = normalizeScalingUnit(unit);
+
+  if (['ricecup', 'standardcup', 'cup'].includes(normalizedUnit)) {
+    return formatCupQuantity(quantity);
+  }
+
+  if (['teaspoon', 'tablespoon', 'inch'].includes(normalizedUnit)) {
+    return formatNumber(roundToIncrement(quantity, 0.25));
+  }
+
+  return formatNumber(quantity);
 }
 
 function getScaleOverride(item, scale) {
@@ -31,14 +72,14 @@ function formatCupEquivalent(item, quantity, effectiveScale) {
 
   if (normalizedUnit === 'ricecup') {
     const standardCupQuantity = quantity / STANDARD_CUP_TO_RICE_CUP;
-    return ` (${formatNumber(standardCupQuantity)} ${pluralizeUnit('standard cup', standardCupQuantity)})`;
+    return ` (${formatCupQuantity(standardCupQuantity)} ${pluralizeUnit('standard cup', standardCupQuantity)})`;
   }
 
   if (item.riceCupEquivalent != null) {
     const riceCupQuantity = item.scalable === false
       ? item.riceCupEquivalent
       : item.riceCupEquivalent * effectiveScale;
-    return ` (${formatNumber(riceCupQuantity)} ${pluralizeUnit('rice cup', riceCupQuantity)})`;
+    return ` (${formatCupQuantity(riceCupQuantity)} ${pluralizeUnit('rice cup', riceCupQuantity)})`;
   }
 
   return '';
@@ -64,7 +105,7 @@ formatIngredient = function formatIngredientWithCupEquivalents(item, scale = 1) 
     return `${count.text} ${label}${gramsText}${preparation}`;
   }
 
-  const formattedQuantity = formatNumber(quantity);
+  const formattedQuantity = formatPracticalMeasuredQuantity(quantity, item.unit);
   const unit = pluralizeUnit(item.unit, quantity);
   const cupEquivalent = formatCupEquivalent(item, quantity, effectiveScale);
   const grams = formatGramWeight(item, effectiveScale);
@@ -86,7 +127,7 @@ function formatScaleChoice(recipe, scale) {
   if (!usesRiceCupScaling(recipe)) return `${formatNumber(scale)}×`;
 
   const riceQuantity = Number(recipe.scaling.baseQuantity) * scale;
-  return `${formatNumber(riceQuantity)} ${pluralizeUnit('rice cup', riceQuantity)}`;
+  return `${formatCupQuantity(riceQuantity)} ${pluralizeUnit('rice cup', riceQuantity)}`;
 }
 
 renderScaleControls = function renderRecipeAwareScaleControls(recipe, scale) {
