@@ -15,6 +15,9 @@
   }
 
   function createToggle() {
+    const host = document.querySelector("[data-theme-toggle-host]");
+    if (!host) return;
+
     const button = document.createElement("button");
     button.type = "button";
     button.className = "theme-toggle";
@@ -26,7 +29,7 @@
       updateToggle(button);
     });
 
-    document.body.appendChild(button);
+    host.appendChild(button);
   }
 
   if (document.readyState === "loading") {
