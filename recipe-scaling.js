@@ -4,7 +4,29 @@ function normalizeScalingUnit(unit = '') {
   return String(unit).replace(/[\s_-]/g, '').toLowerCase();
 }
 
-function formatCupEquivalent(item, quantity, scale) {
+function getScaleOverride(item, scale) {
+  if (!item.scaleQuantities) return null;
+
+  const directValue = item.scaleQuantities[String(scale)];
+  const quantity = Number(directValue);
+  return Number.isFinite(quantity) ? quantity : null;
+}
+
+function getEffectiveQuantity(item, scale) {
+  const override = getScaleOverride(item, scale);
+  if (override != null) return override;
+  return item.scalable === false ? item.quantity : item.quantity * scale;
+}
+
+function getEffectiveIngredientScale(item, scale, quantity) {
+  if (getScaleOverride(item, scale) == null) return scale;
+
+  const baseQuantity = Number(item.quantity);
+  if (!Number.isFinite(baseQuantity) || baseQuantity === 0) return 1;
+  return quantity / baseQuantity;
+}
+
+function formatCupEquivalent(item, quantity, effectiveScale) {
   const normalizedUnit = normalizeScalingUnit(item.unit);
 
   if (normalizedUnit === 'ricecup') {
@@ -15,7 +37,7 @@ function formatCupEquivalent(item, quantity, scale) {
   if (item.riceCupEquivalent != null) {
     const riceCupQuantity = item.scalable === false
       ? item.riceCupEquivalent
-      : item.riceCupEquivalent * scale;
+      : item.riceCupEquivalent * effectiveScale;
     return ` (${formatNumber(riceCupQuantity)} ${pluralizeUnit('rice cup', riceCupQuantity)})`;
   }
 
@@ -27,20 +49,25 @@ formatIngredient = function formatIngredientWithCupEquivalents(item, scale = 1) 
   if (item.displayText) return item.displayText;
 
   const preparation = item.preparation ? `, ${item.preparation}` : '';
+  const quantity = getEffectiveQuantity(item, scale);
+  const effectiveScale = getEffectiveIngredientScale(item, scale, quantity);
 
   if (item.countLabel) {
-    const count = formatPracticalCount(item, scale);
+    const countItem = getScaleOverride(item, scale) == null
+      ? item
+      : { ...item, quantity };
+    const countScale = getScaleOverride(item, scale) == null ? scale : 1;
+    const count = formatPracticalCount(countItem, countScale);
     const label = pluralizeCountLabel(item.countLabel, count.numeric);
-    const grams = formatGramWeight(item, scale);
+    const grams = formatGramWeight(item, effectiveScale);
     const gramsText = grams ? ` (${grams})` : '';
     return `${count.text} ${label}${gramsText}${preparation}`;
   }
 
-  const quantity = item.scalable === false ? item.quantity : item.quantity * scale;
   const formattedQuantity = formatNumber(quantity);
   const unit = pluralizeUnit(item.unit, quantity);
-  const cupEquivalent = formatCupEquivalent(item, quantity, scale);
-  const grams = formatGramWeight(item, scale);
+  const cupEquivalent = formatCupEquivalent(item, quantity, effectiveScale);
+  const grams = formatGramWeight(item, effectiveScale);
   const gramsText = grams ? ` (${grams})` : '';
 
   return `${formattedQuantity} ${unit} ${item.ingredient}${cupEquivalent}${gramsText}${preparation}`
