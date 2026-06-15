@@ -26,13 +26,14 @@ Shukudu Kitchen currently includes:
 - Bullet rendering in recipe pages and Cooking Mode
 - Scalable ingredient schema
 - Live scale controls with per-recipe persistence
+- Exact base-ingredient quantity scaling for supported recipes
 - Practical rounding for whole produce and small whole ingredients
 - Optional gram display for count-based and unit-based ingredients
 - Ingredient reference standards
 - Rice-cup-first scaling architecture for rice recipes
 - Automatic standard cup equivalents for rice and rice-cooking water
 - Recipe-aware scale controls for rice and non-rice recipes
-- Explicit rice scaling metadata using `baseIngredient`, `baseQuantity`, and `baseUnit`
+- Explicit scaling metadata using `baseIngredient`, `baseQuantity`, `baseUnit`, and `inputMode`
 - Three initial recipes:
   - Tomato Bath
   - Vangi Bath
@@ -117,13 +118,37 @@ Implemented behaviour:
 - New rice recipes generally default to 1 rice cup unless another rice-cup base better fits the finalized recipe
 - Standard cup equivalents are derived automatically for display
 - Scale controls show rice quantities only for recipes with a rice-cup scaling base
-- Non-rice recipes retain generic multiplier controls
+- Non-rice recipes can use multiplier controls or exact base-ingredient quantity input
 - Tomato Bath has been migrated to a canonical 1 rice cup base
 - The current model supports future standard-cup input without requiring a redesign
+
+### Exact Base-Ingredient Quantity Scaling — Completed
+
+Implemented behaviour:
+
+- Recipes can declare `inputMode: "quantity"` to accept the exact amount of a base ingredient
+- Scaling metadata defines `baseIngredient`, `baseQuantity`, `baseUnit`, `inputLabel`, `inputMin`, and `inputStep`
+- The engine calculates the scale using:
+
+```text
+selected scale = entered quantity ÷ baseQuantity
+```
+
+- All scalable ingredients, Preparation quantities, Cooking Method quantities, and Cooking Mode quantities update from the calculated scale
+- Arbitrary scales are supported rather than being limited to preset scale options
+- The entered base quantity and calculated scale are persisted per recipe and restored after reload
+- `recipe-scaling.css` provides the dedicated quantity-input presentation and responsive layout
+- Exact quantity input is intended for recipes with one clear dominant base ingredient, such as a single-vegetable palya
+- For mixed-vegetable recipes, exact quantity input is used only when the input represents total combined vegetable weight and the recipe defines a fixed vegetable mix
+- Recipes with flexible or unbalanced mixed vegetables retain preset scaling or require manual ingredient adjustment
+
+Detailed design and implementation guidance is maintained in `docs/BASE_INGREDIENT_SCALING.md`.
 
 ## Current Feature — Recipe Scaling
 
 ### Implemented Scale Options
+
+Preset-mode recipes may provide scale options such as:
 
 - 0.5×
 - 0.75×
@@ -132,7 +157,9 @@ Implemented behaviour:
 - 1.5×
 - 2×
 
-For rice-cup-based recipes, these internal scale values are displayed as rice quantities derived from the stored base quantity.
+For rice-cup-based recipes, internal scale values are displayed as rice quantities derived from the stored base quantity.
+
+Quantity-input recipes accept an exact base-ingredient amount and calculate an arbitrary scale from that amount.
 
 ### Implemented Behaviour
 
@@ -141,18 +168,18 @@ For rice-cup-based recipes, these internal scale values are displayed as rice qu
 - Preserve readable fractions where practical
 - Scale rice, water, vegetables, spices, and finishing ingredients consistently
 - Keep temperatures and cooking timings unchanged unless a recipe-specific rule says otherwise
-- Show the selected scale clearly on the recipe page
-- Save the selected scale per recipe
+- Show the selected scale or entered base quantity clearly on the recipe page
+- Save the selected preset or arbitrary quantity scale per recipe
 - Apply scaled quantities inside Cooking Mode
 - Use practical kitchen rounding for whole produce and small whole ingredients
 - Keep gram values as the precise scaled target
 - Render optional gram values for both count-based and unit-based ingredients
 - Calculate standard cup equivalents automatically for rice and rice-cooking water
-- Use recipe-specific labels for rice-based and non-rice scaling controls
+- Use recipe-specific labels for rice-based, multiplier-based, and quantity-input scaling controls
 
 ### Current Pilot Status
 
-Tomato Bath is the reference implementation and testing recipe for scaling.
+Tomato Bath is the reference implementation and testing recipe for rice-based scaling.
 
 Completed:
 
@@ -160,6 +187,9 @@ Completed:
 - added explicit rice scaling metadata
 - added rice-cup-first display with automatic standard cup equivalents
 - added recipe-aware scale controls
+- implemented exact base-ingredient quantity scaling architecture
+- added arbitrary scale persistence
+- documented boundaries for mixed-vegetable recipes
 
 Still to do:
 
@@ -167,6 +197,7 @@ Still to do:
 - migrate Vangi Bath to the scalable schema
 - migrate Curd Rice to the scalable schema
 - validate all supported scales across all three recipes
+- adopt exact quantity input in suitable single-base-ingredient recipes
 
 ### Finalized Design Decision — Rice Cup Scaling Base
 
@@ -293,13 +324,15 @@ Optional owner-focused link to the relevant recipe file in GitHub.
 7. Ingredient scaling engine — completed for pilot use
 8. Rice cup scaling base decision — completed
 9. Tomato Bath migration to 1 rice cup base — completed
-10. Validate and refine Tomato Bath scales — in progress
-11. Migrate remaining recipes to scaling
-12. Serving adjustment
-13. Print view
-14. Recipe images and richer cards
-15. Optional standard-cup scaling input
-16. Optional cup display-order preference
+10. Exact base-ingredient quantity scaling — completed
+11. Validate and refine Tomato Bath scales — in progress
+12. Migrate remaining recipes to scaling
+13. Apply quantity-input mode to suitable recipes
+14. Serving adjustment
+15. Print view
+16. Recipe images and richer cards
+17. Optional standard-cup scaling input
+18. Optional cup display-order preference
 
 ## Development Principle
 
