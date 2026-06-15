@@ -13,6 +13,7 @@ shukudu-kitchen/
 ├─ script.js
 ├─ recipe.js
 ├─ recipe-scaling.js
+├─ recipe-scaling.css
 ├─ style.css
 └─ CHANGELOG.md
 ```
@@ -21,14 +22,16 @@ shukudu-kitchen/
 
 - `index.html`: homepage structure
 - `script.js`: recipe index loading, search, filters, and cards
-- `recipe.html`: individual recipe-page shell and script loading order
+- `recipe.html`: recipe-page shell and script/style loading order
 - `recipe.js`: core recipe rendering and interaction engine
-- `recipe-scaling.js`: scaling and quantity-display extension layer
-- `style.css`: responsive styling, scale controls, and Cooking Mode
+- `recipe-scaling.js`: scaling, exact quantity input, non-linear overrides, and unit-aware formatting
+- `recipe-scaling.css`: styling for recipe-specific scaling controls
+- `style.css`: shared responsive styling and Cooking Mode
 - `data/recipe-index.json`: lightweight homepage metadata
 - `data/recipes/<slug>.json`: full recipe data
 - `docs/RECIPE_DATA_STANDARD.md`: recipe authoring and scaling rules
 - `docs/INGREDIENT_REFERENCE.md`: default ingredient weights and rounding guidance
+- `docs/BASE_INGREDIENT_SCALING.md`: exact base-ingredient scaling guidance
 - `docs/FEATURE_ROADMAP.md`: completed and planned functionality
 
 ## Homepage Flow
@@ -44,6 +47,8 @@ index.html
 
 ```text
 recipe.html?slug=<slug>
+→ style.css
+→ recipe-scaling.css
 → recipe.js
 → recipe-scaling.js
 → data/recipes/<slug>.json
@@ -61,14 +66,13 @@ Each recipe is stored independently under:
 data/recipes/<slug>.json
 ```
 
-The recipe index contains only homepage metadata. Full recipe data is loaded only when a recipe page opens.
-
 Scalable recipes use:
 
 - structured ingredient objects
 - stable ingredient IDs
 - `ingredientIds` inside Preparation and Cooking Method
 - recipe-level scaling metadata
+- optional recipe-specific quantity overrides
 
 This ensures Ingredients, Preparation, Cooking Method, and Cooking Mode use the same formatted values.
 
@@ -76,9 +80,8 @@ This ensures Ingredients, Preparation, Cooking Method, and Cooking Mode use the 
 
 ```text
 recipe JSON base quantities
-→ recipe-level scaling options
-→ selected scale from localStorage or recipe default
-→ ingredient effective quantity
+→ selected preset or exact base-ingredient quantity
+→ calculated scale factor
 → recipe-specific override when present
 → unit-aware display formatting
 → practical count and gram formatting
@@ -105,13 +108,86 @@ Typical linear ingredients include:
 - vegetables by weight
 - measured powders and liquids when appropriate
 
+## Base-Ingredient Quantity Scaling
+
+A recipe with one clear scaling ingredient may allow the user to enter the exact quantity available.
+
+Example:
+
+```json
+"scaling": {
+  "enabled": true,
+  "baseIngredient": "raw-banana",
+  "baseQuantity": 500,
+  "baseUnit": "g",
+  "baseScale": 1,
+  "inputMode": "quantity",
+  "inputLabel": "Raw banana quantity",
+  "inputMin": 1,
+  "inputStep": 1,
+  "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+}
+```
+
+The engine calculates:
+
+```text
+selected scale = entered quantity ÷ baseQuantity
+```
+
+Example:
+
+```text
+300 g ÷ 500 g = 0.6×
+```
+
+The resulting scale reuses the existing scaling, overrides, formatting, persistence, and Cooking Mode behaviour.
+
+### Presets and Exact Input
+
+Quantity-input recipes may show both:
+
+- preset buttons for common quantities
+- an exact input for the quantity actually available
+
+For a 500 g base, the standard preset multipliers display as:
+
+```text
+250 g, 375 g, 500 g, 625 g, 750 g, 1,000 g
+```
+
+An entered value such as 300 g creates an arbitrary scale such as `0.6×`.
+
+### Appropriate Use
+
+Use exact base-ingredient input when:
+
+- one ingredient clearly drives recipe size
+- the recipe composition stays the same
+- supporting ingredients can reasonably scale from that quantity
+
+Examples:
+
+- raw banana palya by raw banana weight
+- beans palya by beans weight
+- tomato-based recipes by tomato weight when explicitly designed that way
+- mixed-vegetable recipes by total weight only when proportions stay broadly similar
+
+Do not use automatic scaling to decide:
+
+- substitutions
+- missing vegetables
+- major proportion changes
+- which vegetable should dominate
+- method changes caused by a different vegetable mix
+
+Those are recipe-composition decisions and should be handled separately.
+
 ## Rice Recipe Scaling Architecture
 
 ### Canonical Base
 
 Rice-based recipes use rice cup quantities as the canonical scaling base.
-
-Required metadata:
 
 ```json
 "scaling": {
@@ -124,26 +200,15 @@ Required metadata:
 }
 ```
 
-New recipes generally use a 1 rice cup base, but a different practical base is allowed.
-
-Example: Curd Rice uses a 0.25 rice cup base because that is a useful small portion.
+New recipes generally use a 1 rice cup base, but another practical rice-cup base is allowed.
 
 ### Standard Cup Display
-
-Conversion rule:
 
 ```text
 1 standard cup = 0.75 rice cup
 ```
 
-Rice and rice-cooking water display rice cup first, with the standard cup equivalent derived automatically.
-
-Example:
-
-```text
-1 rice cup rice (1⅓ standard cups)
-2 rice cups water (2⅔ standard cups)
-```
+Rice and rice-cooking water display rice cup first, with standard cup equivalents derived automatically.
 
 ### Recipe-Aware Scale Controls
 
@@ -155,16 +220,13 @@ For rice recipes, the visible label is:
 baseQuantity × selected scale
 ```
 
-For non-rice recipes, the UI shows generic multipliers.
-
-Examples:
+For quantity-input recipes, the visible label is:
 
 ```text
-Rice recipe: ¼ rice cup, ½ rice cup, ¾ rice cup, 1 rice cup
-Non-rice recipe: 0.5×, 1×, 1.5×, 2×
+baseQuantity × selected scale, shown in baseUnit
 ```
 
-Each recipe may define practical scale options rather than using one global option list.
+For other recipes, the UI shows generic multipliers.
 
 ## Non-Linear Ingredient Scaling
 
@@ -183,44 +245,6 @@ Examples:
 
 These ingredients may define recipe-specific `scaleQuantities`.
 
-Example:
-
-```json
-{
-  "id": "green-chilli",
-  "quantity": 1,
-  "countLabel": "small green chilli",
-  "ingredient": "green chilli",
-  "scalable": true,
-  "scaleQuantities": {
-    "1": 1,
-    "2": 1,
-    "3": 1.5,
-    "4": 2,
-    "5": 2
-  }
-}
-```
-
-### Override Resolution
-
-For an ingredient:
-
-```text
-if scaleQuantities[selected scale] exists
-→ use the override quantity
-otherwise
-→ use base quantity × selected scale
-```
-
-The override keys correspond to values from the recipe-level `scaling.options` array.
-
-Example:
-
-```json
-"options": [1, 2, 3, 4, 5]
-```
-
 ```json
 "scaleQuantities": {
   "1": 1,
@@ -231,97 +255,28 @@ Example:
 }
 ```
 
-At selected scale `4`, the renderer uses the value under key `"4"`.
+Resolution:
 
-### Long-Term Rule
+```text
+if scaleQuantities[selected scale] exists
+→ use the override quantity
+otherwise
+→ use base quantity × selected scale
+```
 
-`scaleQuantities` remains recipe-specific.
+Override keys should normally cover every recipe-level scale option. Overrides remain recipe-specific rather than global.
 
-Do not use a global runtime master list for chilli, mustard, curry leaves, or similar ingredients because their correct behaviour depends on the dish.
-
-A shared ingredient reference may provide authoring guidance, but each recipe controls its own runtime quantities.
-
-### Coverage Rule
-
-When `scaleQuantities` is used, it should normally define a value for every supported recipe scale option.
-
-Missing keys fall back to linear scaling. This fallback is intentional for resilience, but partial override maps should be avoided unless deliberately designed.
+For arbitrary quantity-derived scales, an exact override usually will not exist, so the engine falls back to linear scaling unless the recipe is redesigned with a supported discrete option.
 
 ## Unit-Aware Quantity Formatting
 
-The renderer formats values according to how each unit is practically measured.
+- Cup units preserve the calculated quantity; familiar quarter fractions are used when exact, otherwise short decimals are shown.
+- Teaspoons and tablespoons display to the nearest ¼ spoon.
+- Inch values display to the nearest ¼ inch.
+- Produce counts use practical rounding.
+- Grams remain the precise produce guide.
 
-### Cup Units
-
-Applies to:
-
-- `rice cup`
-- `standard cup`
-- `cup`
-
-Rules:
-
-- preserve the calculated quantity
-- use familiar quarter fractions when exact
-- display awkward values as short decimals
-- never snap the underlying cup quantity to a nearby quarter
-
-Examples:
-
-```text
-1.25 → 1¼
-1.5 → 1½
-1.666 → 1.67
-3.125 → 3.125
-4.167 → 4.17
-```
-
-This protects rice and water ratios while improving readability.
-
-### Spoon Units
-
-Applies to:
-
-- `teaspoon`
-- `tablespoon`
-
-The displayed value is snapped to the nearest ¼ spoon.
-
-Examples:
-
-```text
-0.834 teaspoon → ¾ teaspoon
-1.666 teaspoons → 1¾ teaspoons
-3.334 tablespoons → 3¼ tablespoons
-```
-
-### Inch Units
-
-`inch` values are displayed to the nearest ¼ inch.
-
-Example:
-
-```text
-1.666 inches → 1¾ inches
-```
-
-### Produce and Grams
-
-- produce counts continue to use practical count rounding
-- grams remain the more precise guide
-- gram display follows the existing gram-rounding rules
-
-### Separation of Calculation and Display
-
-Unit-aware formatting changes presentation only.
-
-```text
-stored quantity and scale calculation
-→ preserved internally
-→ formatted for practical kitchen display
-```
-
-It does not alter recipe scale factors or stored JSON values.
+Formatting changes presentation only, not stored values or scale calculations.
 
 ## Scaling Responsibilities
 
@@ -331,9 +286,10 @@ The recipe file defines:
 
 - base quantities
 - whether scaling is enabled
-- supported scale options
-- rice scaling metadata where applicable
-- which ingredients are scalable
+- supported preset options
+- base ingredient, quantity, and unit
+- optional `inputMode`, `inputLabel`, `inputMin`, and `inputStep`
+- whether each ingredient is scalable
 - optional `scaleQuantities`
 - count labels, units, gram weights, and rounding rules
 - stable ingredient IDs
@@ -344,7 +300,7 @@ The core engine handles:
 
 - recipe loading
 - ingredient maps
-- generic scaling
+- generic rendering
 - practical produce rounding
 - gram formatting
 - ingredient checklists
@@ -359,12 +315,22 @@ The extension layer handles:
 - rice-cup-first display
 - standard cup equivalents
 - recipe-aware scale labels
+- exact base-ingredient quantity input
+- quantity-to-scale conversion
+- arbitrary positive scale persistence for quantity-input recipes
 - non-linear `scaleQuantities` lookup
 - fallback to linear scaling
 - cup-specific decimal and fraction display
 - quarter-spoon display snapping
 - quarter-inch display snapping
-- compatibility with legacy cup data during migration
+
+### `recipe-scaling.css`
+
+The scaling stylesheet handles:
+
+- exact quantity form layout
+- input, unit, and Apply button styling
+- mobile stacking and responsive width behaviour
 
 ## Browser Storage
 
@@ -376,6 +342,11 @@ shukudu-kitchen:<slug>:cooking-step
 shukudu-kitchen:<slug>:completed-steps
 shukudu-kitchen:<slug>:scale
 ```
+
+The scale key stores either:
+
+- a preset multiplier
+- an arbitrary positive multiplier calculated from exact quantity input
 
 ## Non-Scaling Values
 
@@ -396,11 +367,12 @@ Unless explicitly designed otherwise, these do not scale:
 3. Update `data/recipe-index.json` only when homepage metadata changes.
 4. Follow `docs/RECIPE_DATA_STANDARD.md`.
 5. Use `docs/INGREDIENT_REFERENCE.md` where relevant.
-6. Test the full recipe page.
-7. Test Cooking Mode.
-8. Test every supported scale.
-9. Verify non-linear overrides at every option.
-10. Verify cup, spoon, inch, produce, and gram formatting.
+6. Use exact quantity input only when one quantity reliably drives the recipe.
+7. Test preset buttons.
+8. Test exact quantity input where enabled.
+9. Test page refresh persistence.
+10. Test the full recipe page and Cooking Mode.
+11. Verify overrides and unit-aware formatting.
 
 ## Maintenance Rules
 
@@ -409,14 +381,14 @@ Unless explicitly designed otherwise, these do not scale:
 - Use structured ingredients for scalable recipes.
 - Use stable ingredient IDs.
 - Keep quantities synchronized through ingredient references.
-- Store explicit rice scaling metadata.
+- Store explicit base-ingredient scaling metadata.
+- Keep composition changes outside automatic scaling.
 - Keep non-linear overrides recipe-specific.
-- Ensure `scaleQuantities` keys match recipe scale options.
 - Avoid partial override maps unless fallback is intentional.
-- Keep unit-aware formatting centralized in `recipe-scaling.js`.
+- Keep scaling logic centralized in `recipe-scaling.js`.
+- Keep exact quantity styling in `recipe-scaling.css`.
+- Load `recipe-scaling.css` and `recipe-scaling.js` on recipe pages.
 - Do not snap cup calculations to practical fractions.
-- Load `recipe-scaling.js` after `recipe.js`.
 - Update the changelog for notable changes.
 - Update visible website versions for releases.
-- Test rice and non-rice scale controls.
-- Test every supported scale after scaling changes.
+- Test preset, exact-input, rice, and generic scale controls.
