@@ -28,5 +28,11 @@
     "slug": "balekai-palya",
     "category": "Palya",
     "summary": "Karnataka-style raw banana stir fry with simple tempering, coconut and coriander."
+  },
+  {
+    "name": "Beans Palya",
+    "slug": "beans-palya",
+    "category": "Palya",
+    "summary": "Classic Karnataka-style beans palya with onion, tempering and fresh coconut."
   }
 ]
