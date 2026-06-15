@@ -1,0 +1,73 @@
+:root {
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #151210;
+  --surface: #211c19;
+  --text: #f3ece6;
+  --muted: #b8aca2;
+  --accent: #e07a68;
+  --accent-soft: #3a2420;
+  --border: #433832;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 120;
+  min-height: 42px;
+  padding: 9px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .secondary-button,
+[data-theme="dark"] .icon-button,
+[data-theme="dark"] .scale-button,
+[data-theme="dark"] .section-nav a {
+  background: #2b2420;
+  color: var(--text);
+}
+
+[data-theme="dark"] .section-nav {
+  background: #211c19;
+}
+
+[data-theme="dark"] .ingredient-check,
+[data-theme="dark"] .cooking-step-card {
+  background: #1c1815;
+}
+
+[data-theme="dark"] .ingredient-item.is-complete .ingredient-check {
+  background: #28231f;
+}
+
+[data-theme="dark"] .cooking-progress {
+  background: #493a33;
+}
+
+[data-theme="dark"] .error-box {
+  background: #3a201d;
+  border-color: #74443d;
+}
+
+@media (max-width: 760px) {
+  .theme-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .theme-toggle-text {
+    display: none;
+  }
+}
