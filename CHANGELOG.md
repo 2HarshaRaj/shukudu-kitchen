@@ -12,7 +12,35 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
-## 1.8.0 — 2026-06-16
+## 1.9.0 - 2026-06-16
+
+### Added
+
+- Warm light and dark themes across the homepage, recipe pages, scaling controls, ingredient checklists, and Cooking Mode
+- Device-theme fallback on the first visit
+- Saved theme preference using `localStorage` key `shukudu-theme`
+- Header-level theme controls on the homepage and recipe pages
+- Dedicated theme files: `theme.js`, `theme.css`, and `theme-toggle-fix.css`
+
+### Changed
+
+- Theme controls now sit inside the page layout instead of floating over the page
+- Desktop theme controls use a fixed 92 px width
+- Mobile theme controls use a fixed 44 px circular icon-only button
+- Light mode uses a light button surface and dark mode uses a dark button surface
+- Cooking Mode inherits the selected theme without showing a separate toggle
+- Website version updated to `v1.9.0`
+- Footer text centered on homepage and recipe pages
+
+### Improved
+
+- Reduced screen brightness during kitchen use through a warm charcoal dark palette
+- Consistent theme preference across the homepage, recipe pages, and Cooking Mode
+- Stable desktop button dimensions between Dark and Light states
+- Improved icon and label spacing
+- Consistent mobile control shape in both themes
+
+## 1.8.0 - 2026-06-16
 
 ### Added
 
@@ -25,203 +53,117 @@ Major.Minor.Patch
 
 ### Changed
 
-- The scaling engine can now use either preset options or `inputMode: "quantity"`
-- Non-rice recipes with one clear dominant ingredient can scale from the exact amount available
-- Recipe data standards, architecture documentation, README, and feature roadmap now describe exact quantity scaling
+- Scaling can use preset options or direct quantity input
+- Suitable non-rice recipes can scale from the exact amount available
 - Website version updated to `v1.8.0`
 
 ### Improved
 
-- Single-vegetable recipes can be adapted directly to the measured ingredient quantity without manually choosing a multiplier
-- Exact quantity state is restored after reloading or returning to a recipe
-- Mixed-vegetable boundaries are documented to avoid treating one flexible vegetable quantity as a reliable scaling base
-- Rice-cup-first scaling remains the canonical model for rice recipes
+- Single-vegetable recipes can adapt directly to measured ingredient quantity
+- Exact quantity state is restored after reload
+- Mixed-vegetable boundaries are documented
 
-## 1.7.0 — 2026-06-15
+## 1.7.0 - 2026-06-15
 
 ### Added
 
-- Rice-cup-first scaling architecture for rice-based recipes
-- Explicit rice scaling metadata using `baseIngredient`, `baseQuantity`, and `baseUnit`
-- Automatic standard cup equivalents for rice and rice-cooking water
-- Recipe-aware scale controls that show rice quantities only for rice-cup-based recipes
-- Generic multiplier controls retained for non-rice recipes
-- Future-ready path for optional standard-cup scaling input without redesigning the scaling engine
+- Rice-cup-first scaling architecture for rice recipes
+- Explicit rice scaling metadata
+- Automatic standard cup equivalents
+- Recipe-aware scale controls
 
 ### Changed
 
-- Tomato Bath migrated from a 0.75 rice cup source base to a canonical 1 rice cup base
-- Tomato Bath ingredients rescaled to match the new 1 rice cup base
-- Rice recipes now display rice cup first with standard cup equivalents in brackets
-- Recipe data standards, architecture documentation, and feature roadmap aligned to the finalized rice-cup decision
-- Scale controls now derive the visible rice quantity from recipe metadata instead of assuming every recipe uses rice
+- Tomato Bath migrated to a canonical 1 rice cup base
+- Rice recipes display rice cup first with standard cup equivalents in brackets
 
-### Improved
-
-- Public recipe links remain understandable through automatic standard cup equivalents
-- Rice recipe scaling now matches the primary day-to-day cooking workflow
-- Non-rice recipes remain compatible with the same generic scaling engine
-- Future standard-cup input can be added as an input-layer enhancement rather than a new architecture
-
-### In Progress
-
-- Validate Tomato Bath across all supported rice quantities
-- Migrate Vangi Bath and Curd Rice to the scalable schema where appropriate
-- Refine practical ingredient quantities after real cooking tests
-
-## 1.6.0 — 2026-06-15
+## 1.6.0 - 2026-06-15
 
 ### Added
 
-- Live recipe scaling controls with 0.5×, 0.75×, 1×, 1.25×, 1.5×, and 2× options
-- Per-recipe scale persistence using `localStorage`
-- Structured scalable ingredient schema with stable ingredient IDs
+- Live recipe scaling controls
+- Per-recipe scale persistence
+- Structured scalable ingredient schema
 - Ingredient references inside Preparation, Cooking Method, and Cooking Mode
-- Practical kitchen rounding for large produce and small whole ingredients
-- Optional gram display for count-based ingredients
-- Optional gram display for unit-based ingredients
-- Common ingredient weight reference in `docs/INGREDIENT_REFERENCE.md`
+- Practical kitchen rounding
+- Optional gram display for count-based and unit-based ingredients
 
 ### Changed
 
-- Tomato Bath converted into the pilot scalable recipe
-- Recipe Scale panel and buttons styled to match the Shukudu Kitchen design system
-- Ingredient quantities now update consistently across Ingredients, Preparation, Cooking Method, and Cooking Mode
-- Gram values scale automatically and round sensibly for display
+- Tomato Bath became the pilot scalable recipe
+- Quantities update consistently across the full recipe and Cooking Mode
 
-### Improved
-
-- Large produce counts remain practical while grams remain the precise scaled target
-- Small whole ingredients use practical half or whole counts
-- Exact ingredients continue to use readable fractions
-- Scaling does not alter cooking times, temperatures, induction wattage, or pressure-release instructions
-
-### In Progress
-
-- Additional Tomato Bath validation and refinements
-- Decision on whether rice recipes should be authored primarily from standard cups or rice cups
-- Migration of Vangi Bath and Curd Rice to the scalable schema
-
-## 1.5.1 — 2026-06-15
+## 1.5.1 - 2026-06-15
 
 ### Added
 
-- Structured preparation and cooking steps using `text` or `lead` + `items` + `after`
-- Bullet rendering inside normal recipe pages
-- Bullet rendering inside Cooking Mode
-- Recipe authoring standard in `docs/RECIPE_DATA_STANDARD.md`
-- Cooking Mode step-length rules for mobile readability
+- Structured preparation and cooking steps
+- Bullet rendering in recipe pages and Cooking Mode
+- Recipe authoring standard
 
-### Changed
-
-- Tomato Bath converted to structured steps
-- Vangi Bath converted to structured steps
-- Curd Rice converted to structured steps
-- Multi-ingredient actions now display each ingredient as a separate bullet
-
-### Improved
-
-- Better readability while actively cooking
-- Reduced long instruction paragraphs
-- Stronger consistency between Ingredients, Preparation, Cooking Method, and Cooking Mode
-- Better foundation for future recipe scaling
-
-## 1.5.0 — 2026-06-15
+## 1.5.0 - 2026-06-15
 
 ### Added
 
-- One recipe JSON file per recipe under `data/recipes/`
-- Lightweight homepage metadata in `data/recipe-index.json`
-- Architecture documentation in `docs/ARCHITECTURE.md`
-
-### Changed
-
-- Homepage now loads recipe cards from `data/recipe-index.json`
-- Recipe pages now load only the selected recipe file
-- Recipe maintenance no longer requires editing one large combined data file
+- One recipe JSON file per recipe
+- Lightweight homepage metadata
+- Architecture documentation
 
 ### Removed
 
-- Legacy combined `recipes.json` file
+- Legacy combined `recipes.json`
 
-## 1.4.0 — 2026-06-15
+## 1.4.0 - 2026-06-15
 
 ### Added
 
-- Cooking Mode with one preparation or cooking step shown at a time
-- Previous, Next, and Finish controls
-- Progress bar and step numbering
-- Per-recipe Cooking Mode progress using `localStorage`
-- Step completion with persistent completed state
+- Cooking Mode with one step at a time
+- Previous, Next, Finish, progress bar, and saved progress
 
 ### Improved
 
 - Full-screen mobile Cooking Mode
-- Mobile-safe bottom controls using dynamic viewport height and safe-area spacing
-- Themed Start Cooking, Previous, Next, Close, and Mark Complete controls
+- Mobile-safe bottom controls
 
-### Removed
-
-- Planned step-specific ingredient display because cooking instructions already include exact ingredient quantities
-
-## 1.3.1 — 2026-06-15
+## 1.3.1 - 2026-06-15
 
 ### Fixed
 
-- Prevented Cooking Mode action buttons from being hidden behind mobile browser navigation bars
-- Added mobile safe-area handling for the bottom action bar
+- Prevented Cooking Mode controls from being hidden behind mobile browser UI
 
-## 1.3.0 — 2026-06-15
-
-### Added
-
-- Initial Cooking Mode interface and navigation
-- Resume current cooking step after closing and reopening the recipe
-
-## 1.2.0 — 2026-06-15
+## 1.3.0 - 2026-06-15
 
 ### Added
 
-- Sticky pill-style section navigation on recipe pages
-- Active section tracking while scrolling
-- Horizontal pill scrolling on mobile
-- Smooth section navigation with sticky-header offset
+- Initial Cooking Mode interface
+- Resume current step after reopening
 
-### Fixed
+## 1.2.0 - 2026-06-15
 
-- Prevented active section from flickering backward between sections on mobile
-- Fixed section jumps that scrolled to a section and then returned toward the navigation bar
+### Added
 
-## 1.1.0 — 2026-06-15
+- Sticky section navigation
+- Active section tracking
+- Horizontal mobile scrolling
+
+## 1.1.0 - 2026-06-15
 
 ### Added
 
 - Functional ingredient checkboxes
-- Per-recipe checklist state using `localStorage`
-- `Reset ingredients` action
-- Completed ingredient styling with dimming and strikethrough
-- Larger mobile-friendly ingredient tap targets
+- Per-recipe checklist persistence
+- Reset ingredients action
 
-### Fixed
-
-- Removed duplicate decorative and functional checkboxes
-- Improved ingredient checklist spacing and layout
-
-## 1.0.0 — 2026-06-14
+## 1.0.0 - 2026-06-14
 
 ### Added
 
 - Initial GitHub Pages website
 - JSON-driven recipe storage
-- Homepage with search and category filtering
-- Recipe cards
-- Individual recipe pages
-- Anytype-inspired recipe layout
+- Homepage search and category filtering
+- Recipe cards and individual recipe pages
 - Mobile-responsive styling
-- Initial recipes:
-  - Tomato Bath
-  - Vangi Bath
-  - Curd Rice
+- Initial recipes: Tomato Bath, Vangi Bath, and Curd Rice
 
 ## Maintenance Rule
 
