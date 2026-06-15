@@ -376,11 +376,73 @@ For green chilli, lemon, garlic cloves, curry leaves, and similar ingredients:
 - use `scaleQuantities` when linear scaling gives poor culinary results
 - avoid values such as 0.25 chilli unless genuinely usable
 
+## Unit-Aware Quantity Formatting
+
+Quantity display must reflect how the ingredient is actually measured in the kitchen.
+
+### Cups
+
+For `rice cup`, `standard cup`, and `cup`:
+
+- preserve the calculated quantity
+- use familiar quarter fractions when exact, such as `¼`, `½`, `¾`, `1¼`, and `1½`
+- use a decimal for awkward values rather than forcing an unfamiliar fraction
+- do not snap cup quantities to the nearest quarter
+
+Examples:
+
+```text
+1.25 → 1¼
+1.5 → 1½
+1.666 → 1.67
+3.125 → 3.125
+4.167 → 4.17
+```
+
+This protects rice and water ratios while making values easier to judge quickly.
+
+### Teaspoons and Tablespoons
+
+For `teaspoon` and `tablespoon`:
+
+- snap the displayed quantity to the nearest ¼ spoon
+- use practical measuring-spoon fractions
+
+Examples:
+
+```text
+0.834 teaspoon → ¾ teaspoon
+1.666 teaspoons → 1¾ teaspoons
+3.334 tablespoons → 3¼ tablespoons
+```
+
+### Inches
+
+For `inch`:
+
+- snap the displayed quantity to the nearest ¼ inch
+
+Example:
+
+```text
+1.666 inches → 1¾ inches
+```
+
+### Grams
+
+- display gram weights using the existing gram-rounding rules
+- normally use the nearest whole gram
+- keep grams as the precise guide for produce
+
+### Scope
+
+These are display-formatting rules. They do not change the underlying scale factor or stored recipe quantities.
+
 ## Scale Control Display
 
 The engine stores scale multipliers internally.
 
-For rice-cup-based recipes, the UI shows derived rice quantities.
+For rice-cup-based recipes, the UI shows derived rice quantities using the cup-display rules above.
 
 For non-rice recipes, the UI shows generic multipliers such as:
 
@@ -425,7 +487,7 @@ Before adding or updating a recipe:
 12. Keep one cooking action per step
 13. Test the normal recipe page and Cooking Mode
 14. Test every supported scale
-15. Verify practical counts, gram weights, cup equivalents, and override quantities
+15. Verify cup, spoon, inch, produce, gram, and override formatting
 
 ## Required References
 
