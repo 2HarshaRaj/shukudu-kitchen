@@ -71,14 +71,28 @@
           "quantity": 0.5,
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
-          "scalable": true
+          "scalable": true,
+          "scaleQuantities": {
+            "1": 0.5,
+            "2": 0.5,
+            "3": 0.5,
+            "4": 0.5,
+            "5": 0.75
+          }
         },
         {
           "id": "urad-dal",
           "quantity": 0.5,
           "unit": "teaspoon",
           "ingredient": "urad dal",
-          "scalable": true
+          "scalable": true,
+          "scaleQuantities": {
+            "1": 0.5,
+            "2": 0.5,
+            "3": 0.75,
+            "4": 1,
+            "5": 1.25
+          }
         },
         {
           "id": "ginger",
@@ -86,16 +100,30 @@
           "unit": "teaspoon",
           "ingredient": "ginger",
           "preparation": "finely chopped",
-          "scalable": true
+          "scalable": true,
+          "scaleQuantities": {
+            "1": 0.5,
+            "2": 1,
+            "3": 1.5,
+            "4": 3,
+            "5": 3.5
+          }
         },
         {
           "id": "green-chilli",
           "quantity": 1,
-          "countLabel": "green chilli",
+          "countLabel": "small green chilli",
           "ingredient": "green chilli",
           "preparation": "finely chopped",
           "scalable": true,
-          "roundingType": "small-whole"
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "1": 1,
+            "2": 1,
+            "3": 1.5,
+            "4": 2,
+            "5": 2
+          }
         },
         {
           "id": "curry-leaves",
@@ -103,7 +131,14 @@
           "countLabel": "curry leaf",
           "ingredient": "curry leaves",
           "scalable": true,
-          "roundingType": "small-whole"
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "1": 6,
+            "2": 6,
+            "3": 8,
+            "4": 10,
+            "5": 12
+          }
         },
         {
           "id": "coriander-leaves",
@@ -112,7 +147,14 @@
           "weightGrams": 5,
           "ingredient": "coriander leaves",
           "preparation": "finely chopped",
-          "scalable": true
+          "scalable": true,
+          "scaleQuantities": {
+            "1": 1,
+            "2": 1.5,
+            "3": 2,
+            "4": 2.5,
+            "5": 3
+          }
         }
       ]
     }
@@ -184,6 +226,7 @@
   "notes": [
     "The 1:4 rice-to-water ratio at this small base quantity is intentional because the rice must become very soft for curd rice.",
     "This recipe keeps 0.25 rice cup as its practical base instead of forcing every rice recipe to use a 1 rice cup base.",
+    "Rice, water, curd and milk scale linearly. Tempering ingredients use recipe-specific quantities because flavour ingredients do not always scale in direct proportion to rice.",
     "Add a little more milk or curd before serving if the rice thickens after resting.",
     "Standard cup equivalents are shown automatically only for rice and rice-cooking water. Milk and curd remain in standard cups."
   ]
