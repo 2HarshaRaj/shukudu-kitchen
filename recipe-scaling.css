@@ -77,11 +77,30 @@
 
   .quantity-scale-row {
     justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
   }
 
   .quantity-scale-input {
     flex: 1 1 auto;
     width: auto;
     min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .quantity-scale-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .quantity-scale-input {
+    width: 100%;
+  }
+
+  .scale-apply-button {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 }
