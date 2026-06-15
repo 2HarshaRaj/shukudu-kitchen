@@ -4,335 +4,199 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version — v1.8.0
+## Current Version - v1.9.0
 
 Shukudu Kitchen currently includes:
 
 - JSON-driven recipe storage
 - One recipe file per recipe
-- Lightweight homepage recipe index
-- Homepage with recipe cards
-- Search by recipe name, category, and summary
-- Category filtering
+- Homepage recipe index, search, and category filters
 - Individual recipe pages
-- Anytype-inspired recipe layout
-- Mobile-responsive styling
-- Functional ingredient checkboxes
-- Sticky pill-style section navigation
-- Cooking Mode
-- Cooking progress persistence
-- Step completion tracking
+- Functional ingredient checklists
+- Sticky section navigation
+- Cooking Mode with saved progress
 - Structured preparation and cooking steps
-- Bullet rendering in recipe pages and Cooking Mode
 - Scalable ingredient schema
-- Live scale controls with per-recipe persistence
+- Rice-cup-first scaling for rice recipes
 - Exact base-ingredient quantity scaling for supported recipes
-- Practical rounding for whole produce and small whole ingredients
-- Optional gram display for count-based and unit-based ingredients
-- Ingredient reference standards
-- Rice-cup-first scaling architecture for rice recipes
-- Automatic standard cup equivalents for rice and rice-cooking water
-- Recipe-aware scale controls for rice and non-rice recipes
-- Explicit scaling metadata using `baseIngredient`, `baseQuantity`, `baseUnit`, and `inputMode`
-- Three initial recipes:
-  - Tomato Bath
-  - Vangi Bath
-  - Curd Rice
+- Practical ingredient rounding and gram guidance
+- Saved light and dark themes
+- Device-theme fallback on first visit
+- Theme controls on the homepage and recipe page
+- Theme inheritance inside Cooking Mode
 
 ## Completed Features
 
-### Functional Ingredient Checkboxes — Completed
+### Recipe Data Architecture - Completed
 
-Implemented behaviour:
+- One JSON file per recipe under `data/recipes/`
+- Lightweight homepage metadata in `data/recipe-index.json`
+- Stable ingredient IDs and structured steps
+- Shared quantities across Ingredients, Preparation, Cooking Method, and Cooking Mode
 
-- Tap an ingredient to mark it complete
-- Completed ingredients are dimmed and struck through
-- Checklist state is saved in the browser using `localStorage`
-- Checklist state is stored separately for each recipe
-- A `Reset ingredients` action clears the checklist
-- Ingredient rows use larger mobile-friendly tap targets
+### Ingredient Checklists - Completed
 
-### Sticky Section Navigation — Completed
+- Tap ingredients to mark them complete
+- Saved state per recipe
+- Reset action
+- Mobile-friendly touch targets
 
-Implemented behaviour:
+### Sticky Section Navigation - Completed
 
-- Sticky pill-style navigation on recipe pages
-- Tap a section to scroll to it
-- Active section highlighting while scrolling
-- Horizontal scrolling on narrow screens
-- Mobile-active pill positioning
-- Stable section tracking without flicker
+- Sticky pill navigation on recipe pages
+- Active section tracking
+- Horizontal scrolling on mobile
 
-### Cooking Mode — Completed
+### Cooking Mode - Completed
 
-Implemented behaviour:
+- One step at a time
+- Previous, Next, Finish, and completion controls
+- Progress bar and saved current step
+- Mobile-safe bottom controls
+- Active theme inherited automatically
 
-- One preparation or cooking step at a time
-- Large mobile-friendly text
-- Previous, Next, and Finish controls
-- Step number and progress bar
-- Resume current step using `localStorage`
-- Mark individual steps complete
-- Persistent completed-step state
-- Clear exit back to the full recipe
-- Mobile-safe bottom controls above browser navigation UI
+### Recipe Scaling - Completed for Supported Recipes
 
-Step-specific ingredient display was removed from the plan because cooking instructions already repeat exact ingredient quantities.
+- Preset scaling controls
+- Rice-cup-first canonical base for rice recipes
+- Automatic standard cup equivalents
+- Exact base-ingredient quantity input
+- Arbitrary scale calculation and persistence
+- Recipe-specific non-linear overrides
+- Unit-aware formatting
+- Practical produce and small-whole rounding
 
-### Structured Recipe Steps — Completed
+### Exact Base-Ingredient Quantity Scaling - Completed
 
-Implemented behaviour:
+Supported metadata includes:
 
-- Simple steps using `text`
-- Structured steps using `lead`, `items`, and `after`
-- Bulleted ingredient lists within preparation and cooking steps
-- Structured-step rendering in normal recipe pages
-- Structured-step rendering in Cooking Mode
-- Backward compatibility for text-only steps
+- `baseIngredient`
+- `baseQuantity`
+- `baseUnit`
+- `inputMode`
+- `inputLabel`
+- `inputMin`
+- `inputStep`
 
-### Recipe Data Architecture — Completed
-
-Implemented structure:
-
-```text
-data/
-├─ recipe-index.json
-└─ recipes/
-   ├─ tomato-bath.json
-   ├─ vangi-bath.json
-   └─ curd-rice.json
-```
-
-Benefits:
-
-- Each recipe is maintained independently
-- The homepage loads only lightweight metadata
-- Updating one recipe does not require changing unrelated recipes
-- The site can scale to a much larger cookbook
-
-### Rice-Cup Scaling Base — Completed
-
-Implemented behaviour:
-
-- Rice-based recipes use rice cup quantities as the canonical base
-- New rice recipes generally default to 1 rice cup unless another rice-cup base better fits the finalized recipe
-- Standard cup equivalents are derived automatically for display
-- Scale controls show rice quantities only for recipes with a rice-cup scaling base
-- Non-rice recipes can use multiplier controls or exact base-ingredient quantity input
-- Tomato Bath has been migrated to a canonical 1 rice cup base
-- The current model supports future standard-cup input without requiring a redesign
-
-### Exact Base-Ingredient Quantity Scaling — Completed
-
-Implemented behaviour:
-
-- Recipes can declare `inputMode: "quantity"` to accept the exact amount of a base ingredient
-- Scaling metadata defines `baseIngredient`, `baseQuantity`, `baseUnit`, `inputLabel`, `inputMin`, and `inputStep`
-- The engine calculates the scale using:
+Calculation:
 
 ```text
-selected scale = entered quantity ÷ baseQuantity
+selected scale = entered quantity / base quantity
 ```
 
-- All scalable ingredients, Preparation quantities, Cooking Method quantities, and Cooking Mode quantities update from the calculated scale
-- Arbitrary scales are supported rather than being limited to preset scale options
-- The entered base quantity and calculated scale are persisted per recipe and restored after reload
-- `recipe-scaling.css` provides the dedicated quantity-input presentation and responsive layout
-- Exact quantity input is intended for recipes with one clear dominant base ingredient, such as a single-vegetable palya
-- For mixed-vegetable recipes, exact quantity input is used only when the input represents total combined vegetable weight and the recipe defines a fixed vegetable mix
-- Recipes with flexible or unbalanced mixed vegetables retain preset scaling or require manual ingredient adjustment
+Use exact quantity input only when one clear ingredient reliably drives recipe size. Flexible mixed-vegetable composition remains outside automatic scaling.
 
-Detailed design and implementation guidance is maintained in `docs/BASE_INGREDIENT_SCALING.md`.
+### Light and Dark Themes - Completed
 
-## Current Feature — Recipe Scaling
+Implemented behaviour:
 
-### Implemented Scale Options
+- Warm light and dark palettes
+- First visit follows the device theme preference
+- Manual preference saved under `shukudu-theme`
+- Preference reused across homepage and recipe pages
+- Cooking Mode inherits the active theme
+- Homepage control placed inside the main header
+- Recipe-page control placed beside Back to recipes
+- No persistent floating control
+- Desktop control uses a fixed 92 px width
+- Mobile control uses a fixed 44 px circular icon-only button
+- Light mode uses a light control surface
+- Dark mode uses a dark control surface
+- Footer text is centered
 
-Preset-mode recipes may provide scale options such as:
+Implementation files:
 
-- 0.5×
-- 0.75×
-- 1×
-- 1.25×
-- 1.5×
-- 2×
+- `theme.js`
+- `theme.css`
+- `theme-toggle-fix.css`
 
-For rice-cup-based recipes, internal scale values are displayed as rice quantities derived from the stored base quantity.
-
-Quantity-input recipes accept an exact base-ingredient amount and calculate an arbitrary scale from that amount.
-
-### Implemented Behaviour
-
-- Recalculate scalable ingredient quantities automatically
-- Update matching quantities in Preparation and Cooking Method
-- Preserve readable fractions where practical
-- Scale rice, water, vegetables, spices, and finishing ingredients consistently
-- Keep temperatures and cooking timings unchanged unless a recipe-specific rule says otherwise
-- Show the selected scale or entered base quantity clearly on the recipe page
-- Save the selected preset or arbitrary quantity scale per recipe
-- Apply scaled quantities inside Cooking Mode
-- Use practical kitchen rounding for whole produce and small whole ingredients
-- Keep gram values as the precise scaled target
-- Render optional gram values for both count-based and unit-based ingredients
-- Calculate standard cup equivalents automatically for rice and rice-cooking water
-- Use recipe-specific labels for rice-based, multiplier-based, and quantity-input scaling controls
-
-### Current Pilot Status
-
-Tomato Bath is the reference implementation and testing recipe for rice-based scaling.
+## Current Recipe Scaling Work
 
 Completed:
 
-- migrated Tomato Bath to a canonical 1 rice cup base
-- added explicit rice scaling metadata
-- added rice-cup-first display with automatic standard cup equivalents
-- added recipe-aware scale controls
-- implemented exact base-ingredient quantity scaling architecture
-- added arbitrary scale persistence
-- documented boundaries for mixed-vegetable recipes
+- Tomato Bath migrated to a canonical 1 rice cup base
+- Explicit rice scaling metadata
+- Recipe-aware scale controls
+- Exact quantity scaling architecture
+- Arbitrary scale persistence
+- Mixed-vegetable boundaries documented
 
 Still to do:
 
-- continue testing and refining Tomato Bath scaling data
-- migrate Vangi Bath to the scalable schema
-- migrate Curd Rice to the scalable schema
-- validate all supported scales across all three recipes
-- adopt exact quantity input in suitable single-base-ingredient recipes
-
-### Finalized Design Decision — Rice Cup Scaling Base
-
-Rice-based recipes are authored and scaled using **rice cup quantities as the canonical base**.
-
-New rice recipes should generally default to **1 rice cup** as the base quantity, unless another rice-cup quantity better represents the finalized recipe.
-
-Current behaviour:
-
-- Rice recipes store explicit scaling metadata.
-- Rice and rice-cooking water use rice cup measurements as the scaling basis.
-- Standard cup equivalents are calculated for display.
-- Other ingredients continue using their natural units.
-- Public recipe links remain understandable because standard cup equivalents are shown in brackets.
-
-Example:
-
-```text
-Rice – 1 rice cup (1⅓ standard cups)
-Water – 2 rice cups (2⅔ standard cups)
-```
-
-Required scaling metadata:
-
-```json
-"scaling": {
-  "baseIngredient": "rice",
-  "baseQuantity": 1,
-  "baseUnit": "riceCup"
-}
-```
-
-The engine must use this metadata rather than infer the scaling base from display text.
-
-Rationale:
-
-Shukudu Kitchen is intended to optimize recipes for practical day-to-day cooking rather than preserve internet recipe measurement systems exactly. Internet recipes are treated as source material; GitHub stores the adapted cooking-ready version.
-
-The conversion rule remains:
-
-```text
-1 standard cup = 0.75 rice cup
-```
+- Continue testing Tomato Bath scaling data
+- Migrate Vangi Bath to the scalable schema
+- Migrate Curd Rice to the scalable schema
+- Validate all supported scales across migrated recipes
+- Adopt quantity-input mode in suitable single-base-ingredient recipes
 
 ## Future Features
 
-### Future Enhancement — Standard Cup Scaling Input
-
-A future enhancement may allow users to enter the desired rice quantity using standard cups.
-
-The engine would:
-
-1. Convert the standard cup input into rice cups.
-2. Calculate the scale factor against the stored rice-cup base.
-3. Reuse the existing scaling engine for all ingredients.
-4. Render the result in the selected display format.
-
-This enhancement is intentionally deferred. Because the current recipe model stores the canonical base explicitly, adding standard-cup input later would extend the existing architecture rather than require a redesign.
-
-### Standard Cup and Rice Cup Display
-
-Current behaviour:
-
-- Rice cup first with standard cup equivalent in brackets
-- Standard cup values remain derived display equivalents
+### Standard Cup Scaling Input
 
 Possible future enhancement:
 
-- user-selectable display order without changing the canonical scaling base
-
-Default rule:
-
-- 1 standard cup = 0.75 rice cup
+- accept standard cup input for rice recipes
+- convert to rice cup internally
+- reuse the current scaling engine
 
 ### Serving Adjustment
 
 Planned considerations:
 
-- Distinguish serving-based recipes from rice-quantity-based recipes
-- Avoid implying that pressure-cooking time scales linearly
-- Preserve recipe-specific water ratios
+- distinguish serving-based recipes from rice-quantity-based recipes
+- avoid implying that cooking time scales linearly
+- preserve recipe-specific water ratios
 
 ### Improved Recipe Cards
 
 Possible metadata:
 
-- Cuisine
-- Meal type
-- Base rice quantity
-- Approximate cooking time
-- Serving estimate
-- Recipe status
-- Recipe image
+- cuisine
+- meal type
+- base rice quantity
+- approximate cooking time
+- serving estimate
+- recipe status
+- recipe image
 
 ### Print View
 
 Planned behaviour:
 
-- Hide search, filters, sticky navigation, and decorative controls
-- Remove shadows and unnecessary backgrounds
-- Keep ingredient sections and cooking steps readable
-- Fit recipes cleanly across printed pages
+- hide interactive controls
+- remove unnecessary backgrounds and shadows
+- keep ingredients and steps readable
 
 ### Recipe Images
 
 Planned structure:
 
-- Store image paths in recipe data
-- Use a fallback when no image is available
-- Keep image loading lightweight
+- image path in recipe metadata
+- lightweight loading
+- fallback when no image exists
 
 ### Direct Edit Link
 
-Optional owner-focused link to the relevant recipe file in GitHub.
+Optional owner-focused link to the recipe file in GitHub.
 
 ## Recommended Development Order
 
-1. Functional ingredient checkboxes — completed
-2. Sticky section navigation — completed
-3. Cooking Mode — completed
-4. Mobile refinements — completed
-5. Recipe-per-file architecture — completed
-6. Structured recipe steps — completed
-7. Ingredient scaling engine — completed for pilot use
-8. Rice cup scaling base decision — completed
-9. Tomato Bath migration to 1 rice cup base — completed
-10. Exact base-ingredient quantity scaling — completed
-11. Validate and refine Tomato Bath scales — in progress
-12. Migrate remaining recipes to scaling
-13. Apply quantity-input mode to suitable recipes
-14. Serving adjustment
-15. Print view
-16. Recipe images and richer cards
-17. Optional standard-cup scaling input
-18. Optional cup display-order preference
+1. Ingredient checklists - completed
+2. Sticky section navigation - completed
+3. Cooking Mode - completed
+4. Recipe-per-file architecture - completed
+5. Structured recipe steps - completed
+6. Ingredient scaling engine - completed for supported recipes
+7. Rice cup scaling base - completed
+8. Exact base-ingredient quantity scaling - completed
+9. Light and dark themes - completed
+10. Validate and refine Tomato Bath scales - in progress
+11. Migrate remaining recipes to scaling
+12. Apply quantity-input mode to suitable recipes
+13. Serving adjustment
+14. Print view
+15. Recipe images and richer cards
+16. Optional standard-cup scaling input
 
 ## Development Principle
 
@@ -340,8 +204,8 @@ Prioritize features that reduce friction while actively cooking.
 
 The site should remain:
 
-- Simple to maintain
-- Fast on mobile
-- Easy to read in the kitchen
-- Compatible with GitHub Pages
-- Free of unnecessary frameworks or backend dependencies
+- simple to maintain
+- fast on mobile
+- easy to read in the kitchen
+- compatible with GitHub Pages
+- free of unnecessary frameworks or backend dependencies
