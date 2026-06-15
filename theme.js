@@ -14,13 +14,57 @@
     button.innerHTML = `<span aria-hidden="true">${isDark ? "☀" : "☾"}</span><span class="theme-toggle-text">${isDark ? "Light" : "Dark"}</span>`;
   }
 
+  function buildHost() {
+    const headerContainer = document.querySelector(".site-header .container");
+    if (headerContainer) {
+      headerContainer.style.display = "flex";
+      headerContainer.style.alignItems = "flex-start";
+      headerContainer.style.justifyContent = "space-between";
+      headerContainer.style.gap = "18px";
+
+      const textBlock = document.createElement("div");
+      while (headerContainer.firstChild) {
+        textBlock.appendChild(headerContainer.firstChild);
+      }
+      headerContainer.appendChild(textBlock);
+
+      const host = document.createElement("div");
+      headerContainer.appendChild(host);
+      return host;
+    }
+
+    const recipeShell = document.querySelector(".recipe-shell");
+    const backLink = recipeShell?.querySelector(".back-link");
+    if (recipeShell && backLink) {
+      const topbar = document.createElement("div");
+      topbar.style.display = "flex";
+      topbar.style.alignItems = "center";
+      topbar.style.justifyContent = "space-between";
+      topbar.style.gap = "18px";
+      topbar.style.marginBottom = "22px";
+      backLink.style.marginBottom = "0";
+
+      recipeShell.insertBefore(topbar, recipeShell.firstChild);
+      topbar.appendChild(backLink);
+
+      const host = document.createElement("div");
+      topbar.appendChild(host);
+      return host;
+    }
+
+    return null;
+  }
+
   function createToggle() {
-    const host = document.querySelector("[data-theme-toggle-host]");
+    const host = buildHost();
     if (!host) return;
 
     const button = document.createElement("button");
     button.type = "button";
     button.className = "theme-toggle";
+    button.style.position = "static";
+    button.style.top = "auto";
+    button.style.right = "auto";
     updateToggle(button);
 
     button.addEventListener("click", () => {
