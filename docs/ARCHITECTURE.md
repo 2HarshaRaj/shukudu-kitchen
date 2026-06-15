@@ -23,7 +23,7 @@ shukudu-kitchen/
 - `script.js`: recipe index loading, search, filters, and cards
 - `recipe.html`: individual recipe-page shell and script loading order
 - `recipe.js`: core recipe rendering and interaction engine
-- `recipe-scaling.js`: scaling extension layer
+- `recipe-scaling.js`: scaling and quantity-display extension layer
 - `style.css`: responsive styling, scale controls, and Cooking Mode
 - `data/recipe-index.json`: lightweight homepage metadata
 - `data/recipes/<slug>.json`: full recipe data
@@ -79,7 +79,9 @@ recipe JSON base quantities
 → recipe-level scaling options
 → selected scale from localStorage or recipe default
 → ingredient effective quantity
-→ practical rounding and unit formatting
+→ recipe-specific override when present
+→ unit-aware display formatting
+→ practical count and gram formatting
 → Ingredients
 → Preparation
 → Cooking Method
@@ -245,6 +247,82 @@ When `scaleQuantities` is used, it should normally define a value for every supp
 
 Missing keys fall back to linear scaling. This fallback is intentional for resilience, but partial override maps should be avoided unless deliberately designed.
 
+## Unit-Aware Quantity Formatting
+
+The renderer formats values according to how each unit is practically measured.
+
+### Cup Units
+
+Applies to:
+
+- `rice cup`
+- `standard cup`
+- `cup`
+
+Rules:
+
+- preserve the calculated quantity
+- use familiar quarter fractions when exact
+- display awkward values as short decimals
+- never snap the underlying cup quantity to a nearby quarter
+
+Examples:
+
+```text
+1.25 → 1¼
+1.5 → 1½
+1.666 → 1.67
+3.125 → 3.125
+4.167 → 4.17
+```
+
+This protects rice and water ratios while improving readability.
+
+### Spoon Units
+
+Applies to:
+
+- `teaspoon`
+- `tablespoon`
+
+The displayed value is snapped to the nearest ¼ spoon.
+
+Examples:
+
+```text
+0.834 teaspoon → ¾ teaspoon
+1.666 teaspoons → 1¾ teaspoons
+3.334 tablespoons → 3¼ tablespoons
+```
+
+### Inch Units
+
+`inch` values are displayed to the nearest ¼ inch.
+
+Example:
+
+```text
+1.666 inches → 1¾ inches
+```
+
+### Produce and Grams
+
+- produce counts continue to use practical count rounding
+- grams remain the more precise guide
+- gram display follows the existing gram-rounding rules
+
+### Separation of Calculation and Display
+
+Unit-aware formatting changes presentation only.
+
+```text
+stored quantity and scale calculation
+→ preserved internally
+→ formatted for practical kitchen display
+```
+
+It does not alter recipe scale factors or stored JSON values.
+
 ## Scaling Responsibilities
 
 ### Recipe JSON
@@ -267,7 +345,7 @@ The core engine handles:
 - recipe loading
 - ingredient maps
 - generic scaling
-- practical rounding
+- practical produce rounding
 - gram formatting
 - ingredient checklists
 - Cooking Mode
@@ -283,6 +361,9 @@ The extension layer handles:
 - recipe-aware scale labels
 - non-linear `scaleQuantities` lookup
 - fallback to linear scaling
+- cup-specific decimal and fraction display
+- quarter-spoon display snapping
+- quarter-inch display snapping
 - compatibility with legacy cup data during migration
 
 ## Browser Storage
@@ -319,6 +400,7 @@ Unless explicitly designed otherwise, these do not scale:
 7. Test Cooking Mode.
 8. Test every supported scale.
 9. Verify non-linear overrides at every option.
+10. Verify cup, spoon, inch, produce, and gram formatting.
 
 ## Maintenance Rules
 
@@ -331,6 +413,8 @@ Unless explicitly designed otherwise, these do not scale:
 - Keep non-linear overrides recipe-specific.
 - Ensure `scaleQuantities` keys match recipe scale options.
 - Avoid partial override maps unless fallback is intentional.
+- Keep unit-aware formatting centralized in `recipe-scaling.js`.
+- Do not snap cup calculations to practical fractions.
 - Load `recipe-scaling.js` after `recipe.js`.
 - Update the changelog for notable changes.
 - Update visible website versions for releases.
