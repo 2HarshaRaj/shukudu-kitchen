@@ -12,6 +12,31 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.8.0 — 2026-06-16
+
+### Added
+
+- Exact base-ingredient quantity input for supported recipes
+- Arbitrary recipe scaling calculated from the entered base-ingredient quantity
+- New scaling metadata fields: `inputMode`, `inputLabel`, `inputMin`, and `inputStep`
+- Dedicated quantity-input styling in `recipe-scaling.css`
+- Per-recipe persistence for entered quantities and calculated arbitrary scales
+- Detailed design guidance in `docs/BASE_INGREDIENT_SCALING.md`
+
+### Changed
+
+- The scaling engine can now use either preset options or `inputMode: "quantity"`
+- Non-rice recipes with one clear dominant ingredient can scale from the exact amount available
+- Recipe data standards, architecture documentation, README, and feature roadmap now describe exact quantity scaling
+- Website version updated to `v1.8.0`
+
+### Improved
+
+- Single-vegetable recipes can be adapted directly to the measured ingredient quantity without manually choosing a multiplier
+- Exact quantity state is restored after reloading or returning to a recipe
+- Mixed-vegetable boundaries are documented to avoid treating one flexible vegetable quantity as a reliable scaling base
+- Rice-cup-first scaling remains the canonical model for rice recipes
+
 ## 1.7.0 — 2026-06-15
 
 ### Added
