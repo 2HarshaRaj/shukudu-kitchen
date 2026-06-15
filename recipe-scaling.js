@@ -123,40 +123,145 @@ function usesRiceCupScaling(recipe) {
     && Number.isFinite(Number(scaling.baseQuantity));
 }
 
-function formatScaleChoice(recipe, scale) {
-  if (!usesRiceCupScaling(recipe)) return `${formatNumber(scale)}×`;
-
-  const riceQuantity = Number(recipe.scaling.baseQuantity) * scale;
-  return `${formatCupQuantity(riceQuantity)} ${pluralizeUnit('rice cup', riceQuantity)}`;
+function usesQuantityInput(recipe) {
+  const scaling = recipe.scaling || {};
+  return scaling.inputMode === 'quantity'
+    && scaling.baseIngredient
+    && Number.isFinite(Number(scaling.baseQuantity))
+    && Number(scaling.baseQuantity) > 0
+    && scaling.baseUnit;
 }
+
+function formatQuantityInputValue(recipe, scale) {
+  const quantity = Number(recipe.scaling.baseQuantity) * scale;
+  const unit = recipe.scaling.baseUnit;
+  const normalizedUnit = normalizeScalingUnit(unit);
+  const formatted = formatPracticalMeasuredQuantity(quantity, unit);
+
+  if (normalizedUnit === 'g') return `${formatted} g`;
+  return `${formatted} ${pluralizeUnit(unit, quantity)}`;
+}
+
+function formatScaleChoice(recipe, scale) {
+  if (usesRiceCupScaling(recipe)) {
+    const riceQuantity = Number(recipe.scaling.baseQuantity) * scale;
+    return `${formatCupQuantity(riceQuantity)} ${pluralizeUnit('rice cup', riceQuantity)}`;
+  }
+
+  if (usesQuantityInput(recipe)) {
+    return formatQuantityInputValue(recipe, scale);
+  }
+
+  return `${formatNumber(scale)}×`;
+}
+
+loadScale = function loadRecipeScale(recipe) {
+  const fallback = recipe.scaling?.baseScale || 1;
+  const saved = Number.parseFloat(localStorage.getItem(getScaleKey(recipe.slug)));
+  if (!Number.isFinite(saved) || saved <= 0) return fallback;
+
+  if (usesQuantityInput(recipe)) return saved;
+
+  const options = recipe.scaling?.options || [1];
+  return options.includes(saved) ? saved : fallback;
+};
 
 renderScaleControls = function renderRecipeAwareScaleControls(recipe, scale) {
   if (!recipe.scaling?.enabled) return '';
 
   const options = recipe.scaling.options || [1];
   const isRiceBased = usesRiceCupScaling(recipe);
-  const heading = isRiceBased ? 'Rice quantity' : 'Recipe scale';
+  const hasQuantityInput = usesQuantityInput(recipe);
+  const heading = isRiceBased
+    ? 'Rice quantity'
+    : hasQuantityInput
+      ? (recipe.scaling.inputLabel || 'Ingredient quantity')
+      : 'Recipe scale';
   const current = formatScaleChoice(recipe, scale);
-  const ariaLabel = isRiceBased ? 'Choose rice quantity' : 'Choose recipe scale';
+  const ariaLabel = `Choose ${heading.toLowerCase()}`;
+  const inputQuantity = hasQuantityInput
+    ? trimDecimal(Number(recipe.scaling.baseQuantity) * scale, 3)
+    : '';
+  const inputUnit = recipe.scaling.baseUnit || '';
+  const inputStep = recipe.scaling.inputStep || (normalizeScalingUnit(inputUnit) === 'g' ? 1 : 0.01);
+  const inputMin = recipe.scaling.inputMin || inputStep;
 
   return `
-    <section class="scale-panel" aria-label="${ariaLabel}">
-      <div>
-        <p class="eyebrow">${heading}</p>
-        <p class="scale-current">Current: <strong>${current}</strong></p>
+    <section class="scale-panel" aria-label="${escapeHtml(ariaLabel)}">
+      <div class="scale-summary">
+        <p class="eyebrow">${escapeHtml(heading)}</p>
+        <p class="scale-current">Current: <strong>${escapeHtml(current)}</strong></p>
       </div>
-      <div class="scale-options" role="group" aria-label="${ariaLabel}">
-        ${options
-          .map((option) => `
-            <button
-              class="scale-button${option === scale ? ' is-active' : ''}"
-              type="button"
-              data-scale="${option}"
-              aria-pressed="${option === scale}"
-            >${formatScaleChoice(recipe, option)}</button>
-          `)
-          .join('')}
+      <div class="scale-control-area">
+        <div class="scale-options" role="group" aria-label="${escapeHtml(ariaLabel)} presets">
+          ${options
+            .map((option) => `
+              <button
+                class="scale-button${isNearlyEqual(option, scale) ? ' is-active' : ''}"
+                type="button"
+                data-scale="${option}"
+                aria-pressed="${isNearlyEqual(option, scale)}"
+              >${escapeHtml(formatScaleChoice(recipe, option))}</button>
+            `)
+            .join('')}
+        </div>
+        ${hasQuantityInput ? `
+          <form class="quantity-scale-form">
+            <label for="quantityScaleInput">Exact ${escapeHtml(heading.toLowerCase())}</label>
+            <div class="quantity-scale-row">
+              <input
+                id="quantityScaleInput"
+                class="quantity-scale-input"
+                type="number"
+                inputmode="decimal"
+                min="${inputMin}"
+                step="${inputStep}"
+                value="${inputQuantity}"
+                aria-label="Exact ${escapeHtml(heading.toLowerCase())} in ${escapeHtml(inputUnit)}"
+              >
+              <span class="quantity-scale-unit">${escapeHtml(inputUnit)}</span>
+              <button class="scale-apply-button" type="submit">Apply</button>
+            </div>
+          </form>
+        ` : ''}
       </div>
     </section>
   `;
+};
+
+initialiseScaleControls = function initialiseRecipeAwareScaleControls(recipe, scale, onScaleChange) {
+  const panel = recipeContent.querySelector('.scale-panel');
+  if (!panel) return;
+
+  panel.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-scale]');
+    if (!button) return;
+
+    const nextScale = Number.parseFloat(button.dataset.scale);
+    if (!Number.isFinite(nextScale) || nextScale <= 0 || isNearlyEqual(nextScale, scale)) return;
+
+    saveScale(recipe.slug, nextScale);
+    onScaleChange(nextScale);
+  });
+
+  const form = panel.querySelector('.quantity-scale-form');
+  if (!form || !usesQuantityInput(recipe)) return;
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = form.querySelector('.quantity-scale-input');
+    const desiredQuantity = Number.parseFloat(input?.value);
+    const baseQuantity = Number(recipe.scaling.baseQuantity);
+
+    if (!Number.isFinite(desiredQuantity) || desiredQuantity <= 0 || !Number.isFinite(baseQuantity) || baseQuantity <= 0) {
+      input?.focus();
+      return;
+    }
+
+    const nextScale = Number((desiredQuantity / baseQuantity).toFixed(6));
+    if (isNearlyEqual(nextScale, scale)) return;
+
+    saveScale(recipe.slug, nextScale);
+    onScaleChange(nextScale);
+  });
 };
