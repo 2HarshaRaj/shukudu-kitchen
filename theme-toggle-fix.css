@@ -26,6 +26,8 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  width: 92px;
+  min-width: 92px;
   min-height: 42px;
   padding: 9px 14px;
   font-size: 0.88rem;
@@ -45,10 +47,16 @@
 }
 
 .site-header .theme-toggle {
-  border-color: #6e5147;
-  background: #3a2821;
-  color: #fff;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.94);
+  color: #26231f;
   box-shadow: none;
+}
+
+[data-theme="dark"] .site-header .theme-toggle {
+  border-color: #51433b;
+  background: #211c19;
+  color: #f3ece6;
 }
 
 .recipe-topbar {
