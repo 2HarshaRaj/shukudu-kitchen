@@ -10,7 +10,14 @@
   },
   "scaling": {
     "enabled": true,
+    "baseIngredient": "raw-banana",
+    "baseQuantity": 500,
+    "baseUnit": "g",
     "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Raw banana quantity",
+    "inputMin": 1,
+    "inputStep": 1,
     "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
   },
   "ingredients": [
@@ -227,7 +234,8 @@
     "Use as a dry side dish with chapati."
   ],
   "notes": [
-    "This is a non-rice recipe, so the website uses generic multiplier controls such as 0.5×, 1× and 1.5×.",
+    "Enter the exact raw banana weight when it differs from the 500 g base recipe. The website calculates the scale automatically.",
+    "Preset buttons remain available for quick choices such as 250 g, 375 g, 500 g, 625 g, 750 g and 1,000 g.",
     "Do not add too much water; the raw banana should stay separate and not become mushy.",
     "If the raw bananas are very tender, reduce the covered cooking time by 2–3 minutes.",
     "Fresh grated coconut gives the traditional Karnataka-style finish and is recommended."
