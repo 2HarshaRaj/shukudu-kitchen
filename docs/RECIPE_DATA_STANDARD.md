@@ -2,48 +2,36 @@
 
 ## Purpose
 
-This document defines how every recipe must be written and stored so that:
+This document defines how recipes must be written and stored so that:
 
-- recipe pages remain Anytype-compatible in structure
+- recipe pages remain consistent
 - Cooking Mode remains readable
-- ingredients and method steps stay consistent
-- future scaling can be added safely
-- new recipes follow the same format without relying on chat history
+- ingredient quantities stay synchronized across sections
+- scaling remains predictable
+- future recipes can be added without relying on chat history
 
 ## Rice Cup and Standard Cup Conversion
 
-Use this conversion for all recipes:
+Use this conversion:
 
 ```text
 1 standard cup = 0.75 rice cup
 ```
 
-For rice-based recipes, rice cup quantities are the canonical authoring and scaling base.
+For rice-based recipes:
 
-Rice and rice-cooking water must show rice cup first and the standard cup equivalent in brackets.
+- rice cup is the canonical authoring and scaling base
+- rice and rice-cooking water display rice cup first
+- standard cup equivalents are derived automatically and shown in brackets
 
-Example:
+Examples:
 
 ```text
 1 rice cup rice (1⅓ standard cups)
-```
-
-Rice-cooking water follows the same display rule.
-
-Example:
-
-```text
 2 rice cups water (2⅔ standard cups)
 ```
 
-This format must be used consistently in:
-
-- Ingredients
-- Preparation
-- Cooking Method
-- Cooking Mode
-
-Standard cup values are derived display equivalents. They are not the internal scaling basis for rice recipes.
+Use this consistently in Ingredients, Preparation, Cooking Method, and Cooking Mode.
 
 ## Recipe JSON Structure
 
@@ -68,9 +56,7 @@ Each recipe file must contain:
 }
 ```
 
-Rice-based recipes that support scaling must also include explicit scaling-base metadata.
-
-Example:
+Rice-based scalable recipes must also include explicit scaling metadata:
 
 ```json
 "scaling": {
@@ -83,143 +69,48 @@ Example:
 }
 ```
 
-New rice recipes should generally default to 1 rice cup as the base quantity unless another rice-cup quantity better represents the finalized recipe.
+New rice recipes should generally default to 1 rice cup unless another rice-cup base better represents the finalized recipe.
 
-## Ingredient Rules
+## Ingredient Structure
 
-Ingredients are grouped into sections.
+Use structured ingredient objects for scalable recipes.
 
-```json
-{
-  "section": "Main Ingredients",
-  "items": [
-    "1 rice cup sona masuri rice (1⅓ standard cups)",
-    "2 medium tomatoes (180 g), chopped"
-  ]
-}
-```
-
-Every vegetable must include:
-
-- count or size
-- weight in grams in parentheses
-
-Examples:
-
-```text
-Onion – 1 medium (120 g)
-Tomato – 2 medium (180 g)
-Potato – 1 large (250 g)
-Beans – 20 pieces (180 g)
-```
-
-Do not omit grams for vegetables.
-
-## Ingredient Consistency
-
-Ingredient quantities used in preparation and cooking steps must match the Ingredients section exactly.
-
-Rules:
-
-- Do not introduce new quantities
-- Do not skip listed ingredients
-- Do not merge ingredients unless already grouped in Ingredients
-- Do not use vague wording such as `as needed` unless the Ingredients section already uses that wording
-- Do not assume substitutions or shortcuts
-
-## Preparation Step Structure
-
-Preparation steps may be simple text:
+Example:
 
 ```json
 {
-  "text": "Rinse 1 rice cup sona masuri rice (1⅓ standard cups) and soak it for 20 minutes."
+  "id": "tomatoes",
+  "quantity": 3,
+  "countLabel": "medium tomato",
+  "weightGrams": 300,
+  "ingredient": "tomatoes",
+  "preparation": "chopped",
+  "scalable": true,
+  "roundingType": "large-produce"
 }
 ```
 
-Or structured with bullets:
+### Required Fields
 
-```json
-{
-  "lead": "Prepare:",
-  "items": [
-    "3 medium tomatoes (300 g), chopped",
-    "1 medium onion (120 g), sliced",
-    "1 inch ginger, grated"
-  ],
-  "after": "Keep everything ready before heating the cooker."
-}
-```
+- `id`: stable unique identifier
+- `quantity`: numeric base quantity at 1×
+- `ingredient`: ingredient name
+- `scalable`: whether the quantity changes with scale
 
-## Cooking Step Structure
+Use `unit` for measured ingredients such as cups, teaspoons, tablespoons, grams, and rice cups.
 
-Use a simple step when only one instruction is needed:
+### Optional Fields
 
-```json
-{
-  "text": "Mash the cooked rice thoroughly and allow it to cool until warm."
-}
-```
+- `preparation`
+- `countLabel`
+- `weightGrams`
+- `roundingType`
+- `displayText`
+- `scaleQuantities`
 
-Use a structured step when more than one ingredient is used.
+### Rice and Water
 
-```json
-{
-  "lead": "Add:",
-  "items": [
-    "3 chopped tomatoes (300 g)",
-    "½ teaspoon turmeric powder",
-    "1 teaspoon red chilli powder",
-    "1 teaspoon garam masala",
-    "Salt, as required"
-  ],
-  "after": "Cook until the tomatoes soften and the oil begins to separate."
-}
-```
-
-This renders as:
-
-```text
-Add:
-
-• 3 chopped tomatoes (300 g)
-• ½ teaspoon turmeric powder
-• 1 teaspoon red chilli powder
-• 1 teaspoon garam masala
-• Salt, as required
-
-Cook until the tomatoes soften and the oil begins to separate.
-```
-
-## Cooking Method Rules
-
-Every cooking step must mention ingredient quantities exactly as listed in Ingredients.
-
-When a step uses more than one ingredient:
-
-- use `lead`
-- list each ingredient separately in `items`
-- use `after` for the action or result after adding them
-
-Do not place multiple ingredients in one long sentence when they can be separated clearly.
-
-### Cooking Mode Step Length Rule
-
-Keep each step short enough to follow comfortably on a phone.
-
-Use these rules:
-
-- one cooking action per step
-- bullet the ingredients used in that action
-- split the step when it contains two distinct cooking actions
-
-A step may scroll in Cooking Mode when needed, but excessive scrolling should be avoided. Clear, focused steps make Cooking Mode easier to follow while actively cooking.
-
-## Scalable Ingredient Schema
-
-Use structured ingredient objects for recipes that support scaling.
-
-Rice ingredient example:
+Rice example:
 
 ```json
 {
@@ -227,7 +118,6 @@ Rice ingredient example:
   "quantity": 1,
   "unit": "rice cup",
   "ingredient": "sona masuri rice",
-  "preparation": "",
   "scalable": true
 }
 ```
@@ -244,36 +134,196 @@ Rice-cooking water example:
 }
 ```
 
-The renderer calculates and displays the standard cup equivalent automatically.
+Do not store a separate standard-cup equivalent for new rice-based recipes. The renderer derives it automatically.
 
-### Required Fields
+## Vegetable Weight Rule
 
-- `id`: stable unique identifier used by steps
-- `quantity`: numeric base quantity at 1×
-- `unit`: base unit used for calculation
-- `ingredient`: ingredient name
-- `scalable`: whether the quantity changes with the selected scale
+Vegetables should include practical count or size guidance and grams whenever useful.
 
-For scalable rice recipes, the `scaling` object must also include:
+Examples:
 
-- `baseIngredient`: stable ingredient ID used as the scaling reference
-- `baseQuantity`: base quantity of that ingredient
-- `baseUnit`: canonical unit of that ingredient
+```text
+1 medium onion (120 g)
+2 medium tomatoes (180 g)
+1 large potato (250 g)
+```
 
-### Optional Fields
+Recipe-specific measured values take priority over default ingredient references.
 
-- `preparation`: chopped, sliced, grated, soaked, etc.
-- `countLabel`: medium tomato, garlic clove, curry leaf, etc.
-- `weightGrams`: vegetable weight at 1×
-- `display.singularUnit`: singular label
-- `display.pluralUnit`: plural label
-- `rounding`: recipe-specific display rule
+## Ingredient Consistency
 
-Do not store a separate standard-cup equivalent for rice or rice-cooking water in new rice-based recipes. The renderer must derive it from the canonical rice-cup quantity.
+Ingredient quantities used in Preparation and Cooking Method must come from the same ingredient objects used in Ingredients.
 
-### Non-Scalable Ingredients
+Rules:
 
-Use `scalable: false` for wording that should not be multiplied automatically.
+- do not introduce unlisted quantities
+- do not skip listed ingredients
+- do not duplicate hard-coded scaled quantities in steps
+- use stable `ingredientIds`
+- keep wording consistent across Ingredients and Cooking Mode
+
+## Preparation and Cooking Steps
+
+Use simple text for one standalone instruction:
+
+```json
+{
+  "text": "Mash the cooked rice thoroughly and allow it to cool until warm."
+}
+```
+
+Use structured steps when ingredients are involved:
+
+```json
+{
+  "lead": "Add:",
+  "ingredientIds": [
+    "tomatoes",
+    "turmeric",
+    "red-chilli-powder",
+    "salt"
+  ],
+  "after": "Cook until the tomatoes soften."
+}
+```
+
+Guidelines:
+
+- keep one cooking action per step
+- split steps containing distinct actions
+- keep steps short enough for mobile Cooking Mode
+- use ingredient references instead of repeated manual quantities
+
+## Scaling Rules
+
+### Default Linear Scaling
+
+For a normally scalable ingredient:
+
+```text
+effective quantity = base quantity × selected scale
+```
+
+Use linear scaling for ingredients that generally increase in direct proportion, such as:
+
+- rice
+- rice-cooking water
+- curd
+- milk
+- vegetables by weight
+- measured powders and liquids when appropriate
+
+### Recipe-Specific Scale Options
+
+Each recipe may define its own `scaling.options`.
+
+Example for a recipe with a 0.25 rice cup base:
+
+```json
+"options": [1, 2, 3, 4, 5]
+```
+
+This produces practical visible rice quantities:
+
+```text
+¼ rice cup
+½ rice cup
+¾ rice cup
+1 rice cup
+1¼ rice cups
+```
+
+The visible rice quantity is always:
+
+```text
+baseQuantity × selected scale
+```
+
+Do not assume the selected scale value itself equals the rice quantity.
+
+## Non-Linear Ingredient Scaling
+
+Some ingredients should not scale in direct proportion to the recipe size.
+
+Examples:
+
+- green chilli
+- mustard seeds
+- urad dal
+- curry leaves
+- ginger
+- coriander
+- lemon
+- strong spice blends
+
+For these ingredients, use the optional recipe-specific `scaleQuantities` field.
+
+Example:
+
+```json
+{
+  "id": "green-chilli",
+  "quantity": 1,
+  "countLabel": "small green chilli",
+  "ingredient": "green chilli",
+  "preparation": "finely chopped",
+  "scalable": true,
+  "roundingType": "small-whole",
+  "scaleQuantities": {
+    "1": 1,
+    "2": 1,
+    "3": 1.5,
+    "4": 2,
+    "5": 2
+  }
+}
+```
+
+### `scaleQuantities` Rules
+
+- `scaleQuantities` is optional
+- keys represent values from the recipe-level `scaling.options` array
+- values represent the ingredient quantity to display and use at that scale
+- when present, define an override for every supported scale option
+- if a key is missing, the renderer falls back to normal linear scaling
+- avoid partial override maps unless that fallback is intentional
+- keep overrides recipe-specific rather than using a global runtime master list
+
+Example relationship:
+
+```json
+"scaling": {
+  "options": [1, 2, 3, 4, 5]
+}
+```
+
+```json
+"scaleQuantities": {
+  "1": 1,
+  "2": 1,
+  "3": 1.5,
+  "4": 2,
+  "5": 2
+}
+```
+
+At selected scale `4`, the renderer uses `scaleQuantities["4"]`.
+
+### Why Overrides Are Recipe-Specific
+
+The same ingredient may scale differently depending on the dish.
+
+For example:
+
+- green chilli in curd rice should remain mild
+- green chilli in chutney may increase more aggressively
+- mustard in palya may scale differently from mustard in curd rice
+
+Shared ingredient references may provide authoring guidance, but recipe-specific JSON controls runtime quantities.
+
+## Non-Scalable Ingredients
+
+Use `scalable: false` for wording that should remain unchanged.
 
 Example:
 
@@ -286,183 +336,63 @@ Example:
 }
 ```
 
-### Values That Must Not Scale Automatically
-
-Unless a recipe explicitly defines otherwise, do not scale:
+Do not automatically scale:
 
 - cooking time
 - soaking time
 - temperature
 - induction wattage
 - pressure-cooking duration
-- natural-release instruction
+- natural-release instructions
 - subjective doneness descriptions
 
-### Step Ingredient References
+## Practical Kitchen Rounding
 
-Scaled steps must reference ingredient IDs rather than repeat hard-coded quantities.
+### Large Produce
 
-Example:
+For tomato, onion, potato, brinjal, capsicum, carrot, beans, and similar ingredients:
 
-```json
-{
-  "lead": "Add:",
-  "ingredientIds": [
-    "tomatoes",
-    "turmeric",
-    "red-chilli-powder",
-    "garam-masala",
-    "salt"
-  ],
-  "after": "Cook until the tomatoes soften and the oil begins to separate."
-}
-```
+- use practical whole counts or ranges
+- keep grams as the precise target
+- avoid awkward count fractions
 
-The renderer must use the same formatted ingredient values in:
-
-- Ingredients
-- Preparation
-- Cooking Method
-- Cooking Mode
-
-This keeps quantities consistent at every scale.
-
-### Scaling Rules
-
-- Use 1× as the stored base recipe
-- Multiply only ingredients marked `scalable: true`
-- Use rice cup as the canonical base for rice-based recipes
-- Store `baseIngredient`, `baseQuantity`, and `baseUnit` explicitly for scalable rice recipes
-- Calculate standard cup equivalents from rice cup quantities for display
-- Preserve readable fractions where practical
-- Prefer grams for scaled vegetable accuracy
-- Keep count and gram values together for vegetables
-- Use practical kitchen rounding instead of exact mathematical fractions for whole produce
-- Use recipe-specific rounding when a fractional whole ingredient is impractical
-- Do not change recipe intent while scaling
-
-### Scale Control Display Rule
-
-The scaling engine remains generic and uses multiplier values internally.
-
-For a rice-based recipe where:
-
-```json
-"baseIngredient": "rice",
-"baseQuantity": 1,
-"baseUnit": "riceCup"
-```
-
-the UI may present the available options as rice quantities, such as:
-
-```text
-0.5 rice cup
-0.75 rice cup
-1 rice cup
-1.25 rice cups
-1.5 rice cups
-2 rice cups
-```
-
-For recipes without a rice-cup scaling base, the UI must continue to show generic scale multipliers:
-
-```text
-0.5×
-0.75×
-1×
-1.25×
-1.5×
-2×
-```
-
-The visible rice quantity must always be calculated as:
-
-```text
-baseQuantity × selected scale
-```
-
-Do not assume that the selected scale value itself always equals the rice quantity.
-
-### Practical Kitchen Rounding Rule
-
-For large vegetables and whole produce, the displayed count is practical guidance, while grams remain the precise scaled value.
-
-Example mathematical result:
-
-```text
-3⅜ medium tomatoes (337.5 g)
-```
-
-Preferred display:
+Preferred:
 
 ```text
 3 medium tomatoes (338 g)
 ```
 
-or, when one whole number would be misleading:
+Avoid:
 
 ```text
-3–4 medium tomatoes (338 g)
+3⅜ medium tomatoes
 ```
 
-Rules:
+### Small Whole Ingredients
 
-- do not show awkward fractions such as `3⅜ tomatoes`
-- round the count to a practical whole number where sensible
-- use a whole-number range when that better communicates the required amount
-- always scale and display the gram weight accurately
-- round grams sensibly, normally to the nearest whole gram
-- treat the count as guidance and the gram value as the precise target
+For green chilli, lemon, garlic cloves, curry leaves, and similar ingredients:
 
-This rule applies to ingredients such as:
+- prefer practical half or whole counts
+- use `scaleQuantities` when linear scaling gives poor culinary results
+- avoid values such as 0.25 chilli unless genuinely usable
 
-- tomato
-- onion
-- potato
-- brinjal
-- capsicum
-- carrot
-- beans
-- other large vegetables or whole produce
+## Scale Control Display
 
-Small whole ingredients require practical recipe-specific rounding.
+The engine stores scale multipliers internally.
 
-Examples:
+For rice-cup-based recipes, the UI shows derived rice quantities.
 
-```text
-Green chilli
-Lemon
-Garlic cloves
-Curry leaves
-```
-
-For these ingredients:
-
-- avoid impractical values such as `0.25 green chilli` unless that is genuinely usable
-- prefer practical values such as `½ green chilli`, `1 small chilli`, or `1–2 chillies`
-- preserve exact scaling for powders, liquids, cups, teaspoons, tablespoons, rice, and water where readable fractions are practical
-
-### Planned Scale Options
+For non-rice recipes, the UI shows generic multipliers such as:
 
 ```text
 0.5×
-0.75×
 1×
-1.25×
 1.5×
-2×
 ```
 
 ## Tamarind Rule
 
-Use tamarind paste whenever tamarind is required.
-
-Do not use:
-
-- whole tamarind
-- soaked tamarind water
-
-unless explicitly requested.
+Use tamarind paste whenever tamarind is required unless explicitly requested otherwise.
 
 ## No-Assumptions Rule
 
@@ -473,49 +403,34 @@ Do not assume:
 - alternative ingredients
 - quantity changes
 - structural changes
+- non-linear scaling values
 
-Ask before changing recipe intent or ingredients.
-
-## Anytype Compatibility
-
-When presenting recipes in chat or documentation:
-
-- use `##` for main section headings
-- use checkbox-style ingredient lists
-- keep clean section separation
-- follow the finalized Anytype recipe template
-
-The JSON itself does not use Markdown checkboxes, but the website renderer should display ingredients as interactive checkboxes.
+Confirm recipe intent before introducing culinary overrides.
 
 ## New Recipe Checklist
 
-Before adding a new recipe:
+Before adding or updating a recipe:
 
-1. Confirm the recipe name and slug
+1. Confirm recipe name and slug
 2. Confirm all ingredient quantities
-3. Confirm all vegetables include grams in parentheses
-4. For rice recipes, confirm rice and rice-cooking water use rice cup first with standard cup in brackets
-5. Confirm preparation and cooking steps reuse exact ingredient quantities
-6. Use bullet items for any step with multiple ingredients
-7. Keep one cooking action per step
-8. Split steps that contain two distinct cooking actions
-9. Confirm no ingredient is omitted
-10. For scalable recipes, assign stable ingredient IDs
-11. For scalable recipes, mark each ingredient as scalable or non-scalable
-12. For scalable recipes, reference ingredient IDs from steps
-13. For scalable rice recipes, define `baseIngredient`, `baseQuantity`, and `baseUnit`
-14. For scalable recipes, define practical rounding for whole produce and small whole ingredients
-15. Add the recipe file under `data/recipes/`
-16. Add metadata to `data/recipe-index.json`
-17. Test the normal recipe page and Cooking Mode
-18. Test every supported scale when scaling is enabled
-19. Verify that whole-produce counts are practical and gram values are accurate
-20. Verify that rice-based scale controls show rice quantities and non-rice recipes retain generic multipliers
+3. Add grams for vegetables where useful
+4. Use rice cup as the canonical base for rice recipes
+5. Define `baseIngredient`, `baseQuantity`, and `baseUnit`
+6. Choose practical recipe-level scale options
+7. Mark each ingredient scalable or non-scalable
+8. Use `scaleQuantities` where linear scaling is unsuitable
+9. Ensure override keys cover every recipe scale option
+10. Use stable ingredient IDs
+11. Reference ingredient IDs from Preparation and Cooking Method
+12. Keep one cooking action per step
+13. Test the normal recipe page and Cooking Mode
+14. Test every supported scale
+15. Verify practical counts, gram weights, cup equivalents, and override quantities
 
 ## Required References
 
-Before creating or updating a recipe, refer to:
+Use together with:
 
-- `docs/RECIPE_DATA_STANDARD.md`
 - `docs/ARCHITECTURE.md`
+- `docs/INGREDIENT_REFERENCE.md`
 - `docs/FEATURE_ROADMAP.md`
