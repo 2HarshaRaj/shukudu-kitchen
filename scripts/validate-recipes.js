@@ -4,6 +4,8 @@ const path = require('path');
 const ROOT = process.cwd();
 const RECIPES_DIR = path.join(ROOT, 'data', 'recipes');
 const VALID_BASE_UNITS = new Set(['g', 'riceCup', 'cup']);
+const STANDARD_QUANTITY_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
 
 let totalErrors = 0;
 
@@ -21,20 +23,29 @@ function readJson(filePath, errors) {
   }
 }
 
-function collectIngredientIds(recipe, errors) {
-  const ids = new Set();
-  const groups = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+function arraysMatch(actual, expected) {
+  if (!Array.isArray(actual) || actual.length !== expected.length) return false;
+  return expected.every((value, index) => Number(actual[index]) === value);
+}
 
+function walkIngredients(recipe, callback) {
+  const groups = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
   groups.forEach((group, groupIndex) => {
     const items = Array.isArray(group.items) ? group.items : [];
-    items.forEach((item, itemIndex) => {
-      if (!item || typeof item !== 'object' || typeof item === 'string') return;
-      if (!item.id) return;
-      if (ids.has(item.id)) {
-        addError(errors, `Duplicate ingredient id "${item.id}"`);
-      }
-      ids.add(item.id);
-    });
+    items.forEach((item, itemIndex) => callback(item, group, groupIndex, itemIndex));
+  });
+}
+
+function collectIngredientIds(recipe, errors) {
+  const ids = new Set();
+
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+    if (!item.id) return;
+    if (ids.has(item.id)) {
+      addError(errors, `Duplicate ingredient id "${item.id}"`);
+    }
+    ids.add(item.id);
   });
 
   return ids;
@@ -78,7 +89,18 @@ function validateQuantityScaling(recipe, ingredientIds, errors) {
 
   if (!Array.isArray(scaling.options) || scaling.options.length < 2) {
     addError(errors, 'quantity-input scaling requires scaling.options with at least two preset values');
+  } else if (!arraysMatch(scaling.options, STANDARD_QUANTITY_OPTIONS)) {
+    addError(errors, `quantity-input scaling.options must be [${STANDARD_QUANTITY_OPTIONS.join(', ')}]`);
   }
+}
+
+function validateIngredientUnits(recipe, errors) {
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string' || !item.unit) return;
+    if (DISALLOWED_ABBREVIATED_UNITS.has(item.unit)) {
+      addError(errors, `Ingredient "${item.id || item.ingredient || 'unknown'}" uses abbreviated unit "${item.unit}"; use "teaspoon" or "tablespoon"`);
+    }
+  });
 }
 
 function validateStepIngredientIds(recipe, ingredientIds, errors) {
@@ -95,6 +117,22 @@ function validateStepIngredientIds(recipe, ingredientIds, errors) {
   });
 }
 
+function validateHardcodedWater(recipe, ingredientIds, errors) {
+  const hasWaterIngredient = ingredientIds.has('water');
+  const steps = Array.isArray(recipe.cookingMethod) ? recipe.cookingMethod : [];
+
+  steps.forEach((step, stepIndex) => {
+    if (!step || typeof step !== 'object' || typeof step.text !== 'string') return;
+    const text = step.text.toLowerCase();
+    const mentionsMeasuredWater = /\b\d+(\.\d+)?\s*(tsp|tbsp|teaspoon|tablespoon|cup|cups|ml|g)\s+water\b/.test(text)
+      || /\bsprinkle\s+\d+/i.test(step.text);
+
+    if (mentionsMeasuredWater && !hasWaterIngredient) {
+      addError(errors, `cookingMethod[${stepIndex}] appears to hard-code water; add water as an ingredient and reference it with ingredientIds`);
+    }
+  });
+}
+
 function validateRecipe(fileName) {
   const filePath = path.join(RECIPES_DIR, fileName);
   const errors = [];
@@ -104,7 +142,9 @@ function validateRecipe(fileName) {
     validateTopLevel(recipe, errors);
     const ingredientIds = collectIngredientIds(recipe, errors);
     validateQuantityScaling(recipe, ingredientIds, errors);
+    validateIngredientUnits(recipe, errors);
     validateStepIngredientIds(recipe, ingredientIds, errors);
+    validateHardcodedWater(recipe, ingredientIds, errors);
   }
 
   if (errors.length) {
