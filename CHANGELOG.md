@@ -20,7 +20,9 @@ Major.Minor.Patch
 - GitHub Actions validation pipeline
 - Node.js 24 validation runtime
 - Automatic validation on push for recipe data, validator logic, and workflow configuration changes
+- Workflow trigger for `data/recipe-index.json`
 - Validator documentation across recipe data, architecture, roadmap, and base-ingredient scaling docs
+- Completed validation framework for the current non-image recipe model
 
 ### Validation Rules
 
@@ -29,6 +31,19 @@ Major.Minor.Patch
 - Preparation and cooking method array validation
 - Ingredient ID uniqueness validation
 - Ingredient reference validation
+- Recipe-index validation
+- Recipe-index must be an array
+- Recipe-index entries must include `name`, `slug`, `category`, and `summary`
+- Duplicate recipe-index slug rejection
+- Recipe-index to recipe-file cross-checks
+- Every recipe JSON file must be listed in `data/recipe-index.json`
+- Index `name`, `category`, and `summary` must match recipe JSON
+- Slug format validation using `^[a-z0-9]+(-[a-z0-9]+)*$`
+- Slug to filename validation using `<slug>.json`
+- Cooking-step structure validation for plain text and structured ingredient steps
+- Details metadata validation for `Cuisine`, `Meal Type`, and `Status`
+- `servingSuggestions` array validation
+- `notes` array validation
 - Quantity-input metadata validation
 - Exact `baseIngredient` to ingredient ID matching
 - Standard quantity preset validation for quantity-input recipes
@@ -45,6 +60,7 @@ Major.Minor.Patch
 - Ingredient groups standardized to `section`
 - Abbreviated units replaced with canonical units
 - Measured water moved into structured ingredient references where needed
+- Image metadata validation deferred until recipe images are introduced
 
 ## 1.9.0 - 2026-06-16
 
