@@ -34,5 +34,11 @@
     "slug": "beans-palya",
     "category": "Palya",
     "summary": "Classic Karnataka-style beans palya with onion, tempering, and fresh coconut."
+  },
+  {
+    "name": "Bisi Bele Bath",
+    "slug": "bisi-bele-bath",
+    "category": "Rice",
+    "summary": "Karnataka-style bisi bele bath made with rice, toor dal, mixed vegetables, bisi bele bath powder and tamarind."
   }
 ]
