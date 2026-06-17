@@ -13,12 +13,13 @@
     "enabled": true,
     "baseIngredient": "beans",
     "baseQuantity": 500,
-    "baseUnit": "gram",
+    "baseUnit": "g",
     "baseScale": 1,
     "inputMode": "quantity",
-    "inputLabel": "Beans available",
+    "inputLabel": "Beans quantity",
     "inputMin": 50,
-    "inputStep": 10
+    "inputStep": 10,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
   },
   "ingredients": [
     {
@@ -51,7 +52,7 @@
         {
           "id": "oil",
           "quantity": 2,
-          "unit": "tbsp",
+          "unit": "tablespoon",
           "ingredient": "oil",
           "scalable": true,
           "roundingType": "exact"
@@ -59,7 +60,7 @@
         {
           "id": "mustard-seeds",
           "quantity": 1,
-          "unit": "tsp",
+          "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
           "roundingType": "exact"
@@ -67,7 +68,7 @@
         {
           "id": "urad-dal",
           "quantity": 1,
-          "unit": "tsp",
+          "unit": "teaspoon",
           "ingredient": "urad dal",
           "scalable": true,
           "roundingType": "exact"
@@ -75,7 +76,7 @@
         {
           "id": "chana-dal",
           "quantity": 1,
-          "unit": "tsp",
+          "unit": "teaspoon",
           "ingredient": "chana dal",
           "scalable": true,
           "roundingType": "exact"
@@ -103,7 +104,7 @@
         {
           "id": "turmeric-powder",
           "quantity": 0.25,
-          "unit": "tsp",
+          "unit": "teaspoon",
           "ingredient": "turmeric powder",
           "scalable": true,
           "roundingType": "exact"
@@ -111,9 +112,17 @@
         {
           "id": "salt",
           "quantity": 1,
-          "unit": "tsp",
+          "unit": "teaspoon",
           "ingredient": "salt",
           "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "ingredient": "water",
           "scalable": true,
           "roundingType": "exact"
         }
@@ -157,14 +166,31 @@
     {
       "lead": "Heat a pan and add:",
       "ingredientIds": [
-        "oil",
-        "mustard-seeds",
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ],
+      "after": "Allow the mustard seeds to splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
         "urad-dal",
-        "chana-dal",
+        "chana-dal"
+      ],
+      "after": "Fry until the dals turn light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
         "dry-red-chilli",
         "curry-leaves"
       ],
-      "after": "Allow the mustard seeds to splutter and the dals to turn light golden."
+      "after": "Stir briefly without burning the chilli."
     },
     {
       "lead": "Add:",
@@ -183,7 +209,11 @@
       "after": "Mix well to coat the beans evenly."
     },
     {
-      "text": "Sprinkle 3 tbsp water, cover, and cook on low heat for 10-12 minutes, stirring every 3-4 minutes until the beans are tender but still retain a slight bite."
+      "lead": "Sprinkle:",
+      "ingredientIds": [
+        "water"
+      ],
+      "after": "Cover and cook on low heat for 10-12 minutes, stirring every 3-4 minutes until the beans are tender but still retain a slight bite."
     },
     {
       "lead": "Add:",
