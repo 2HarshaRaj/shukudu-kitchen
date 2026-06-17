@@ -12,6 +12,40 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.9.1 - 2026-06-17
+
+### Added
+
+- Recipe validation workflow
+- GitHub Actions validation pipeline
+- Node.js 24 validation runtime
+- Automatic validation on push for recipe data, validator logic, and workflow configuration changes
+- Validator documentation across recipe data, architecture, roadmap, and base-ingredient scaling docs
+
+### Validation Rules
+
+- Required field validation
+- Ingredient array validation
+- Preparation and cooking method array validation
+- Ingredient ID uniqueness validation
+- Ingredient reference validation
+- Quantity-input metadata validation
+- Exact `baseIngredient` to ingredient ID matching
+- Standard quantity preset validation for quantity-input recipes
+- Ingredient group `section` / `items` validation
+- Legacy ingredient group `category` rejection
+- Unit standardization validation for `teaspoon` and `tablespoon`
+- Structured measured-water validation
+
+### Changed
+
+- Beans Palya migrated to validator-compliant schema
+- `baseUnit: "gram"` changed to `baseUnit: "g"`
+- Quantity-input labels standardized to end with `quantity`
+- Ingredient groups standardized to `section`
+- Abbreviated units replaced with canonical units
+- Measured water moved into structured ingredient references where needed
+
 ## 1.9.0 - 2026-06-16
 
 ### Added
