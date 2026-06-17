@@ -20,6 +20,7 @@ Shukudu Kitchen currently includes:
 - Rice-cup-first scaling for rice recipes
 - Exact base-ingredient quantity scaling for supported recipes
 - Practical ingredient rounding and gram guidance
+- Automated recipe validation on push
 - Saved light and dark themes
 - Device-theme fallback on first visit
 - Theme controls on the homepage and recipe page
@@ -86,6 +87,20 @@ selected scale = entered quantity / base quantity
 
 Use exact quantity input only when one clear ingredient reliably drives recipe size. Flexible mixed-vegetable composition remains outside automatic scaling.
 
+### Recipe Validation - Completed
+
+- Automated recipe validation workflow
+- GitHub Actions integration
+- Node.js 24 validation runtime
+- `scripts/validate-recipes.js`
+- `.github/workflows/validate-recipes.yml`
+- Ingredient reference validation
+- Duplicate ingredient ID detection
+- Quantity-input metadata validation
+- Ingredient-group structure validation
+- Unit standardization enforcement
+- Structured-water enforcement
+
 ### Light and Dark Themes - Completed
 
 Implemented behaviour:
@@ -120,6 +135,7 @@ Completed:
 - Exact quantity scaling architecture
 - Arbitrary scale persistence
 - Mixed-vegetable boundaries documented
+- Beans Palya migrated to validator-compliant quantity-input schema
 
 Still to do:
 
@@ -179,6 +195,16 @@ Planned structure:
 
 Optional owner-focused link to the recipe file in GitHub.
 
+### Validation Improvements
+
+Possible future enhancements:
+
+- slug uniqueness validation
+- recipe-index cross-check validation
+- image metadata validation
+- cooking-step structure validation
+- schema versioning
+
 ## Recommended Development Order
 
 1. Ingredient checklists - completed
@@ -190,13 +216,15 @@ Optional owner-focused link to the recipe file in GitHub.
 7. Rice cup scaling base - completed
 8. Exact base-ingredient quantity scaling - completed
 9. Light and dark themes - completed
-10. Validate and refine Tomato Bath scales - in progress
-11. Migrate remaining recipes to scaling
-12. Apply quantity-input mode to suitable recipes
-13. Serving adjustment
-14. Print view
-15. Recipe images and richer cards
-16. Optional standard-cup scaling input
+10. Recipe validation workflow - completed
+11. Validate and refine Tomato Bath scales - in progress
+12. Migrate remaining recipes to scaling
+13. Apply quantity-input mode to suitable recipes
+14. Serving adjustment
+15. Print view
+16. Recipe images and richer cards
+17. Optional standard-cup scaling input
+18. Validation improvements
 
 ## Development Principle
 
