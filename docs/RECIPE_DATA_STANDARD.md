@@ -87,6 +87,55 @@ Recipes that should scale from the exact amount of a base ingredient may use qua
 }
 ```
 
+### Slug Rules
+
+The recipe slug is the stable recipe ID used by the index, recipe file, URL, and internal recipe identity.
+
+Slug requirements:
+
+- use lowercase letters and numbers
+- separate words with single hyphens
+- use this allowed pattern: `^[a-z0-9]+(-[a-z0-9]+)*$`
+- reject spaces, underscores, uppercase letters, and special characters
+- keep the slug stable after publishing unless there is a deliberate migration
+
+The recipe file name must match the slug exactly:
+
+```text
+slug: tomato-bath
+file: data/recipes/tomato-bath.json
+```
+
+### Recipe Index Rules
+
+`data/recipe-index.json` must remain synchronized with `data/recipes/`.
+
+Rules:
+
+- `data/recipe-index.json` must be an array
+- each index entry must include non-empty `name`, `slug`, `category`, and `summary`
+- duplicate index slugs are not allowed
+- each index slug must point to `data/recipes/<slug>.json`
+- every recipe JSON file must be listed in `data/recipe-index.json`
+- index `name`, `category`, and `summary` must match the recipe JSON
+
+### Details Metadata Rules
+
+`details` must be an object.
+
+Every recipe must include these non-empty metadata fields:
+
+- `Cuisine`
+- `Meal Type`
+- `Status`
+
+### Serving Suggestions and Notes
+
+`servingSuggestions` and `notes` are optional, but when present:
+
+- each must be an array
+- every item must be a non-empty string
+
 ### Scaling Metadata Fields
 
 - `baseIngredient`: stable ingredient ID used as the scaling reference
@@ -271,6 +320,19 @@ Use structured steps when ingredients are involved:
   "after": "Cook until the tomatoes soften."
 }
 ```
+
+Step validation rules:
+
+- each `preparation` and `cookingMethod` step must be an object
+- a plain-text step may use `{ "text": "..." }`
+- a structured ingredient step may use `{ "lead": "...", "ingredientIds": [...], "after": "..." }`
+- `text` must be non-empty when present
+- `lead` must be non-empty when present
+- `ingredientIds` must be an array when present
+- `ingredientIds` must not be empty
+- `lead` requires `ingredientIds`
+- `ingredientIds` requires `lead`
+- `after` must be non-empty when present
 
 Guidelines:
 
@@ -549,7 +611,7 @@ For non-rice preset recipes, the UI shows generic multipliers such as:
 
 Recipe data is validated by `scripts/validate-recipes.js` and the GitHub Actions workflow `.github/workflows/validate-recipes.yml`.
 
-The workflow runs on push when recipe data, the validator script, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
+The workflow runs on push when recipe index data, recipe files, the validator script, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
 
 ```text
 node scripts/validate-recipes.js
@@ -560,8 +622,25 @@ Validator rules:
 - recipe JSON must parse successfully
 - required top-level fields must exist
 - `ingredients`, `preparation`, and `cookingMethod` must be arrays
+- `details` must be an object with non-empty `Cuisine`, `Meal Type`, and `Status`
+- `servingSuggestions` must be an array when present, and every item must be a non-empty string
+- `notes` must be an array when present, and every item must be a non-empty string
+- recipe slug must match `^[a-z0-9]+(-[a-z0-9]+)*$`
+- recipe file name must match the slug exactly as `<slug>.json`
+- `data/recipe-index.json` must be an array
+- each index entry must include non-empty `name`, `slug`, `category`, and `summary`
+- duplicate index slugs are rejected
+- each index slug must point to `data/recipes/<slug>.json`
+- every recipe JSON file must be listed in `data/recipe-index.json`
+- index `name`, `category`, and `summary` must match the recipe JSON
 - ingredient IDs must not be duplicated
 - `preparation` and `cookingMethod` ingredient references must point to existing ingredient IDs
+- each preparation and cooking step must be an object
+- steps may use plain text with `{ "text": "..." }`
+- steps may use structured ingredients with `{ "lead": "...", "ingredientIds": [...], "after": "..." }`
+- `text`, `lead`, and `after` must be non-empty when present
+- `ingredientIds` must be a non-empty array when present
+- `lead` and `ingredientIds` must be used together
 - quantity-input recipes must have `baseIngredient`, positive numeric `baseQuantity`, valid `baseUnit`, `inputLabel`, and standard `options`
 - quantity-input `inputLabel` must end with `quantity`
 - quantity-input `options` must be `[0.5, 0.75, 1, 1.25, 1.5, 2]`
@@ -572,7 +651,7 @@ Validator rules:
 - abbreviated ingredient units are not allowed: use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
 - hard-coded measured water in cooking method text should be avoided; measured water should be a structured ingredient and referenced through `ingredientIds`
 
-New recipe creation must satisfy these validator rules before pushing.
+New recipe creation must satisfy these validator rules before pushing. The validator is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
 
 ## Tamarind Rule
 
@@ -596,30 +675,39 @@ Confirm recipe intent before introducing culinary overrides.
 Before adding or updating a recipe:
 
 1. Confirm recipe name and slug
-2. Confirm all ingredient quantities
-3. Add grams for vegetables where useful
-4. Use rice cup as the canonical base for rice recipes
-5. Define `baseIngredient`, `baseQuantity`, and `baseUnit`
-6. Choose `inputMode: "options"` or `inputMode: "quantity"`
-7. For quantity input, define `inputLabel`, `inputMin`, and `inputStep`
-8. Confirm that exact quantity input is suitable for the recipe composition
-9. For quantity input, use `baseUnit: "g"` for gram-based recipes
-10. For quantity input, ensure `baseIngredient` matches exactly one ingredient ID
-11. For quantity input, use `options: [0.5, 0.75, 1, 1.25, 1.5, 2]`
-12. Use ingredient groups with `section` and `items`, not legacy `category`
-13. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
-14. Add measured water as a structured ingredient and reference it from steps
-15. Mark each ingredient scalable or non-scalable
-16. Use `scaleQuantities` where linear scaling is unsuitable
-17. Ensure override keys cover every recipe scale option
-18. Use stable ingredient IDs
-19. Reference ingredient IDs from Preparation and Cooking Method
-20. Keep one cooking action per step
-21. Run `node scripts/validate-recipes.js`
-22. Test the normal recipe page and Cooking Mode
-23. Test every supported preset and arbitrary quantity scale
-24. Verify cup, spoon, inch, produce, gram, and override formatting
-25. Verify the entered quantity and arbitrary scale restore correctly after reload
+2. Use lowercase hyphenated slug format: `^[a-z0-9]+(-[a-z0-9]+)*$`
+3. Confirm the recipe file name exactly matches `<slug>.json`
+4. Add or update the recipe entry in `data/recipe-index.json`
+5. Ensure index `name`, `category`, and `summary` match the recipe JSON
+6. Confirm all ingredient quantities
+7. Add grams for vegetables where useful
+8. Use rice cup as the canonical base for rice recipes
+9. Define `baseIngredient`, `baseQuantity`, and `baseUnit`
+10. Choose `inputMode: "options"` or `inputMode: "quantity"`
+11. For quantity input, define `inputLabel`, `inputMin`, and `inputStep`
+12. Confirm that exact quantity input is suitable for the recipe composition
+13. For quantity input, use `baseUnit: "g"` for gram-based recipes
+14. For quantity input, ensure `baseIngredient` matches exactly one ingredient ID
+15. For quantity input, use `options: [0.5, 0.75, 1, 1.25, 1.5, 2]`
+16. Use ingredient groups with `section` and `items`, not legacy `category`
+17. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
+18. Add measured water as a structured ingredient and reference it from steps
+19. Mark each ingredient scalable or non-scalable
+20. Use `scaleQuantities` where linear scaling is unsuitable
+21. Ensure override keys cover every recipe scale option
+22. Use stable ingredient IDs
+23. Reference ingredient IDs from Preparation and Cooking Method
+24. Keep every preparation and cooking step as an object
+25. Use `{ "text": "..." }` for plain-text steps
+26. Use `lead` and `ingredientIds` together for structured ingredient steps
+27. Keep one cooking action per step
+28. Ensure `details` includes `Cuisine`, `Meal Type`, and `Status`
+29. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
+30. Run `node scripts/validate-recipes.js`
+31. Test the normal recipe page and Cooking Mode
+32. Test every supported preset and arbitrary quantity scale
+33. Verify cup, spoon, inch, produce, gram, and override formatting
+34. Verify the entered quantity and arbitrary scale restore correctly after reload
 
 ## Required References
 
