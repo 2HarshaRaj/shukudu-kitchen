@@ -73,20 +73,16 @@ Shukudu Kitchen currently includes:
 Completed:
 
 - Tomato Bath migrated to a canonical 1 rice cup base
+- Vangi Bath migrated to the scalable schema
+- Curd Rice migrated to the scalable schema
 - Explicit rice scaling metadata
 - Recipe-aware scale controls
 - Exact quantity scaling architecture
 - Arbitrary scale persistence
 - Mixed-vegetable boundaries documented
 - Beans Palya migrated to validator-compliant quantity-input schema
-
-Still to do:
-
-- Continue testing Tomato Bath scaling data
-- Migrate Vangi Bath to the scalable schema
-- Migrate Curd Rice to the scalable schema
-- Validate all supported scales across migrated recipes
-- Adopt quantity-input mode in suitable single-base-ingredient recipes
+- Balekai Palya migrated to validator-compliant quantity-input schema
+- Quantity-input mode adopted for suitable single-base-ingredient recipes
 
 ## Future Features
 
@@ -110,14 +106,11 @@ Still to do:
 8. Exact base-ingredient quantity scaling - completed
 9. Light and dark themes - completed
 10. Recipe validation workflow - completed
-11. Validate and refine Tomato Bath scales - in progress
-12. Migrate remaining recipes to scaling
-13. Apply quantity-input mode to suitable recipes
-14. Serving adjustment
-15. Print view
-16. Recipe images and richer cards
-17. Optional standard-cup scaling input
-18. Validation improvements
+11. Serving adjustment
+12. Print view
+13. Recipe images and richer cards
+14. Optional standard-cup scaling input
+15. Validation improvements
 
 ## Development Principle
 
