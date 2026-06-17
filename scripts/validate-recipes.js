@@ -34,6 +34,10 @@ function isValidSlug(slug) {
   return typeof slug === 'string' && SLUG_PATTERN.test(slug);
 }
 
+function isNonEmptyString(value) {
+  return typeof value === 'string' && value.trim().length > 0;
+}
+
 function walkIngredients(recipe, callback) {
   const groups = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
   groups.forEach((group, groupIndex) => {
@@ -70,6 +74,34 @@ function validateTopLevel(recipe, errors) {
   if (!Array.isArray(recipe.ingredients)) addError(errors, 'ingredients must be an array');
   if (!Array.isArray(recipe.preparation)) addError(errors, 'preparation must be an array');
   if (!Array.isArray(recipe.cookingMethod)) addError(errors, 'cookingMethod must be an array');
+}
+
+function validateDetails(recipe, errors) {
+  if (!recipe.details || typeof recipe.details !== 'object' || Array.isArray(recipe.details)) {
+    addError(errors, 'details must be an object');
+    return;
+  }
+
+  ['Cuisine', 'Meal Type', 'Status'].forEach((field) => {
+    if (!isNonEmptyString(recipe.details[field])) {
+      addError(errors, `details requires non-empty "${field}"`);
+    }
+  });
+}
+
+function validateStringArray(recipe, fieldName, errors) {
+  if (recipe[fieldName] == null) return;
+
+  if (!Array.isArray(recipe[fieldName])) {
+    addError(errors, `${fieldName} must be an array when present`);
+    return;
+  }
+
+  recipe[fieldName].forEach((item, index) => {
+    if (!isNonEmptyString(item)) {
+      addError(errors, `${fieldName}[${index}] must be a non-empty string`);
+    }
+  });
 }
 
 function validateSlug(recipe, fileName, errors) {
@@ -156,6 +188,56 @@ function validateIngredientUnits(recipe, errors) {
   });
 }
 
+function validateStepStructure(recipe, errors) {
+  ['preparation', 'cookingMethod'].forEach((sectionName) => {
+    const steps = Array.isArray(recipe[sectionName]) ? recipe[sectionName] : [];
+
+    steps.forEach((step, stepIndex) => {
+      if (!step || typeof step !== 'object' || Array.isArray(step)) {
+        addError(errors, `${sectionName}[${stepIndex}] must be an object`);
+        return;
+      }
+
+      const hasText = Object.prototype.hasOwnProperty.call(step, 'text');
+      const hasLead = Object.prototype.hasOwnProperty.call(step, 'lead');
+      const hasIngredientIds = Object.prototype.hasOwnProperty.call(step, 'ingredientIds');
+      const hasAfter = Object.prototype.hasOwnProperty.call(step, 'after');
+
+      if (!hasText && !hasLead) {
+        addError(errors, `${sectionName}[${stepIndex}] requires either text or lead`);
+      }
+
+      if (hasText && !isNonEmptyString(step.text)) {
+        addError(errors, `${sectionName}[${stepIndex}].text must be a non-empty string`);
+      }
+
+      if (hasLead && !isNonEmptyString(step.lead)) {
+        addError(errors, `${sectionName}[${stepIndex}].lead must be a non-empty string`);
+      }
+
+      if (hasLead && !hasIngredientIds) {
+        addError(errors, `${sectionName}[${stepIndex}] with lead requires ingredientIds`);
+      }
+
+      if (hasIngredientIds && !Array.isArray(step.ingredientIds)) {
+        addError(errors, `${sectionName}[${stepIndex}].ingredientIds must be an array`);
+      }
+
+      if (hasIngredientIds && Array.isArray(step.ingredientIds) && step.ingredientIds.length === 0) {
+        addError(errors, `${sectionName}[${stepIndex}].ingredientIds must not be empty`);
+      }
+
+      if (hasIngredientIds && !hasLead) {
+        addError(errors, `${sectionName}[${stepIndex}] with ingredientIds requires lead`);
+      }
+
+      if (hasAfter && !isNonEmptyString(step.after)) {
+        addError(errors, `${sectionName}[${stepIndex}].after must be a non-empty string when present`);
+      }
+    });
+  });
+}
+
 function validateStepIngredientIds(recipe, ingredientIds, errors) {
   ['preparation', 'cookingMethod'].forEach((sectionName) => {
     const steps = Array.isArray(recipe[sectionName]) ? recipe[sectionName] : [];
@@ -193,8 +275,12 @@ function validateRecipe(fileName, recipeMap) {
 
   if (recipe) {
     validateTopLevel(recipe, errors);
+    validateDetails(recipe, errors);
+    validateStringArray(recipe, 'servingSuggestions', errors);
+    validateStringArray(recipe, 'notes', errors);
     validateSlug(recipe, fileName, errors);
     validateIngredientGroups(recipe, errors);
+    validateStepStructure(recipe, errors);
     const ingredientInfo = collectIngredientIds(recipe, errors);
     validateQuantityScaling(recipe, ingredientInfo, errors);
     validateIngredientUnits(recipe, errors);
