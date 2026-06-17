@@ -59,6 +59,38 @@
   box-shadow: 0 8px 18px rgba(159, 63, 47, 0.22);
 }
 
+/*
+  Android Chrome can repaint the top edge of horizontally scrolling scale buttons
+  inconsistently during touch-hold / hover transitions. Keep scale buttons fixed in
+  place and draw the selected border with an inset shadow so every edge remains visible.
+*/
+.scale-button {
+  -webkit-tap-highlight-color: transparent;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.scale-button:hover,
+.scale-button.is-active,
+.scale-button.is-active:hover,
+.scale-button.is-active:focus,
+.scale-button.is-active:active {
+  transform: translateZ(0);
+}
+
+.scale-button.is-active,
+html[data-theme="dark"] .scale-button.is-active {
+  border-color: var(--accent);
+  box-shadow:
+    inset 0 0 0 1px var(--accent),
+    0 8px 18px rgba(159, 63, 47, 0.22);
+}
+
+html[data-theme="dark"] .scale-button.is-active {
+  background: #2b2420;
+  color: #fff;
+}
+
 @media (max-width: 760px) {
   .scale-panel {
     align-items: stretch;
