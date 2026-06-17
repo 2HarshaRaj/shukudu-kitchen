@@ -12,6 +12,8 @@ Examples:
 
 ## Recipe Metadata
 
+Quantity-input recipes must use this metadata shape:
+
 ```json
 "scaling": {
   "enabled": true,
@@ -26,6 +28,14 @@ Examples:
   "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
 }
 ```
+
+Validator requirements:
+
+- `baseIngredient` must match exactly one ingredient `id`
+- `baseQuantity` must be a positive number
+- gram-based quantity recipes must use `baseUnit: "g"`, not `"gram"`
+- `inputLabel` must be present and end with `quantity`
+- `options` must be `[0.5, 0.75, 1, 1.25, 1.5, 2]`
 
 ## Calculation
 
