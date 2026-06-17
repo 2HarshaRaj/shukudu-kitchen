@@ -4,27 +4,26 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.9.0
+## Current Version - v1.9.1
 
 Shukudu Kitchen currently includes:
 
 - JSON-driven recipe storage
-- One recipe file per recipe
-- Homepage recipe index, search, and category filters
-- Individual recipe pages
-- Functional ingredient checklists
-- Sticky section navigation
+- one recipe file per recipe
+- homepage recipe index, search, and category filters
+- individual recipe pages
+- ingredient checklists
+- sticky section navigation
 - Cooking Mode with saved progress
-- Structured preparation and cooking steps
-- Scalable ingredient schema
-- Rice-cup-first scaling for rice recipes
-- Exact base-ingredient quantity scaling for supported recipes
-- Practical ingredient rounding and gram guidance
-- Automated recipe validation on push
-- Saved light and dark themes
-- Device-theme fallback on first visit
-- Theme controls on the homepage and recipe page
-- Theme inheritance inside Cooking Mode
+- structured preparation and cooking steps
+- scalable ingredient schema
+- rice-cup-first scaling for rice recipes
+- exact base-ingredient quantity scaling for supported recipes
+- practical ingredient rounding and gram guidance
+- automated recipe validation on push
+- saved light and dark themes
+- theme controls on the homepage and recipe page
+- theme inheritance inside Cooking Mode
 
 ## Completed Features
 
@@ -34,27 +33,6 @@ Shukudu Kitchen currently includes:
 - Lightweight homepage metadata in `data/recipe-index.json`
 - Stable ingredient IDs and structured steps
 - Shared quantities across Ingredients, Preparation, Cooking Method, and Cooking Mode
-
-### Ingredient Checklists - Completed
-
-- Tap ingredients to mark them complete
-- Saved state per recipe
-- Reset action
-- Mobile-friendly touch targets
-
-### Sticky Section Navigation - Completed
-
-- Sticky pill navigation on recipe pages
-- Active section tracking
-- Horizontal scrolling on mobile
-
-### Cooking Mode - Completed
-
-- One step at a time
-- Previous, Next, Finish, and completion controls
-- Progress bar and saved current step
-- Mobile-safe bottom controls
-- Active theme inherited automatically
 
 ### Recipe Scaling - Completed for Supported Recipes
 
@@ -66,26 +44,6 @@ Shukudu Kitchen currently includes:
 - Recipe-specific non-linear overrides
 - Unit-aware formatting
 - Practical produce and small-whole rounding
-
-### Exact Base-Ingredient Quantity Scaling - Completed
-
-Supported metadata includes:
-
-- `baseIngredient`
-- `baseQuantity`
-- `baseUnit`
-- `inputMode`
-- `inputLabel`
-- `inputMin`
-- `inputStep`
-
-Calculation:
-
-```text
-selected scale = entered quantity / base quantity
-```
-
-Use exact quantity input only when one clear ingredient reliably drives recipe size. Flexible mixed-vegetable composition remains outside automatic scaling.
 
 ### Recipe Validation - Completed
 
@@ -103,27 +61,12 @@ Use exact quantity input only when one clear ingredient reliably drives recipe s
 
 ### Light and Dark Themes - Completed
 
-Implemented behaviour:
-
 - Warm light and dark palettes
-- First visit follows the device theme preference
-- Manual preference saved under `shukudu-theme`
-- Preference reused across homepage and recipe pages
+- Device-theme fallback on first visit
+- Saved preference under `shukudu-theme`
+- Theme controls on homepage and recipe page
 - Cooking Mode inherits the active theme
-- Homepage control placed inside the main header
-- Recipe-page control placed beside Back to recipes
-- No persistent floating control
-- Desktop control uses a fixed 92 px width
-- Mobile control uses a fixed 44 px circular icon-only button
-- Light mode uses a light control surface
-- Dark mode uses a dark control surface
 - Footer text is centered
-
-Implementation files:
-
-- `theme.js`
-- `theme.css`
-- `theme-toggle-fix.css`
 
 ## Current Recipe Scaling Work
 
@@ -147,63 +90,13 @@ Still to do:
 
 ## Future Features
 
-### Standard Cup Scaling Input
-
-Possible future enhancement:
-
-- accept standard cup input for rice recipes
-- convert to rice cup internally
-- reuse the current scaling engine
-
-### Serving Adjustment
-
-Planned considerations:
-
-- distinguish serving-based recipes from rice-quantity-based recipes
-- avoid implying that cooking time scales linearly
-- preserve recipe-specific water ratios
-
-### Improved Recipe Cards
-
-Possible metadata:
-
-- cuisine
-- meal type
-- base rice quantity
-- approximate cooking time
-- serving estimate
-- recipe status
-- recipe image
-
-### Print View
-
-Planned behaviour:
-
-- hide interactive controls
-- remove unnecessary backgrounds and shadows
-- keep ingredients and steps readable
-
-### Recipe Images
-
-Planned structure:
-
-- image path in recipe metadata
-- lightweight loading
-- fallback when no image exists
-
-### Direct Edit Link
-
-Optional owner-focused link to the recipe file in GitHub.
-
-### Validation Improvements
-
-Possible future enhancements:
-
-- slug uniqueness validation
-- recipe-index cross-check validation
-- image metadata validation
-- cooking-step structure validation
-- schema versioning
+- Standard cup scaling input
+- Serving adjustment
+- Improved recipe cards
+- Print view
+- Recipe images
+- Direct edit link
+- Validation improvements such as slug uniqueness, recipe-index cross-checks, image metadata checks, cooking-step structure checks, and schema versioning
 
 ## Recommended Development Order
 
@@ -230,10 +123,4 @@ Possible future enhancements:
 
 Prioritize features that reduce friction while actively cooking.
 
-The site should remain:
-
-- simple to maintain
-- fast on mobile
-- easy to read in the kitchen
-- compatible with GitHub Pages
-- free of unnecessary frameworks or backend dependencies
+The site should remain simple to maintain, fast on mobile, easy to read in the kitchen, compatible with GitHub Pages, and free of unnecessary framework dependencies.
