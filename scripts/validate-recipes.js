@@ -3,6 +3,7 @@ const path = require('path');
 
 const ROOT = process.cwd();
 const RECIPES_DIR = path.join(ROOT, 'data', 'recipes');
+const RECIPE_INDEX_FILE = path.join(ROOT, 'data', 'recipe-index.json');
 const VALID_BASE_UNITS = new Set(['g', 'riceCup', 'cup']);
 const STANDARD_QUANTITY_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
@@ -166,7 +167,7 @@ function validateHardcodedWater(recipe, ingredientIds, errors) {
   });
 }
 
-function validateRecipe(fileName) {
+function validateRecipe(fileName, recipeMap) {
   const filePath = path.join(RECIPES_DIR, fileName);
   const errors = [];
   const recipe = readJson(filePath, errors);
@@ -179,10 +180,83 @@ function validateRecipe(fileName) {
     validateIngredientUnits(recipe, errors);
     validateStepIngredientIds(recipe, ingredientInfo.ids, errors);
     validateHardcodedWater(recipe, ingredientInfo.ids, errors);
+
+    if (recipe.slug) {
+      recipeMap.set(recipe.slug, { fileName, recipe });
+    }
   }
 
   if (errors.length) {
     console.log(`\n${fileName}`);
+    errors.forEach((error) => console.log(`  ✗ ${error}`));
+  }
+}
+
+function validateRecipeIndex(recipeFiles, recipeMap) {
+  const errors = [];
+  const index = readJson(RECIPE_INDEX_FILE, errors);
+
+  if (!Array.isArray(index)) {
+    addError(errors, 'recipe-index.json must be an array');
+  }
+
+  if (!Array.isArray(index)) {
+    console.log('\nrecipe-index.json');
+    errors.forEach((error) => console.log(`  ✗ ${error}`));
+    return;
+  }
+
+  const indexedSlugs = new Set();
+  const indexedSlugCounts = new Map();
+
+  index.forEach((entry, indexPosition) => {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
+      addError(errors, `recipe-index[${indexPosition}] must be an object`);
+      return;
+    }
+
+    ['name', 'slug', 'category', 'summary'].forEach((field) => {
+      if (entry[field] == null || entry[field] === '') {
+        addError(errors, `recipe-index[${indexPosition}] missing "${field}"`);
+      }
+    });
+
+    if (!entry.slug) return;
+
+    const count = (indexedSlugCounts.get(entry.slug) || 0) + 1;
+    indexedSlugCounts.set(entry.slug, count);
+    if (count > 1) {
+      addError(errors, `Duplicate recipe-index slug "${entry.slug}"`);
+    }
+    indexedSlugs.add(entry.slug);
+
+    const expectedFileName = `${entry.slug}.json`;
+    if (!recipeFiles.includes(expectedFileName)) {
+      addError(errors, `recipe-index slug "${entry.slug}" references missing file data/recipes/${expectedFileName}`);
+      return;
+    }
+
+    const recipeInfo = recipeMap.get(entry.slug);
+    if (!recipeInfo) {
+      addError(errors, `recipe-index slug "${entry.slug}" does not match any recipe JSON slug`);
+      return;
+    }
+
+    ['name', 'category', 'summary'].forEach((field) => {
+      if (entry[field] !== recipeInfo.recipe[field]) {
+        addError(errors, `recipe-index slug "${entry.slug}" has ${field} mismatch; index has "${entry[field]}", recipe has "${recipeInfo.recipe[field]}"`);
+      }
+    });
+  });
+
+  recipeMap.forEach((recipeInfo, slug) => {
+    if (!indexedSlugs.has(slug)) {
+      addError(errors, `data/recipes/${recipeInfo.fileName} exists but slug "${slug}" is missing from recipe-index.json`);
+    }
+  });
+
+  if (errors.length) {
+    console.log('\nrecipe-index.json');
     errors.forEach((error) => console.log(`  ✗ ${error}`));
   }
 }
@@ -193,11 +267,18 @@ function main() {
     process.exit(1);
   }
 
+  if (!fs.existsSync(RECIPE_INDEX_FILE)) {
+    console.error(`Recipe index not found: ${RECIPE_INDEX_FILE}`);
+    process.exit(1);
+  }
+
   const recipeFiles = fs.readdirSync(RECIPES_DIR)
     .filter((file) => file.endsWith('.json'))
     .sort();
 
-  recipeFiles.forEach(validateRecipe);
+  const recipeMap = new Map();
+  recipeFiles.forEach((fileName) => validateRecipe(fileName, recipeMap));
+  validateRecipeIndex(recipeFiles, recipeMap);
 
   if (totalErrors > 0) {
     console.log(`\nRecipe validation failed with ${totalErrors} error(s).`);
