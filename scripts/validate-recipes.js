@@ -7,6 +7,7 @@ const RECIPE_INDEX_FILE = path.join(ROOT, 'data', 'recipe-index.json');
 const VALID_BASE_UNITS = new Set(['g', 'riceCup', 'cup']);
 const STANDARD_QUANTITY_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
+const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 let totalErrors = 0;
 
@@ -27,6 +28,10 @@ function readJson(filePath, errors) {
 function arraysMatch(actual, expected) {
   if (!Array.isArray(actual) || actual.length !== expected.length) return false;
   return expected.every((value, index) => Number(actual[index]) === value);
+}
+
+function isValidSlug(slug) {
+  return typeof slug === 'string' && SLUG_PATTERN.test(slug);
 }
 
 function walkIngredients(recipe, callback) {
@@ -65,6 +70,20 @@ function validateTopLevel(recipe, errors) {
   if (!Array.isArray(recipe.ingredients)) addError(errors, 'ingredients must be an array');
   if (!Array.isArray(recipe.preparation)) addError(errors, 'preparation must be an array');
   if (!Array.isArray(recipe.cookingMethod)) addError(errors, 'cookingMethod must be an array');
+}
+
+function validateSlug(recipe, fileName, errors) {
+  if (!recipe.slug) return;
+
+  if (!isValidSlug(recipe.slug)) {
+    addError(errors, `slug "${recipe.slug}" must use lowercase letters/numbers separated by single hyphens`);
+    return;
+  }
+
+  const expectedFileName = `${recipe.slug}.json`;
+  if (fileName !== expectedFileName) {
+    addError(errors, `file name must match slug; expected "${expectedFileName}" but found "${fileName}"`);
+  }
 }
 
 function validateIngredientGroups(recipe, errors) {
@@ -174,6 +193,7 @@ function validateRecipe(fileName, recipeMap) {
 
   if (recipe) {
     validateTopLevel(recipe, errors);
+    validateSlug(recipe, fileName, errors);
     validateIngredientGroups(recipe, errors);
     const ingredientInfo = collectIngredientIds(recipe, errors);
     validateQuantityScaling(recipe, ingredientInfo, errors);
@@ -222,6 +242,11 @@ function validateRecipeIndex(recipeFiles, recipeMap) {
     });
 
     if (!entry.slug) return;
+
+    if (!isValidSlug(entry.slug)) {
+      addError(errors, `recipe-index slug "${entry.slug}" must use lowercase letters/numbers separated by single hyphens`);
+      return;
+    }
 
     const count = (indexedSlugCounts.get(entry.slug) || 0) + 1;
     indexedSlugCounts.set(entry.slug, count);
