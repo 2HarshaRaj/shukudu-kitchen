@@ -35,6 +35,8 @@ Recipes are adapted to match real kitchen use, including:
 - Exact base-ingredient quantity input for supported recipes
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
+- Automated recipe validation through GitHub Actions
+- Node.js 24 validation pipeline
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -47,6 +49,11 @@ shukudu-kitchen/
 │  ├─ recipe-index.json
 │  └─ recipes/
 ├─ docs/
+├─ scripts/
+│  └─ validate-recipes.js
+├─ .github/
+│  └─ workflows/
+│     └─ validate-recipes.yml
 ├─ index.html
 ├─ recipe.html
 ├─ script.js
@@ -92,6 +99,32 @@ selected scale = entered quantity ÷ base quantity
 ```
 
 This is intended for recipes with one clear dominant ingredient, such as a single-vegetable palya. Mixed-vegetable recipes use this mode only when the entered quantity represents a defined total vegetable mix.
+
+## Validation
+
+Recipe data is automatically validated through GitHub Actions.
+
+Validator checks:
+
+- JSON validity
+- Required fields
+- Ingredient references
+- Duplicate ingredient IDs
+- Quantity-input metadata
+- Exact `baseIngredient` matching
+- Ingredient-group structure
+- Unit standardization
+- Structured measured-water references
+
+Workflow:
+
+- `.github/workflows/validate-recipes.yml`
+- `scripts/validate-recipes.js`
+- Node.js 24
+- `actions/checkout@v6`
+- `actions/setup-node@v6`
+
+New recipes and recipe updates should pass validation before being committed.
 
 ## Theme Behaviour
 
