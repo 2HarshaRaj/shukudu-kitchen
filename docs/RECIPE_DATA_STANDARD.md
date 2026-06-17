@@ -77,12 +77,13 @@ Recipes that should scale from the exact amount of a base ingredient may use qua
   "enabled": true,
   "baseIngredient": "raw-banana",
   "baseQuantity": 500,
-  "baseUnit": "gram",
+  "baseUnit": "g",
   "baseScale": 1,
   "inputMode": "quantity",
-  "inputLabel": "Raw banana available",
+  "inputLabel": "Raw banana quantity",
   "inputMin": 50,
-  "inputStep": 10
+  "inputStep": 10,
+  "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
 }
 ```
 
@@ -90,13 +91,13 @@ Recipes that should scale from the exact amount of a base ingredient may use qua
 
 - `baseIngredient`: stable ingredient ID used as the scaling reference
 - `baseQuantity`: finalized recipe quantity of the base ingredient at 1×
-- `baseUnit`: canonical unit used for the base quantity, such as `riceCup`, `gram`, or `count`
+- `baseUnit`: canonical unit used for the base quantity, such as `riceCup`, `g`, or `cup`
 - `baseScale`: multiplier represented by the stored recipe quantities; normally `1`
 - `inputMode`: scaling UI mode; use `options` for preset multipliers or quantities, and `quantity` for direct base-ingredient entry
 - `inputLabel`: user-facing label shown beside the exact quantity input
 - `inputMin`: smallest supported input quantity
 - `inputStep`: practical increment used by the quantity input control
-- `options`: supported preset scale values when `inputMode` is `options`
+- `options`: supported preset scale values
 
 New rice recipes should generally default to 1 rice cup unless another rice-cup base better represents the finalized recipe.
 
@@ -145,6 +146,19 @@ Example:
 }
 ```
 
+### Ingredient Groups
+
+Ingredient groups must use `section` and `items`.
+
+```json
+{
+  "section": "Main",
+  "items": []
+}
+```
+
+Do not use the legacy `category` field inside ingredient groups.
+
 ### Required Fields
 
 - `id`: stable unique identifier
@@ -162,6 +176,20 @@ Use `unit` for measured ingredients such as cups, teaspoons, tablespoons, grams,
 - `roundingType`
 - `displayText`
 - `scaleQuantities`
+
+### Unit Names
+
+Use full unit names for spoon measurements:
+
+- `teaspoon`
+- `tablespoon`
+
+Do not use abbreviated spoon units:
+
+- `tsp`
+- `tbsp`
+
+For gram-based quantity scaling metadata, use `baseUnit: "g"`, not `"gram"`.
 
 ### Rice and Water
 
@@ -190,6 +218,8 @@ Rice-cooking water example:
 ```
 
 Do not store a separate standard-cup equivalent for new rice-based recipes. The renderer derives it automatically.
+
+Measured water used in cooking instructions must be a structured ingredient and referenced through `ingredientIds`. Avoid hard-coded measured water in step text.
 
 ## Vegetable Weight Rule
 
@@ -295,6 +325,12 @@ baseQuantity × selected scale
 ```
 
 Do not assume the selected scale value itself equals the rice quantity.
+
+For quantity-input recipes, use the standard preset options:
+
+```json
+"options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+```
 
 ## Non-Linear Ingredient Scaling
 
@@ -509,6 +545,35 @@ For non-rice preset recipes, the UI shows generic multipliers such as:
 1.5×
 ```
 
+## Recipe Validation
+
+Recipe data is validated by `scripts/validate-recipes.js` and the GitHub Actions workflow `.github/workflows/validate-recipes.yml`.
+
+The workflow runs on push when recipe data, the validator script, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
+
+```text
+node scripts/validate-recipes.js
+```
+
+Validator rules:
+
+- recipe JSON must parse successfully
+- required top-level fields must exist
+- `ingredients`, `preparation`, and `cookingMethod` must be arrays
+- ingredient IDs must not be duplicated
+- `preparation` and `cookingMethod` ingredient references must point to existing ingredient IDs
+- quantity-input recipes must have `baseIngredient`, positive numeric `baseQuantity`, valid `baseUnit`, `inputLabel`, and standard `options`
+- quantity-input `inputLabel` must end with `quantity`
+- quantity-input `options` must be `[0.5, 0.75, 1, 1.25, 1.5, 2]`
+- quantity-input `baseIngredient` must match exactly one ingredient ID
+- gram-based quantity recipes must use `baseUnit: "g"`
+- ingredient groups must use `section` and `items`
+- ingredient groups must not use legacy `category`
+- abbreviated ingredient units are not allowed: use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
+- hard-coded measured water in cooking method text should be avoided; measured water should be a structured ingredient and referenced through `ingredientIds`
+
+New recipe creation must satisfy these validator rules before pushing.
+
 ## Tamarind Rule
 
 Use tamarind paste whenever tamarind is required unless explicitly requested otherwise.
@@ -538,17 +603,23 @@ Before adding or updating a recipe:
 6. Choose `inputMode: "options"` or `inputMode: "quantity"`
 7. For quantity input, define `inputLabel`, `inputMin`, and `inputStep`
 8. Confirm that exact quantity input is suitable for the recipe composition
-9. Choose practical recipe-level scale options when using preset mode
-10. Mark each ingredient scalable or non-scalable
-11. Use `scaleQuantities` where linear scaling is unsuitable
-12. Ensure override keys cover every recipe scale option
-13. Use stable ingredient IDs
-14. Reference ingredient IDs from Preparation and Cooking Method
-15. Keep one cooking action per step
-16. Test the normal recipe page and Cooking Mode
-17. Test every supported preset and arbitrary quantity scale
-18. Verify cup, spoon, inch, produce, gram, and override formatting
-19. Verify the entered quantity and arbitrary scale restore correctly after reload
+9. For quantity input, use `baseUnit: "g"` for gram-based recipes
+10. For quantity input, ensure `baseIngredient` matches exactly one ingredient ID
+11. For quantity input, use `options: [0.5, 0.75, 1, 1.25, 1.5, 2]`
+12. Use ingredient groups with `section` and `items`, not legacy `category`
+13. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
+14. Add measured water as a structured ingredient and reference it from steps
+15. Mark each ingredient scalable or non-scalable
+16. Use `scaleQuantities` where linear scaling is unsuitable
+17. Ensure override keys cover every recipe scale option
+18. Use stable ingredient IDs
+19. Reference ingredient IDs from Preparation and Cooking Method
+20. Keep one cooking action per step
+21. Run `node scripts/validate-recipes.js`
+22. Test the normal recipe page and Cooking Mode
+23. Test every supported preset and arbitrary quantity scale
+24. Verify cup, spoon, inch, produce, gram, and override formatting
+25. Verify the entered quantity and arbitrary scale restore correctly after reload
 
 ## Required References
 
