@@ -3,6 +3,7 @@ name: Validate Recipes
 on:
   push:
     paths:
+      - 'data/recipe-index.json'
       - 'data/recipes/**'
       - 'scripts/validate-recipes.js'
       - '.github/workflows/validate-recipes.yml'
