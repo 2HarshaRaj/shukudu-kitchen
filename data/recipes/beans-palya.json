@@ -23,7 +23,7 @@
   },
   "ingredients": [
     {
-      "category": "Vegetables",
+      "section": "Vegetables",
       "items": [
         {
           "id": "beans",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "category": "Tempering",
+      "section": "Tempering",
       "items": [
         {
           "id": "oil",
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "category": "Spices",
+      "section": "Spices",
       "items": [
         {
           "id": "turmeric-powder",
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "category": "Finish",
+      "section": "Finish",
       "items": [
         {
           "id": "fresh-coconut",
