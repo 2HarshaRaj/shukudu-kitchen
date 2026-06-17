@@ -314,12 +314,7 @@
       "ingredientIds": [
         "rice"
       ],
-      "after": "Mix gently without breaking the grains."
-    },
-    {
-      "lead": "Pressure cook:",
-      "ingredientIds": [],
-      "after": "Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow the pressure to release naturally."
+      "after": "Mix gently without breaking the grains. Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow the pressure to release naturally."
     },
     {
       "lead": "Finish with:",
