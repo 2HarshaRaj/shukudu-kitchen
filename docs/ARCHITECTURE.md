@@ -8,6 +8,11 @@ shukudu-kitchen/
 |  |- recipe-index.json
 |  `- recipes/
 |- docs/
+|- scripts/
+|  `- validate-recipes.js
+|- .github/
+|  `- workflows/
+|     `- validate-recipes.yml
 |- index.html
 |- recipe.html
 |- script.js
@@ -33,6 +38,8 @@ shukudu-kitchen/
 - `theme.css`: light and dark theme tokens and dark component overrides
 - `theme-toggle-fix.css`: theme-control placement, sizing, spacing, and theme-specific surfaces
 - `style.css`: shared site layout and Cooking Mode styling
+- `scripts/validate-recipes.js`: recipe JSON validation and schema guardrails
+- `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
 ## Page Loading
 
@@ -94,6 +101,10 @@ data/recipes/<slug>.json
 
 Scalable recipes use structured ingredient objects, stable IDs, recipe-level scaling metadata, and shared ingredient references across Ingredients, Preparation, Cooking Method, and Cooking Mode.
 
+Ingredient groups must use `section` and `items`. Legacy `category` is not allowed inside ingredient groups.
+
+Measured water used in cooking steps should be stored as a structured ingredient and referenced through `ingredientIds` instead of being hard-coded in step text.
+
 ## Scaling Flow
 
 ```text
@@ -123,6 +134,63 @@ Rice recipes use rice cup as the canonical base. Standard cup values are derived
 1 standard cup = 0.75 rice cup
 ```
 
+Quantity-input recipes must use standard preset options:
+
+```text
+[0.5, 0.75, 1, 1.25, 1.5, 2]
+```
+
+For gram-based quantity recipes, scaling metadata uses `baseUnit: "g"`.
+
+## Recipe Validation Architecture
+
+Recipe data quality is enforced through GitHub Actions.
+
+Workflow:
+
+```text
+.github/workflows/validate-recipes.yml
+```
+
+Runtime:
+
+```text
+Node.js 24
+```
+
+Validation entry point:
+
+```text
+node scripts/validate-recipes.js
+```
+
+The workflow uses:
+
+- `actions/checkout@v6`
+- `actions/setup-node@v6`
+- `node-version: '24'`
+
+The workflow runs automatically on pushes that affect:
+
+- `data/recipes/**`
+- `scripts/validate-recipes.js`
+- `.github/workflows/validate-recipes.yml`
+
+Validator guardrails include:
+
+- JSON parse validation
+- required top-level fields
+- array validation for `ingredients`, `preparation`, and `cookingMethod`
+- duplicate ingredient ID detection
+- missing ingredient reference detection
+- quantity-input scaling metadata validation
+- exact `baseIngredient` to ingredient ID matching
+- standard quantity options validation
+- ingredient group structure validation
+- legacy ingredient-group `category` rejection
+- `tsp` / `tbsp` rejection in favour of `teaspoon` / `tablespoon`
+- structured measured-water enforcement
+
 ## Browser Storage
 
 Per-recipe state:
@@ -149,6 +217,8 @@ shukudu-theme
 - Keep theme behaviour in `theme.js`.
 - Keep dark theme styling in `theme.css`.
 - Keep theme-control layout rules in `theme-toggle-fix.css`.
+- Keep validation rules in `scripts/validate-recipes.js`.
+- Run `node scripts/validate-recipes.js` after recipe data changes.
 - Test light and dark themes on homepage, recipe pages, and Cooking Mode.
 - Test desktop and mobile theme controls.
 - Update the changelog and visible versions for releases.
