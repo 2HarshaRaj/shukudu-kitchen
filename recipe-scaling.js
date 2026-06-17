@@ -155,6 +155,15 @@ function formatScaleChoice(recipe, scale) {
   return `${formatNumber(scale)}×`;
 }
 
+function restoreScaleOptionsScroll(scrollLeft) {
+  window.requestAnimationFrame(() => {
+    const nextOptions = recipeContent.querySelector('.scale-options');
+    if (nextOptions) {
+      nextOptions.scrollLeft = scrollLeft;
+    }
+  });
+}
+
 loadScale = function loadRecipeScale(recipe) {
   const fallback = recipe.scaling?.baseScale || 1;
   const saved = Number.parseFloat(localStorage.getItem(getScaleKey(recipe.slug)));
@@ -240,8 +249,12 @@ initialiseScaleControls = function initialiseRecipeAwareScaleControls(recipe, sc
     const nextScale = Number.parseFloat(button.dataset.scale);
     if (!Number.isFinite(nextScale) || nextScale <= 0 || isNearlyEqual(nextScale, scale)) return;
 
+    const options = panel.querySelector('.scale-options');
+    const scrollLeft = options?.scrollLeft || 0;
+
     saveScale(recipe.slug, nextScale);
     onScaleChange(nextScale);
+    restoreScaleOptionsScroll(scrollLeft);
   });
 
   const form = panel.querySelector('.quantity-scale-form');
@@ -261,7 +274,11 @@ initialiseScaleControls = function initialiseRecipeAwareScaleControls(recipe, sc
     const nextScale = Number((desiredQuantity / baseQuantity).toFixed(6));
     if (isNearlyEqual(nextScale, scale)) return;
 
+    const options = panel.querySelector('.scale-options');
+    const scrollLeft = options?.scrollLeft || 0;
+
     saveScale(recipe.slug, nextScale);
     onScaleChange(nextScale);
+    restoreScaleOptionsScroll(scrollLeft);
   });
 };
