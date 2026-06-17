@@ -2,7 +2,7 @@
   "name": "Tomato Bath",
   "slug": "tomato-bath",
   "category": "Rice",
-  "summary": "A Karnataka-style tomato rice prepared with sona masuri rice, fresh ginger and garlic.",
+  "summary": "A Karnataka-style tomato bath prepared with sona masuri rice, tomatoes, whole spices, peas, garam masala and lemon.",
   "details": {
     "Cuisine": "South Indian · Karnataka",
     "Meal Type": "Lunch / Dinner",
@@ -26,6 +26,7 @@
           "quantity": 1,
           "unit": "rice cup",
           "ingredient": "sona masuri rice",
+          "preparation": "rinsed and soaked for 20 minutes",
           "scalable": true
         },
         {
@@ -67,19 +68,48 @@
         },
         {
           "id": "garlic",
-          "quantity": 5,
+          "quantity": 2,
           "countLabel": "garlic clove",
-          "weightGrams": 15,
+          "weightGrams": 6,
           "ingredient": "garlic",
-          "preparation": "finely chopped",
+          "preparation": "crushed",
           "scalable": true,
           "roundingType": "small-whole"
         },
         {
-          "id": "oil",
+          "id": "green-chillies",
+          "quantity": 3,
+          "countLabel": "green chilli",
+          "weightGrams": 8,
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "green-peas",
+          "quantity": 0.25,
+          "unit": "cup",
+          "weightGrams": 40,
+          "ingredient": "green peas",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-leaves",
           "quantity": 2,
           "unit": "tablespoon",
-          "ingredient": "oil",
+          "weightGrams": 5,
+          "ingredient": "coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "ghee",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "ghee",
           "scalable": true,
           "roundingType": "exact"
         },
@@ -94,16 +124,8 @@
       ]
     },
     {
-      "section": "Spices and Finishing",
+      "section": "Whole Spices",
       "items": [
-        {
-          "id": "mustard-seeds",
-          "quantity": 1,
-          "unit": "teaspoon",
-          "ingredient": "mustard seeds",
-          "scalable": true,
-          "roundingType": "exact"
-        },
         {
           "id": "cumin-seeds",
           "quantity": 1,
@@ -112,6 +134,35 @@
           "scalable": true,
           "roundingType": "exact"
         },
+        {
+          "id": "bay-leaf",
+          "quantity": 1,
+          "countLabel": "bay leaf",
+          "ingredient": "bay leaf",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "cinnamon",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "cinnamon stick",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cloves",
+          "quantity": 5,
+          "countLabel": "clove",
+          "ingredient": "cloves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        }
+      ]
+    },
+    {
+      "section": "Powdered Spices and Finishing",
+      "items": [
         {
           "id": "turmeric",
           "quantity": 0.5,
@@ -129,8 +180,24 @@
           "roundingType": "exact"
         },
         {
-          "id": "garam-masala",
+          "id": "coriander-powder",
           "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "coriander powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.25,
           "unit": "teaspoon",
           "ingredient": "garam masala",
           "scalable": true,
@@ -142,6 +209,7 @@
           "countLabel": "small lemon",
           "weightGrams": 60,
           "ingredient": "lemon",
+          "preparation": "juiced",
           "scalable": true,
           "roundingType": "small-whole"
         }
@@ -162,7 +230,9 @@
         "tomatoes",
         "onion",
         "ginger",
-        "garlic"
+        "garlic",
+        "green-chillies",
+        "coriander-leaves"
       ]
     }
   ],
@@ -170,49 +240,85 @@
     {
       "lead": "Heat in a pressure cooker:",
       "ingredientIds": [
-        "oil"
+        "ghee"
       ]
     },
     {
-      "lead": "Add:",
+      "lead": "Add whole spices:",
       "ingredientIds": [
-        "mustard-seeds",
-        "cumin-seeds"
+        "cumin-seeds",
+        "bay-leaf",
+        "cinnamon",
+        "cloves"
       ],
-      "after": "Allow them to splutter."
+      "after": "Sauté until aromatic. Keep the flame medium and do not let the spices burn."
     },
     {
-      "lead": "Add:",
+      "lead": "Add and sauté for 30–40 seconds:",
       "ingredientIds": [
-        "onion",
+        "garlic",
         "ginger",
-        "garlic"
+        "green-chillies"
       ],
-      "after": "Sauté until the onion softens."
+      "after": "Sauté only until the raw smell fades."
     },
     {
       "lead": "Add:",
       "ingredientIds": [
-        "tomatoes",
+        "onion"
+      ],
+      "after": "Sauté until soft and translucent."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "green-peas"
+      ],
+      "after": "Sauté for 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "tomatoes"
+      ],
+      "after": "Cook until fully soft and mushy. Use ripe tomatoes and avoid sour or under-ripe tomatoes."
+    },
+    {
+      "lead": "Add powdered spices and salt:",
+      "ingredientIds": [
         "turmeric",
         "red-chilli-powder",
-        "garam-masala",
+        "coriander-powder",
+        "cumin-powder",
         "salt"
       ],
-      "after": "Cook until the tomatoes soften and the oil begins to separate."
+      "after": "Sauté until the masala thickens and becomes aromatic. Reduce chilli powder slightly when cooking for a milder batch."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "coriander-leaves"
+      ],
+      "after": "Mix well."
+    },
+    {
+      "lead": "Pour in and bring to a rolling boil:",
+      "ingredientIds": [
+        "water",
+        "garam-masala"
+      ],
+      "after": "Add garam masala at the boiling-water stage."
     },
     {
       "lead": "Drain and add:",
       "ingredientIds": [
         "rice"
       ],
-      "after": "Mix gently for 1 minute."
+      "after": "Mix gently without breaking the grains."
     },
     {
-      "lead": "Add:",
-      "ingredientIds": [
-        "water"
-      ],
+      "lead": "Pressure cook:",
+      "ingredientIds": [],
       "after": "Build pressure on the induction cooktop, then reduce to 100°C / 300 W for 10 minutes. Allow the pressure to release naturally."
     },
     {
@@ -220,7 +326,7 @@
       "ingredientIds": [
         "lemon"
       ],
-      "after": "Fluff gently and mix in the lemon juice."
+      "after": "Add lemon only after opening the cooker. Fluff gently and mix in the lemon juice."
     }
   ],
   "servingSuggestions": [
@@ -229,8 +335,10 @@
   "notes": [
     "This finalized version uses 1 rice cup as the canonical scaling base.",
     "Standard cup equivalents are calculated automatically for rice and rice-cooking water.",
-    "Whole-produce counts use practical kitchen rounding, while gram values remain the precise scaled target.",
+    "This version is adapted from Hebbars Kitchen and finalized after cooking trials.",
+    "Garam masala is added to the boiling-water stage because it gave a better tested result.",
+    "Lemon juice is added only after opening the cooker and was preferred in testing.",
     "Salt is structured as a scalable measured ingredient, but can still be adjusted after cooking if needed.",
-    "Add lemon only after opening the cooker and fluffing the rice."
+    "Reduce red chilli powder slightly when serving kids or when a milder batch is needed."
   ]
 }
