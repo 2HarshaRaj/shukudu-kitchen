@@ -37,6 +37,7 @@ Recipes are adapted to match real kitchen use, including:
 - Persistence of entered quantities and calculated scales per recipe
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
+- Recipe-index, slug, metadata, step-structure, and notes validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -71,6 +72,9 @@ shukudu-kitchen/
 
 - Homepage metadata is stored in `data/recipe-index.json`.
 - Full recipes are stored individually under `data/recipes/`.
+- Each recipe slug must match its file name exactly: `data/recipes/<slug>.json`.
+- Each recipe file must be listed in `data/recipe-index.json`.
+- Index `name`, `category`, and `summary` values must match the recipe JSON.
 - Scalable recipes use structured ingredient objects with stable IDs.
 - Preparation and cooking steps reference those ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
 - Scaling metadata identifies the base ingredient, base quantity, base unit, and whether the recipe uses preset options or exact quantity input.
@@ -107,14 +111,22 @@ Recipe data is automatically validated through GitHub Actions.
 Validator checks:
 
 - JSON validity
-- Required fields
+- Required recipe fields
+- Recipe-index shape and required fields
+- Duplicate index slug rejection
+- Recipe-index and recipe-file cross-checks
+- Slug format: `^[a-z0-9]+(-[a-z0-9]+)*$`
+- Slug to file-name match: `<slug>.json`
 - Ingredient references
 - Duplicate ingredient IDs
+- Cooking-step structure
+- Details metadata: `Cuisine`, `Meal Type`, and `Status`
 - Quantity-input metadata
 - Exact `baseIngredient` matching
 - Ingredient-group structure
 - Unit standardization
 - Structured measured-water references
+- `servingSuggestions` and `notes` array validation
 
 Workflow:
 
@@ -124,7 +136,14 @@ Workflow:
 - `actions/checkout@v6`
 - `actions/setup-node@v6`
 
-New recipes and recipe updates should pass validation before being committed.
+The workflow runs when these paths change:
+
+- `data/recipe-index.json`
+- `data/recipes/**`
+- `scripts/validate-recipes.js`
+- `.github/workflows/validate-recipes.yml`
+
+New recipes and recipe updates should pass validation before being committed. Image metadata validation is deferred until images are introduced.
 
 ## Theme Behaviour
 
