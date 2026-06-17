@@ -20,7 +20,7 @@ Shukudu Kitchen currently includes:
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
 - practical ingredient rounding and gram guidance
-- automated recipe validation on push
+- completed automated recipe validation for the current non-image recipe model
 - saved light and dark themes
 - theme controls on the homepage and recipe page
 - theme inheritance inside Cooking Mode
@@ -45,19 +45,36 @@ Shukudu Kitchen currently includes:
 - Unit-aware formatting
 - Practical produce and small-whole rounding
 
-### Recipe Validation - Completed
+### Recipe Validation Framework - Completed for Current Non-Image Model
 
 - Automated recipe validation workflow
 - GitHub Actions integration
 - Node.js 24 validation runtime
 - `scripts/validate-recipes.js`
 - `.github/workflows/validate-recipes.yml`
+- Workflow trigger for `data/recipe-index.json`
+- Workflow trigger for `data/recipes/**`
+- Workflow trigger for `scripts/validate-recipes.js`
+- Workflow trigger for `.github/workflows/validate-recipes.yml`
+- Required top-level recipe field validation
+- Recipe-index array validation
+- Recipe-index required field validation for `name`, `slug`, `category`, and `summary`
+- Duplicate recipe-index slug rejection
+- Recipe-index to recipe-file cross-checks
+- Every recipe JSON must be listed in `data/recipe-index.json`
+- Index `name`, `category`, and `summary` must match recipe JSON
+- Slug format validation
+- Slug to file-name validation
 - Ingredient reference validation
 - Duplicate ingredient ID detection
 - Quantity-input metadata validation
 - Ingredient-group structure validation
 - Unit standardization enforcement
 - Structured-water enforcement
+- Cooking-step structure validation
+- Details metadata validation for `Cuisine`, `Meal Type`, and `Status`
+- `servingSuggestions` validation
+- `notes` validation
 
 ### Light and Dark Themes - Completed
 
@@ -92,7 +109,19 @@ Completed:
 - Print view
 - Recipe images
 - Direct edit link
-- Validation improvements such as slug uniqueness, recipe-index cross-checks, image metadata checks, cooking-step structure checks, and schema versioning
+- Schema versioning if the recipe model expands significantly
+
+## Future Validation Enhancements
+
+Image metadata validation is deferred because images are not part of the current recipe model yet.
+
+Once recipe images are introduced, possible validation checks include:
+
+- image file exists
+- image path matches recipe slug
+- thumbnail exists
+- image format and dimensions are valid
+- recipe-index image references remain valid
 
 ## Recommended Development Order
 
@@ -105,12 +134,12 @@ Completed:
 7. Rice cup scaling base - completed
 8. Exact base-ingredient quantity scaling - completed
 9. Light and dark themes - completed
-10. Recipe validation workflow - completed
+10. Recipe validation framework - completed for current non-image model
 11. Serving adjustment
 12. Print view
 13. Recipe images and richer cards
 14. Optional standard-cup scaling input
-15. Validation improvements
+15. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
