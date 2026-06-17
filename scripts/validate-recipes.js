@@ -38,17 +38,22 @@ function walkIngredients(recipe, callback) {
 
 function collectIngredientIds(recipe, errors) {
   const ids = new Set();
+  const idCounts = new Map();
 
   walkIngredients(recipe, (item) => {
     if (!item || typeof item !== 'object' || typeof item === 'string') return;
     if (!item.id) return;
+
+    const count = (idCounts.get(item.id) || 0) + 1;
+    idCounts.set(item.id, count);
+
     if (ids.has(item.id)) {
       addError(errors, `Duplicate ingredient id "${item.id}"`);
     }
     ids.add(item.id);
   });
 
-  return ids;
+  return { ids, idCounts };
 }
 
 function validateTopLevel(recipe, errors) {
@@ -61,14 +66,19 @@ function validateTopLevel(recipe, errors) {
   if (!Array.isArray(recipe.cookingMethod)) addError(errors, 'cookingMethod must be an array');
 }
 
-function validateQuantityScaling(recipe, ingredientIds, errors) {
+function validateQuantityScaling(recipe, ingredientInfo, errors) {
   const scaling = recipe.scaling;
   if (!scaling || scaling.inputMode !== 'quantity') return;
 
   if (!scaling.baseIngredient) {
     addError(errors, 'quantity-input scaling requires baseIngredient');
-  } else if (!ingredientIds.has(scaling.baseIngredient)) {
-    addError(errors, `baseIngredient "${scaling.baseIngredient}" does not match any ingredient id`);
+  } else {
+    const matchCount = ingredientInfo.idCounts.get(scaling.baseIngredient) || 0;
+    if (matchCount === 0) {
+      addError(errors, `baseIngredient "${scaling.baseIngredient}" does not match any ingredient id`);
+    } else if (matchCount !== 1) {
+      addError(errors, `baseIngredient "${scaling.baseIngredient}" must match exactly one ingredient id; found ${matchCount}`);
+    }
   }
 
   if (!Number.isFinite(Number(scaling.baseQuantity)) || Number(scaling.baseQuantity) <= 0) {
@@ -140,11 +150,11 @@ function validateRecipe(fileName) {
 
   if (recipe) {
     validateTopLevel(recipe, errors);
-    const ingredientIds = collectIngredientIds(recipe, errors);
-    validateQuantityScaling(recipe, ingredientIds, errors);
+    const ingredientInfo = collectIngredientIds(recipe, errors);
+    validateQuantityScaling(recipe, ingredientInfo, errors);
     validateIngredientUnits(recipe, errors);
-    validateStepIngredientIds(recipe, ingredientIds, errors);
-    validateHardcodedWater(recipe, ingredientIds, errors);
+    validateStepIngredientIds(recipe, ingredientInfo.ids, errors);
+    validateHardcodedWater(recipe, ingredientInfo.ids, errors);
   }
 
   if (errors.length) {
