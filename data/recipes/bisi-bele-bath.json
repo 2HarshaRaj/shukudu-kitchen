@@ -1,0 +1,437 @@
+{
+  "name": "Bisi Bele Bath",
+  "slug": "bisi-bele-bath",
+  "category": "Rice",
+  "summary": "Karnataka-style bisi bele bath made with rice, toor dal, mixed vegetables, bisi bele bath powder and tamarind.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Finalized"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 0.5,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "To Pressure Cook",
+      "items": [
+        {
+          "id": "toor-dal",
+          "quantity": 0.5,
+          "unit": "rice cup",
+          "ingredient": "toor dal",
+          "preparation": "soaked for 20–30 minutes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "rice",
+          "quantity": 0.5,
+          "unit": "rice cup",
+          "ingredient": "sona masuri or Mugilu rice",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "pressure-cook-turmeric",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "pressure-cook-oil",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "pressure-cook-water",
+          "quantity": 3.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "To Temper and Boil",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "ghee",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dried-red-chilli",
+          "quantity": 2,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chillies",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "hing",
+          "quantity": 1,
+          "unit": "pinch",
+          "ingredient": "hing",
+          "scalable": false,
+          "roundingType": "exact"
+        },
+        {
+          "id": "peanuts",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "peanuts",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "vegetable-turmeric",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tamarind-concentrate",
+          "quantity": 1.25,
+          "unit": "tablespoon",
+          "ingredient": "Indira tamarind concentrate",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tamarind-dilution-water",
+          "quantity": 0.25,
+          "unit": "cup",
+          "ingredient": "hot water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "bisi-bele-bath-powder",
+          "quantity": 4,
+          "unit": "tablespoon",
+          "ingredient": "bisi bele bath powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 1.25,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 2.25,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "boiling-water",
+          "quantity": 5.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "To Chop / Slice",
+      "items": [
+        {
+          "id": "ginger",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "weightGrams": 5,
+          "ingredient": "ginger",
+          "preparation": "thinly sliced",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 0.5,
+          "countLabel": "medium onion",
+          "weightGrams": 60,
+          "ingredient": "onion",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "carrot",
+          "quantity": 1,
+          "countLabel": "medium carrot",
+          "weightGrams": 70,
+          "ingredient": "carrot",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "potato",
+          "quantity": 1,
+          "countLabel": "small potato",
+          "weightGrams": 90,
+          "ingredient": "potato",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "peas",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 20,
+          "ingredient": "peas",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "beans",
+          "quantity": 5,
+          "countLabel": "bean",
+          "weightGrams": 30,
+          "ingredient": "beans",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 0.5,
+          "countLabel": "medium capsicum",
+          "weightGrams": 40,
+          "ingredient": "capsicum",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "gedde-kosu",
+          "quantity": 100,
+          "unit": "g",
+          "ingredient": "gedde kosu",
+          "preparation": "peeled and cubed",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomato",
+          "quantity": 0.5,
+          "countLabel": "medium tomato",
+          "weightGrams": 50,
+          "ingredient": "tomato",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 5,
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "For Final Tempering",
+      "items": [
+        {
+          "id": "tempering-ghee",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cashew",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "cashew",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Soak:",
+      "ingredientIds": [
+        "toor-dal"
+      ],
+      "after": "Soak for 20–30 minutes."
+    },
+    {
+      "lead": "Prepare vegetables and garnish:",
+      "ingredientIds": [
+        "ginger",
+        "onion",
+        "carrot",
+        "potato",
+        "peas",
+        "beans",
+        "capsicum",
+        "gedde-kosu",
+        "tomato",
+        "coriander-leaves"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "In a pressure cooker, add:",
+      "ingredientIds": [
+        "toor-dal",
+        "rice",
+        "pressure-cook-turmeric",
+        "pressure-cook-oil",
+        "pressure-cook-water"
+      ],
+      "after": "Bring to a boil uncovered. Close the lid with whistle, reduce to 100°C / 300 W, cook for 10 minutes, and allow pressure to release naturally."
+    },
+    {
+      "lead": "In a large kadai, heat:",
+      "ingredientIds": [
+        "oil",
+        "ghee"
+      ]
+    },
+    {
+      "lead": "Temper with:",
+      "ingredientIds": [
+        "mustard-seeds",
+        "dried-red-chilli",
+        "hing",
+        "peanuts",
+        "curry-leaves"
+      ],
+      "after": "Let the mustard splutter and the peanuts turn lightly aromatic."
+    },
+    {
+      "lead": "Sauté:",
+      "ingredientIds": [
+        "ginger",
+        "onion",
+        "carrot",
+        "potato",
+        "peas",
+        "beans",
+        "capsicum",
+        "gedde-kosu",
+        "tomato",
+        "vegetable-turmeric"
+      ],
+      "after": "Add about 1 teaspoon salt from the measured salt and sauté for 2 minutes."
+    },
+    {
+      "lead": "Add and boil covered:",
+      "ingredientIds": [
+        "boiling-water"
+      ],
+      "after": "Use 3½ cups first. Boil for 10 minutes at 100–120°C / 600–800 W, until the vegetables are cooked. Keep the remaining 2 cups for final consistency."
+    },
+    {
+      "lead": "Mix separately and add:",
+      "ingredientIds": [
+        "tamarind-concentrate",
+        "tamarind-dilution-water"
+      ],
+      "after": "Boil for 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "bisi-bele-bath-powder",
+        "red-chilli-powder",
+        "salt"
+      ],
+      "after": "Use the remaining measured salt here. Cook for 2 minutes so the masala blends into the vegetable base."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "toor-dal",
+        "rice"
+      ],
+      "after": "Mix in the cooked rice-dal mixture. Add the remaining water from the measured boiling water if needed for a semi-thick flowing consistency. Simmer covered for 10 minutes at 90–100°C / 300–500 W."
+    },
+    {
+      "lead": "Fry until golden:",
+      "ingredientIds": [
+        "cashew",
+        "tempering-ghee"
+      ]
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "coriander-leaves"
+      ],
+      "after": "Pour the cashew tempering over the bisi bele bath, mix well, and serve hot."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with onion raita, plain curd, khara boondi or papad."
+  ],
+  "notes": [
+    "This version is scaled for 2 people for 2 meals using ½ rice cup rice and ½ rice cup toor dal.",
+    "This recipe uses store-bought bisi bele bath powder instead of homemade masala.",
+    "If using MTR Bisi Bele Bath Powder, start with 3½ tablespoons if a milder first batch is preferred.",
+    "Gedde kosu should be cut into 1–1.5 cm cubes so it cooks evenly with the other vegetables.",
+    "Bisi bele bath thickens after cooling; loosen with hot water before reheating or serving leftovers.",
+    "Health rating: 4/5."
+  ]
+}
