@@ -102,32 +102,26 @@ html[data-theme="dark"] .scale-button.is-active {
   }
 
   .quantity-scale-row {
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 120px auto minmax(112px, 1fr);
+    align-items: center;
+    justify-content: stretch;
     width: 100%;
     min-width: 0;
   }
 
   .quantity-scale-input {
-    flex: 0 0 170px;
-    width: 170px;
-    min-width: 120px;
-  }
-}
-
-@media (max-width: 520px) {
-  .quantity-scale-row {
-    display: grid;
-    grid-template-columns: minmax(120px, 170px) auto;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .quantity-scale-input {
     width: 100%;
+    min-width: 0;
   }
 
   .scale-apply-button {
-    grid-column: 1 / -1;
     width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .quantity-scale-row {
+    grid-template-columns: 112px auto minmax(96px, 1fr);
   }
 }
