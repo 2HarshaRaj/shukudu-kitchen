@@ -6,7 +6,7 @@
   "details": {
     "Cuisine": "South Indian · Karnataka",
     "Meal Type": "Lunch / Dinner",
-    "Status": "Initial website version"
+    "Status": "Finalized"
   },
   "scaling": {
     "enabled": true,
@@ -14,6 +14,7 @@
     "baseQuantity": 1,
     "baseUnit": "riceCup",
     "baseScale": 1,
+    "inputMode": "options",
     "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
   },
   "ingredients": [
@@ -46,9 +47,9 @@
         },
         {
           "id": "onion",
-          "quantity": 1.333,
-          "countLabel": "medium onion",
-          "weightGrams": 160,
+          "quantity": 1,
+          "countLabel": "large onion",
+          "weightGrams": 150,
           "preparation": "sliced",
           "ingredient": "onion",
           "scalable": true,
@@ -56,9 +57,9 @@
         },
         {
           "id": "ginger",
-          "quantity": 1.333,
+          "quantity": 1,
           "unit": "inch",
-          "weightGrams": 20,
+          "weightGrams": 5,
           "ingredient": "ginger",
           "preparation": "finely grated",
           "scalable": true,
@@ -66,9 +67,9 @@
         },
         {
           "id": "garlic",
-          "quantity": 6.667,
+          "quantity": 5,
           "countLabel": "garlic clove",
-          "weightGrams": 20,
+          "weightGrams": 15,
           "ingredient": "garlic",
           "preparation": "finely chopped",
           "scalable": true,
@@ -76,7 +77,7 @@
         },
         {
           "id": "oil",
-          "quantity": 2.667,
+          "quantity": 2,
           "unit": "tablespoon",
           "ingredient": "oil",
           "scalable": true,
@@ -84,9 +85,11 @@
         },
         {
           "id": "salt",
-          "displayText": "Salt, as required",
+          "quantity": 1.25,
+          "unit": "teaspoon",
           "ingredient": "salt",
-          "scalable": false
+          "scalable": true,
+          "roundingType": "exact"
         }
       ]
     },
@@ -95,7 +98,7 @@
       "items": [
         {
           "id": "mustard-seeds",
-          "quantity": 1.333,
+          "quantity": 1,
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
@@ -103,7 +106,7 @@
         },
         {
           "id": "cumin-seeds",
-          "quantity": 1.333,
+          "quantity": 1,
           "unit": "teaspoon",
           "ingredient": "cumin seeds",
           "scalable": true,
@@ -111,7 +114,7 @@
         },
         {
           "id": "turmeric",
-          "quantity": 0.667,
+          "quantity": 0.5,
           "unit": "teaspoon",
           "ingredient": "turmeric powder",
           "scalable": true,
@@ -119,7 +122,7 @@
         },
         {
           "id": "red-chilli-powder",
-          "quantity": 1.333,
+          "quantity": 1,
           "unit": "teaspoon",
           "ingredient": "red chilli powder",
           "scalable": true,
@@ -127,7 +130,7 @@
         },
         {
           "id": "garam-masala",
-          "quantity": 1.333,
+          "quantity": 1,
           "unit": "teaspoon",
           "ingredient": "garam masala",
           "scalable": true,
@@ -135,9 +138,9 @@
         },
         {
           "id": "lemon",
-          "quantity": 1.333,
+          "quantity": 1,
           "countLabel": "small lemon",
-          "weightGrams": 80,
+          "weightGrams": 60,
           "ingredient": "lemon",
           "scalable": true,
           "roundingType": "small-whole"
@@ -224,8 +227,10 @@
     "Serve hot with onion-cucumber raita, plain curd or papad."
   ],
   "notes": [
-    "This is the initial website version and can be replaced with the fully finalized chat version after review.",
-    "This recipe uses 1 rice cup as the canonical scaling base. Standard cup equivalents are calculated for display.",
-    "Whole-produce counts use practical kitchen rounding, while gram values remain the precise scaled target."
+    "This finalized version uses 1 rice cup as the canonical scaling base.",
+    "Standard cup equivalents are calculated automatically for rice and rice-cooking water.",
+    "Whole-produce counts use practical kitchen rounding, while gram values remain the precise scaled target.",
+    "Salt is structured as a scalable measured ingredient, but can still be adjusted after cooking if needed.",
+    "Add lemon only after opening the cooker and fluffing the rice."
   ]
 }
