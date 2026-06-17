@@ -38,7 +38,7 @@ shukudu-kitchen/
 - `theme.css`: light and dark theme tokens and dark component overrides
 - `theme-toggle-fix.css`: theme-control placement, sizing, spacing, and theme-specific surfaces
 - `style.css`: shared site layout and Cooking Mode styling
-- `scripts/validate-recipes.js`: recipe JSON validation and schema guardrails
+- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, and schema guardrails
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
 ## Page Loading
@@ -99,11 +99,33 @@ Each recipe is stored independently under:
 data/recipes/<slug>.json
 ```
 
+The recipe slug is the stable identity used across the recipe index, JSON file, URL, and recipe page. The file name must match the slug exactly:
+
+```text
+data/recipes/<slug>.json
+```
+
+`data/recipe-index.json` is the lightweight homepage source. It must list every recipe file and keep `name`, `category`, and `summary` synchronized with the recipe JSON.
+
 Scalable recipes use structured ingredient objects, stable IDs, recipe-level scaling metadata, and shared ingredient references across Ingredients, Preparation, Cooking Method, and Cooking Mode.
 
 Ingredient groups must use `section` and `items`. Legacy `category` is not allowed inside ingredient groups.
 
 Measured water used in cooking steps should be stored as a structured ingredient and referenced through `ingredientIds` instead of being hard-coded in step text.
+
+Preparation and cooking steps support two shapes:
+
+```json
+{ "text": "Plain instruction." }
+```
+
+```json
+{ "lead": "Add:", "ingredientIds": ["ingredient-id"], "after": "Cook briefly." }
+```
+
+Structured ingredient steps must use `lead` and `ingredientIds` together.
+
+Recipe metadata under `details` must include non-empty `Cuisine`, `Meal Type`, and `Status`. `servingSuggestions` and `notes` must be arrays of non-empty strings when present.
 
 ## Scaling Flow
 
@@ -172,6 +194,7 @@ The workflow uses:
 
 The workflow runs automatically on pushes that affect:
 
+- `data/recipe-index.json`
 - `data/recipes/**`
 - `scripts/validate-recipes.js`
 - `.github/workflows/validate-recipes.yml`
@@ -181,8 +204,19 @@ Validator guardrails include:
 - JSON parse validation
 - required top-level fields
 - array validation for `ingredients`, `preparation`, and `cookingMethod`
+- recipe-index array validation
+- required recipe-index fields: `name`, `slug`, `category`, and `summary`
+- duplicate recipe-index slug rejection
+- recipe-index to recipe-file cross-checks
+- every recipe JSON listed in `data/recipe-index.json`
+- index `name`, `category`, and `summary` synchronized with recipe JSON
+- slug format validation using `^[a-z0-9]+(-[a-z0-9]+)*$`
+- slug to file-name validation using `<slug>.json`
 - duplicate ingredient ID detection
 - missing ingredient reference detection
+- cooking-step structure validation for plain text and structured ingredient steps
+- details metadata validation for `Cuisine`, `Meal Type`, and `Status`
+- `servingSuggestions` and `notes` array validation
 - quantity-input scaling metadata validation
 - exact `baseIngredient` to ingredient ID matching
 - standard quantity options validation
@@ -190,6 +224,8 @@ Validator guardrails include:
 - legacy ingredient-group `category` rejection
 - `tsp` / `tbsp` rejection in favour of `teaspoon` / `tablespoon`
 - structured measured-water enforcement
+
+The validator is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
 
 ## Browser Storage
 
@@ -211,7 +247,7 @@ shukudu-theme
 ## Maintenance Rules
 
 - Keep one recipe per JSON file.
-- Keep the recipe index lightweight.
+- Keep the recipe index lightweight and synchronized with recipe files.
 - Keep scaling logic in `recipe-scaling.js`.
 - Keep exact quantity styling in `recipe-scaling.css`.
 - Keep theme behaviour in `theme.js`.
