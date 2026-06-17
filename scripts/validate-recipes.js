@@ -66,6 +66,29 @@ function validateTopLevel(recipe, errors) {
   if (!Array.isArray(recipe.cookingMethod)) addError(errors, 'cookingMethod must be an array');
 }
 
+function validateIngredientGroups(recipe, errors) {
+  if (!Array.isArray(recipe.ingredients)) return;
+
+  recipe.ingredients.forEach((group, groupIndex) => {
+    if (!group || typeof group !== 'object' || Array.isArray(group)) {
+      addError(errors, `ingredients[${groupIndex}] must be an object with section and items`);
+      return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(group, 'category')) {
+      addError(errors, `ingredients[${groupIndex}] uses legacy "category"; use "section"`);
+    }
+
+    if (!group.section || typeof group.section !== 'string') {
+      addError(errors, `ingredients[${groupIndex}] requires a section heading`);
+    }
+
+    if (!Array.isArray(group.items)) {
+      addError(errors, `ingredients[${groupIndex}] requires an items array`);
+    }
+  });
+}
+
 function validateQuantityScaling(recipe, ingredientInfo, errors) {
   const scaling = recipe.scaling;
   if (!scaling || scaling.inputMode !== 'quantity') return;
@@ -150,6 +173,7 @@ function validateRecipe(fileName) {
 
   if (recipe) {
     validateTopLevel(recipe, errors);
+    validateIngredientGroups(recipe, errors);
     const ingredientInfo = collectIngredientIds(recipe, errors);
     validateQuantityScaling(recipe, ingredientInfo, errors);
     validateIngredientUnits(recipe, errors);
