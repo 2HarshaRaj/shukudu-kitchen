@@ -33,17 +33,18 @@
 
 @media (max-width: 760px) {
   .brand-lockup {
+    flex-direction: column;
     gap: 14px;
   }
 
   .site-header-brand-icon {
-    margin-top: 39px;
+    margin-top: 0;
   }
 
   .brand-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
   }
 
   .recipe-brand-link .brand-icon {
