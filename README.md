@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.9.1`
+`v1.10.1`
 
 ## Overview
 
@@ -20,6 +20,8 @@ Recipes are adapted to match real kitchen use, including:
 - structured preparation and cooking steps
 - mobile-friendly Cooking Mode
 - saved light and dark themes for comfortable kitchen use
+- installable Progressive Web App support
+- app-style branding and dynamic browser theme-color handling
 
 ## Main Features
 
@@ -41,6 +43,10 @@ Recipes are adapted to match real kitchen use, including:
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
+- PWA manifest with standalone display mode
+- App icons, favicons, and Apple touch icon support
+- Brand icon on the homepage and recipe pages
+- Dynamic theme-color updates for Android/PWA status bar integration
 
 ## Project Structure
 
@@ -50,6 +56,7 @@ shukudu-kitchen/
 │  ├─ recipe-index.json
 │  └─ recipes/
 ├─ docs/
+├─ icons/
 ├─ scripts/
 │  └─ validate-recipes.js
 ├─ .github/
@@ -57,6 +64,7 @@ shukudu-kitchen/
 │     └─ validate-recipes.yml
 ├─ index.html
 ├─ recipe.html
+├─ manifest.webmanifest
 ├─ script.js
 ├─ recipe.js
 ├─ recipe-scaling.js
@@ -64,6 +72,7 @@ shukudu-kitchen/
 ├─ theme.js
 ├─ theme.css
 ├─ theme-toggle-fix.css
+├─ brand.css
 ├─ style.css
 └─ CHANGELOG.md
 ```
@@ -153,6 +162,23 @@ New recipes and recipe updates should pass validation before being committed. Im
 - Cooking Mode inherits the active theme and does not show a separate toggle.
 - Desktop controls use a stable fixed width so the button does not resize between `Dark` and `Light`.
 - Mobile controls use a fixed circular icon button.
+- `theme.js` updates the browser `theme-color` metadata so supported Android browsers and installed PWAs can visually blend the status bar with the current page and theme.
+
+## PWA and App Branding
+
+Shukudu Kitchen includes basic Progressive Web App support with:
+
+- `manifest.webmanifest`
+- installable app metadata
+- Android and desktop install support
+- standalone display mode
+- app icons in the `icons/` folder
+- Apple touch icon and favicon metadata
+- dynamic theme-color handling for better Android/PWA integration
+
+The homepage uses the app icon as part of the main brand header. On mobile, the icon stacks above the title so the heading keeps full width. Recipe pages use a smaller icon beside the back navigation to keep the cooking view focused.
+
+Offline support is not yet enabled. A future Service Worker can add offline recipe access once the core site structure and recipe model are stable.
 
 ## Documentation
 
