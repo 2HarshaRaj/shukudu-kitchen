@@ -6,7 +6,7 @@
   "scope": "/shukudu-kitchen/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#D97706",
+  "theme_color": "#4B241C",
   "icons": [
     {
       "src": "icons/icon-192.png",
