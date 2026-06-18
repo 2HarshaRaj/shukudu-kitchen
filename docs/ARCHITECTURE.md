@@ -8,6 +8,7 @@ shukudu-kitchen/
 |  |- recipe-index.json
 |  `- recipes/
 |- docs/
+|- icons/
 |- scripts/
 |  `- validate-recipes.js
 |- .github/
@@ -15,6 +16,7 @@ shukudu-kitchen/
 |     `- validate-recipes.yml
 |- index.html
 |- recipe.html
+|- manifest.webmanifest
 |- script.js
 |- recipe.js
 |- recipe-scaling.js
@@ -22,22 +24,26 @@ shukudu-kitchen/
 |- theme.js
 |- theme.css
 |- theme-toggle-fix.css
+|- brand.css
 |- style.css
 `- CHANGELOG.md
 ```
 
 ## Main Responsibilities
 
-- `index.html`: homepage layout and homepage theme-control host
-- `recipe.html`: recipe-page shell, recipe top bar, and recipe theme-control host
+- `index.html`: homepage layout, homepage theme-control host, PWA metadata, and brand header structure
+- `recipe.html`: recipe-page shell, recipe top bar, PWA metadata, and recipe theme-control host
+- `manifest.webmanifest`: installable app metadata, app name, start URL, display mode, theme color, and app icons
 - `script.js`: homepage search, filters, and recipe cards
 - `recipe.js`: recipe rendering, ingredient checklist, and Cooking Mode
 - `recipe-scaling.js`: recipe scaling, exact quantity input, overrides, and formatting
 - `recipe-scaling.css`: scaling-control layout and responsive styling
-- `theme.js`: theme selection, saved preference, and toggle behaviour
+- `theme.js`: theme selection, saved preference, toggle behaviour, and dynamic browser theme-color updates
 - `theme.css`: light and dark theme tokens and dark component overrides
 - `theme-toggle-fix.css`: theme-control placement, sizing, spacing, and theme-specific surfaces
+- `brand.css`: brand icon layout, homepage responsive branding, and recipe back-link icon sizing
 - `style.css`: shared site layout and Cooking Mode styling
+- `icons/`: install icons, favicons, and Apple touch icon assets
 - `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, and schema guardrails
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
@@ -48,6 +54,7 @@ Homepage:
 ```text
 index.html
 -> style.css
+-> brand.css
 -> theme.css
 -> theme-toggle-fix.css
 -> theme.js
@@ -60,6 +67,7 @@ Recipe page:
 ```text
 recipe.html
 -> style.css
+-> brand.css
 -> recipe-scaling.css
 -> theme.css
 -> theme-toggle-fix.css
@@ -70,6 +78,48 @@ recipe.html
 ```
 
 `recipe.js` must load before `recipe-scaling.js`.
+
+## PWA Architecture
+
+Shukudu Kitchen includes a Progressive Web App foundation through `manifest.webmanifest` and page-level metadata.
+
+The manifest defines:
+
+- app name: `Shukudu Kitchen`
+- short name: `Shukudu Kitchen`
+- start URL: `/shukudu-kitchen/`
+- scope: `/shukudu-kitchen/`
+- display mode: `standalone`
+- background color
+- default theme color
+- 192 px and 512 px install icons
+
+Both `index.html` and `recipe.html` include:
+
+- manifest link
+- theme-color metadata
+- Apple touch icon link
+- favicon links
+
+The PWA foundation currently supports installability and app-style launch behaviour. Offline support is intentionally deferred until a future Service Worker phase.
+
+## Branding Architecture
+
+Brand icon layout is handled through `brand.css`.
+
+Homepage:
+
+- desktop keeps the app icon beside the title block
+- mobile stacks the app icon above the title block so the heading keeps full width
+- icon asset: `icons/icon-192.png`
+
+Recipe page:
+
+- the app icon appears as a small visual marker beside `Back to recipes`
+- the icon is intentionally smaller than the homepage icon so it does not compete with the recipe title
+- icon asset: `icons/icon-192.png`
+
+Favicons and install icons are stored under `icons/`.
 
 ## Theme Architecture
 
@@ -90,6 +140,13 @@ Theme controls are placed in the page layout rather than floating over the page:
 Desktop controls use a fixed 92 px width so the button does not resize between labels. Mobile controls use a fixed 44 px circular icon-only button.
 
 Light mode uses a light button surface. Dark mode uses a dark button surface.
+
+`theme.js` also updates the browser `theme-color` metadata when the user changes theme. This allows supported Android browsers and installed PWAs to visually blend the status bar with the current page and selected theme.
+
+Theme-color behaviour:
+
+- homepage: uses the warm brand/header colour in both light and dark mode
+- recipe page: uses the light page background in light mode and the dark page background in dark mode
 
 ## Recipe Data Architecture
 
@@ -253,8 +310,11 @@ shukudu-theme
 - Keep theme behaviour in `theme.js`.
 - Keep dark theme styling in `theme.css`.
 - Keep theme-control layout rules in `theme-toggle-fix.css`.
+- Keep brand icon layout rules in `brand.css`.
+- Keep PWA metadata in `manifest.webmanifest`, `index.html`, and `recipe.html` synchronized.
 - Keep validation rules in `scripts/validate-recipes.js`.
 - Run `node scripts/validate-recipes.js` after recipe data changes.
 - Test light and dark themes on homepage, recipe pages, and Cooking Mode.
 - Test desktop and mobile theme controls.
+- Test installability and app icon behaviour after PWA metadata changes.
 - Update the changelog and visible versions for releases.
