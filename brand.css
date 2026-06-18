@@ -1,7 +1,11 @@
 .brand-lockup {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 18px;
+}
+
+.site-header-brand-icon {
+  margin-top: 47px;
 }
 
 .brand-icon {
@@ -16,21 +20,24 @@
 .recipe-brand-link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 22px;
 }
 
 .recipe-brand-link .brand-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  box-shadow: 0 8px 18px rgba(46, 34, 24, 0.14);
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(46, 34, 24, 0.12);
 }
 
 @media (max-width: 760px) {
   .brand-lockup {
-    align-items: flex-start;
     gap: 14px;
+  }
+
+  .site-header-brand-icon {
+    margin-top: 39px;
   }
 
   .brand-icon {
@@ -40,8 +47,8 @@
   }
 
   .recipe-brand-link .brand-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
   }
 }
