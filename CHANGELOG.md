@@ -12,6 +12,35 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.10.1 - 2026-06-19
+
+### Added
+
+- Progressive Web App manifest through `manifest.webmanifest`
+- Installable app support with standalone display mode
+- App icon metadata for 192 px and 512 px install icons
+- Apple touch icon and favicon metadata
+- Brand icon in the homepage header
+- Brand icon in recipe page back navigation
+- Dedicated brand styling through `brand.css`
+- Dynamic browser theme-color handling in `theme.js`
+
+### Changed
+
+- PWA short name standardized to `Shukudu Kitchen`
+- Homepage browser/PWA theme color aligned with the warm header branding
+- Recipe page status bar color now follows the selected light or dark theme
+- Homepage mobile branding now stacks the app icon above the title
+- Recipe page brand icon reduced for a cleaner cooking-focused layout
+- Website version updated to `v1.10.1`
+
+### Improved
+
+- Installed app experience on supported browsers
+- Android/PWA status bar integration
+- Visual consistency between the app icon, homepage, recipe page, and installed PWA
+- Foundation for future offline support through a Service Worker
+
 ## 1.9.1 - 2026-06-17
 
 ### Added
