@@ -7,6 +7,34 @@
 
   root.dataset.theme = initialTheme;
 
+  function isRecipePage() {
+    return document.body?.classList.contains("recipe-page-body") || window.location.pathname.endsWith("recipe.html");
+  }
+
+  function getThemeColor() {
+    const isDark = root.dataset.theme === "dark";
+
+    if (isRecipePage()) {
+      return isDark ? "#151210" : "#F7F3EC";
+    }
+
+    return "#4B241C";
+  }
+
+  function updateThemeColor() {
+    let meta = document.querySelector('meta[name="theme-color"]');
+
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "theme-color";
+      document.head.appendChild(meta);
+    }
+
+    meta.setAttribute("content", getThemeColor());
+  }
+
+  updateThemeColor();
+
   function updateToggle(button) {
     const isDark = root.dataset.theme === "dark";
     button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
@@ -29,6 +57,7 @@
     button.addEventListener("click", () => {
       root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
       localStorage.setItem(storageKey, root.dataset.theme);
+      updateThemeColor();
       updateToggle(button);
     });
 
