@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.12.5`
+`v1.13.0`
 
 ## Overview
 
@@ -19,6 +19,7 @@ Recipes are adapted to match real kitchen use, including:
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
 - mobile-friendly Cooking Mode
+- optional Cooking Mode screen wake-lock support
 - saved light and dark themes for comfortable kitchen use
 - installable Progressive Web App support
 - app-style branding and dynamic browser theme-color handling
@@ -30,9 +31,11 @@ Recipes are adapted to match real kitchen use, including:
 - Ingredient checklists with saved progress
 - Sticky section navigation
 - Cooking Mode with step tracking
+- Optional screen wake-lock control inside Cooking Mode
 - Scalable ingredients with per-recipe persistence
 - Recipe-aware scale controls
 - Rice-cup-first display for rice recipes
+- Compact rice preset labels in scale controls, while current quantities remain fully descriptive
 - Generic multiplier display for suitable non-rice recipes
 - Exact base-ingredient quantity input for supported recipes
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
@@ -46,6 +49,9 @@ Recipes are adapted to match real kitchen use, including:
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
+- SVG-style utility icons for theme toggle, wake-lock, and Cooking Mode close controls
+- Polished native category dropdown closed-state styling
+- Consistent button hover and active-state styling across light and dark modes
 - PWA manifest with standalone display mode
 - App icons, favicons, and Apple touch icon support
 - Brand icon on the homepage and recipe pages
@@ -75,6 +81,8 @@ shukudu-kitchen/
 ├─ recipe.js
 ├─ recipe-scaling.js
 ├─ recipe-scaling.css
+├─ wake-lock.js
+├─ wake-lock.css
 ├─ theme.js
 ├─ theme.css
 ├─ theme-toggle-fix.css
@@ -117,10 +125,33 @@ Example display:
 
 Rice recipes must keep `scaling.baseUnit` as `riceCup`. Rice and water ingredients use `unit: "rice cup"` when present.
 
-Rice recipes may show rice quantities in the scale controls. Suitable non-rice recipes may use generic multiplier controls or exact base-ingredient quantity input.
+Rice recipes may show rice quantities in the scale controls. Preset buttons may use compact `cup/cups` labels to reduce layout width, while the current selected value remains fully descriptive as `rice cup/rice cups`.
+
+Suitable non-rice recipes may use generic multiplier controls or exact base-ingredient quantity input.
 
 For exact quantity input, the engine calculates:
 
 ```text
 selected scale = entered quantity ÷ base quantity
 ```
+
+## Cooking Mode Wake Lock
+
+Cooking Mode includes an optional screen wake-lock control for active cooking.
+
+The wake-lock control:
+
+- is user initiated
+- appears only inside Cooking Mode
+- requests the browser Screen Wake Lock API when supported
+- releases the wake lock when Cooking Mode closes
+- gracefully shows an unsupported message when the browser does not support wake lock
+- may be released by the browser or operating system
+- can re-request wake lock when the page becomes visible again if the user had enabled it
+
+## UI Principles
+
+- Primary actions and confirmed states may use accent fill and soft shadows.
+- Utility controls are quiet by default and use subtle hover feedback.
+- Scale option buttons use borders and inset active styling rather than drop shadows to avoid clipped shadow artifacts in scrollable rows.
+- Native controls may be polished with CSS while preserving browser accessibility and behavior.
