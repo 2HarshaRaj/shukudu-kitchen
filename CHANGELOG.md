@@ -12,6 +12,37 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.13.0 - 2026-06-19
+
+### Added
+
+- Optional Cooking Mode screen wake-lock support through `wake-lock.js` and `wake-lock.css`
+- Wake-lock control inside Cooking Mode
+- Wake-lock status text below the Cooking Mode title
+- SVG-style wake-lock icon
+- SVG-style theme toggle icons
+- SVG-style Cooking Mode close icon
+- Custom SVG chevron for the native category dropdown closed state
+
+### Changed
+
+- Shortened rice scale preset labels from `rice cup/rice cups` to compact `cup/cups` button labels while keeping the current selected value fully descriptive
+- Improved scale-control desktop flow and prevented left-side clipping in scrollable preset rows
+- Removed clipped drop-shadow styling from active scale preset buttons and switched to inset active styling
+- Aligned wake-lock and close buttons to the same 42 px control size
+- Improved Cooking Mode utility button consistency across light and dark modes
+- Improved dark-mode hover styling for the Mark Complete button
+- Polished native category dropdown arrow placement and focus styling
+- Updated README, Architecture, Feature Roadmap, and Base Ingredient Scaling docs to reflect the v1.13.0 Cooking Mode and UI polish release
+
+### Improved
+
+- Cooking Mode usability during active cooking
+- Consistent icon rendering across Android, iPhone, Chrome, Safari, and desktop browsers
+- Light/dark button-state consistency
+- Mobile and zoomed-desktop control alignment
+- Scale-control readability for rice recipes and quantity-input recipes
+
 ## 1.12.5 - 2026-06-19
 
 ### Added
