@@ -47,7 +47,7 @@ shukudu-kitchen/
 - `style.css`: shared site layout and Cooking Mode styling
 - `icons/`: install icons, favicons, and Apple touch icon assets
 - `data/validation/non-linear-ingredients.json`: config list of ingredients that require recipe-specific non-linear scaling overrides when scalable
-- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, scaling, non-linear override, and schema guardrails
+- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, scaling, non-linear override, scaling-mode consistency, and schema guardrails
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
 ## Page Loading
@@ -262,7 +262,7 @@ The validator uses `data/validation/non-linear-ingredients.json` only as a data-
 
 `scalingMode` may be used when a recipe needs explicit intent:
 
-- `scalingMode: "linear"` skips automatic non-linear config matching
+- `scalingMode: "linear"` skips automatic non-linear config matching and must not define `scaleQuantities`
 - `scalingMode: "non-linear"` requires `scaleQuantities`
 - missing `scalingMode` uses config matching from `data/validation/non-linear-ingredients.json`
 
@@ -328,7 +328,8 @@ Validator guardrails include:
 - `tsp` / `tbsp` rejection in favour of `teaspoon` / `tablespoon`
 - structured measured-water enforcement
 - `data/validation/non-linear-ingredients.json` shape validation
-- `scalingMode` validation for `linear` and `non-linear`
+- `scalingMode` value validation for `linear` and `non-linear`
+- `scalingMode` consistency validation: `linear` must not define `scaleQuantities`, and `non-linear` must define `scaleQuantities`
 - `scaleQuantities` object validation against recipe-level `scaling.options`
 - required `scaleQuantities` validation for configured non-linear ingredients when `scalable: true`
 
