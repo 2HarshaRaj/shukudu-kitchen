@@ -27,14 +27,16 @@
           "unit": "rice cup",
           "ingredient": "sona masuri rice",
           "preparation": "rinsed and soaked for 20 minutes",
-          "scalable": true
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "water",
           "quantity": 2,
           "unit": "rice cup",
           "ingredient": "water",
-          "scalable": true
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "methi-bunches",
