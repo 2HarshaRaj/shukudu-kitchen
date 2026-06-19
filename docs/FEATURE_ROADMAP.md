@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.9.1
+## Current Version - v1.10.1
 
 Shukudu Kitchen currently includes:
 
@@ -24,6 +24,10 @@ Shukudu Kitchen currently includes:
 - saved light and dark themes
 - theme controls on the homepage and recipe page
 - theme inheritance inside Cooking Mode
+- installable PWA foundation
+- app icons, favicons, and Apple touch icon support
+- homepage and recipe-page app branding
+- dynamic browser theme-color handling
 
 ## Completed Features
 
@@ -85,6 +89,18 @@ Shukudu Kitchen currently includes:
 - Cooking Mode inherits the active theme
 - Footer text is centered
 
+### PWA Foundation and Branding - Completed
+
+- `manifest.webmanifest` added
+- Installable app metadata added
+- Standalone display mode added
+- App name and short name standardized to `Shukudu Kitchen`
+- App icons, favicons, and Apple touch icon metadata added
+- Homepage brand icon added
+- Recipe page brand icon added
+- Dedicated `brand.css` added
+- Theme-color metadata updates with the selected theme and page context
+
 ## Current Recipe Scaling Work
 
 Completed:
@@ -109,6 +125,7 @@ Completed:
 - Print view
 - Recipe images
 - Direct edit link
+- Offline recipe support
 - Schema versioning if the recipe model expands significantly
 
 ## Future Validation Enhancements
@@ -135,11 +152,13 @@ Once recipe images are introduced, possible validation checks include:
 8. Exact base-ingredient quantity scaling - completed
 9. Light and dark themes - completed
 10. Recipe validation framework - completed for current non-image model
-11. Serving adjustment
-12. Print view
-13. Recipe images and richer cards
-14. Optional standard-cup scaling input
-15. Image metadata validation after recipe images are introduced
+11. PWA foundation and app branding - completed
+12. Serving adjustment
+13. Print view
+14. Recipe images and richer cards
+15. Optional standard-cup scaling input
+16. Offline recipe support
+17. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
