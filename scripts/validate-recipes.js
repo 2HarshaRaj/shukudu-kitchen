@@ -281,6 +281,20 @@ function validateRoundingTypes(recipe, errors) {
   });
 }
 
+function validateDisplayTextSafety(recipe, errors) {
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+
+    const label = getIngredientLabel(item);
+    const hasDisplayText = Object.prototype.hasOwnProperty.call(item, 'displayText');
+    const hasQuantity = Object.prototype.hasOwnProperty.call(item, 'quantity');
+
+    if (hasDisplayText && !hasQuantity && item.scalable !== false) {
+      addError(errors, `Ingredient "${label}" uses displayText without quantity and must be scalable: false`);
+    }
+  });
+}
+
 function validateScaleQuantities(recipe, errors) {
   const options = recipe.scaling && Array.isArray(recipe.scaling.options)
     ? recipe.scaling.options.map(String)
@@ -457,6 +471,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     validateIngredientUnits(recipe, errors);
     validateScalingModes(recipe, errors);
     validateRoundingTypes(recipe, errors);
+    validateDisplayTextSafety(recipe, errors);
     validateScaleQuantities(recipe, errors);
     validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors);
     validateStepIngredientIds(recipe, ingredientInfo.ids, errors);
