@@ -1,0 +1,60 @@
+{
+  "description": "Ingredients that must not rely on blind linear scaling when scalable is true.",
+  "rules": [
+    {
+      "key": "green-chilli",
+      "match": ["green chilli", "green chillies"],
+      "reason": "Heat does not scale safely in direct proportion."
+    },
+    {
+      "key": "mustard-seeds",
+      "match": ["mustard seed", "mustard seeds"],
+      "reason": "Tempering quantities should stay practical across scales."
+    },
+    {
+      "key": "urad-dal",
+      "match": ["urad dal"],
+      "reason": "Tempering dal should use recipe-specific scaling."
+    },
+    {
+      "key": "chana-dal",
+      "match": ["chana dal"],
+      "reason": "Tempering dal should use recipe-specific scaling."
+    },
+    {
+      "key": "curry-leaves",
+      "match": ["curry leaf", "curry leaves"],
+      "reason": "Leaf count should stay practical across scales."
+    },
+    {
+      "key": "ginger",
+      "match": ["ginger", "ginger-garlic paste"],
+      "reason": "Strong aromatics should not blindly scale."
+    },
+    {
+      "key": "coriander-leaves",
+      "match": ["coriander leaf", "coriander leaves"],
+      "reason": "Finishing herbs should stay practical across scales."
+    },
+    {
+      "key": "lemon",
+      "match": ["lemon", "lemon juice"],
+      "reason": "Sourness should be controlled by recipe-specific scaling."
+    },
+    {
+      "key": "garam-masala",
+      "match": ["garam masala"],
+      "reason": "Strong spice blends should not blindly scale."
+    },
+    {
+      "key": "bisi-bele-bath-powder",
+      "match": ["bisi bele bath powder"],
+      "reason": "Strong spice blends should use recipe-specific scaling."
+    },
+    {
+      "key": "vangi-bath-powder",
+      "match": ["vangi bath powder"],
+      "reason": "Strong spice blends should use recipe-specific scaling."
+    }
+  ]
+}
