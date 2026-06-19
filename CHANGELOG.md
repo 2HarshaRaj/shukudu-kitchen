@@ -12,6 +12,23 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.12.5 - 2026-06-19
+
+### Added
+
+- Produce weight guidance validation through `scripts/validate-produce-weights.js`
+- GitHub Actions step for produce weight validation
+- README version bump to `v1.12.5`
+- Feature Roadmap version bump to `v1.12.5`
+
+### Validation Rules
+
+- Scalable ingredients with `countLabel` and `roundingType: "large-produce"` must define positive `weightGrams`
+
+### Improved
+
+- Keeps count-based produce scaling paired with practical gram guidance
+
 ## 1.12.4 - 2026-06-19
 
 ### Added
