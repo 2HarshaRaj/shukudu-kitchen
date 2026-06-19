@@ -25,22 +25,26 @@
 
     if (!wakeLockSupported) {
       button.disabled = true;
-      setText(button, 'Keep screen on unavailable');
+      setText(button, '☀');
       button.setAttribute('aria-pressed', 'false');
+      button.setAttribute('aria-label', 'Keep screen on unavailable');
+      button.title = 'Keep screen on unavailable';
       setText(status, 'This browser does not support keeping the screen awake.');
       return;
     }
 
     const isActive = Boolean(wakeLock);
-    const buttonText = isActive ? 'Screen stays on ✓' : 'Keep screen on';
+    const label = isActive ? 'Screen stays on' : 'Keep screen on';
     const statusText = message || (isActive
       ? 'Screen will stay on while Cooking Mode is open.'
-      : 'Tap to keep the screen awake while cooking.');
+      : 'Tap ☀ to keep the screen awake while cooking.');
 
     button.disabled = false;
-    setText(button, buttonText);
+    setText(button, '☀');
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
+    button.setAttribute('aria-label', label);
+    button.title = label;
     setText(status, statusText);
   }
 
@@ -54,7 +58,7 @@
         wakeLock = null;
         const { modal: currentModal } = getControls();
         if (wakeLockRequested && currentModal && !currentModal.hidden && document.visibilityState === 'visible') {
-          updateWakeLockUi('Screen wake lock was released by the browser. Tap again if needed.');
+          updateWakeLockUi('Screen wake lock was released by the browser. Tap ☀ again if needed.');
         } else {
           updateWakeLockUi();
         }
@@ -112,7 +116,9 @@
       button.className = 'wake-lock-button';
       button.type = 'button';
       button.setAttribute('aria-pressed', 'false');
-      button.textContent = 'Keep screen on';
+      button.setAttribute('aria-label', 'Keep screen on');
+      button.title = 'Keep screen on';
+      button.textContent = '☀';
       button.addEventListener('click', toggleWakeLock);
       topbar.insertBefore(button, exitButton);
     }
