@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.11.0`
+`v1.11.1`
 
 ## Overview
 
@@ -41,7 +41,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling, and non-linear override validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling, scalingMode, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -145,7 +145,7 @@ Validator checks:
 - Structured measured-water references
 - `servingSuggestions` and `notes` array validation
 - `scaleQuantities` key/value validation against recipe-level `scaling.options`
-- `scalingMode` validation for `linear` and `non-linear`
+- `scalingMode` value and consistency validation for `linear` and `non-linear`
 - Config-driven required non-linear override validation using `data/validation/non-linear-ingredients.json`
 
 Workflow:
