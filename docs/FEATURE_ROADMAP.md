@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.12.3
+## Current Version - v1.12.4
 
 Shukudu Kitchen currently includes:
 
@@ -23,6 +23,7 @@ Shukudu Kitchen currently includes:
 - required roundingType validation for scalable ingredients with quantities
 - displayText safety validation for display-text-only fixed ingredients
 - scaling base ingredient reference validation
+- rice recipe unit validation
 - recipe-specific non-linear scaling overrides
 - config-driven non-linear ingredient validation
 - non-linear config uniqueness validation
@@ -54,6 +55,7 @@ Shukudu Kitchen currently includes:
 - Exact base-ingredient quantity input
 - Arbitrary scale calculation and persistence
 - Scaling base ingredient reference validation
+- Rice recipe unit validation
 - Recipe-specific non-linear overrides through `scaleQuantities`
 - Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
 - Required `roundingType` authoring intent for scalable ingredients with quantities
@@ -86,6 +88,7 @@ Shukudu Kitchen currently includes:
 - Ingredient reference validation
 - Duplicate ingredient ID detection
 - Scaling base ingredient reference validation
+- Rice recipe unit validation
 - Quantity-input metadata validation
 - Ingredient-group structure validation
 - Unit standardization enforcement
@@ -111,6 +114,13 @@ Shukudu Kitchen currently includes:
 - `baseIngredient` must match exactly one ingredient ID in the same recipe
 - Quantity-input recipes still require `baseIngredient`
 - Options-based recipes are protected from broken base ingredient references
+
+### Rice Recipe Unit Validation - Completed
+
+- Rice-category recipes must use `scaling.baseUnit: "riceCup"` when scaling is enabled
+- Rice ingredient `id: "rice"` must use `unit: "rice cup"`
+- Water ingredient `id: "water"` must use `unit: "rice cup"`
+- The rule protects the rice-cup-first architecture from mixed unit drift
 
 ### Non-Linear Config Validation - Completed
 
