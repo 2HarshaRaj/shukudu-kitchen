@@ -62,6 +62,7 @@
 .scale-button {
   backface-visibility: hidden;
   transform: translateZ(0);
+  white-space: nowrap;
 }
 
 .scale-button:hover,
@@ -83,6 +84,29 @@ html[data-theme="dark"] .scale-button.is-active {
 html[data-theme="dark"] .scale-button.is-active {
   background: #2b2420;
   color: #fff;
+}
+
+@media (min-width: 761px) {
+  .scale-panel {
+    display: grid;
+    grid-template-columns: minmax(150px, 180px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .scale-summary {
+    min-width: 0;
+  }
+
+  .scale-current strong {
+    white-space: nowrap;
+  }
+
+  .scale-options {
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: end;
+    align-items: center;
+  }
 }
 
 @media (max-width: 760px) {
