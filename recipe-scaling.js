@@ -142,10 +142,11 @@ function formatQuantityInputValue(recipe, scale) {
   return `${formatted} ${pluralizeUnit(unit, quantity)}`;
 }
 
-function formatScaleChoice(recipe, scale) {
+function formatScaleChoice(recipe, scale, options = {}) {
   if (usesRiceCupScaling(recipe)) {
     const riceQuantity = Number(recipe.scaling.baseQuantity) * scale;
-    return `${formatCupQuantity(riceQuantity)} ${pluralizeUnit('rice cup', riceQuantity)}`;
+    const unit = options.compact ? 'cup' : 'rice cup';
+    return `${formatCupQuantity(riceQuantity)} ${pluralizeUnit(unit, riceQuantity)}`;
   }
 
   if (usesQuantityInput(recipe)) {
@@ -210,7 +211,7 @@ renderScaleControls = function renderRecipeAwareScaleControls(recipe, scale) {
                 type="button"
                 data-scale="${option}"
                 aria-pressed="${isNearlyEqual(option, scale)}"
-              >${escapeHtml(formatScaleChoice(recipe, option))}</button>
+              >${escapeHtml(formatScaleChoice(recipe, option, { compact: isRiceBased }))}</button>
             `)
             .join('')}
         </div>
@@ -242,43 +243,38 @@ initialiseScaleControls = function initialiseRecipeAwareScaleControls(recipe, sc
   const panel = recipeContent.querySelector('.scale-panel');
   if (!panel) return;
 
+  const options = panel.querySelector('.scale-options');
+  const quantityForm = panel.querySelector('.quantity-scale-form');
+  const quantityInput = panel.querySelector('#quantityScaleInput');
+
   panel.addEventListener('click', (event) => {
     const button = event.target.closest('button[data-scale]');
     if (!button) return;
 
+    const optionsScrollLeft = options?.scrollLeft || 0;
     const nextScale = Number.parseFloat(button.dataset.scale);
-    if (!Number.isFinite(nextScale) || nextScale <= 0 || isNearlyEqual(nextScale, scale)) return;
+    if (!Number.isFinite(nextScale)) return;
 
-    const options = panel.querySelector('.scale-options');
-    const scrollLeft = options?.scrollLeft || 0;
-
-    saveScale(recipe.slug, nextScale);
+    localStorage.setItem(getScaleKey(recipe.slug), String(nextScale));
     onScaleChange(nextScale);
-    restoreScaleOptionsScroll(scrollLeft);
+    restoreScaleOptionsScroll(optionsScrollLeft);
   });
 
-  const form = panel.querySelector('.quantity-scale-form');
-  if (!form || !usesQuantityInput(recipe)) return;
+  if (quantityForm && quantityInput && usesQuantityInput(recipe)) {
+    quantityForm.addEventListener('submit', (event) => {
+      event.preventDefault();
 
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = form.querySelector('.quantity-scale-input');
-    const desiredQuantity = Number.parseFloat(input?.value);
-    const baseQuantity = Number(recipe.scaling.baseQuantity);
+      const quantity = Number.parseFloat(quantityInput.value);
+      const baseQuantity = Number(recipe.scaling.baseQuantity);
+      const min = Number(recipe.scaling.inputMin || recipe.scaling.inputStep || 0);
+      if (!Number.isFinite(quantity) || !Number.isFinite(baseQuantity) || baseQuantity <= 0 || quantity <= 0) return;
+      if (Number.isFinite(min) && min > 0 && quantity < min) return;
 
-    if (!Number.isFinite(desiredQuantity) || desiredQuantity <= 0 || !Number.isFinite(baseQuantity) || baseQuantity <= 0) {
-      input?.focus();
-      return;
-    }
-
-    const nextScale = Number((desiredQuantity / baseQuantity).toFixed(6));
-    if (isNearlyEqual(nextScale, scale)) return;
-
-    const options = panel.querySelector('.scale-options');
-    const scrollLeft = options?.scrollLeft || 0;
-
-    saveScale(recipe.slug, nextScale);
-    onScaleChange(nextScale);
-    restoreScaleOptionsScroll(scrollLeft);
-  });
+      const optionsScrollLeft = options?.scrollLeft || 0;
+      const nextScale = quantity / baseQuantity;
+      localStorage.setItem(getScaleKey(recipe.slug), String(nextScale));
+      onScaleChange(nextScale);
+      restoreScaleOptionsScroll(optionsScrollLeft);
+    });
+  }
 };
