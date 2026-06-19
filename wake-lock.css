@@ -1,17 +1,23 @@
 .wake-lock-button {
-  min-height: 42px;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
   margin-left: auto;
   margin-right: 12px;
-  padding: 9px 14px;
+  padding: 0;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--accent-soft);
   color: var(--accent);
   font: inherit;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 800;
   line-height: 1;
   cursor: pointer;
   box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
 }
 
@@ -62,10 +68,11 @@
 
 @media (max-width: 760px) {
   .wake-lock-button {
-    min-height: 40px;
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
     margin-right: 10px;
-    padding: 8px 12px;
-    font-size: 0.88rem;
+    font-size: 1.05rem;
   }
 
   .wake-lock-status {
