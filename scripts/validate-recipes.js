@@ -71,6 +71,9 @@ function loadNonLinearRules(errors) {
     return [];
   }
 
+  const ruleKeys = new Map();
+  const matchValues = new Map();
+
   config.rules.forEach((rule, index) => {
     if (!rule || typeof rule !== 'object' || Array.isArray(rule)) {
       addError(errors, `non-linear-ingredients.rules[${index}] must be an object`);
@@ -79,6 +82,15 @@ function loadNonLinearRules(errors) {
 
     if (!isNonEmptyString(rule.key)) {
       addError(errors, `non-linear-ingredients.rules[${index}] requires a non-empty key`);
+    } else {
+      if (!isValidSlug(rule.key)) {
+        addError(errors, `non-linear-ingredients.rules[${index}].key "${rule.key}" must use slug format`);
+      }
+
+      if (ruleKeys.has(rule.key)) {
+        addError(errors, `Duplicate non-linear ingredient key "${rule.key}"`);
+      }
+      ruleKeys.set(rule.key, index);
     }
 
     if (!Array.isArray(rule.match) || rule.match.length === 0) {
@@ -87,7 +99,14 @@ function loadNonLinearRules(errors) {
       rule.match.forEach((term, termIndex) => {
         if (!isNonEmptyString(term)) {
           addError(errors, `non-linear-ingredients.rules[${index}].match[${termIndex}] must be a non-empty string`);
+          return;
         }
+
+        const normalizedTerm = normalizeText(term);
+        if (matchValues.has(normalizedTerm)) {
+          addError(errors, `Duplicate non-linear ingredient match value "${term}"`);
+        }
+        matchValues.set(normalizedTerm, { ruleIndex: index, termIndex });
       });
     }
 
