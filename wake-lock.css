@@ -23,9 +23,8 @@
 }
 
 .wake-lock-button::before {
-  content: "SUN";
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
+  content: "☀";
+  font-size: 1rem;
   line-height: 1;
 }
 
@@ -83,7 +82,7 @@
   }
 
   .wake-lock-button::before {
-    font-size: 0.58rem;
+    font-size: 0.95rem;
   }
 
   .wake-lock-status {
