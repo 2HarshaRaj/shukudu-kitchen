@@ -245,8 +245,20 @@ function validateScalingModes(recipe, errors) {
     if (!item || typeof item !== 'object' || typeof item === 'string') return;
     if (item.scalingMode == null) return;
 
+    const label = getIngredientLabel(item);
+    const hasScaleQuantities = Object.prototype.hasOwnProperty.call(item, 'scaleQuantities');
+
     if (!VALID_SCALING_MODES.has(item.scalingMode)) {
-      addError(errors, `Ingredient "${getIngredientLabel(item)}" has invalid scalingMode "${item.scalingMode}"; use "linear" or "non-linear"`);
+      addError(errors, `Ingredient "${label}" has invalid scalingMode "${item.scalingMode}"; use "linear" or "non-linear"`);
+      return;
+    }
+
+    if (item.scalingMode === 'linear' && hasScaleQuantities) {
+      addError(errors, `Ingredient "${label}" has scalingMode "linear" but also defines scaleQuantities`);
+    }
+
+    if (item.scalingMode === 'non-linear' && !hasScaleQuantities) {
+      addError(errors, `Ingredient "${label}" has scalingMode "non-linear" but is missing scaleQuantities`);
     }
   });
 }
