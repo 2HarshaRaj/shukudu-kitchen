@@ -12,6 +12,32 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.12.0 - 2026-06-19
+
+### Added
+
+- Required `roundingType` validation for scalable ingredients with quantities
+- Allowed `roundingType` value validation for `exact`, `small-whole`, and `large-produce`
+- Documentation for the required rounding behavior standard
+- README version bump to `v1.12.0`
+- Feature Roadmap version bump to `v1.12.0`
+
+### Validation Rules
+
+- Ingredients with `scalable: true` and `quantity` must define `roundingType`
+- `roundingType`, when present, must be `exact`, `small-whole`, or `large-produce`
+
+### Changed
+
+- Added missing `roundingType` values to existing recipe JSON files
+- Updated README, Architecture, Recipe Data Standard, and Feature Roadmap documentation
+
+### Improved
+
+- Future scalable ingredients must explicitly declare display and rounding intent
+- Prevents unclear scaled output such as awkward decimals for count-based ingredients
+- Keeps recipe rendering easier to reason about as the recipe library grows
+
 ## 1.11.1 - 2026-06-19
 
 ### Added
