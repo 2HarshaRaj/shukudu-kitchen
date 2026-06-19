@@ -37,7 +37,7 @@
     const label = isActive ? 'Screen stays on' : 'Keep screen on';
     const statusText = message || (isActive
       ? 'Screen will stay on while Cooking Mode is open.'
-      : 'Tap the sun icon to keep the screen awake while cooking.');
+      : 'Tap ☀ to keep the screen awake while cooking.');
 
     button.disabled = false;
     setText(button, label);
@@ -58,7 +58,7 @@
         wakeLock = null;
         const { modal: currentModal } = getControls();
         if (wakeLockRequested && currentModal && !currentModal.hidden && document.visibilityState === 'visible') {
-          updateWakeLockUi('Screen wake lock was released by the browser. Tap the sun icon again if needed.');
+          updateWakeLockUi('Screen wake lock was released by the browser. Tap ☀ again if needed.');
         } else {
           updateWakeLockUi();
         }
