@@ -40,5 +40,11 @@
     "slug": "bisi-bele-bath",
     "category": "Rice",
     "summary": "Karnataka-style bisi bele bath made with rice, toor dal, mixed vegetables, bisi bele bath powder and tamarind."
+  },
+  {
+    "name": "Menthya Rice Bath",
+    "slug": "menthya-rice-bath",
+    "category": "Rice",
+    "summary": "Karnataka-style methi rice bath made with sona masuri rice, fresh methi leaves, whole spices, tamarind and jaggery."
   }
 ]
