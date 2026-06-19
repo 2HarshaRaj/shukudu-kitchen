@@ -7,6 +7,7 @@ on:
       - 'data/recipes/**'
       - 'data/validation/**'
       - 'scripts/validate-recipes.js'
+      - 'scripts/validate-produce-weights.js'
       - '.github/workflows/validate-recipes.yml'
 
 jobs:
@@ -24,3 +25,6 @@ jobs:
 
       - name: Validate recipes
         run: node scripts/validate-recipes.js
+
+      - name: Validate produce weights
+        run: node scripts/validate-produce-weights.js
