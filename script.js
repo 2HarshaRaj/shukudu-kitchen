@@ -38,6 +38,29 @@ function normalizeSearchText(value = '') {
   return String(value).trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
+function escapeHtml(value = '') {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function formatNumber(value) {
+  if (!Number.isFinite(value)) return '';
+
+  return new Intl.NumberFormat('en-IN', {
+    maximumFractionDigits: 2
+  }).format(value);
+}
+
+function pluralizeUnit(unit, quantity) {
+  if (quantity === 1) return unit;
+  if (unit === 'rice cup') return 'rice cups';
+  return unit;
+}
+
 function getIngredientItems(recipe) {
   if (!Array.isArray(recipe.ingredients)) return [];
 
@@ -86,15 +109,53 @@ function buildRecipeSearchText(indexRecipe, fullRecipe = null) {
     .join(' ');
 }
 
+function buildBaseCue(recipe) {
+  const scaling = recipe.scaling;
+  if (!scaling || !scaling.enabled || !scaling.baseQuantity || !scaling.baseUnit) return '';
+
+  if (scaling.baseUnit === 'riceCup') {
+    const quantity = Number(scaling.baseQuantity);
+    return `${formatNumber(quantity)} ${pluralizeUnit('rice cup', quantity)} base`;
+  }
+
+  if (scaling.baseUnit === 'g') {
+    return `${formatNumber(Number(scaling.baseQuantity))} g base`;
+  }
+
+  return `${formatNumber(Number(scaling.baseQuantity))} ${scaling.baseUnit} base`;
+}
+
+function buildRecipeChips(recipe) {
+  const chips = [
+    recipe.details?.Cuisine,
+    recipe.details?.['Meal Type'],
+    buildBaseCue(recipe)
+  ];
+
+  return chips.filter(Boolean);
+}
+
+function renderRecipeChips(recipe) {
+  const chips = buildRecipeChips(recipe);
+  if (!chips.length) return '';
+
+  return `
+    <div class="recipe-card-meta" aria-label="Recipe details">
+      ${chips.map((chip) => `<span>${escapeHtml(chip)}</span>`).join('')}
+    </div>
+  `;
+}
+
 function renderRecipes(items) {
   recipeGrid.innerHTML = items
     .map(
       (recipe) => `
         <a class="recipe-card" href="recipe.html?slug=${encodeURIComponent(recipe.slug)}">
           <div>
-            <span class="tag">${recipe.category}</span>
-            <h3>${recipe.name}</h3>
-            <p>${recipe.summary}</p>
+            <span class="tag">${escapeHtml(recipe.category)}</span>
+            <h3>${escapeHtml(recipe.name)}</h3>
+            <p>${escapeHtml(recipe.summary)}</p>
+            ${renderRecipeChips(recipe)}
           </div>
           <span class="card-link">Open recipe →</span>
         </a>
@@ -128,6 +189,8 @@ async function loadFullRecipe(indexRecipe) {
     const fullRecipe = await response.json();
     return {
       ...indexRecipe,
+      details: fullRecipe.details,
+      scaling: fullRecipe.scaling,
       searchText: buildRecipeSearchText(indexRecipe, fullRecipe)
     };
   } catch {
@@ -163,7 +226,7 @@ async function loadRecipes() {
     recipes = await Promise.all(recipes.map(loadFullRecipe));
     applyFilters();
   } catch (error) {
-    recipeGrid.innerHTML = `<div class="error-box">${error.message}</div>`;
+    recipeGrid.innerHTML = `<div class="error-box">${escapeHtml(error.message)}</div>`;
   }
 }
 
