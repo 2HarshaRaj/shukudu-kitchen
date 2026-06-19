@@ -25,7 +25,7 @@
 
     if (!wakeLockSupported) {
       button.disabled = true;
-      setText(button, '*');
+      setText(button, 'Keep screen on unavailable');
       button.setAttribute('aria-pressed', 'false');
       button.setAttribute('aria-label', 'Keep screen on unavailable');
       button.title = 'Keep screen on unavailable';
@@ -40,7 +40,7 @@
       : 'Tap the sun icon to keep the screen awake while cooking.');
 
     button.disabled = false;
-    setText(button, '*');
+    setText(button, label);
     button.classList.toggle('is-active', isActive);
     button.setAttribute('aria-pressed', String(isActive));
     button.setAttribute('aria-label', label);
@@ -118,7 +118,7 @@
       button.setAttribute('aria-pressed', 'false');
       button.setAttribute('aria-label', 'Keep screen on');
       button.title = 'Keep screen on';
-      button.textContent = '*';
+      button.textContent = 'Keep screen on';
       button.addEventListener('click', toggleWakeLock);
       topbar.insertBefore(button, exitButton);
     }
