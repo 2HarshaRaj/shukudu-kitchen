@@ -3,7 +3,7 @@
   height: 42px;
   flex: 0 0 42px;
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: 8px;
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -82,14 +82,14 @@
 
 @media (max-width: 760px) {
   .wake-lock-button {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
     margin-right: 8px;
   }
 
   .wake-lock-button::before {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .wake-lock-status {
