@@ -18,6 +18,7 @@ Recipes are adapted to match real kitchen use, including:
 - practical ingredient rounding
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
+- structured recipe relationships for meal types, dish types, and future pairings
 - mobile-friendly Cooking Mode
 - optional Cooking Mode screen wake-lock support
 - saved light and dark themes for comfortable kitchen use
@@ -40,6 +41,7 @@ Recipes are adapted to match real kitchen use, including:
 - Exact base-ingredient quantity input for supported recipes
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
+- Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Recipe-specific non-linear scaling overrides
 - Explicit rounding behavior for scalable ingredients
 - Config-driven non-linear ingredient validation
@@ -67,6 +69,7 @@ shukudu-kitchen/
 │  └─ validation/
 │     └─ non-linear-ingredients.json
 ├─ docs/
+│  └─ RECIPE_RELATIONSHIPS.md
 ├─ icons/
 ├─ scripts/
 │  ├─ validate-recipes.js
@@ -102,11 +105,37 @@ shukudu-kitchen/
 - Each recipe file must be listed in `data/recipe-index.json`.
 - Index `name`, `category`, and `summary` values must match the recipe JSON.
 - Scalable recipes use structured ingredient objects with stable IDs.
+- Recipe relationship data is documented in `docs/RECIPE_RELATIONSHIPS.md` and separates human-facing `details` from structured `relationships`.
 - Preparation and cooking steps reference those ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
 - Scaling metadata identifies the base ingredient, base quantity, base unit, and whether the recipe uses preset options or exact quantity input.
 - Scaling `baseIngredient`, when present, must match exactly one ingredient ID in the recipe.
 - Display-text-only ingredients must be non-scalable so fixed/manual ingredient wording does not accidentally enter the scaling engine.
 - Scalable count-based ingredients with `roundingType: "large-produce"` must include positive `weightGrams` for practical gram guidance.
+
+## Recipe Relationships
+
+Recipe relationships separate display metadata from discovery data.
+
+```text
+details = human-facing recipe metadata
+relationships = structured discovery, filtering, and pairing metadata
+```
+
+Target structure:
+
+```json
+"details": {
+  "Cuisine": "South Indian",
+  "Status": "Finalized"
+},
+"relationships": {
+  "mealTypes": ["Lunch", "Dinner"],
+  "dishTypes": ["Rice"],
+  "goesWellWith": []
+}
+```
+
+This model supports richer homepage cards, future meal/dish filters, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or migrating relationship fields.
 
 ## Recipe Scaling
 
