@@ -107,6 +107,15 @@
   color: var(--accent);
 }
 
+[data-theme="dark"] .complete-step-button:hover:not(.is-complete),
+[data-theme="dark"] .complete-step-button:focus-visible:not(.is-complete) {
+  border-color: var(--accent);
+  background: #332925;
+  color: var(--accent);
+  box-shadow: 0 8px 18px rgba(224, 122, 104, 0.16);
+  outline: none;
+}
+
 @media (max-width: 760px) {
   .site-header-row,
   .recipe-topbar {
