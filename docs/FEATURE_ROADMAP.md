@@ -32,6 +32,7 @@ Shukudu Kitchen currently includes:
 - non-linear config uniqueness validation
 - scalingMode consistency validation
 - completed automated recipe validation for the current non-image recipe model
+- documented recipe relationships model for meal types, dish types, and future pairings
 - saved light and dark themes
 - SVG-style theme, wake-lock, and close icons
 - polished native select closed-state styling
@@ -50,6 +51,14 @@ Shukudu Kitchen currently includes:
 - Validation reference data under `data/validation/`
 - Stable ingredient IDs and structured steps
 - Shared quantities across Ingredients, Preparation, Cooking Method, and Cooking Mode
+
+### Recipe Relationships - Design Documented
+
+- Dedicated relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
+- Clear separation between `details` and `relationships`
+- Target structure defined for `mealTypes`, `dishTypes`, and `goesWellWith`
+- Migration direction defined for moving `Meal Type` out of display-only `details`
+- Homepage card usage and future recipe-pairing direction documented
 
 ### Recipe Scaling - Completed for Supported Recipes
 
@@ -186,13 +195,28 @@ Completed:
 - Rice recipe unit validation added for rice-cup-first recipes
 - Large-produce weightGrams validation added for count-based produce guidance
 
+## Current Recipe Relationship Work
+
+Planned migration:
+
+- Add `relationships` to every recipe JSON
+- Move meal type data from `details["Meal Type"]` into `relationships.mealTypes`
+- Add `relationships.dishTypes` for structured discovery
+- Add empty `relationships.goesWellWith` arrays as the future curated pairing field
+- Update homepage cards to prefer relationship data
+- Update recipe page details rendering to display meal types from relationships
+- Update validation to enforce the relationship model
+- Remove `details["Meal Type"]` after migration is complete
+
 ## Future Features
 
 - Richer recipe cards on the homepage
-  - Possible direction: show recipe type, base quantity, cooking status, and a small useful cue such as “rice-cup-first”, “exact quantity”, or “Cooking Mode ready”.
+  - Show useful structured chips such as Cuisine, meal types, dish types, and base quantity.
+  - Prefer relationship data from `relationships` over display-only details.
   - Keep the cards clean; avoid turning the homepage into a dense dashboard.
 - “Goes well with” recipe links on recipe pages
-  - Possible direction: show a small curated set of pairings rather than every technically matching recipe.
+  - Use `relationships.goesWellWith` as the future curated pairing field.
+  - Show a small curated set of pairings rather than every technically matching recipe.
   - For broad recipes like rasam, avoid linking every palya; prefer curated pairings such as 3-5 best matches, rotating categories, or a future rule-based pairing model.
 - Standard cup scaling input
 - Serving adjustment
@@ -208,6 +232,8 @@ Image metadata validation is deferred because images are not part of the current
 
 Possible non-image validation enhancements:
 
+- recipe relationship validation for `relationships.mealTypes`, `relationships.dishTypes`, and `relationships.goesWellWith`
+- details migration validation to prevent long-term use of `details["Meal Type"]`
 - clean up validator structure
 - duplicate ingredient name warning or error
 - preparation coverage checks
@@ -244,18 +270,22 @@ Once recipe images are introduced, possible validation checks include:
 19. Large-produce weightGrams validation - completed
 20. Cooking Mode wake lock - completed
 21. SVG utility icon and button-state polish - completed
-22. Clean up validator structure
-23. Duplicate ingredient name warning or error
-24. Preparation coverage validation
-25. Cooking method ingredient coverage validation
-26. Richer homepage recipe cards
-27. Goes-well-with recipe pairings
-28. Serving adjustment
-29. Print view
-30. Recipe images and richer cards
-31. Optional standard-cup scaling input
-32. Offline recipe support
-33. Image metadata validation after recipe images are introduced
+22. Recipe relationships design document - completed
+23. Add relationship fields to recipes
+24. Update homepage cards to use relationship data
+25. Update recipe details rendering for relationship-based meal types
+26. Add recipe relationship validation
+27. Clean up validator structure
+28. Duplicate ingredient name warning or error
+29. Preparation coverage validation
+30. Cooking method ingredient coverage validation
+31. Goes-well-with recipe pairings
+32. Serving adjustment
+33. Print view
+34. Recipe images and richer cards
+35. Optional standard-cup scaling input
+36. Offline recipe support
+37. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
