@@ -12,6 +12,24 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.12.3 - 2026-06-19
+
+### Added
+
+- Non-linear ingredient config uniqueness validation in `scripts/validate-recipes.js`
+- README version bump to `v1.12.3`
+
+### Validation Rules
+
+- `non-linear-ingredients.rules[].key` must use slug format
+- Duplicate non-linear config keys are rejected
+- Duplicate non-linear config match values are rejected after normalization
+
+### Improved
+
+- Keeps `data/validation/non-linear-ingredients.json` clean as the config grows
+- Prevents duplicate match terms from silently creating unclear non-linear scaling behaviour
+
 ## 1.12.2 - 2026-06-19
 
 ### Added
