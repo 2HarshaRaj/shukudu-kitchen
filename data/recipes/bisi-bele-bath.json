@@ -89,7 +89,15 @@
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
         },
         {
           "id": "dried-red-chilli",
@@ -121,7 +129,15 @@
           "countLabel": "curry leaf",
           "ingredient": "curry leaves",
           "scalable": true,
-          "roundingType": "small-whole"
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 8,
+            "0.75": 10,
+            "1": 12,
+            "1.25": 12,
+            "1.5": 15,
+            "2": 18
+          }
         },
         {
           "id": "vegetable-turmeric",
@@ -153,7 +169,15 @@
           "unit": "tablespoon",
           "ingredient": "bisi bele bath powder",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 2.5,
+            "0.75": 3.25,
+            "1": 4,
+            "1.25": 4.5,
+            "1.5": 5.5,
+            "2": 7
+          }
         },
         {
           "id": "red-chilli-powder",
@@ -192,7 +216,15 @@
           "ingredient": "ginger",
           "preparation": "thinly sliced",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
         },
         {
           "id": "onion",
@@ -280,7 +312,15 @@
           "ingredient": "coriander leaves",
           "preparation": "finely chopped",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 2.5,
+            "2": 3
+          }
         }
       ]
     },
