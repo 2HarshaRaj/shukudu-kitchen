@@ -12,6 +12,34 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.11.0 - 2026-06-19
+
+### Added
+
+- Config-driven non-linear ingredient validation using `data/validation/non-linear-ingredients.json`
+- `scalingMode` authoring intent for `linear` and `non-linear` ingredients
+- Complete `scaleQuantities` validation against recipe-level `scaling.options`
+- Workflow trigger for `data/validation/**`
+- Documentation for the non-linear scaling architecture and authoring rules
+
+### Validation Rules
+
+- Non-linear config rules must have valid keys and match terms
+- `scalingMode`, when present, must be `linear` or `non-linear`
+- `scaleQuantities` must be complete, numeric, non-negative, and use only recipe-supported scale keys
+- Scalable ingredients matching the non-linear config must define `scaleQuantities` unless marked with `scalingMode: "linear"`
+
+### Changed
+
+- Added required non-linear overrides across existing affected recipes
+- Updated README to `v1.11.0`
+- Updated Architecture, Recipe Data Standard, and Feature Roadmap documentation
+
+### Improved
+
+- Future recipes now fail validation when configured non-linear ingredients are accidentally left on blind linear scaling
+- Non-linear scaling rules are easier to maintain as the recipe library grows
+
 ## 1.10.1 - 2026-06-19
 
 ### Added
