@@ -211,7 +211,7 @@ Do not use the legacy `category` field inside ingredient groups.
 ### Required Fields
 
 - `id`: stable unique identifier
-- `quantity`: numeric base quantity at 1×
+- `quantity`: numeric base quantity at 1×, except display-text-only fixed ingredients
 - `ingredient`: ingredient name
 - `scalable`: whether the quantity changes with scale
 
@@ -225,6 +225,27 @@ Use `unit` for measured ingredients such as cups, teaspoons, tablespoons, grams,
 - `roundingType`
 - `displayText`
 - `scaleQuantities`
+- `scalingMode`
+
+### `scalingMode`
+
+`scalingMode` is optional and documents the author's scaling intent for an ingredient.
+
+Allowed values:
+
+```text
+linear
+non-linear
+```
+
+Rules:
+
+- `scalingMode: "linear"` means the ingredient intentionally uses normal proportional scaling.
+- `scalingMode: "linear"` skips automatic matching from `data/validation/non-linear-ingredients.json`.
+- `scalingMode: "non-linear"` means the ingredient must define `scaleQuantities`.
+- missing `scalingMode` means the validator checks `data/validation/non-linear-ingredients.json` to decide whether `scaleQuantities` is required.
+
+Use `scalingMode` only when it improves clarity or avoids a false positive. Most ingredients can omit it.
 
 ### Unit Names
 
@@ -403,64 +424,108 @@ Examples:
 - green chilli
 - mustard seeds
 - urad dal
+- chana dal
 - curry leaves
 - ginger
-- coriander
+- coriander leaves
 - lemon
-- strong spice blends
+- strong spice blends and masala powders
 
-For these ingredients, use the optional recipe-specific `scaleQuantities` field.
+For these ingredients, use recipe-specific `scaleQuantities`.
+
+The validator also checks `data/validation/non-linear-ingredients.json`. If a scalable ingredient matches that config and does not have `scalingMode: "linear"`, it must define `scaleQuantities`.
 
 Example:
 
 ```json
 {
-  "id": "green-chilli",
-  "quantity": 1,
-  "countLabel": "small green chilli",
-  "ingredient": "green chilli",
-  "preparation": "finely chopped",
+  "id": "green-chillies",
+  "quantity": 3,
+  "countLabel": "green chilli",
+  "ingredient": "green chillies",
+  "preparation": "slit",
   "scalable": true,
   "roundingType": "small-whole",
   "scaleQuantities": {
-    "1": 1,
-    "2": 1,
-    "3": 1.5,
-    "4": 2,
-    "5": 2
+    "0.5": 2,
+    "0.75": 2,
+    "1": 3,
+    "1.25": 3,
+    "1.5": 4,
+    "2": 5
   }
 }
 ```
 
 ### `scaleQuantities` Rules
 
-- `scaleQuantities` is optional
-- keys represent values from the recipe-level `scaling.options` array
-- values represent the ingredient quantity to display and use at that scale
-- when present, define an override for every supported scale option
-- if a key is missing, the renderer falls back to normal linear scaling
-- avoid partial override maps unless that fallback is intentional
-- keep overrides recipe-specific rather than using a global runtime master list
+- `scaleQuantities` keys must exactly match the values from the recipe-level `scaling.options` array.
+- Every recipe-level scale option must have a matching `scaleQuantities` key.
+- Extra `scaleQuantities` keys are not allowed.
+- Values must be numeric.
+- Values must not be negative.
+- `0` is allowed when an ingredient is intentionally skipped at a scale.
+- `scaleQuantities` may be used only on ingredients where `scalable: true`.
+- Missing override keys are validator errors, not silent renderer fallbacks.
 
 Example relationship:
 
 ```json
 "scaling": {
-  "options": [1, 2, 3, 4, 5]
+  "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
 }
 ```
 
 ```json
 "scaleQuantities": {
-  "1": 1,
-  "2": 1,
-  "3": 1.5,
-  "4": 2,
-  "5": 2
+  "0.5": 2,
+  "0.75": 2,
+  "1": 3,
+  "1.25": 3,
+  "1.5": 4,
+  "2": 5
 }
 ```
 
-At selected scale `4`, the renderer uses `scaleQuantities["4"]`.
+At selected scale `1.5`, the renderer uses `scaleQuantities["1.5"]`.
+
+### Non-Linear Ingredient Config
+
+The maintained source list of known non-linear ingredients is:
+
+```text
+data/validation/non-linear-ingredients.json
+```
+
+The config contains matching rules such as:
+
+```json
+{
+  "key": "green-chilli",
+  "match": ["green chilli", "green chillies"],
+  "reason": "Heat does not scale safely in direct proportion."
+}
+```
+
+The validator checks these ingredient fields against the config:
+
+- `id`
+- `ingredient`
+- `countLabel`
+- `displayText`
+
+Validation behavior:
+
+```text
+scalingMode: "linear"
+    -> skip config matching
+
+scalingMode: "non-linear"
+    -> scaleQuantities required
+
+missing scalingMode
+    -> use config matching
+```
 
 ### Why Overrides Are Recipe-Specific
 
@@ -471,8 +536,9 @@ For example:
 - green chilli in curd rice should remain mild
 - green chilli in chutney may increase more aggressively
 - mustard in palya may scale differently from mustard in curd rice
+- lemon in tomato bath may scale differently from lemon in vangi bath
 
-Shared ingredient references may provide authoring guidance, but recipe-specific JSON controls runtime quantities.
+Shared ingredient references and validation config provide authoring guidance, but recipe-specific JSON controls runtime quantities.
 
 ## Non-Scalable Ingredients
 
@@ -611,7 +677,7 @@ For non-rice preset recipes, the UI shows generic multipliers such as:
 
 Recipe data is validated by `scripts/validate-recipes.js` and the GitHub Actions workflow `.github/workflows/validate-recipes.yml`.
 
-The workflow runs on push when recipe index data, recipe files, the validator script, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
+The workflow runs on push when recipe index data, recipe files, validation config, the validator script, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
 
 ```text
 node scripts/validate-recipes.js
@@ -650,6 +716,11 @@ Validator rules:
 - ingredient groups must not use legacy `category`
 - abbreviated ingredient units are not allowed: use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
 - hard-coded measured water in cooking method text should be avoided; measured water should be a structured ingredient and referenced through `ingredientIds`
+- `data/validation/non-linear-ingredients.json` must exist and contain valid rule objects
+- `scalingMode`, when present, must be `linear` or `non-linear`
+- `scaleQuantities` must be a complete object whose keys exactly match recipe-level `scaling.options`
+- `scaleQuantities` values must be numeric and not negative; `0` is allowed
+- configured non-linear ingredients with `scalable: true` must define `scaleQuantities` unless `scalingMode: "linear"` is set
 
 New recipe creation must satisfy these validator rules before pushing. The validator is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
 
@@ -693,21 +764,24 @@ Before adding or updating a recipe:
 17. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
 18. Add measured water as a structured ingredient and reference it from steps
 19. Mark each ingredient scalable or non-scalable
-20. Use `scaleQuantities` where linear scaling is unsuitable
-21. Ensure override keys cover every recipe scale option
-22. Use stable ingredient IDs
-23. Reference ingredient IDs from Preparation and Cooking Method
-24. Keep every preparation and cooking step as an object
-25. Use `{ "text": "..." }` for plain-text steps
-26. Use `lead` and `ingredientIds` together for structured ingredient steps
-27. Keep one cooking action per step
-28. Ensure `details` includes `Cuisine`, `Meal Type`, and `Status`
-29. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
-30. Run `node scripts/validate-recipes.js`
-31. Test the normal recipe page and Cooking Mode
-32. Test every supported preset and arbitrary quantity scale
-33. Verify cup, spoon, inch, produce, gram, and override formatting
-34. Verify the entered quantity and arbitrary scale restore correctly after reload
+20. Check whether each scalable ingredient matches `data/validation/non-linear-ingredients.json`
+21. Use `scaleQuantities` where linear scaling is unsuitable or required by validation config
+22. Ensure `scaleQuantities` keys cover every recipe scale option and no extra options
+23. Use `scalingMode: "linear"` only when intentionally overriding a config match
+24. Use `scalingMode: "non-linear"` only when explicitly requiring `scaleQuantities`
+25. Use stable ingredient IDs
+26. Reference ingredient IDs from Preparation and Cooking Method
+27. Keep every preparation and cooking step as an object
+28. Use `{ "text": "..." }` for plain-text steps
+29. Use `lead` and `ingredientIds` together for structured ingredient steps
+30. Keep one cooking action per step
+31. Ensure `details` includes `Cuisine`, `Meal Type`, and `Status`
+32. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
+33. Run `node scripts/validate-recipes.js`
+34. Test the normal recipe page and Cooking Mode
+35. Test every supported preset and arbitrary quantity scale
+36. Verify cup, spoon, inch, produce, gram, and override formatting
+37. Verify the entered quantity and arbitrary scale restore correctly after reload
 
 ## Required References
 
