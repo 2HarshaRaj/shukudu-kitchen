@@ -12,6 +12,24 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.12.4 - 2026-06-19
+
+### Added
+
+- Rice recipe unit validation in `scripts/validate-recipes.js`
+- README version bump to `v1.12.4`
+- Feature Roadmap version bump to `v1.12.4`
+
+### Validation Rules
+
+- Rice-category recipes with scaling enabled must use `scaling.baseUnit: "riceCup"`
+- Rice ingredient `id: "rice"` must use `unit: "rice cup"`
+- Water ingredient `id: "water"` must use `unit: "rice cup"`
+
+### Improved
+
+- Keeps rice-cup-first scaling consistent across rice recipes
+
 ## 1.12.3 - 2026-06-19
 
 ### Added
