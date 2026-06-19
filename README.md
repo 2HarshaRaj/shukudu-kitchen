@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.12.2`
+`v1.12.3`
 
 ## Overview
 
@@ -42,7 +42,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling base ingredient, scalingMode, roundingType, displayText safety, and non-linear override validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling base ingredient, scalingMode, roundingType, displayText safety, non-linear config uniqueness, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -88,6 +88,7 @@ shukudu-kitchen/
 - Full recipes are stored individually under `data/recipes/`.
 - Validation reference data is stored under `data/validation/`.
 - `data/validation/non-linear-ingredients.json` lists ingredient patterns that require non-linear scale overrides when the ingredient is scalable.
+- Non-linear validation rule keys must use slug format, rule keys must be unique, and match terms must be unique.
 - Each recipe slug must match its file name exactly: `data/recipes/<slug>.json`.
 - Each recipe file must be listed in `data/recipe-index.json`.
 - Index `name`, `category`, and `summary` values must match the recipe JSON.
