@@ -24,7 +24,7 @@
 
 .wake-lock-button::before {
   content: "☀";
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1;
 }
 
@@ -75,10 +75,14 @@
 
 @media (max-width: 760px) {
   .wake-lock-button {
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
     margin-right: 8px;
+  }
+
+  .wake-lock-button::before {
+    font-size: 0.95rem;
   }
 
   .wake-lock-status {
