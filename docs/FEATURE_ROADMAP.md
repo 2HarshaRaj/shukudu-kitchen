@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.10.1
+## Current Version - v1.11.0
 
 Shukudu Kitchen currently includes:
 
@@ -20,6 +20,8 @@ Shukudu Kitchen currently includes:
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
 - practical ingredient rounding and gram guidance
+- recipe-specific non-linear scaling overrides
+- config-driven non-linear ingredient validation
 - completed automated recipe validation for the current non-image recipe model
 - saved light and dark themes
 - theme controls on the homepage and recipe page
@@ -35,6 +37,7 @@ Shukudu Kitchen currently includes:
 
 - One JSON file per recipe under `data/recipes/`
 - Lightweight homepage metadata in `data/recipe-index.json`
+- Validation reference data under `data/validation/`
 - Stable ingredient IDs and structured steps
 - Shared quantities across Ingredients, Preparation, Cooking Method, and Cooking Mode
 
@@ -45,7 +48,8 @@ Shukudu Kitchen currently includes:
 - Automatic standard cup equivalents
 - Exact base-ingredient quantity input
 - Arbitrary scale calculation and persistence
-- Recipe-specific non-linear overrides
+- Recipe-specific non-linear overrides through `scaleQuantities`
+- Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
 - Unit-aware formatting
 - Practical produce and small-whole rounding
 
@@ -56,8 +60,10 @@ Shukudu Kitchen currently includes:
 - Node.js 24 validation runtime
 - `scripts/validate-recipes.js`
 - `.github/workflows/validate-recipes.yml`
+- `data/validation/non-linear-ingredients.json`
 - Workflow trigger for `data/recipe-index.json`
 - Workflow trigger for `data/recipes/**`
+- Workflow trigger for `data/validation/**`
 - Workflow trigger for `scripts/validate-recipes.js`
 - Workflow trigger for `.github/workflows/validate-recipes.yml`
 - Required top-level recipe field validation
@@ -79,6 +85,19 @@ Shukudu Kitchen currently includes:
 - Details metadata validation for `Cuisine`, `Meal Type`, and `Status`
 - `servingSuggestions` validation
 - `notes` validation
+- `scalingMode` validation
+- `scaleQuantities` completeness validation against recipe-level scale options
+- Config-driven required non-linear override validation
+
+### Non-Linear Scaling Validation - Completed
+
+- Maintained non-linear ingredient config at `data/validation/non-linear-ingredients.json`
+- Validator fails scalable configured ingredients when `scaleQuantities` is missing
+- Validator accepts `scalingMode: "linear"` to intentionally skip config matching
+- Validator accepts `scalingMode: "non-linear"` to explicitly require `scaleQuantities`
+- Validator checks `scaleQuantities` keys against every recipe-level scale option
+- Validator rejects missing override keys, extra override keys, non-numeric values, and negative values
+- Existing recipes updated with required non-linear overrides
 
 ### Light and Dark Themes - Completed
 
@@ -116,6 +135,7 @@ Completed:
 - Beans Palya migrated to validator-compliant quantity-input schema
 - Balekai Palya migrated to validator-compliant quantity-input schema
 - Quantity-input mode adopted for suitable single-base-ingredient recipes
+- Non-linear override coverage added for configured ingredients across existing recipes
 
 ## Future Features
 
@@ -131,6 +151,14 @@ Completed:
 ## Future Validation Enhancements
 
 Image metadata validation is deferred because images are not part of the current recipe model yet.
+
+Possible non-image validation enhancements:
+
+- stricter `scalingMode` consistency checks
+- required `roundingType` for scalable measured ingredients
+- `displayText` safety checks
+- count-based produce weight guidance checks
+- ingredient coverage checks across Preparation and Cooking Method
 
 Once recipe images are introduced, possible validation checks include:
 
@@ -153,12 +181,13 @@ Once recipe images are introduced, possible validation checks include:
 9. Light and dark themes - completed
 10. Recipe validation framework - completed for current non-image model
 11. PWA foundation and app branding - completed
-12. Serving adjustment
-13. Print view
-14. Recipe images and richer cards
-15. Optional standard-cup scaling input
-16. Offline recipe support
-17. Image metadata validation after recipe images are introduced
+12. Non-linear ingredient validation - completed
+13. Serving adjustment
+14. Print view
+15. Recipe images and richer cards
+16. Optional standard-cup scaling input
+17. Offline recipe support
+18. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
