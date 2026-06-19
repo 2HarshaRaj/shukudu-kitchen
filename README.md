@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.12.3`
+`v1.12.4`
 
 ## Overview
 
@@ -42,7 +42,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling base ingredient, scalingMode, roundingType, displayText safety, non-linear config uniqueness, and non-linear override validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, non-linear config uniqueness, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -112,6 +112,8 @@ Example display:
 1 rice cup rice (1⅓ standard cups)
 2 rice cups water (2⅔ standard cups)
 ```
+
+Rice recipes must keep `scaling.baseUnit` as `riceCup`. Rice and water ingredients use `unit: "rice cup"` when present.
 
 Rice recipes may show rice quantities in the scale controls. Suitable non-rice recipes may use generic multiplier controls or exact base-ingredient quantity input.
 
