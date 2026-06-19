@@ -177,3 +177,88 @@ Shukudu Kitchen currently includes:
 ## Current Recipe Scaling Work
 
 Completed:
+
+- Tomato Bath migrated to a canonical 1 rice cup base
+- Vangi Bath migrated to the scalable schema
+- Curd Rice migrated to the scalable schema
+- Explicit rice scaling metadata
+- Recipe-aware scale controls
+- Exact quantity scaling architecture
+- Arbitrary scale persistence
+- Mixed-vegetable boundaries documented
+- Beans Palya migrated to validator-compliant quantity-input schema
+- Balekai Palya migrated to validator-compliant quantity-input schema
+- Quantity-input mode adopted for suitable single-base-ingredient recipes
+- Non-linear override coverage added for configured ingredients across existing recipes
+- RoundingType coverage added for scalable ingredients across existing recipes
+- DisplayText safety validation added for display-text-only fixed ingredients
+- Scaling base ingredient reference validation added for scaling-enabled recipes
+- Non-linear config uniqueness validation added for config rules
+- Rice recipe unit validation added for rice-cup-first recipes
+
+## Future Features
+
+- Standard cup scaling input
+- Serving adjustment
+- Improved recipe cards
+- Print view
+- Recipe images
+- Direct edit link
+- Offline recipe support
+- Schema versioning if the recipe model expands significantly
+
+## Future Validation Enhancements
+
+Image metadata validation is deferred because images are not part of the current recipe model yet.
+
+Possible non-image validation enhancements:
+
+- count-based produce weight guidance checks
+- duplicate ingredient name warning or error
+- preparation coverage checks
+- cooking method ingredient coverage checks
+
+Once recipe images are introduced, possible validation checks include:
+
+- image file exists
+- image path matches recipe slug
+- thumbnail exists
+- image format and dimensions are valid
+- recipe-index image references remain valid
+
+## Recommended Development Order
+
+1. Ingredient checklists - completed
+2. Sticky section navigation - completed
+3. Cooking Mode - completed
+4. Recipe-per-file architecture - completed
+5. Structured recipe steps - completed
+6. Ingredient scaling engine - completed for supported recipes
+7. Rice cup scaling base - completed
+8. Exact base-ingredient quantity scaling - completed
+9. Light and dark themes - completed
+10. Recipe validation framework - completed for current non-image model
+11. PWA foundation and app branding - completed
+12. Non-linear ingredient validation - completed
+13. ScalingMode consistency validation - completed
+14. RoundingType validation - completed
+15. DisplayText safety validation - completed
+16. Scaling base ingredient reference validation - completed
+17. Non-linear config uniqueness validation - completed
+18. Rice recipe unit validation - completed
+19. Count-based produce weight guidance validation
+20. Duplicate ingredient name warning or error
+21. Preparation coverage validation
+22. Cooking method ingredient coverage validation
+23. Serving adjustment
+24. Print view
+25. Recipe images and richer cards
+26. Optional standard-cup scaling input
+27. Offline recipe support
+28. Image metadata validation after recipe images are introduced
+
+## Development Principle
+
+Prioritize features that reduce friction while actively cooking.
+
+The site should remain simple to maintain, fast on mobile, easy to read in the kitchen, compatible with GitHub Pages, and free of unnecessary framework dependencies.
