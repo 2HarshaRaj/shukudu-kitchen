@@ -12,6 +12,24 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.12.2 - 2026-06-19
+
+### Added
+
+- Scaling base ingredient reference validation in `scripts/validate-recipes.js`
+- README version bump to `v1.12.2`
+- Feature Roadmap version bump to `v1.12.2`
+
+### Validation Rules
+
+- When `scaling.enabled` is `true` and `baseIngredient` is present, it must match exactly one ingredient ID in the recipe
+- Quantity-input recipes still require `baseIngredient`
+
+### Improved
+
+- Options-based recipes are now protected from broken scaling base references
+- Rice and non-rice scaling metadata is easier to validate consistently
+
 ## 1.12.1 - 2026-06-19
 
 ### Added
