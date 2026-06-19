@@ -63,7 +63,15 @@
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
         },
         {
           "id": "urad-dal",
@@ -71,7 +79,15 @@
           "unit": "teaspoon",
           "ingredient": "urad dal",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
         },
         {
           "id": "chana-dal",
@@ -79,7 +95,15 @@
           "unit": "teaspoon",
           "ingredient": "chana dal",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
         },
         {
           "id": "dry-red-chilli",
