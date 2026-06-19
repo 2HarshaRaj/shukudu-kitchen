@@ -1,0 +1,263 @@
+{
+  "name": "Menthya Rice Bath",
+  "slug": "menthya-rice-bath",
+  "category": "Rice",
+  "summary": "Karnataka-style methi rice bath made with sona masuri rice, fresh methi leaves, whole spices, tamarind and jaggery.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Meal Type": "Lunch / Dinner",
+    "Status": "Finalized"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Main Ingredients",
+      "items": [
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "sona masuri rice",
+          "preparation": "rinsed and soaked for 20 minutes",
+          "scalable": true
+        },
+        {
+          "id": "water",
+          "quantity": 2,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true
+        },
+        {
+          "id": "methi-bunches",
+          "quantity": 250,
+          "unit": "g",
+          "ingredient": "methi bunches",
+          "preparation": "before cleaning; use all leaves and tender upper stems",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 3,
+          "countLabel": "green chilli",
+          "weightGrams": 15,
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "ginger-garlic-paste",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "weightGrams": 15,
+          "ingredient": "ginger-garlic paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 5,
+          "ingredient": "coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Whole Spices",
+      "items": [
+        {
+          "id": "mustard-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cinnamon",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "cinnamon stick",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cloves",
+          "quantity": 3,
+          "countLabel": "clove",
+          "ingredient": "cloves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "bay-leaf",
+          "quantity": 1,
+          "countLabel": "bay leaf",
+          "ingredient": "bay leaf",
+          "scalable": true,
+          "roundingType": "small-whole"
+        }
+      ]
+    },
+    {
+      "section": "Powdered Spices and Balancing",
+      "items": [
+        {
+          "id": "turmeric",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tamarind-paste",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "tamarind paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "jaggery",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "jaggery",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Rinse and soak:",
+      "ingredientIds": ["rice"],
+      "after": "Soak for 20 minutes."
+    },
+    {
+      "lead": "Clean and prepare:",
+      "ingredientIds": ["methi-bunches"],
+      "after": "Separate leaves from the thick lower stems. Keep the tender upper stems, wash thoroughly 2–3 times and chop roughly."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": ["onion", "green-chillies", "coriander-leaves"]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat in a pressure cooker:",
+      "ingredientIds": ["oil"]
+    },
+    {
+      "lead": "Add whole spices:",
+      "ingredientIds": ["mustard-seeds", "cumin-seeds", "cinnamon", "cloves", "bay-leaf"],
+      "after": "Fry for 20–30 seconds until aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["onion", "green-chillies"],
+      "after": "Sauté for 4–5 minutes until the onion softens."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["ginger-garlic-paste"],
+      "after": "Sauté for 1 minute until the raw smell reduces."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["methi-bunches"],
+      "after": "Cook for 3–4 minutes until the leaves wilt and the raw methi smell reduces."
+    },
+    {
+      "lead": "Add powdered spices and balancing ingredients:",
+      "ingredientIds": ["turmeric", "garam-masala", "tamarind-paste", "jaggery", "salt"],
+      "after": "Mix well and cook for 1 minute."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["water"],
+      "after": "Bring to a boil."
+    },
+    {
+      "lead": "Drain and add:",
+      "ingredientIds": ["rice"],
+      "after": "Mix gently without breaking the grains."
+    },
+    {
+      "text": "Pressure cook for 2 whistles and allow natural pressure release. For induction cooking, build pressure, then cook at 100°C / 300 W for 10 minutes and allow natural pressure release."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": ["coriander-leaves"],
+      "after": "Fluff gently and mix after opening the cooker."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain curd, onion raita, potato chips, happala or a lemon wedge on the side."
+  ],
+  "notes": [
+    "This recipe uses 250 g methi bunches as the practical purchase quantity before cleaning.",
+    "After removing thick stems, 250 g methi bunches usually gives enough cleaned leaves and tender stems for 1 rice cup rice.",
+    "Use all leaves and only the tender upper stems; discard thick lower stems.",
+    "Jaggery balances the natural bitterness of methi without making the rice bath sweet.",
+    "Taste for salt after opening the cooker and adjust if needed."
+  ]
+}
