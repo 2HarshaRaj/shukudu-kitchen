@@ -89,7 +89,7 @@ html[data-theme="dark"] .scale-button.is-active {
 @media (min-width: 761px) {
   .scale-panel {
     display: grid;
-    grid-template-columns: minmax(150px, 180px) minmax(0, 1fr);
+    grid-template-columns: minmax(220px, max-content) minmax(0, 1fr);
     align-items: start;
   }
 
@@ -97,15 +97,25 @@ html[data-theme="dark"] .scale-button.is-active {
     min-width: 0;
   }
 
+  .scale-summary .eyebrow,
   .scale-current strong {
     white-space: nowrap;
   }
 
   .scale-options {
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
-    justify-content: end;
-    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .scale-options::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scale-button {
+    flex: 0 0 auto;
   }
 }
 
