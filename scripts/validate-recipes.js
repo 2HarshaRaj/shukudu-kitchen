@@ -4,9 +4,11 @@ const path = require('path');
 const ROOT = process.cwd();
 const RECIPES_DIR = path.join(ROOT, 'data', 'recipes');
 const RECIPE_INDEX_FILE = path.join(ROOT, 'data', 'recipe-index.json');
+const NON_LINEAR_RULES_FILE = path.join(ROOT, 'data', 'validation', 'non-linear-ingredients.json');
 const VALID_BASE_UNITS = new Set(['g', 'riceCup', 'cup']);
 const STANDARD_QUANTITY_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
+const VALID_SCALING_MODES = new Set(['linear', 'non-linear']);
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 let totalErrors = 0;
@@ -38,12 +40,62 @@ function isNonEmptyString(value) {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
+function normalizeText(value) {
+  return String(value || '').toLowerCase().trim();
+}
+
+function getIngredientLabel(item) {
+  return item.id || item.ingredient || 'unknown';
+}
+
 function walkIngredients(recipe, callback) {
   const groups = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
   groups.forEach((group, groupIndex) => {
     const items = Array.isArray(group.items) ? group.items : [];
     items.forEach((item, itemIndex) => callback(item, group, groupIndex, itemIndex));
   });
+}
+
+function loadNonLinearRules(errors) {
+  if (!fs.existsSync(NON_LINEAR_RULES_FILE)) {
+    addError(errors, 'Missing data/validation/non-linear-ingredients.json');
+    return [];
+  }
+
+  const config = readJson(NON_LINEAR_RULES_FILE, errors);
+  if (!config) return [];
+
+  if (!Array.isArray(config.rules)) {
+    addError(errors, 'non-linear-ingredients.json requires a rules array');
+    return [];
+  }
+
+  config.rules.forEach((rule, index) => {
+    if (!rule || typeof rule !== 'object' || Array.isArray(rule)) {
+      addError(errors, `non-linear-ingredients.rules[${index}] must be an object`);
+      return;
+    }
+
+    if (!isNonEmptyString(rule.key)) {
+      addError(errors, `non-linear-ingredients.rules[${index}] requires a non-empty key`);
+    }
+
+    if (!Array.isArray(rule.match) || rule.match.length === 0) {
+      addError(errors, `non-linear-ingredients.rules[${index}] requires a non-empty match array`);
+    } else {
+      rule.match.forEach((term, termIndex) => {
+        if (!isNonEmptyString(term)) {
+          addError(errors, `non-linear-ingredients.rules[${index}].match[${termIndex}] must be a non-empty string`);
+        }
+      });
+    }
+
+    if (rule.reason != null && !isNonEmptyString(rule.reason)) {
+      addError(errors, `non-linear-ingredients.rules[${index}].reason must be a non-empty string when present`);
+    }
+  });
+
+  return config.rules;
 }
 
 function collectIngredientIds(recipe, errors) {
@@ -183,7 +235,96 @@ function validateIngredientUnits(recipe, errors) {
   walkIngredients(recipe, (item) => {
     if (!item || typeof item !== 'object' || typeof item === 'string' || !item.unit) return;
     if (DISALLOWED_ABBREVIATED_UNITS.has(item.unit)) {
-      addError(errors, `Ingredient "${item.id || item.ingredient || 'unknown'}" uses abbreviated unit "${item.unit}"; use "teaspoon" or "tablespoon"`);
+      addError(errors, `Ingredient "${getIngredientLabel(item)}" uses abbreviated unit "${item.unit}"; use "teaspoon" or "tablespoon"`);
+    }
+  });
+}
+
+function validateScalingModes(recipe, errors) {
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+    if (item.scalingMode == null) return;
+
+    if (!VALID_SCALING_MODES.has(item.scalingMode)) {
+      addError(errors, `Ingredient "${getIngredientLabel(item)}" has invalid scalingMode "${item.scalingMode}"; use "linear" or "non-linear"`);
+    }
+  });
+}
+
+function validateScaleQuantities(recipe, errors) {
+  const options = recipe.scaling && Array.isArray(recipe.scaling.options)
+    ? recipe.scaling.options.map(String)
+    : [];
+
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+    if (!Object.prototype.hasOwnProperty.call(item, 'scaleQuantities')) return;
+
+    const label = getIngredientLabel(item);
+
+    if (item.scalable !== true) {
+      addError(errors, `Ingredient "${label}" has scaleQuantities but scalable is not true`);
+    }
+
+    if (options.length === 0) {
+      addError(errors, `Ingredient "${label}" has scaleQuantities but recipe has no scaling.options`);
+      return;
+    }
+
+    if (!item.scaleQuantities || typeof item.scaleQuantities !== 'object' || Array.isArray(item.scaleQuantities)) {
+      addError(errors, `Ingredient "${label}" scaleQuantities must be an object`);
+      return;
+    }
+
+    const actualKeys = Object.keys(item.scaleQuantities);
+
+    options.forEach((key) => {
+      if (!actualKeys.includes(key)) {
+        addError(errors, `Ingredient "${label}" scaleQuantities missing key "${key}" from scaling.options`);
+      }
+    });
+
+    actualKeys.forEach((key) => {
+      if (!options.includes(key)) {
+        addError(errors, `Ingredient "${label}" scaleQuantities has unsupported key "${key}"`);
+      }
+
+      const value = item.scaleQuantities[key];
+      if (!Number.isFinite(Number(value))) {
+        addError(errors, `Ingredient "${label}" scaleQuantities["${key}"] must be a number`);
+      } else if (Number(value) < 0) {
+        addError(errors, `Ingredient "${label}" scaleQuantities["${key}"] must not be negative`);
+      }
+    });
+  });
+}
+
+function ingredientMatchesRule(item, rule) {
+  const haystack = [
+    item.id,
+    item.ingredient,
+    item.countLabel,
+    item.displayText
+  ].map(normalizeText).join(' ');
+
+  return Array.isArray(rule.match) && rule.match.some((term) => {
+    return haystack.includes(normalizeText(term));
+  });
+}
+
+function validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors) {
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+    if (item.scalable !== true) return;
+    if (item.scalingMode === 'linear') return;
+
+    const label = getIngredientLabel(item);
+    const explicitNonLinear = item.scalingMode === 'non-linear';
+    const matchedRule = nonLinearRules.find((rule) => ingredientMatchesRule(item, rule));
+
+    if ((explicitNonLinear || matchedRule) && !Object.prototype.hasOwnProperty.call(item, 'scaleQuantities')) {
+      const reason = matchedRule && matchedRule.reason ? ` (${matchedRule.reason})` : '';
+      addError(errors, `Ingredient "${label}" appears to be non-linear and must define scaleQuantities${reason}`);
     }
   });
 }
@@ -268,7 +409,7 @@ function validateHardcodedWater(recipe, ingredientIds, errors) {
   });
 }
 
-function validateRecipe(fileName, recipeMap) {
+function validateRecipe(fileName, recipeMap, nonLinearRules) {
   const filePath = path.join(RECIPES_DIR, fileName);
   const errors = [];
   const recipe = readJson(filePath, errors);
@@ -284,6 +425,9 @@ function validateRecipe(fileName, recipeMap) {
     const ingredientInfo = collectIngredientIds(recipe, errors);
     validateQuantityScaling(recipe, ingredientInfo, errors);
     validateIngredientUnits(recipe, errors);
+    validateScalingModes(recipe, errors);
+    validateScaleQuantities(recipe, errors);
+    validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors);
     validateStepIngredientIds(recipe, ingredientInfo.ids, errors);
     validateHardcodedWater(recipe, ingredientInfo.ids, errors);
 
@@ -383,12 +527,19 @@ function main() {
     process.exit(1);
   }
 
+  const configErrors = [];
+  const nonLinearRules = loadNonLinearRules(configErrors);
+  if (configErrors.length) {
+    console.log('\ndata/validation/non-linear-ingredients.json');
+    configErrors.forEach((error) => console.log(`  ✗ ${error}`));
+  }
+
   const recipeFiles = fs.readdirSync(RECIPES_DIR)
     .filter((file) => file.endsWith('.json'))
     .sort();
 
   const recipeMap = new Map();
-  recipeFiles.forEach((fileName) => validateRecipe(fileName, recipeMap));
+  recipeFiles.forEach((fileName) => validateRecipe(fileName, recipeMap, nonLinearRules));
   validateRecipeIndex(recipeFiles, recipeMap);
 
   if (totalErrors > 0) {
