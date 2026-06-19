@@ -6,7 +6,9 @@
 shukudu-kitchen/
 |- data/
 |  |- recipe-index.json
-|  `- recipes/
+|  |- recipes/
+|  `- validation/
+|     `- non-linear-ingredients.json
 |- docs/
 |- icons/
 |- scripts/
@@ -44,7 +46,8 @@ shukudu-kitchen/
 - `brand.css`: brand icon layout, homepage responsive branding, and recipe back-link icon sizing
 - `style.css`: shared site layout and Cooking Mode styling
 - `icons/`: install icons, favicons, and Apple touch icon assets
-- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, and schema guardrails
+- `data/validation/non-linear-ingredients.json`: config list of ingredients that require recipe-specific non-linear scaling overrides when scalable
+- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, scaling, non-linear override, and schema guardrails
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
 ## Page Loading
@@ -164,6 +167,14 @@ data/recipes/<slug>.json
 
 `data/recipe-index.json` is the lightweight homepage source. It must list every recipe file and keep `name`, `category`, and `summary` synchronized with the recipe JSON.
 
+Validation reference data is stored under:
+
+```text
+data/validation/
+```
+
+`data/validation/non-linear-ingredients.json` is the source list for ingredients that should not rely on blind linear scaling when `scalable: true`.
+
 Scalable recipes use structured ingredient objects, stable IDs, recipe-level scaling metadata, and shared ingredient references across Ingredients, Preparation, Cooking Method, and Cooking Mode.
 
 Ingredient groups must use `section` and `items`. Legacy `category` is not allowed inside ingredient groups.
@@ -221,6 +232,40 @@ Quantity-input recipes must use standard preset options:
 
 For gram-based quantity recipes, scaling metadata uses `baseUnit: "g"`.
 
+## Non-Linear Scaling Architecture
+
+Most scalable ingredients use direct linear scaling.
+
+Some ingredients use recipe-specific `scaleQuantities` because taste, heat, sourness, aroma, or tempering balance does not scale cleanly in direct proportion.
+
+Examples include:
+
+- green chilli
+- mustard seeds
+- urad dal
+- chana dal
+- curry leaves
+- ginger
+- coriander leaves
+- lemon
+- strong masala powders
+
+Runtime scaling logic stays recipe-specific:
+
+```text
+selected scale
+-> if scaleQuantities has selected scale key, use override value
+-> otherwise use base quantity x selected scale
+```
+
+The validator uses `data/validation/non-linear-ingredients.json` only as a data-quality guardrail. It does not globally calculate runtime quantities. Recipe JSON remains the runtime source of truth for final displayed quantities.
+
+`scalingMode` may be used when a recipe needs explicit intent:
+
+- `scalingMode: "linear"` skips automatic non-linear config matching
+- `scalingMode: "non-linear"` requires `scaleQuantities`
+- missing `scalingMode` uses config matching from `data/validation/non-linear-ingredients.json`
+
 ## Recipe Validation Architecture
 
 Recipe data quality is enforced through GitHub Actions.
@@ -253,6 +298,7 @@ The workflow runs automatically on pushes that affect:
 
 - `data/recipe-index.json`
 - `data/recipes/**`
+- `data/validation/**`
 - `scripts/validate-recipes.js`
 - `.github/workflows/validate-recipes.yml`
 
@@ -281,6 +327,10 @@ Validator guardrails include:
 - legacy ingredient-group `category` rejection
 - `tsp` / `tbsp` rejection in favour of `teaspoon` / `tablespoon`
 - structured measured-water enforcement
+- `data/validation/non-linear-ingredients.json` shape validation
+- `scalingMode` validation for `linear` and `non-linear`
+- `scaleQuantities` object validation against recipe-level `scaling.options`
+- required `scaleQuantities` validation for configured non-linear ingredients when `scalable: true`
 
 The validator is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
 
@@ -305,6 +355,7 @@ shukudu-theme
 
 - Keep one recipe per JSON file.
 - Keep the recipe index lightweight and synchronized with recipe files.
+- Keep validation config under `data/validation/`.
 - Keep scaling logic in `recipe-scaling.js`.
 - Keep exact quantity styling in `recipe-scaling.css`.
 - Keep theme behaviour in `theme.js`.
@@ -313,7 +364,7 @@ shukudu-theme
 - Keep brand icon layout rules in `brand.css`.
 - Keep PWA metadata in `manifest.webmanifest`, `index.html`, and `recipe.html` synchronized.
 - Keep validation rules in `scripts/validate-recipes.js`.
-- Run `node scripts/validate-recipes.js` after recipe data changes.
+- Run `node scripts/validate-recipes.js` after recipe data or validation config changes.
 - Test light and dark themes on homepage, recipe pages, and Cooking Mode.
 - Test desktop and mobile theme controls.
 - Test installability and app icon behaviour after PWA metadata changes.
