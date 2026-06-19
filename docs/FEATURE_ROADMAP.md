@@ -225,6 +225,7 @@ Image metadata validation is deferred because images are not part of the current
 
 Possible non-image validation enhancements:
 
+- clean up validator structure
 - duplicate ingredient name warning or error
 - preparation coverage checks
 - cooking method ingredient coverage checks
@@ -258,15 +259,16 @@ Once recipe images are introduced, possible validation checks include:
 17. Non-linear config uniqueness validation - completed
 18. Rice recipe unit validation - completed
 19. Large-produce weightGrams validation - completed
-20. Duplicate ingredient name warning or error
-21. Preparation coverage validation
-22. Cooking method ingredient coverage validation
-23. Serving adjustment
-24. Print view
-25. Recipe images and richer cards
-26. Optional standard-cup scaling input
-27. Offline recipe support
-28. Image metadata validation after recipe images are introduced
+20. Clean up validator structure
+21. Duplicate ingredient name warning or error
+22. Preparation coverage validation
+23. Cooking method ingredient coverage validation
+24. Serving adjustment
+25. Print view
+26. Recipe images and richer cards
+27. Optional standard-cup scaling input
+28. Offline recipe support
+29. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
