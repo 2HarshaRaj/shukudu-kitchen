@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.12.0`
+`v1.12.1`
 
 ## Overview
 
@@ -42,7 +42,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling, scalingMode, roundingType, and non-linear override validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling, scalingMode, roundingType, displayText safety, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -94,6 +94,7 @@ shukudu-kitchen/
 - Scalable recipes use structured ingredient objects with stable IDs.
 - Preparation and cooking steps reference those ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
 - Scaling metadata identifies the base ingredient, base quantity, base unit, and whether the recipe uses preset options or exact quantity input.
+- Display-text-only ingredients must be non-scalable so fixed/manual ingredient wording does not accidentally enter the scaling engine.
 
 ## Recipe Scaling
 
@@ -117,95 +118,3 @@ For exact quantity input, the engine calculates:
 ```text
 selected scale = entered quantity ÷ base quantity
 ```
-
-This is intended for recipes with one clear dominant ingredient, such as a single-vegetable palya. Mixed-vegetable recipes use this mode only when the entered quantity represents a defined total vegetable mix.
-
-Scalable ingredients with quantities must declare `roundingType` so the renderer knows whether to preserve exact values, use small whole-count handling, or apply large-produce display guidance.
-
-Non-linear ingredients such as green chilli, tempering dals, curry leaves, ginger, coriander leaves, lemon, and strong masala powders may use recipe-specific `scaleQuantities` so they do not blindly scale in direct proportion.
-
-## Validation
-
-Recipe data is automatically validated through GitHub Actions.
-
-Validator checks:
-
-- JSON validity
-- Required recipe fields
-- Recipe-index shape and required fields
-- Duplicate index slug rejection
-- Recipe-index and recipe-file cross-checks
-- Slug format: `^[a-z0-9]+(-[a-z0-9]+)*$`
-- Slug to file-name match: `<slug>.json`
-- Ingredient references
-- Duplicate ingredient IDs
-- Cooking-step structure
-- Details metadata: `Cuisine`, `Meal Type`, and `Status`
-- Quantity-input metadata
-- Exact `baseIngredient` matching
-- Ingredient-group structure
-- Unit standardization
-- Structured measured-water references
-- `servingSuggestions` and `notes` array validation
-- `roundingType` presence and allowed values for scalable ingredients with quantities
-- `scaleQuantities` key/value validation against recipe-level `scaling.options`
-- `scalingMode` value and consistency validation for `linear` and `non-linear`
-- Config-driven required non-linear override validation using `data/validation/non-linear-ingredients.json`
-
-Workflow:
-
-- `.github/workflows/validate-recipes.yml`
-- `scripts/validate-recipes.js`
-- `data/validation/non-linear-ingredients.json`
-- Node.js 24
-- `actions/checkout@v6`
-- `actions/setup-node@v6`
-
-The workflow runs when these paths change:
-
-- `data/recipe-index.json`
-- `data/recipes/**`
-- `data/validation/**`
-- `scripts/validate-recipes.js`
-- `.github/workflows/validate-recipes.yml`
-
-New recipes and recipe updates should pass validation before being committed. Image metadata validation is deferred until images are introduced.
-
-## Theme Behaviour
-
-- The first visit follows the device light or dark preference.
-- Manual theme selection is stored in `localStorage` under `shukudu-theme`.
-- The selected theme is reused across the homepage and recipe pages.
-- Cooking Mode inherits the active theme and does not show a separate toggle.
-- Desktop controls use a stable fixed width so the button does not resize between `Dark` and `Light`.
-- Mobile controls use a fixed circular icon button.
-- `theme.js` updates the browser `theme-color` metadata so supported Android browsers and installed PWAs can visually blend the status bar with the current page and theme.
-
-## PWA and App Branding
-
-Shukudu Kitchen includes basic Progressive Web App support with:
-
-- `manifest.webmanifest`
-- installable app metadata
-- Android and desktop install support
-- standalone display mode
-- app icons in the `icons/` folder
-- Apple touch icon and favicon metadata
-- dynamic theme-color handling for better Android/PWA integration
-
-The homepage uses the app icon as part of the main brand header. On mobile, the icon stacks above the title so the heading keeps full width. Recipe pages use a smaller icon beside the back navigation to keep the cooking view focused.
-
-Offline support is not yet enabled. A future Service Worker can add offline recipe access once the core site structure and recipe model are stable.
-
-## Documentation
-
-- `docs/ARCHITECTURE.md` — application structure and responsibilities
-- `docs/RECIPE_DATA_STANDARD.md` — recipe JSON authoring rules
-- `docs/BASE_INGREDIENT_SCALING.md` — exact base-ingredient quantity scaling design and boundaries
-- `docs/INGREDIENT_REFERENCE.md` — default ingredient weights and rounding guidance
-- `docs/FEATURE_ROADMAP.md` — completed and planned functionality
-- `CHANGELOG.md` — release history
-
-## Hosting
-
-The site is designed for GitHub Pages and does not require a backend, framework, or paid hosting service.
