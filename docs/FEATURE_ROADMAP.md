@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.12.2
+## Current Version - v1.12.3
 
 Shukudu Kitchen currently includes:
 
@@ -25,6 +25,7 @@ Shukudu Kitchen currently includes:
 - scaling base ingredient reference validation
 - recipe-specific non-linear scaling overrides
 - config-driven non-linear ingredient validation
+- non-linear config uniqueness validation
 - scalingMode consistency validation
 - completed automated recipe validation for the current non-image recipe model
 - saved light and dark themes
@@ -96,6 +97,9 @@ Shukudu Kitchen currently includes:
 - `roundingType` allowed value validation
 - required `roundingType` validation for scalable ingredients with quantities
 - displayText safety validation for ingredients without quantity
+- non-linear config key format validation
+- non-linear config duplicate key rejection
+- non-linear config duplicate match value rejection
 - `scalingMode` value validation
 - `scalingMode` consistency validation
 - `scaleQuantities` completeness validation against recipe-level scale options
@@ -107,6 +111,13 @@ Shukudu Kitchen currently includes:
 - `baseIngredient` must match exactly one ingredient ID in the same recipe
 - Quantity-input recipes still require `baseIngredient`
 - Options-based recipes are protected from broken base ingredient references
+
+### Non-Linear Config Validation - Completed
+
+- Config rule keys must use slug format
+- Duplicate config rule keys are rejected
+- Duplicate config match values are rejected after normalization
+- Empty config rule match values remain rejected
 
 ### Non-Linear Scaling Validation - Completed
 
