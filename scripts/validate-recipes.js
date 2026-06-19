@@ -262,6 +262,28 @@ function validateQuantityScaling(recipe, errors) {
   }
 }
 
+function validateRiceRecipeUnits(recipe, errors) {
+  if (recipe.category !== 'Rice') return;
+
+  const scaling = recipe.scaling;
+  if (scaling && scaling.enabled === true && scaling.baseUnit !== 'riceCup') {
+    addError(errors, 'Rice recipes must use scaling.baseUnit "riceCup"');
+  }
+
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+
+    const label = getIngredientLabel(item);
+    if (item.id === 'rice' && item.unit !== 'rice cup') {
+      addError(errors, `Rice recipe ingredient "${label}" must use unit "rice cup"`);
+    }
+
+    if (item.id === 'water' && item.unit !== 'rice cup') {
+      addError(errors, `Rice recipe ingredient "${label}" must use unit "rice cup"`);
+    }
+  });
+}
+
 function validateIngredientUnits(recipe, errors) {
   walkIngredients(recipe, (item) => {
     if (!item || typeof item !== 'object' || typeof item === 'string' || !item.unit) return;
@@ -499,6 +521,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     const ingredientInfo = collectIngredientIds(recipe, errors);
     validateScalingBaseIngredient(recipe, ingredientInfo, errors);
     validateQuantityScaling(recipe, errors);
+    validateRiceRecipeUnits(recipe, errors);
     validateIngredientUnits(recipe, errors);
     validateScalingModes(recipe, errors);
     validateRoundingTypes(recipe, errors);
