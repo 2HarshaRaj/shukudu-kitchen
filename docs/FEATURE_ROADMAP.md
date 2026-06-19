@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.11.1
+## Current Version - v1.12.0
 
 Shukudu Kitchen currently includes:
 
@@ -20,6 +20,7 @@ Shukudu Kitchen currently includes:
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
 - practical ingredient rounding and gram guidance
+- required roundingType validation for scalable ingredients with quantities
 - recipe-specific non-linear scaling overrides
 - config-driven non-linear ingredient validation
 - scalingMode consistency validation
@@ -51,6 +52,7 @@ Shukudu Kitchen currently includes:
 - Arbitrary scale calculation and persistence
 - Recipe-specific non-linear overrides through `scaleQuantities`
 - Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
+- Required `roundingType` authoring intent for scalable ingredients with quantities
 - Unit-aware formatting
 - Practical produce and small-whole rounding
 
@@ -86,6 +88,8 @@ Shukudu Kitchen currently includes:
 - Details metadata validation for `Cuisine`, `Meal Type`, and `Status`
 - `servingSuggestions` validation
 - `notes` validation
+- `roundingType` allowed value validation
+- required `roundingType` validation for scalable ingredients with quantities
 - `scalingMode` value validation
 - `scalingMode` consistency validation
 - `scaleQuantities` completeness validation against recipe-level scale options
@@ -101,6 +105,13 @@ Shukudu Kitchen currently includes:
 - Validator checks `scaleQuantities` keys against every recipe-level scale option
 - Validator rejects missing override keys, extra override keys, non-numeric values, and negative values
 - Existing recipes updated with required non-linear overrides
+
+### RoundingType Validation - Completed
+
+- Validator requires `roundingType` when `scalable: true` and `quantity` exists
+- Validator accepts only `exact`, `small-whole`, and `large-produce`
+- Existing scalable recipe ingredients updated with explicit rounding intent
+- Display-text-only non-scalable ingredients remain exempt
 
 ### Light and Dark Themes - Completed
 
@@ -139,6 +150,7 @@ Completed:
 - Balekai Palya migrated to validator-compliant quantity-input schema
 - Quantity-input mode adopted for suitable single-base-ingredient recipes
 - Non-linear override coverage added for configured ingredients across existing recipes
+- RoundingType coverage added for scalable ingredients across existing recipes
 
 ## Future Features
 
@@ -157,7 +169,6 @@ Image metadata validation is deferred because images are not part of the current
 
 Possible non-image validation enhancements:
 
-- required `roundingType` for scalable measured ingredients
 - `displayText` safety checks
 - count-based produce weight guidance checks
 - ingredient coverage checks across Preparation and Cooking Method
@@ -185,12 +196,13 @@ Once recipe images are introduced, possible validation checks include:
 11. PWA foundation and app branding - completed
 12. Non-linear ingredient validation - completed
 13. ScalingMode consistency validation - completed
-14. Serving adjustment
-15. Print view
-16. Recipe images and richer cards
-17. Optional standard-cup scaling input
-18. Offline recipe support
-19. Image metadata validation after recipe images are introduced
+14. RoundingType validation - completed
+15. Serving adjustment
+16. Print view
+17. Recipe images and richer cards
+18. Optional standard-cup scaling input
+19. Offline recipe support
+20. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
