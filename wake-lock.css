@@ -95,5 +95,6 @@
   .wake-lock-status {
     margin-top: -10px;
     font-size: 0.82rem;
+    line-height: 1.3;
   }
 }
