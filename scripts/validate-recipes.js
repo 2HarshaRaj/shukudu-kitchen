@@ -194,19 +194,30 @@ function validateIngredientGroups(recipe, errors) {
   });
 }
 
-function validateQuantityScaling(recipe, ingredientInfo, errors) {
+function validateScalingBaseIngredient(recipe, ingredientInfo, errors) {
+  const scaling = recipe.scaling;
+  if (!scaling || scaling.enabled !== true) return;
+  if (!Object.prototype.hasOwnProperty.call(scaling, 'baseIngredient')) return;
+
+  if (!isNonEmptyString(scaling.baseIngredient)) {
+    addError(errors, 'scaling.baseIngredient must be a non-empty string when present');
+    return;
+  }
+
+  const matchCount = ingredientInfo.idCounts.get(scaling.baseIngredient) || 0;
+  if (matchCount === 0) {
+    addError(errors, `baseIngredient "${scaling.baseIngredient}" does not match any ingredient id`);
+  } else if (matchCount !== 1) {
+    addError(errors, `baseIngredient "${scaling.baseIngredient}" must match exactly one ingredient id; found ${matchCount}`);
+  }
+}
+
+function validateQuantityScaling(recipe, errors) {
   const scaling = recipe.scaling;
   if (!scaling || scaling.inputMode !== 'quantity') return;
 
   if (!scaling.baseIngredient) {
     addError(errors, 'quantity-input scaling requires baseIngredient');
-  } else {
-    const matchCount = ingredientInfo.idCounts.get(scaling.baseIngredient) || 0;
-    if (matchCount === 0) {
-      addError(errors, `baseIngredient "${scaling.baseIngredient}" does not match any ingredient id`);
-    } else if (matchCount !== 1) {
-      addError(errors, `baseIngredient "${scaling.baseIngredient}" must match exactly one ingredient id; found ${matchCount}`);
-    }
   }
 
   if (!Number.isFinite(Number(scaling.baseQuantity)) || Number(scaling.baseQuantity) <= 0) {
@@ -467,7 +478,8 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     validateIngredientGroups(recipe, errors);
     validateStepStructure(recipe, errors);
     const ingredientInfo = collectIngredientIds(recipe, errors);
-    validateQuantityScaling(recipe, ingredientInfo, errors);
+    validateScalingBaseIngredient(recipe, ingredientInfo, errors);
+    validateQuantityScaling(recipe, errors);
     validateIngredientUnits(recipe, errors);
     validateScalingModes(recipe, errors);
     validateRoundingTypes(recipe, errors);
