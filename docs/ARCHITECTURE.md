@@ -47,7 +47,7 @@ shukudu-kitchen/
 - `style.css`: shared site layout and Cooking Mode styling
 - `icons/`: install icons, favicons, and Apple touch icon assets
 - `data/validation/non-linear-ingredients.json`: config list of ingredients that require recipe-specific non-linear scaling overrides when scalable
-- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, scaling, non-linear override, scaling-mode consistency, and schema guardrails
+- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, scaling, rounding, non-linear override, scaling-mode consistency, and schema guardrails
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
 ## Page Loading
@@ -177,6 +177,8 @@ data/validation/
 
 Scalable recipes use structured ingredient objects, stable IDs, recipe-level scaling metadata, and shared ingredient references across Ingredients, Preparation, Cooking Method, and Cooking Mode.
 
+Scalable ingredients with a `quantity` must define `roundingType`. This makes each ingredient's display behaviour explicit before scaling and prevents the renderer from guessing whether to preserve exact values, round small whole counts, or apply large-produce guidance.
+
 Ingredient groups must use `section` and `items`. Legacy `category` is not allowed inside ingredient groups.
 
 Measured water used in cooking steps should be stored as a structured ingredient and referenced through `ingredientIds` instead of being hard-coded in step text.
@@ -202,7 +204,7 @@ base recipe quantities
 -> preset or exact base quantity
 -> calculated scale
 -> optional recipe override
--> unit-aware formatting
+-> roundingType-aware unit formatting
 -> recipe page and Cooking Mode
 ```
 
@@ -231,6 +233,18 @@ Quantity-input recipes must use standard preset options:
 ```
 
 For gram-based quantity recipes, scaling metadata uses `baseUnit: "g"`.
+
+## Rounding and Formatting Architecture
+
+`roundingType` records the intended display behavior for scalable ingredients with quantities.
+
+Allowed values:
+
+- `exact`: preserve the calculated value and use unit-aware formatting, suitable for rice cups, cups, teaspoons, tablespoons, grams, liquids, powders, and other measured ingredients
+- `small-whole`: use practical count handling for small whole ingredients such as green chilli, curry leaves, cloves, bay leaf, garlic cloves, and dry red chilli
+- `large-produce`: use practical count or gram guidance for larger produce such as onion, tomato, potato, carrot, capsicum, brinjal, beans, and raw banana
+
+The validator requires `roundingType` whenever `scalable: true` and `quantity` is present. Display-text-only fixed ingredients and non-scalable ingredients do not require it.
 
 ## Non-Linear Scaling Architecture
 
@@ -328,6 +342,8 @@ Validator guardrails include:
 - `tsp` / `tbsp` rejection in favour of `teaspoon` / `tablespoon`
 - structured measured-water enforcement
 - `data/validation/non-linear-ingredients.json` shape validation
+- `roundingType` allowed value validation for `exact`, `small-whole`, and `large-produce`
+- required `roundingType` validation for scalable ingredients with quantities
 - `scalingMode` value validation for `linear` and `non-linear`
 - `scalingMode` consistency validation: `linear` must not define `scaleQuantities`, and `non-linear` must define `scaleQuantities`
 - `scaleQuantities` object validation against recipe-level `scaling.options`
