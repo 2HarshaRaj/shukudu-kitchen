@@ -12,6 +12,25 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.11.1 - 2026-06-19
+
+### Added
+
+- `scalingMode` consistency validation in `scripts/validate-recipes.js`
+- Documentation updates for `scalingMode` consistency rules
+- README version bump to `v1.11.1`
+- Feature Roadmap version bump to `v1.11.1`
+
+### Validation Rules
+
+- `scalingMode: "linear"` must not define `scaleQuantities`
+- `scalingMode: "non-linear"` must define `scaleQuantities`
+
+### Improved
+
+- Prevents mixed scaling signals in recipe JSON
+- Keeps the non-linear ingredient validation model easier to reason about
+
 ## 1.11.0 - 2026-06-19
 
 ### Added
