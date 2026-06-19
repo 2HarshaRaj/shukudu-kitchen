@@ -20,6 +20,18 @@ const COMMON_INGREDIENT_SEARCH_TERMS = new Set([
   'water'
 ]);
 
+const COMMON_INGREDIENT_SEARCH_WORDS = new Set([
+  'asafoetida',
+  'ghee',
+  'hing',
+  'jaggery',
+  'oil',
+  'salt',
+  'sugar',
+  'turmeric',
+  'water'
+]);
+
 let recipes = [];
 
 function normalizeSearchText(value = '') {
@@ -35,6 +47,20 @@ function getIngredientItems(recipe) {
   });
 }
 
+function getSearchWords(value) {
+  return normalizeSearchText(value)
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(' ')
+    .filter(Boolean);
+}
+
+function isCommonIngredientSearchTerm(term) {
+  if (COMMON_INGREDIENT_SEARCH_TERMS.has(term)) return true;
+
+  const words = getSearchWords(term);
+  return words.some((word) => COMMON_INGREDIENT_SEARCH_WORDS.has(word));
+}
+
 function getSearchableIngredientTerms(recipe) {
   return getIngredientItems(recipe)
     .flatMap((item) => {
@@ -43,7 +69,7 @@ function getSearchableIngredientTerms(recipe) {
     })
     .map(normalizeSearchText)
     .filter(Boolean)
-    .filter((term) => !COMMON_INGREDIENT_SEARCH_TERMS.has(term));
+    .filter((term) => !isCommonIngredientSearchTerm(term));
 }
 
 function buildRecipeSearchText(indexRecipe, fullRecipe = null) {
