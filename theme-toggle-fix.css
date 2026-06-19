@@ -77,6 +77,36 @@
   margin-bottom: 0;
 }
 
+.cooking-topbar .icon-button {
+  border: 1px solid var(--border);
+  background: #f3ece5;
+  color: var(--text);
+  box-shadow: none;
+}
+
+.cooking-topbar .icon-button:hover,
+.cooking-topbar .icon-button:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: 0 8px 18px rgba(159, 63, 47, 0.12);
+  outline: none;
+}
+
+[data-theme="dark"] .cooking-topbar .icon-button {
+  border-color: var(--border);
+  background: #2b2420;
+  color: var(--text);
+}
+
+[data-theme="dark"] .cooking-topbar .icon-button:hover,
+[data-theme="dark"] .cooking-topbar .icon-button:focus-visible {
+  border-color: var(--accent);
+  background: #332925;
+  color: var(--accent);
+}
+
 @media (max-width: 760px) {
   .site-header-row,
   .recipe-topbar {
