@@ -117,7 +117,7 @@ select {
 
 .recipe-card {
   display: flex;
-  min-height: 220px;
+  min-height: 250px;
   flex-direction: column;
   justify-content: space-between;
   padding: 22px;
@@ -142,6 +142,27 @@ select {
 .recipe-card p {
   margin: 0;
   color: var(--muted);
+}
+
+.recipe-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+}
+
+.recipe-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(159, 63, 47, 0.06);
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .tag {
@@ -616,7 +637,7 @@ select {
   }
 
   .recipe-card {
-    min-height: 190px;
+    min-height: 220px;
   }
 
   .recipe-hero,
