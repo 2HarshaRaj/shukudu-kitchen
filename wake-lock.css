@@ -28,12 +28,14 @@
   line-height: 1;
 }
 
-.wake-lock-button:hover:not(:disabled) {
+.wake-lock-button:hover:not(:disabled),
+.wake-lock-button:focus-visible {
   transform: translateY(-1px);
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
   box-shadow: 0 8px 18px rgba(159, 63, 47, 0.12);
+  outline: none;
 }
 
 .wake-lock-button.is-active {
@@ -61,7 +63,8 @@
   color: var(--text);
 }
 
-[data-theme="dark"] .wake-lock-button:hover:not(:disabled) {
+[data-theme="dark"] .wake-lock-button:hover:not(:disabled),
+[data-theme="dark"] .wake-lock-button:focus-visible {
   border-color: var(--accent);
   background: #332925;
   color: var(--accent);
