@@ -5,6 +5,7 @@ on:
     paths:
       - 'data/recipe-index.json'
       - 'data/recipes/**'
+      - 'data/validation/**'
       - 'scripts/validate-recipes.js'
       - '.github/workflows/validate-recipes.yml'
 
