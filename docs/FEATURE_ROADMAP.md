@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.12.1
+## Current Version - v1.12.2
 
 Shukudu Kitchen currently includes:
 
@@ -22,6 +22,7 @@ Shukudu Kitchen currently includes:
 - practical ingredient rounding and gram guidance
 - required roundingType validation for scalable ingredients with quantities
 - displayText safety validation for display-text-only fixed ingredients
+- scaling base ingredient reference validation
 - recipe-specific non-linear scaling overrides
 - config-driven non-linear ingredient validation
 - scalingMode consistency validation
@@ -51,6 +52,7 @@ Shukudu Kitchen currently includes:
 - Automatic standard cup equivalents
 - Exact base-ingredient quantity input
 - Arbitrary scale calculation and persistence
+- Scaling base ingredient reference validation
 - Recipe-specific non-linear overrides through `scaleQuantities`
 - Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
 - Required `roundingType` authoring intent for scalable ingredients with quantities
@@ -82,6 +84,7 @@ Shukudu Kitchen currently includes:
 - Slug to file-name validation
 - Ingredient reference validation
 - Duplicate ingredient ID detection
+- Scaling base ingredient reference validation
 - Quantity-input metadata validation
 - Ingredient-group structure validation
 - Unit standardization enforcement
@@ -97,6 +100,13 @@ Shukudu Kitchen currently includes:
 - `scalingMode` consistency validation
 - `scaleQuantities` completeness validation against recipe-level scale options
 - Config-driven required non-linear override validation
+
+### Scaling Base Ingredient Validation - Completed
+
+- Validator checks `scaling.baseIngredient` when present on scaling-enabled recipes
+- `baseIngredient` must match exactly one ingredient ID in the same recipe
+- Quantity-input recipes still require `baseIngredient`
+- Options-based recipes are protected from broken base ingredient references
 
 ### Non-Linear Scaling Validation - Completed
 
