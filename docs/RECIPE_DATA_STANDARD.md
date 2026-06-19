@@ -242,6 +242,7 @@ Rules:
 
 - `scalingMode: "linear"` means the ingredient intentionally uses normal proportional scaling.
 - `scalingMode: "linear"` skips automatic matching from `data/validation/non-linear-ingredients.json`.
+- `scalingMode: "linear"` must not be used together with `scaleQuantities`.
 - `scalingMode: "non-linear"` means the ingredient must define `scaleQuantities`.
 - missing `scalingMode` means the validator checks `data/validation/non-linear-ingredients.json` to decide whether `scaleQuantities` is required.
 
@@ -519,6 +520,7 @@ Validation behavior:
 ```text
 scalingMode: "linear"
     -> skip config matching
+    -> scaleQuantities must not be present
 
 scalingMode: "non-linear"
     -> scaleQuantities required
@@ -718,6 +720,8 @@ Validator rules:
 - hard-coded measured water in cooking method text should be avoided; measured water should be a structured ingredient and referenced through `ingredientIds`
 - `data/validation/non-linear-ingredients.json` must exist and contain valid rule objects
 - `scalingMode`, when present, must be `linear` or `non-linear`
+- `scalingMode: "linear"` must not define `scaleQuantities`
+- `scalingMode: "non-linear"` must define `scaleQuantities`
 - `scaleQuantities` must be a complete object whose keys exactly match recipe-level `scaling.options`
 - `scaleQuantities` values must be numeric and not negative; `0` is allowed
 - configured non-linear ingredients with `scalable: true` must define `scaleQuantities` unless `scalingMode: "linear"` is set
@@ -767,8 +771,8 @@ Before adding or updating a recipe:
 20. Check whether each scalable ingredient matches `data/validation/non-linear-ingredients.json`
 21. Use `scaleQuantities` where linear scaling is unsuitable or required by validation config
 22. Ensure `scaleQuantities` keys cover every recipe scale option and no extra options
-23. Use `scalingMode: "linear"` only when intentionally overriding a config match
-24. Use `scalingMode: "non-linear"` only when explicitly requiring `scaleQuantities`
+23. Use `scalingMode: "linear"` only when intentionally overriding a config match, and do not define `scaleQuantities` on the same ingredient
+24. Use `scalingMode: "non-linear"` only when explicitly requiring `scaleQuantities`, and define `scaleQuantities` on the same ingredient
 25. Use stable ingredient IDs
 26. Reference ingredient IDs from Preparation and Cooking Method
 27. Keep every preparation and cooking step as an object
