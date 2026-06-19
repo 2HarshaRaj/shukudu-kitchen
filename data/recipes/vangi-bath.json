@@ -26,14 +26,16 @@
           "quantity": 1,
           "unit": "rice cup",
           "ingredient": "sona masuri rice",
-          "scalable": true
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "water",
           "quantity": 2.5,
           "unit": "rice cup",
           "ingredient": "water",
-          "scalable": true
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "brinjal",
@@ -73,7 +75,8 @@
           "quantity": 2,
           "unit": "tablespoon",
           "ingredient": "oil",
-          "scalable": true
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "mustard-seeds",
@@ -81,6 +84,7 @@
           "unit": "teaspoon",
           "ingredient": "mustard seeds",
           "scalable": true,
+          "roundingType": "exact",
           "scaleQuantities": {
             "0.5": 0.5,
             "0.75": 0.75,
@@ -96,6 +100,7 @@
           "unit": "teaspoon",
           "ingredient": "urad dal",
           "scalable": true,
+          "roundingType": "exact",
           "scaleQuantities": {
             "0.5": 0.5,
             "0.75": 0.75,
@@ -111,6 +116,7 @@
           "unit": "teaspoon",
           "ingredient": "chana dal",
           "scalable": true,
+          "roundingType": "exact",
           "scaleQuantities": {
             "0.5": 0.5,
             "0.75": 0.75,
@@ -141,7 +147,8 @@
           "quantity": 0.25,
           "unit": "teaspoon",
           "ingredient": "turmeric powder",
-          "scalable": true
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "vangi-bath-powder",
@@ -149,6 +156,7 @@
           "unit": "tablespoon",
           "ingredient": "vangi bath powder",
           "scalable": true,
+          "roundingType": "exact",
           "scaleQuantities": {
             "0.5": 2,
             "0.75": 3,
