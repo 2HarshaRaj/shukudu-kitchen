@@ -66,6 +66,20 @@ For a 500 g base, the standard presets display as:
 
 An exact value such as 300 g produces a 0.6× scale.
 
+Rice quantity preset buttons may use compact `cup/cups` labels in the UI to reduce width:
+
+```text
+½ cup, ¾ cup, 1 cup, 1¼ cups, 1½ cups, 2 cups
+```
+
+The current selected value remains fully descriptive:
+
+```text
+Current: 1¼ rice cups
+```
+
+This keeps the UI compact without changing the underlying rice-cup-first data model.
+
 ## Persistence
 
 The resulting scale is stored using the existing key:
