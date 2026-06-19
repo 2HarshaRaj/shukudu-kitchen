@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.12.4
+## Current Version - v1.12.5
 
 Shukudu Kitchen currently includes:
 
@@ -24,6 +24,7 @@ Shukudu Kitchen currently includes:
 - displayText safety validation for display-text-only fixed ingredients
 - scaling base ingredient reference validation
 - rice recipe unit validation
+- large-produce weightGrams validation
 - recipe-specific non-linear scaling overrides
 - config-driven non-linear ingredient validation
 - non-linear config uniqueness validation
@@ -56,6 +57,7 @@ Shukudu Kitchen currently includes:
 - Arbitrary scale calculation and persistence
 - Scaling base ingredient reference validation
 - Rice recipe unit validation
+- Large-produce weightGrams validation
 - Recipe-specific non-linear overrides through `scaleQuantities`
 - Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
 - Required `roundingType` authoring intent for scalable ingredients with quantities
@@ -69,12 +71,14 @@ Shukudu Kitchen currently includes:
 - GitHub Actions integration
 - Node.js 24 validation runtime
 - `scripts/validate-recipes.js`
+- `scripts/validate-produce-weights.js`
 - `.github/workflows/validate-recipes.yml`
 - `data/validation/non-linear-ingredients.json`
 - Workflow trigger for `data/recipe-index.json`
 - Workflow trigger for `data/recipes/**`
 - Workflow trigger for `data/validation/**`
 - Workflow trigger for `scripts/validate-recipes.js`
+- Workflow trigger for `scripts/validate-produce-weights.js`
 - Workflow trigger for `.github/workflows/validate-recipes.yml`
 - Required top-level recipe field validation
 - Recipe-index array validation
@@ -89,6 +93,7 @@ Shukudu Kitchen currently includes:
 - Duplicate ingredient ID detection
 - Scaling base ingredient reference validation
 - Rice recipe unit validation
+- Large-produce weightGrams validation
 - Quantity-input metadata validation
 - Ingredient-group structure validation
 - Unit standardization enforcement
@@ -121,6 +126,12 @@ Shukudu Kitchen currently includes:
 - Rice ingredient `id: "rice"` must use `unit: "rice cup"`
 - Water ingredient `id: "water"` must use `unit: "rice cup"`
 - The rule protects the rice-cup-first architecture from mixed unit drift
+
+### Large-Produce WeightGrams Validation - Completed
+
+- Scalable ingredients with `countLabel` and `roundingType: "large-produce"` must define positive `weightGrams`
+- The rule keeps count-based produce scaling paired with practical gram guidance
+- This validation is run through `scripts/validate-produce-weights.js` in GitHub Actions
 
 ### Non-Linear Config Validation - Completed
 
@@ -195,6 +206,7 @@ Completed:
 - Scaling base ingredient reference validation added for scaling-enabled recipes
 - Non-linear config uniqueness validation added for config rules
 - Rice recipe unit validation added for rice-cup-first recipes
+- Large-produce weightGrams validation added for count-based produce guidance
 
 ## Future Features
 
@@ -213,7 +225,6 @@ Image metadata validation is deferred because images are not part of the current
 
 Possible non-image validation enhancements:
 
-- count-based produce weight guidance checks
 - duplicate ingredient name warning or error
 - preparation coverage checks
 - cooking method ingredient coverage checks
@@ -246,7 +257,7 @@ Once recipe images are introduced, possible validation checks include:
 16. Scaling base ingredient reference validation - completed
 17. Non-linear config uniqueness validation - completed
 18. Rice recipe unit validation - completed
-19. Count-based produce weight guidance validation
+19. Large-produce weightGrams validation - completed
 20. Duplicate ingredient name warning or error
 21. Preparation coverage validation
 22. Cooking method ingredient coverage validation
