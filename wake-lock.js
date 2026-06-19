@@ -15,26 +15,33 @@
     };
   }
 
+  function setText(element, text) {
+    if (element.textContent !== text) element.textContent = text;
+  }
+
   function updateWakeLockUi(message = '') {
     const { button, status } = getControls();
     if (!button || !status) return;
 
     if (!wakeLockSupported) {
       button.disabled = true;
-      button.textContent = 'Keep screen on unavailable';
+      setText(button, 'Keep screen on unavailable');
       button.setAttribute('aria-pressed', 'false');
-      status.textContent = 'This browser does not support keeping the screen awake.';
+      setText(status, 'This browser does not support keeping the screen awake.');
       return;
     }
 
     const isActive = Boolean(wakeLock);
-    button.disabled = false;
-    button.textContent = isActive ? 'Screen stays on ✓' : 'Keep screen on';
-    button.classList.toggle('is-active', isActive);
-    button.setAttribute('aria-pressed', String(isActive));
-    status.textContent = message || (isActive
+    const buttonText = isActive ? 'Screen stays on ✓' : 'Keep screen on';
+    const statusText = message || (isActive
       ? 'Screen will stay on while Cooking Mode is open.'
       : 'Tap to keep the screen awake while cooking.');
+
+    button.disabled = false;
+    setText(button, buttonText);
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+    setText(status, statusText);
   }
 
   async function requestWakeLock() {
@@ -131,7 +138,7 @@
 
   if (recipeContent) {
     const contentObserver = new MutationObserver(ensureWakeLockControls);
-    contentObserver.observe(recipeContent, { childList: true, subtree: true });
+    contentObserver.observe(recipeContent, { childList: true });
   }
 
   ensureWakeLockControls();
