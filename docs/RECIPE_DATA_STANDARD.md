@@ -217,6 +217,8 @@ Do not use the legacy `category` field inside ingredient groups.
 
 Use `unit` for measured ingredients such as cups, teaspoons, tablespoons, grams, and rice cups.
 
+When an ingredient has `scalable: true` and a `quantity`, it must also define `roundingType`.
+
 ### Optional Fields
 
 - `preparation`
@@ -226,6 +228,63 @@ Use `unit` for measured ingredients such as cups, teaspoons, tablespoons, grams,
 - `displayText`
 - `scaleQuantities`
 - `scalingMode`
+
+### `roundingType`
+
+`roundingType` tells the renderer how a scalable ingredient should be displayed after scaling.
+
+Allowed values:
+
+```text
+exact
+small-whole
+large-produce
+```
+
+Rules:
+
+- `roundingType` is required when `scalable: true` and `quantity` exists.
+- `roundingType` is not required for display-text-only ingredients without `quantity`.
+- `roundingType` is not required for non-scalable ingredients.
+- use `exact` for measured quantities where fractional display is acceptable.
+- use `small-whole` for small count-based ingredients where awkward decimals should be avoided.
+- use `large-produce` for larger produce where practical counts and gram guidance matter.
+
+Examples:
+
+```json
+{
+  "id": "rice",
+  "quantity": 1,
+  "unit": "rice cup",
+  "ingredient": "sona masuri rice",
+  "scalable": true,
+  "roundingType": "exact"
+}
+```
+
+```json
+{
+  "id": "green-chillies",
+  "quantity": 3,
+  "countLabel": "green chilli",
+  "ingredient": "green chillies",
+  "scalable": true,
+  "roundingType": "small-whole"
+}
+```
+
+```json
+{
+  "id": "onion",
+  "quantity": 1,
+  "countLabel": "medium onion",
+  "weightGrams": 120,
+  "ingredient": "onion",
+  "scalable": true,
+  "roundingType": "large-produce"
+}
+```
 
 ### `scalingMode`
 
@@ -272,7 +331,8 @@ Rice example:
   "quantity": 1,
   "unit": "rice cup",
   "ingredient": "sona masuri rice",
-  "scalable": true
+  "scalable": true,
+  "roundingType": "exact"
 }
 ```
 
@@ -284,7 +344,8 @@ Rice-cooking water example:
   "quantity": 2.5,
   "unit": "rice cup",
   "ingredient": "water",
-  "scalable": true
+  "scalable": true,
+  "roundingType": "exact"
 }
 ```
 
@@ -305,6 +366,8 @@ Examples:
 ```
 
 Recipe-specific measured values take priority over default ingredient references.
+
+Use `roundingType: "large-produce"` for large count-based vegetables where practical count and gram guidance should stay readable after scaling.
 
 ## Ingredient Consistency
 
@@ -381,6 +444,8 @@ Use linear scaling for ingredients that generally increase in direct proportion,
 - milk
 - vegetables by weight
 - measured powders and liquids when appropriate
+
+Normally linear ingredients still require `roundingType` when they are scalable and have `quantity`.
 
 ### Recipe-Specific Scale Options
 
@@ -573,6 +638,7 @@ Do not automatically scale:
 
 For tomato, onion, potato, brinjal, capsicum, carrot, beans, and similar ingredients:
 
+- use `roundingType: "large-produce"`
 - use practical whole counts or ranges
 - keep grams as the precise target
 - avoid awkward count fractions
@@ -593,9 +659,18 @@ Avoid:
 
 For green chilli, lemon, garlic cloves, curry leaves, and similar ingredients:
 
+- use `roundingType: "small-whole"` when the ingredient is represented as a practical count
 - prefer practical half or whole counts
 - use `scaleQuantities` when linear scaling gives poor culinary results
 - avoid values such as 0.25 chilli unless genuinely usable
+
+### Exact Ingredients
+
+For rice, water, curd, milk, oil, ghee, salt, powders, gram weights, cups, teaspoons, and tablespoons:
+
+- use `roundingType: "exact"`
+- allow unit-aware formatting to handle fractions or decimals cleanly
+- use `scaleQuantities` only when the culinary result should not scale proportionally
 
 ## Unit-Aware Quantity Formatting
 
@@ -719,6 +794,8 @@ Validator rules:
 - abbreviated ingredient units are not allowed: use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
 - hard-coded measured water in cooking method text should be avoided; measured water should be a structured ingredient and referenced through `ingredientIds`
 - `data/validation/non-linear-ingredients.json` must exist and contain valid rule objects
+- `roundingType`, when present, must be `exact`, `small-whole`, or `large-produce`
+- scalable ingredients with `quantity` must define `roundingType`
 - `scalingMode`, when present, must be `linear` or `non-linear`
 - `scalingMode: "linear"` must not define `scaleQuantities`
 - `scalingMode: "non-linear"` must define `scaleQuantities`
@@ -768,24 +845,25 @@ Before adding or updating a recipe:
 17. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
 18. Add measured water as a structured ingredient and reference it from steps
 19. Mark each ingredient scalable or non-scalable
-20. Check whether each scalable ingredient matches `data/validation/non-linear-ingredients.json`
-21. Use `scaleQuantities` where linear scaling is unsuitable or required by validation config
-22. Ensure `scaleQuantities` keys cover every recipe scale option and no extra options
-23. Use `scalingMode: "linear"` only when intentionally overriding a config match, and do not define `scaleQuantities` on the same ingredient
-24. Use `scalingMode: "non-linear"` only when explicitly requiring `scaleQuantities`, and define `scaleQuantities` on the same ingredient
-25. Use stable ingredient IDs
-26. Reference ingredient IDs from Preparation and Cooking Method
-27. Keep every preparation and cooking step as an object
-28. Use `{ "text": "..." }` for plain-text steps
-29. Use `lead` and `ingredientIds` together for structured ingredient steps
-30. Keep one cooking action per step
-31. Ensure `details` includes `Cuisine`, `Meal Type`, and `Status`
-32. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
-33. Run `node scripts/validate-recipes.js`
-34. Test the normal recipe page and Cooking Mode
-35. Test every supported preset and arbitrary quantity scale
-36. Verify cup, spoon, inch, produce, gram, and override formatting
-37. Verify the entered quantity and arbitrary scale restore correctly after reload
+20. For every scalable ingredient with `quantity`, choose `roundingType: "exact"`, `"small-whole"`, or `"large-produce"`
+21. Check whether each scalable ingredient matches `data/validation/non-linear-ingredients.json`
+22. Use `scaleQuantities` where linear scaling is unsuitable or required by validation config
+23. Ensure `scaleQuantities` keys cover every recipe scale option and no extra options
+24. Use `scalingMode: "linear"` only when intentionally overriding a config match, and do not define `scaleQuantities` on the same ingredient
+25. Use `scalingMode: "non-linear"` only when explicitly requiring `scaleQuantities`, and define `scaleQuantities` on the same ingredient
+26. Use stable ingredient IDs
+27. Reference ingredient IDs from Preparation and Cooking Method
+28. Keep every preparation and cooking step as an object
+29. Use `{ "text": "..." }` for plain-text steps
+30. Use `lead` and `ingredientIds` together for structured ingredient steps
+31. Keep one cooking action per step
+32. Ensure `details` includes `Cuisine`, `Meal Type`, and `Status`
+33. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
+34. Run `node scripts/validate-recipes.js`
+35. Test the normal recipe page and Cooking Mode
+36. Test every supported preset and arbitrary quantity scale
+37. Verify cup, spoon, inch, produce, gram, and override formatting
+38. Verify the entered quantity and arbitrary scale restore correctly after reload
 
 ## Required References
 
