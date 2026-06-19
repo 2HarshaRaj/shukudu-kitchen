@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.12.1`
+`v1.12.2`
 
 ## Overview
 
@@ -42,7 +42,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling, scalingMode, roundingType, displayText safety, and non-linear override validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling base ingredient, scalingMode, roundingType, displayText safety, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -94,6 +94,7 @@ shukudu-kitchen/
 - Scalable recipes use structured ingredient objects with stable IDs.
 - Preparation and cooking steps reference those ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
 - Scaling metadata identifies the base ingredient, base quantity, base unit, and whether the recipe uses preset options or exact quantity input.
+- Scaling `baseIngredient`, when present, must match exactly one ingredient ID in the recipe.
 - Display-text-only ingredients must be non-scalable so fixed/manual ingredient wording does not accidentally enter the scaling engine.
 
 ## Recipe Scaling
