@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.12.5
+## Current Version - v1.13.0
 
 Shukudu Kitchen currently includes:
 
@@ -15,9 +15,11 @@ Shukudu Kitchen currently includes:
 - ingredient checklists
 - sticky section navigation
 - Cooking Mode with saved progress
+- optional Cooking Mode screen wake-lock support
 - structured preparation and cooking steps
 - scalable ingredient schema
 - rice-cup-first scaling for rice recipes
+- compact rice preset labels in scale controls
 - exact base-ingredient quantity scaling for supported recipes
 - practical ingredient rounding and gram guidance
 - required roundingType validation for scalable ingredients with quantities
@@ -31,8 +33,9 @@ Shukudu Kitchen currently includes:
 - scalingMode consistency validation
 - completed automated recipe validation for the current non-image recipe model
 - saved light and dark themes
-- theme controls on the homepage and recipe page
-- theme inheritance inside Cooking Mode
+- SVG-style theme, wake-lock, and close icons
+- polished native select closed-state styling
+- consistent button hover, active, and shadow behavior across light and dark modes
 - installable PWA foundation
 - app icons, favicons, and Apple touch icon support
 - homepage and recipe-page app branding
@@ -52,6 +55,7 @@ Shukudu Kitchen currently includes:
 
 - Preset scaling controls
 - Rice-cup-first canonical base for rice recipes
+- Compact rice preset button labels using `cup/cups` while keeping current selected values fully descriptive
 - Automatic standard cup equivalents
 - Exact base-ingredient quantity input
 - Arbitrary scale calculation and persistence
@@ -64,6 +68,29 @@ Shukudu Kitchen currently includes:
 - Display-text-only fixed ingredients protected from accidental scaling
 - Unit-aware formatting
 - Practical produce and small-whole rounding
+
+### Cooking Mode Wake Lock and UI Polish - Completed
+
+- Optional screen wake-lock support in Cooking Mode
+- Wake-lock control added beside the Cooking Mode close button
+- Wake lock releases when Cooking Mode closes
+- Wake lock shows graceful unavailable messaging when unsupported
+- Wake-lock status text added below the Cooking Mode title
+- SVG-style wake-lock icon added
+- Cooking Mode close button moved to SVG-style icon rendering
+- Wake-lock and close buttons aligned to the same 42 px control size
+- Dark-mode hover behavior improved for the Mark Complete button
+- Utility controls use quiet default states and subtle hover states
+- Active/confirmed controls use clear accent styling
+- Scale preset active state changed to inset styling to avoid clipped shadow artifacts
+
+### Homepage and Recipe Page UI Polish - Completed
+
+- Theme toggle uses SVG-style sun and moon icons
+- Native category dropdown closed state uses a custom SVG chevron
+- Select focus styling aligned with the rest of the UI
+- Button shadow logic clarified: primary actions and confirmed states may use shadows; scale choices remain flat/inset
+- Desktop and zoomed-desktop layouts improved for utility controls and scale controls
 
 ### Recipe Validation Framework - Completed for Current Non-Image Model
 
@@ -113,57 +140,6 @@ Shukudu Kitchen currently includes:
 - `scaleQuantities` completeness validation against recipe-level scale options
 - Config-driven required non-linear override validation
 
-### Scaling Base Ingredient Validation - Completed
-
-- Validator checks `scaling.baseIngredient` when present on scaling-enabled recipes
-- `baseIngredient` must match exactly one ingredient ID in the same recipe
-- Quantity-input recipes still require `baseIngredient`
-- Options-based recipes are protected from broken base ingredient references
-
-### Rice Recipe Unit Validation - Completed
-
-- Rice-category recipes must use `scaling.baseUnit: "riceCup"` when scaling is enabled
-- Rice ingredient `id: "rice"` must use `unit: "rice cup"`
-- Water ingredient `id: "water"` must use `unit: "rice cup"`
-- The rule protects the rice-cup-first architecture from mixed unit drift
-
-### Large-Produce WeightGrams Validation - Completed
-
-- Scalable ingredients with `countLabel` and `roundingType: "large-produce"` must define positive `weightGrams`
-- The rule keeps count-based produce scaling paired with practical gram guidance
-- This validation is run through `scripts/validate-produce-weights.js` in GitHub Actions
-
-### Non-Linear Config Validation - Completed
-
-- Config rule keys must use slug format
-- Duplicate config rule keys are rejected
-- Duplicate config match values are rejected after normalization
-- Empty config rule match values remain rejected
-
-### Non-Linear Scaling Validation - Completed
-
-- Maintained non-linear ingredient config at `data/validation/non-linear-ingredients.json`
-- Validator fails scalable configured ingredients when `scaleQuantities` is missing
-- Validator accepts `scalingMode: "linear"` to intentionally skip config matching
-- Validator accepts `scalingMode: "non-linear"` to explicitly require `scaleQuantities`
-- Validator enforces consistency: `linear` must not define `scaleQuantities`, and `non-linear` must define `scaleQuantities`
-- Validator checks `scaleQuantities` keys against every recipe-level scale option
-- Validator rejects missing override keys, extra override keys, non-numeric values, and negative values
-- Existing recipes updated with required non-linear overrides
-
-### RoundingType Validation - Completed
-
-- Validator requires `roundingType` when `scalable: true` and `quantity` exists
-- Validator accepts only `exact`, `small-whole`, and `large-produce`
-- Existing scalable recipe ingredients updated with explicit rounding intent
-- Display-text-only non-scalable ingredients remain exempt
-
-### DisplayText Safety Validation - Completed
-
-- Validator rejects ingredients that use `displayText` without `quantity` unless `scalable` is explicitly `false`
-- Fixed/manual ingredient wording is protected from accidental scaling
-- Ingredients may still combine `displayText` with `quantity` when a recipe intentionally needs structured scaling or fixed display wording
-
 ### Light and Dark Themes - Completed
 
 - Warm light and dark palettes
@@ -172,6 +148,7 @@ Shukudu Kitchen currently includes:
 - Theme controls on homepage and recipe page
 - Cooking Mode inherits the active theme
 - Footer text is centered
+- SVG-style utility icons replace emoji/font-dependent icon rendering
 
 ### PWA Foundation and Branding - Completed
 
@@ -194,6 +171,7 @@ Completed:
 - Curd Rice migrated to the scalable schema
 - Explicit rice scaling metadata
 - Recipe-aware scale controls
+- Compact rice preset labels
 - Exact quantity scaling architecture
 - Arbitrary scale persistence
 - Mixed-vegetable boundaries documented
@@ -210,9 +188,14 @@ Completed:
 
 ## Future Features
 
+- Richer recipe cards on the homepage
+  - Possible direction: show recipe type, base quantity, cooking status, and a small useful cue such as “rice-cup-first”, “exact quantity”, or “Cooking Mode ready”.
+  - Keep the cards clean; avoid turning the homepage into a dense dashboard.
+- “Goes well with” recipe links on recipe pages
+  - Possible direction: show a small curated set of pairings rather than every technically matching recipe.
+  - For broad recipes like rasam, avoid linking every palya; prefer curated pairings such as 3-5 best matches, rotating categories, or a future rule-based pairing model.
 - Standard cup scaling input
 - Serving adjustment
-- Improved recipe cards
 - Print view
 - Recipe images
 - Direct edit link
@@ -259,16 +242,20 @@ Once recipe images are introduced, possible validation checks include:
 17. Non-linear config uniqueness validation - completed
 18. Rice recipe unit validation - completed
 19. Large-produce weightGrams validation - completed
-20. Clean up validator structure
-21. Duplicate ingredient name warning or error
-22. Preparation coverage validation
-23. Cooking method ingredient coverage validation
-24. Serving adjustment
-25. Print view
-26. Recipe images and richer cards
-27. Optional standard-cup scaling input
-28. Offline recipe support
-29. Image metadata validation after recipe images are introduced
+20. Cooking Mode wake lock - completed
+21. SVG utility icon and button-state polish - completed
+22. Clean up validator structure
+23. Duplicate ingredient name warning or error
+24. Preparation coverage validation
+25. Cooking method ingredient coverage validation
+26. Richer homepage recipe cards
+27. Goes-well-with recipe pairings
+28. Serving adjustment
+29. Print view
+30. Recipe images and richer cards
+31. Optional standard-cup scaling input
+32. Offline recipe support
+33. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
