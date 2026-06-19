@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.11.0
+## Current Version - v1.11.1
 
 Shukudu Kitchen currently includes:
 
@@ -22,6 +22,7 @@ Shukudu Kitchen currently includes:
 - practical ingredient rounding and gram guidance
 - recipe-specific non-linear scaling overrides
 - config-driven non-linear ingredient validation
+- scalingMode consistency validation
 - completed automated recipe validation for the current non-image recipe model
 - saved light and dark themes
 - theme controls on the homepage and recipe page
@@ -85,7 +86,8 @@ Shukudu Kitchen currently includes:
 - Details metadata validation for `Cuisine`, `Meal Type`, and `Status`
 - `servingSuggestions` validation
 - `notes` validation
-- `scalingMode` validation
+- `scalingMode` value validation
+- `scalingMode` consistency validation
 - `scaleQuantities` completeness validation against recipe-level scale options
 - Config-driven required non-linear override validation
 
@@ -95,6 +97,7 @@ Shukudu Kitchen currently includes:
 - Validator fails scalable configured ingredients when `scaleQuantities` is missing
 - Validator accepts `scalingMode: "linear"` to intentionally skip config matching
 - Validator accepts `scalingMode: "non-linear"` to explicitly require `scaleQuantities`
+- Validator enforces consistency: `linear` must not define `scaleQuantities`, and `non-linear` must define `scaleQuantities`
 - Validator checks `scaleQuantities` keys against every recipe-level scale option
 - Validator rejects missing override keys, extra override keys, non-numeric values, and negative values
 - Existing recipes updated with required non-linear overrides
@@ -154,7 +157,6 @@ Image metadata validation is deferred because images are not part of the current
 
 Possible non-image validation enhancements:
 
-- stricter `scalingMode` consistency checks
 - required `roundingType` for scalable measured ingredients
 - `displayText` safety checks
 - count-based produce weight guidance checks
@@ -182,12 +184,13 @@ Once recipe images are introduced, possible validation checks include:
 10. Recipe validation framework - completed for current non-image model
 11. PWA foundation and app branding - completed
 12. Non-linear ingredient validation - completed
-13. Serving adjustment
-14. Print view
-15. Recipe images and richer cards
-16. Optional standard-cup scaling input
-17. Offline recipe support
-18. Image metadata validation after recipe images are introduced
+13. ScalingMode consistency validation - completed
+14. Serving adjustment
+15. Print view
+16. Recipe images and richer cards
+17. Optional standard-cup scaling input
+18. Offline recipe support
+19. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
