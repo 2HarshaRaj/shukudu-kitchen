@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.11.1`
+`v1.12.0`
 
 ## Overview
 
@@ -38,10 +38,11 @@ Recipes are adapted to match real kitchen use, including:
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
 - Recipe-specific non-linear scaling overrides
+- Explicit rounding behavior for scalable ingredients
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling, scalingMode, and non-linear override validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling, scalingMode, roundingType, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -119,6 +120,8 @@ selected scale = entered quantity ÷ base quantity
 
 This is intended for recipes with one clear dominant ingredient, such as a single-vegetable palya. Mixed-vegetable recipes use this mode only when the entered quantity represents a defined total vegetable mix.
 
+Scalable ingredients with quantities must declare `roundingType` so the renderer knows whether to preserve exact values, use small whole-count handling, or apply large-produce display guidance.
+
 Non-linear ingredients such as green chilli, tempering dals, curry leaves, ginger, coriander leaves, lemon, and strong masala powders may use recipe-specific `scaleQuantities` so they do not blindly scale in direct proportion.
 
 ## Validation
@@ -144,6 +147,7 @@ Validator checks:
 - Unit standardization
 - Structured measured-water references
 - `servingSuggestions` and `notes` array validation
+- `roundingType` presence and allowed values for scalable ingredients with quantities
 - `scaleQuantities` key/value validation against recipe-level `scaling.options`
 - `scalingMode` value and consistency validation for `linear` and `non-linear`
 - Config-driven required non-linear override validation using `data/validation/non-linear-ingredients.json`
