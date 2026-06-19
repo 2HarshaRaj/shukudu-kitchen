@@ -7,8 +7,8 @@
   padding: 0;
   border: 1px solid var(--border);
   border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: #f3ece5;
+  color: var(--text);
   font: inherit;
   font-size: 0;
   font-weight: 800;
