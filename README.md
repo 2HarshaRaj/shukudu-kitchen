@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.10.1`
+`v1.11.0`
 
 ## Overview
 
@@ -37,9 +37,11 @@ Recipes are adapted to match real kitchen use, including:
 - Exact base-ingredient quantity input for supported recipes
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
+- Recipe-specific non-linear scaling overrides
+- Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, and notes validation
+- Recipe-index, slug, metadata, step-structure, notes, scaling, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -54,7 +56,9 @@ Recipes are adapted to match real kitchen use, including:
 shukudu-kitchen/
 ├─ data/
 │  ├─ recipe-index.json
-│  └─ recipes/
+│  ├─ recipes/
+│  └─ validation/
+│     └─ non-linear-ingredients.json
 ├─ docs/
 ├─ icons/
 ├─ scripts/
@@ -81,6 +85,8 @@ shukudu-kitchen/
 
 - Homepage metadata is stored in `data/recipe-index.json`.
 - Full recipes are stored individually under `data/recipes/`.
+- Validation reference data is stored under `data/validation/`.
+- `data/validation/non-linear-ingredients.json` lists ingredient patterns that require non-linear scale overrides when the ingredient is scalable.
 - Each recipe slug must match its file name exactly: `data/recipes/<slug>.json`.
 - Each recipe file must be listed in `data/recipe-index.json`.
 - Index `name`, `category`, and `summary` values must match the recipe JSON.
@@ -113,6 +119,8 @@ selected scale = entered quantity ÷ base quantity
 
 This is intended for recipes with one clear dominant ingredient, such as a single-vegetable palya. Mixed-vegetable recipes use this mode only when the entered quantity represents a defined total vegetable mix.
 
+Non-linear ingredients such as green chilli, tempering dals, curry leaves, ginger, coriander leaves, lemon, and strong masala powders may use recipe-specific `scaleQuantities` so they do not blindly scale in direct proportion.
+
 ## Validation
 
 Recipe data is automatically validated through GitHub Actions.
@@ -136,11 +144,15 @@ Validator checks:
 - Unit standardization
 - Structured measured-water references
 - `servingSuggestions` and `notes` array validation
+- `scaleQuantities` key/value validation against recipe-level `scaling.options`
+- `scalingMode` validation for `linear` and `non-linear`
+- Config-driven required non-linear override validation using `data/validation/non-linear-ingredients.json`
 
 Workflow:
 
 - `.github/workflows/validate-recipes.yml`
 - `scripts/validate-recipes.js`
+- `data/validation/non-linear-ingredients.json`
 - Node.js 24
 - `actions/checkout@v6`
 - `actions/setup-node@v6`
@@ -149,6 +161,7 @@ The workflow runs when these paths change:
 
 - `data/recipe-index.json`
 - `data/recipes/**`
+- `data/validation/**`
 - `scripts/validate-recipes.js`
 - `.github/workflows/validate-recipes.yml`
 
