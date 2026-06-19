@@ -9,6 +9,7 @@ const VALID_BASE_UNITS = new Set(['g', 'riceCup', 'cup']);
 const STANDARD_QUANTITY_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
 const VALID_SCALING_MODES = new Set(['linear', 'non-linear']);
+const VALID_ROUNDING_TYPES = new Set(['exact', 'small-whole', 'large-produce']);
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 let totalErrors = 0;
@@ -263,6 +264,23 @@ function validateScalingModes(recipe, errors) {
   });
 }
 
+function validateRoundingTypes(recipe, errors) {
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+
+    const label = getIngredientLabel(item);
+    const hasQuantity = Object.prototype.hasOwnProperty.call(item, 'quantity');
+
+    if (item.roundingType != null && !VALID_ROUNDING_TYPES.has(item.roundingType)) {
+      addError(errors, `Ingredient "${label}" has invalid roundingType "${item.roundingType}"; use "exact", "small-whole", or "large-produce"`);
+    }
+
+    if (item.scalable === true && hasQuantity && item.roundingType == null) {
+      addError(errors, `Ingredient "${label}" is scalable and has quantity but is missing roundingType`);
+    }
+  });
+}
+
 function validateScaleQuantities(recipe, errors) {
   const options = recipe.scaling && Array.isArray(recipe.scaling.options)
     ? recipe.scaling.options.map(String)
@@ -438,6 +456,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     validateQuantityScaling(recipe, ingredientInfo, errors);
     validateIngredientUnits(recipe, errors);
     validateScalingModes(recipe, errors);
+    validateRoundingTypes(recipe, errors);
     validateScaleQuantities(recipe, errors);
     validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors);
     validateStepIngredientIds(recipe, ingredientInfo.ids, errors);
