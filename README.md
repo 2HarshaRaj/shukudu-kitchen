@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.15.4`
+`v1.15.5`
 
 ## Overview
 
@@ -23,7 +23,7 @@ Recipes are adapted to match real kitchen use, including:
 - search aliases for alternate names and regional dish names
 - compact homepage relationship chips
 - homepage meal type filters
-- recipe-page Goes well with links for curated recipe pairings
+- recipe-page Pairings links for curated recipe pairings
 - full recipe-page relationship details with base quantity
 - mobile-friendly Cooking Mode
 - optional Cooking Mode screen wake-lock support
@@ -55,7 +55,7 @@ Recipes are adapted to match real kitchen use, including:
 - Technical debt and formatter cleanup notes tracked in `docs/TECHNICAL_DEBT.md`
 - Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
 - Homepage Meal Type filters use `relationships.mealTypes`
-- Recipe pages show full relationship details, base quantity, and curated Goes well with recipe links
+- Recipe pages show full relationship details, base quantity, and curated Pairings recipe links
 - Recipe-specific non-linear scaling overrides
 - Explicit rounding behavior for scalable ingredients
 - Config-driven non-linear ingredient validation
@@ -91,6 +91,7 @@ shukudu-kitchen/
 - script.js
 - recipe.js
 - recipe-pairings.js
+- recipe-pairings.css
 - recipe-scaling.js
 - recipe-scaling.css
 - homepage-filters.css
@@ -147,7 +148,7 @@ Current structure:
 }
 ```
 
-Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary Dish Type, and base quantity. Homepage Meal Type filters use `relationships.mealTypes`. Recipe pages show the full details, including all dish types, generated base quantity, and curated Goes well with recipe links when pairings exist.
+Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary Dish Type, and base quantity. Homepage Meal Type filters use `relationships.mealTypes`. Recipe pages show the full details, including all dish types, generated base quantity, and curated Pairings recipe links when pairings exist.
 
 `One Pot` means the rice or main ingredient cooks directly with the masala in the same vessel. Recipes where rice is cooked separately, cooled/rested, and then mixed into masala are not tagged as `One Pot`.
 
