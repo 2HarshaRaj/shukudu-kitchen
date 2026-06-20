@@ -65,7 +65,7 @@ The structured version:
 }
 ```
 
-is better because each value is separate and can be used safely for filtering, cards, and future pairing logic.
+is better because each value is separate and can be used safely for filtering, cards, search, and future pairing logic.
 
 ## Relationship Fields
 
@@ -172,7 +172,7 @@ Dal Tadka: Dal / Side Dish
 
 Purpose: curated recipe pairings.
 
-Type: array.
+Type: array of recipe slugs.
 
 Initial value:
 
@@ -180,9 +180,9 @@ Initial value:
 "goesWellWith": []
 ```
 
-The field is intentionally present from the beginning but may stay empty until pairing is designed.
+The field is intentionally present from the beginning but may stay empty until a useful pairing is known.
 
-Currently supported shape: recipe slugs.
+Currently supported shape:
 
 ```json
 "goesWellWith": ["tomato-rasam", "beans-palya"]
@@ -191,11 +191,40 @@ Currently supported shape: recipe slugs.
 Rules:
 
 - use recipe slugs only
+- use only slugs that exist in `data/recipes/`
 - do not self-reference the current recipe
 - do not mass-link every technically related recipe
 - pairings should be curated and useful
+- prefer pairings the user would realistically cook or serve together
+- keep the list small; usually 1-5 pairings is enough
+- pairings may be one-way unless the reverse pairing is also genuinely useful
 
-A future richer shape may be introduced later if reasons or pairing categories are needed.
+Good examples:
+
+```text
+Dal Tadka -> jeera rice, plain rice, roti, simple pulao
+Bisi Bele Bath -> curd rice, boondi, potato chips, plain curd
+Rasam -> palya, curd rice, plain rice
+Palya -> rasam rice, curd rice, dal rice
+```
+
+For the current site, only link to recipes that already exist in the repo. Do not add plain foods like `roti`, `boondi`, `pickle`, or `papad` to `goesWellWith` until they exist as recipes or the field is expanded to support non-recipe serving items.
+
+A future richer shape may be introduced later if reasons, pairing categories, or non-recipe serving items are needed.
+
+Possible future richer shape:
+
+```json
+"goesWellWith": [
+  {
+    "slug": "tomato-rasam",
+    "reason": "Balances dry palya with rice and rasam",
+    "type": "meal-pairing"
+  }
+]
+```
+
+Do not use the richer shape yet. Current validator expects an array of slugs.
 
 ## UI Usage
 
@@ -215,7 +244,7 @@ Example:
 South Indian · Karnataka   Lunch   Dinner   Rice   1 rice cup base
 ```
 
-For a recipe with multiple dish types, homepage cards show only the first dish type. The full relationship data remains in JSON for future filters.
+For a recipe with multiple dish types, homepage cards show only the first dish type. The full relationship data remains in JSON for search, filters, and future recipe-page pairing display.
 
 ### Recipe Page Details
 
@@ -232,6 +261,24 @@ Base: 1 rice cup
 ```
 
 `Base` is generated from `scaling.baseQuantity` and `scaling.baseUnit`, not from manual display text.
+
+### Search
+
+Homepage search now includes relationship metadata.
+
+This means search should match values such as:
+
+```text
+Lunch
+Dinner
+Palya
+Rasam
+One Pot
+South Indian
+Karnataka
+```
+
+Search also includes `relationships.goesWellWith` slugs. After pairings are added, searching for a related recipe slug may surface recipes that link to it.
 
 ## Validation Standard
 
@@ -266,13 +313,15 @@ Completed:
 8. Validator updated to enforce relationship metadata.
 9. Old `details["Meal Type"]` removed from recipe JSON.
 10. `Dal` added as a supported dish type for North Indian dal recipes.
+11. Homepage Meal Type filters added.
+12. Homepage search updated to include relationship metadata.
 
 Future:
 
 - curated `goesWellWith` pairings
-- meal type filters
 - dish type filters
 - recipe pairing display on recipe pages
+- optional richer pairing shape with reasons or categories
 
 ## Design Boundary
 
