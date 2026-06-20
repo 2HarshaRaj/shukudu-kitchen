@@ -14,12 +14,19 @@ const VALID_ROUNDING_TYPES = new Set(['exact', 'small-whole', 'large-produce']);
 const VALID_MEAL_TYPES = new Set(['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Side']);
 const VALID_DISH_TYPES = new Set(['Rice', 'Bath', 'Palya', 'Rasam', 'Dal', 'Curd Rice', 'Side Dish', 'One Pot']);
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const REFERENCE_QUANTITY_RECOMMENDED_TERMS = ['rice', 'dal', 'poha', 'avalakki', 'rava', 'sooji', 'flour', 'besan'];
 
 let totalErrors = 0;
+let totalWarnings = 0;
 
 function addError(errors, message) {
   errors.push(message);
   totalErrors += 1;
+}
+
+function addWarning(warnings, message) {
+  warnings.push(message);
+  totalWarnings += 1;
 }
 
 function readJson(filePath, errors) {
@@ -461,6 +468,55 @@ function ingredientMatchesRule(item, rule) {
   return Array.isArray(rule.match) && rule.match.some((term) => haystack.includes(normalizeText(term)));
 }
 
+function ingredientContainsWholeWord(item, terms) {
+  const haystack = [
+    item.id,
+    item.ingredient,
+    item.countLabel,
+    item.displayText
+  ].map(normalizeText).join(' ');
+
+  return terms.some((term) => new RegExp(`(^|[^a-z0-9])${term}([^a-z0-9]|$)`, 'i').test(haystack));
+}
+
+function validateReferenceQuantities(recipe, errors, warnings) {
+  walkIngredients(recipe, (item) => {
+    if (!item || typeof item !== 'object' || typeof item === 'string') return;
+
+    const label = getIngredientLabel(item);
+    const hasReferenceQuantity = Object.prototype.hasOwnProperty.call(item, 'referenceQuantity');
+
+    if (hasReferenceQuantity) {
+      const reference = item.referenceQuantity;
+      if (!reference || typeof reference !== 'object' || Array.isArray(reference)) {
+        addError(errors, `Ingredient "${label}" referenceQuantity must be an object`);
+        return;
+      }
+
+      if (!Number.isFinite(Number(reference.quantity)) || Number(reference.quantity) <= 0) {
+        addError(errors, `Ingredient "${label}" referenceQuantity.quantity must be a positive number`);
+      }
+
+      if (!isNonEmptyString(reference.unit)) {
+        addError(errors, `Ingredient "${label}" referenceQuantity.unit must be a non-empty string`);
+      }
+
+      if (reference.approx != null && typeof reference.approx !== 'boolean') {
+        addError(errors, `Ingredient "${label}" referenceQuantity.approx must be boolean when present`);
+      }
+    }
+
+    if (
+      item.scalable === true
+      && item.unit === 'g'
+      && !hasReferenceQuantity
+      && ingredientContainsWholeWord(item, REFERENCE_QUANTITY_RECOMMENDED_TERMS)
+    ) {
+      addWarning(warnings, `Ingredient "${label}" is a gram-based pantry staple and should include referenceQuantity for cup/spoon display`);
+    }
+  });
+}
+
 function validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors) {
   walkIngredients(recipe, (item) => {
     if (!item || typeof item !== 'object' || typeof item === 'string') return;
@@ -561,6 +617,7 @@ function validateHardcodedWater(recipe, ingredientIds, errors) {
 function validateRecipe(fileName, recipeMap, nonLinearRules) {
   const filePath = path.join(RECIPES_DIR, fileName);
   const errors = [];
+  const warnings = [];
   const recipe = readJson(filePath, errors);
 
   if (recipe) {
@@ -581,6 +638,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     validateRoundingTypes(recipe, errors);
     validateDisplayTextSafety(recipe, errors);
     validateScaleQuantities(recipe, errors);
+    validateReferenceQuantities(recipe, errors, warnings);
     validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors);
     validateStepIngredientIds(recipe, ingredientInfo.ids, errors);
     validateHardcodedWater(recipe, ingredientInfo.ids, errors);
@@ -590,9 +648,10 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     }
   }
 
-  if (errors.length) {
+  if (errors.length || warnings.length) {
     console.log(`\n${fileName}`);
     errors.forEach((error) => console.log(`  ✗ ${error}`));
+    warnings.forEach((warning) => console.log(`  ⚠ ${warning}`));
   }
 }
 
@@ -699,6 +758,10 @@ function main() {
   if (totalErrors > 0) {
     console.log(`\nRecipe validation failed with ${totalErrors} error(s).`);
     process.exit(1);
+  }
+
+  if (totalWarnings > 0) {
+    console.log(`\nRecipe validation completed with ${totalWarnings} warning(s).`);
   }
 
   console.log(`✓ Recipe validation passed for ${recipeFiles.length} recipe file(s).`);
