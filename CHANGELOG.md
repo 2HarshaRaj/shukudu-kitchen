@@ -29,6 +29,16 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.6 - 2026-06-20
+
+### Changed
+
+- Homepage Meal Type filter pills now visually align with recipe-page section nav pills: muted text, soft background, no default visible border, and lighter font weight
+- Pairing recipe chips now use muted default text while keeping their larger tap-friendly size and subtle border
+- Homepage footer, recipe page footer, and README version updated to `v1.15.6`
+- Homepage now loads `homepage-filters.css?v=1.15.6`
+- Recipe page now loads `recipe-pairings.css?v=1.15.6`
+
 ## 1.15.5 - 2026-06-20
 
 ### Changed
