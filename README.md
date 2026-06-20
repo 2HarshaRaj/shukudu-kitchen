@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.15.1`
+`v1.15.2`
 
 ## Overview
 
@@ -20,6 +20,7 @@ Recipes are adapted to match real kitchen use, including:
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
 - structured recipe relationships for meal types, dish types, and future pairings
+- search aliases for alternate names and regional dish names
 - compact homepage relationship chips
 - homepage meal type filters
 - full recipe-page relationship details with base quantity
@@ -32,6 +33,7 @@ Recipes are adapted to match real kitchen use, including:
 ## Main Features
 
 - Recipe cards with search, category filters, and meal type filters
+- Homepage search across recipe name, summary, aliases, relationship metadata, and non-common ingredients
 - One JSON file per recipe
 - Ingredient checklists with saved progress
 - Sticky section navigation
@@ -47,6 +49,7 @@ Recipes are adapted to match real kitchen use, including:
 - Persistence of entered quantities and calculated scales per recipe
 - Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
+- Search alias rules documented in `docs/SEARCH.md`
 - Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`
 - Technical debt and formatter cleanup notes tracked in `docs/TECHNICAL_DEBT.md`
 - Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
@@ -57,7 +60,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
+- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, searchAliases structure, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -109,6 +112,7 @@ shukudu-kitchen/
 - Each recipe slug must match its file name exactly: `data/recipes/<slug>.json`.
 - Each recipe file must be listed in `data/recipe-index.json`.
 - Index `name`, `category`, and `summary` values must match the recipe JSON.
+- Index `searchAliases` may be used for alternate names and regional names. See `docs/SEARCH.md`.
 - Scalable recipes use structured ingredient objects with stable IDs.
 - Recipe relationship data is documented in `docs/RECIPE_RELATIONSHIPS.md` and separates human-facing `details` from structured `relationships`.
 - Reference quantity metadata is documented in `docs/REFERENCE_QUANTITY.md` and is used for gram-based pantry staples that need cup or spoon guidance.
