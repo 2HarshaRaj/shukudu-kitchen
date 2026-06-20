@@ -39,8 +39,8 @@ shukudu-kitchen/
 - `index.html`: homepage layout, homepage theme-control host, PWA metadata, and brand header structure
 - `recipe.html`: recipe-page shell, recipe top bar, PWA metadata, recipe theme-control host, and wake-lock asset loading
 - `manifest.webmanifest`: installable app metadata, app name, start URL, display mode, theme color, and app icons
-- `script.js`: homepage search, filters, and recipe cards
-- `recipe.js`: recipe rendering, ingredient checklist, and Cooking Mode
+- `script.js`: homepage search, filters, and compact recipe cards using relationship metadata
+- `recipe.js`: recipe rendering, details rendering, ingredient checklist, and Cooking Mode
 - `recipe-scaling.js`: recipe scaling, exact quantity input, overrides, and formatting
 - `recipe-scaling.css`: scaling-control layout, compact preset display, scroll behavior, active scale styling, and responsive scaling UI
 - `wake-lock.js`: Cooking Mode screen wake-lock behavior and wake-lock UI injection
@@ -52,7 +52,7 @@ shukudu-kitchen/
 - `style.css`: shared site layout, recipe cards, primary/secondary buttons, recipe layout, and Cooking Mode base styling
 - `icons/`: install icons, favicons, and Apple touch icon assets
 - `data/validation/non-linear-ingredients.json`: config list of ingredients that require recipe-specific non-linear scaling overrides when scalable
-- `scripts/validate-recipes.js`: recipe JSON, index, slug, metadata, step, notes, scaling, rounding, non-linear override, scaling-mode consistency, and schema guardrails
+- `scripts/validate-recipes.js`: recipe JSON, index, slug, details, relationships, step, notes, scaling, rounding, non-linear override, scaling-mode consistency, and schema guardrails
 - `scripts/validate-produce-weights.js`: produce weight guidance validation for large-produce ingredients
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
@@ -141,11 +141,9 @@ Theme controls are placed in the page layout rather than floating over the page:
 - recipe page: beside the Back to recipes link
 - Cooking Mode: no separate theme toggle; it inherits the active page theme
 
-Desktop controls use a fixed 92 px width so the button does not resize between labels. Mobile controls use a fixed 44 px circular icon-only button.
-
 Theme icons use CSS SVG masks rather than emoji or font-dependent glyphs so the appearance is consistent across Android, iPhone, Chrome, Safari, and desktop browsers.
 
-`theme.js` updates browser `theme-color` metadata when the user changes theme. This allows supported Android browsers and installed PWAs to visually blend the status bar with the current page and selected theme.
+`theme.js` updates browser `theme-color` metadata when the user changes theme.
 
 Theme-color behaviour:
 
@@ -192,7 +190,77 @@ Preparation and cooking steps support two shapes:
 
 Structured ingredient steps must use `lead` and `ingredientIds` together.
 
-Recipe metadata under `details` must include non-empty `Cuisine`, `Meal Type`, and `Status`. `servingSuggestions` and `notes` must be arrays of non-empty strings when present.
+## Recipe Metadata Architecture
+
+Recipe metadata is split into two layers:
+
+```text
+details = human-facing recipe metadata
+relationships = structured discovery, filtering, and pairing metadata
+```
+
+`details` must include:
+
+- `Cuisine`
+- `Status`
+
+`relationships` must include:
+
+- `mealTypes`
+- `dishTypes`
+- `goesWellWith`
+
+Example:
+
+```json
+"details": {
+  "Cuisine": "South Indian · Karnataka",
+  "Status": "Finalized"
+},
+"relationships": {
+  "mealTypes": ["Lunch", "Dinner"],
+  "dishTypes": ["Rice", "Bath", "One Pot"],
+  "goesWellWith": []
+}
+```
+
+`details["Meal Type"]` is not part of the current data model. It was migrated to `relationships.mealTypes`.
+
+Homepage cards use relationship data selectively:
+
+```text
+Cuisine + Meal Type + primary Dish Type + base quantity
+```
+
+Recipe pages show the fuller detail set:
+
+```text
+Cuisine
+Status
+Meal Type
+Dish Type
+Base
+```
+
+`Base` is generated from `scaling.baseQuantity` and `scaling.baseUnit`.
+
+## Relationship Classification Rules
+
+`One Pot` means the rice or main ingredient cooks directly with the masala in the same vessel.
+
+```text
+One Pot = rice/main ingredient cooks directly with the masala in the same vessel.
+Not One Pot = rice is cooked separately, cooled/rested, then mixed into masala later.
+```
+
+Current examples:
+
+```text
+Tomato Bath: Rice / Bath / One Pot
+Menthya Rice Bath: Rice / Bath / One Pot
+Bisi Bele Bath: Rice / Bath / One Pot
+Vangi Bath: Rice / Bath
+```
 
 ## Scaling Flow
 
@@ -361,7 +429,8 @@ Validator guardrails include:
 - duplicate ingredient ID detection
 - missing ingredient reference detection
 - cooking-step structure validation
-- details metadata validation
+- details metadata validation for `Cuisine` and `Status`
+- relationship metadata validation for `mealTypes`, `dishTypes`, and `goesWellWith`
 - `servingSuggestions` and `notes` array validation
 - quantity-input scaling metadata validation
 - exact `baseIngredient` to ingredient ID matching
@@ -374,8 +443,9 @@ Validator guardrails include:
 - `roundingType` allowed value and required-field validation
 - `scalingMode` value and consistency validation
 - `scaleQuantities` validation against recipe-level `scaling.options`
-- required non-linear override validation for configured ingredients
-- large-produce `weightGrams` validation through `scripts/validate-produce-weights.js`
+- configured non-linear override validation
+- rice unit validation
+- large-produce `weightGrams` validation
 
 The validator is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
 
@@ -400,6 +470,7 @@ shukudu-theme
 
 - Keep one recipe per JSON file.
 - Keep the recipe index lightweight and synchronized with recipe files.
+- Keep relationship metadata in `relationships`, not display-only `details`.
 - Keep validation config under `data/validation/`.
 - Keep scaling logic in `recipe-scaling.js`.
 - Keep exact quantity and scale-control styling in `recipe-scaling.css`.
