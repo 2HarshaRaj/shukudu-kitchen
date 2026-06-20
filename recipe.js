@@ -125,6 +125,16 @@ function formatGramWeight(item, scale) {
   return `${formatNumber(rounded)} g`;
 }
 
+function formatReferenceQuantity(item, scale) {
+  const reference = item.referenceQuantity;
+  if (!reference || typeof reference !== 'object' || Array.isArray(reference)) return '';
+  if (!Number.isFinite(Number(reference.quantity)) || !reference.unit) return '';
+
+  const raw = item.scalable === false ? Number(reference.quantity) : Number(reference.quantity) * scale;
+  const prefix = reference.approx === false ? '' : '≈ ';
+  return ` (${prefix}${formatNumber(raw)} ${pluralizeUnit(reference.unit, raw)})`;
+}
+
 function formatPracticalCount(item, scale) {
   const raw = item.scalable === false ? item.quantity : item.quantity * scale;
   const type = item.roundingType || item.rounding || 'exact';
@@ -190,10 +200,11 @@ function formatIngredient(item, scale = 1) {
   const riceCup = riceCupQuantity == null
     ? ''
     : ` (${formatNumber(riceCupQuantity)} ${pluralizeUnit('rice cup', riceCupQuantity)})`;
+  const referenceQuantity = formatReferenceQuantity(item, scale);
   const grams = formatGramWeight(item, scale);
   const gramsText = grams ? ` (${grams})` : '';
 
-  return `${formattedQuantity} ${unit} ${item.ingredient}${riceCup}${gramsText}${preparation}`.replace(/\s+/g, ' ').trim();
+  return `${formattedQuantity} ${unit} ${item.ingredient}${riceCup}${referenceQuantity}${gramsText}${preparation}`.replace(/\s+/g, ' ').trim();
 }
 
 function buildIngredientMap(recipe) {
