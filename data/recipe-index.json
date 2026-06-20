@@ -46,5 +46,11 @@
     "slug": "menthya-rice-bath",
     "category": "Rice",
     "summary": "Karnataka-style methi rice bath made with sona masuri rice, fresh methi leaves, whole spices, tamarind and jaggery."
+  },
+  {
+    "name": "Punjabi Dal Tadka",
+    "slug": "punjabi-dal-tadka",
+    "category": "Dal",
+    "summary": "Punjabi dhaba-style dal tadka made with toor dal, moong dal, onion, tomato, garlic, ghee and a spicy kasuri methi tempering."
   }
 ]
