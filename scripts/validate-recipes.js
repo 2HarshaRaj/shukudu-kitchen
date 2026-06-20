@@ -5,11 +5,14 @@ const ROOT = process.cwd();
 const RECIPES_DIR = path.join(ROOT, 'data', 'recipes');
 const RECIPE_INDEX_FILE = path.join(ROOT, 'data', 'recipe-index.json');
 const NON_LINEAR_RULES_FILE = path.join(ROOT, 'data', 'validation', 'non-linear-ingredients.json');
+
 const VALID_BASE_UNITS = new Set(['g', 'riceCup', 'cup']);
 const STANDARD_QUANTITY_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
 const VALID_SCALING_MODES = new Set(['linear', 'non-linear']);
 const VALID_ROUNDING_TYPES = new Set(['exact', 'small-whole', 'large-produce']);
+const VALID_MEAL_TYPES = new Set(['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Side']);
+const VALID_DISH_TYPES = new Set(['Rice', 'Bath', 'Palya', 'Rasam', 'Curd Rice', 'Side Dish', 'One Pot']);
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 let totalErrors = 0;
@@ -159,6 +162,58 @@ function validateDetails(recipe, errors) {
       addError(errors, `details requires non-empty "${field}"`);
     }
   });
+}
+
+function validateRelationshipArray(relationships, fieldName, allowedValues, errors) {
+  const value = relationships[fieldName];
+
+  if (!Array.isArray(value)) {
+    addError(errors, `relationships.${fieldName} must be an array`);
+    return;
+  }
+
+  if (fieldName !== 'goesWellWith' && value.length === 0) {
+    addError(errors, `relationships.${fieldName} must not be empty`);
+  }
+
+  const seen = new Set();
+  value.forEach((item, index) => {
+    if (!isNonEmptyString(item)) {
+      addError(errors, `relationships.${fieldName}[${index}] must be a non-empty string`);
+      return;
+    }
+
+    if (seen.has(item)) {
+      addError(errors, `relationships.${fieldName} contains duplicate value "${item}"`);
+    }
+    seen.add(item);
+
+    if (allowedValues && !allowedValues.has(item)) {
+      addError(errors, `relationships.${fieldName}[${index}] has unsupported value "${item}"`);
+    }
+  });
+}
+
+function validateRelationships(recipe, errors) {
+  if (!recipe.relationships || typeof recipe.relationships !== 'object' || Array.isArray(recipe.relationships)) {
+    addError(errors, 'relationships must be an object');
+    return;
+  }
+
+  validateRelationshipArray(recipe.relationships, 'mealTypes', VALID_MEAL_TYPES, errors);
+  validateRelationshipArray(recipe.relationships, 'dishTypes', VALID_DISH_TYPES, errors);
+  validateRelationshipArray(recipe.relationships, 'goesWellWith', null, errors);
+
+  if (Array.isArray(recipe.relationships.goesWellWith)) {
+    recipe.relationships.goesWellWith.forEach((slug, index) => {
+      if (isNonEmptyString(slug) && !isValidSlug(slug)) {
+        addError(errors, `relationships.goesWellWith[${index}] must use recipe slug format`);
+      }
+      if (slug === recipe.slug) {
+        addError(errors, 'relationships.goesWellWith must not reference the recipe itself');
+      }
+    });
+  }
 }
 
 function validateStringArray(recipe, fieldName, errors) {
@@ -403,9 +458,7 @@ function ingredientMatchesRule(item, rule) {
     item.displayText
   ].map(normalizeText).join(' ');
 
-  return Array.isArray(rule.match) && rule.match.some((term) => {
-    return haystack.includes(normalizeText(term));
-  });
+  return Array.isArray(rule.match) && rule.match.some((term) => haystack.includes(normalizeText(term)));
 }
 
 function validateRequiredNonLinearScaleQuantities(recipe, nonLinearRules, errors) {
@@ -513,6 +566,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
   if (recipe) {
     validateTopLevel(recipe, errors);
     validateDetails(recipe, errors);
+    validateRelationships(recipe, errors);
     validateStringArray(recipe, 'servingSuggestions', errors);
     validateStringArray(recipe, 'notes', errors);
     validateSlug(recipe, fileName, errors);
