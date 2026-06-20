@@ -14,7 +14,7 @@
   border: 1px solid var(--border);
   border-radius: 999px;
   background: rgba(159, 63, 47, 0.08);
-  color: var(--text);
+  color: var(--muted);
   font-weight: 700;
   line-height: 1.2;
   text-decoration: none;
