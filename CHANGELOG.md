@@ -29,6 +29,24 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.1 - 2026-06-20
+
+### Added
+
+- `referenceQuantity` documentation for gram-based pantry staples that need cup or spoon guidance
+- Static asset versioning documentation
+- Technical debt note for consolidating ingredient formatters later
+
+### Changed
+
+- Homepage and recipe page static JS/CSS assets now use `?v=1.15.1` cache-busting query strings
+- Footer version updated to `v1.15.1`
+- README now links the new reference quantity, asset versioning, and technical debt docs
+
+### Fixed
+
+- Recipe scaling formatter now preserves `referenceQuantity` display after refreshes and scale changes
+
 ## 1.15.0 - 2026-06-20
 
 ### Added
@@ -59,10 +77,10 @@ Major.Minor.Patch
 
 ### Changed
 
-- Moved meal classification out of `details["Meal Type"]` and into `relationships.mealTypes`
+- Moved meal classification out of `details[Meal Type]` and into `relationships.mealTypes`
 - Homepage recipe cards now show compact chips: Cuisine, Meal Type, primary Dish Type, and base quantity
 - Recipe pages now show full relationship details, including all dish types
-- Recipe details rendering now hides old `Base Quantity` display text and generates `Base` from scaling metadata
+- Recipe details rendering now hides old Base Quantity display text and generates Base from scaling metadata
 - Tomato Bath and Menthya Rice Bath are classified as `One Pot` because rice cooks directly with the masala in the pressure cooker
 - Beans Palya cuisine label standardized to `South Indian · Karnataka`
 
@@ -73,7 +91,7 @@ Major.Minor.Patch
 - `relationships.dishTypes` must be a non-empty array of allowed values
 - `relationships.goesWellWith` must be an array
 - `goesWellWith` values must be valid recipe slugs and must not self-reference the current recipe
-- `details` now requires only `Cuisine` and `Status`; `Meal Type` belongs in `relationships.mealTypes`
+- `details` now requires only Cuisine and Status; Meal Type belongs in `relationships.mealTypes`
 
 ### Improved
 
