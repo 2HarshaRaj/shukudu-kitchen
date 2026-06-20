@@ -38,6 +38,7 @@ Major.Minor.Patch
 - Added `docs/SEARCH.md` to document search sources, alias rules, and future search improvements
 - Added `scripts/validate-search.js` for search alias validation
 - Added search aliases to existing recipe index entries
+- Added first curated `relationships.goesWellWith` pairings for Tomato Rasam, Beans Palya, Balekai Palya, and Curd Rice
 
 ### Changed
 
