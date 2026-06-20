@@ -29,6 +29,22 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.2 - 2026-06-20
+
+### Added
+
+- Homepage search now supports `searchAliases` for alternate recipe names and regional names
+- Homepage search now includes relationship metadata such as Cuisine, meal types, dish types, and goes-well-with slugs
+- Added `docs/SEARCH.md` to document search sources, alias rules, and future search improvements
+- Added `scripts/validate-search.js` for search alias validation
+- Added search aliases to existing recipe index entries
+
+### Changed
+
+- Homepage script asset version bumped to `script.js?v=1.15.2`
+- Homepage footer and README version updated to `v1.15.2`
+- Validation workflow now runs search alias validation
+
 ## 1.15.1 - 2026-06-20
 
 ### Added
