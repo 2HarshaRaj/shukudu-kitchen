@@ -85,6 +85,19 @@ function formatCupEquivalent(item, quantity, effectiveScale) {
   return '';
 }
 
+function formatScaledReferenceQuantity(item, effectiveScale) {
+  const reference = item.referenceQuantity;
+  if (!reference || typeof reference !== 'object' || Array.isArray(reference)) return '';
+  if (!Number.isFinite(Number(reference.quantity)) || !reference.unit) return '';
+
+  const quantity = item.scalable === false
+    ? Number(reference.quantity)
+    : Number(reference.quantity) * effectiveScale;
+  const prefix = reference.approx === false ? '' : '≈ ';
+
+  return ` (${prefix}${formatPracticalMeasuredQuantity(quantity, reference.unit)} ${pluralizeUnit(reference.unit, quantity)})`;
+}
+
 formatIngredient = function formatIngredientWithCupEquivalents(item, scale = 1) {
   if (typeof item === 'string') return item;
   if (item.displayText) return item.displayText;
@@ -108,10 +121,11 @@ formatIngredient = function formatIngredientWithCupEquivalents(item, scale = 1) 
   const formattedQuantity = formatPracticalMeasuredQuantity(quantity, item.unit);
   const unit = pluralizeUnit(item.unit, quantity);
   const cupEquivalent = formatCupEquivalent(item, quantity, effectiveScale);
+  const referenceQuantity = formatScaledReferenceQuantity(item, effectiveScale);
   const grams = formatGramWeight(item, effectiveScale);
   const gramsText = grams ? ` (${grams})` : '';
 
-  return `${formattedQuantity} ${unit} ${item.ingredient}${cupEquivalent}${gramsText}${preparation}`
+  return `${formattedQuantity} ${unit} ${item.ingredient}${cupEquivalent}${referenceQuantity}${gramsText}${preparation}`
     .replace(/\s+/g, ' ')
     .trim();
 };
