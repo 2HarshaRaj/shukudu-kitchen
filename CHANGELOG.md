@@ -17,8 +17,25 @@ Major.Minor.Patch
 ### Planned
 
 - Curated `relationships.goesWellWith` recipe pairings
-- Future meal type and dish type filters using relationship metadata
+- Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
+
+## 1.15.0 - 2026-06-20
+
+### Added
+
+- Homepage Meal Type filter chips: All, Breakfast, Lunch, Dinner, Snack, and Side
+- Dedicated `homepage-filters.css` for homepage filter chip styling
+
+### Changed
+
+- Homepage filtering now combines search text, category, and meal type
+- Footer version updated to `v1.15.0`
+
+### Improved
+
+- Makes the completed relationship model useful for browsing recipes immediately
+- Keeps the existing category dropdown while adding a faster meal-based discovery option
 
 ## 1.14.0 - 2026-06-20
 
