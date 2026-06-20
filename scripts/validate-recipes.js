@@ -157,7 +157,7 @@ function validateDetails(recipe, errors) {
     return;
   }
 
-  ['Cuisine', 'Meal Type', 'Status'].forEach((field) => {
+  ['Cuisine', 'Status'].forEach((field) => {
     if (!isNonEmptyString(recipe.details[field])) {
       addError(errors, `details requires non-empty "${field}"`);
     }
