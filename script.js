@@ -65,6 +65,12 @@ function pluralizeUnit(unit, quantity) {
   return unit;
 }
 
+function normalizeList(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === 'string' && value.trim()) return [value.trim()];
+  return [];
+}
+
 function getIngredientItems(recipe) {
   if (!Array.isArray(recipe.ingredients)) return [];
 
@@ -99,13 +105,28 @@ function getSearchableIngredientTerms(recipe) {
     .filter((term) => !isCommonIngredientSearchTerm(term));
 }
 
+function getRelationshipSearchTerms(recipe) {
+  return [
+    recipe.details?.Cuisine,
+    recipe.details?.Status,
+    recipe.category,
+    ...normalizeList(recipe.relationships?.mealTypes),
+    ...normalizeList(recipe.relationships?.dishTypes),
+    ...normalizeList(recipe.relationships?.goesWellWith)
+  ];
+}
+
 function buildRecipeSearchText(indexRecipe, fullRecipe = null) {
+  const recipe = fullRecipe || indexRecipe;
   const ingredientTerms = fullRecipe ? getSearchableIngredientTerms(fullRecipe) : [];
 
   return [
     indexRecipe.name,
     indexRecipe.category,
     indexRecipe.summary,
+    ...normalizeList(indexRecipe.searchAliases),
+    ...normalizeList(recipe.searchAliases),
+    ...getRelationshipSearchTerms(recipe),
     ...ingredientTerms
   ]
     .map(normalizeSearchText)
@@ -129,21 +150,15 @@ function buildBaseCue(recipe) {
   return `${formatNumber(Number(scaling.baseQuantity))} ${scaling.baseUnit} base`;
 }
 
-function normalizeChipList(value) {
-  if (Array.isArray(value)) return value.filter(Boolean);
-  if (typeof value === 'string' && value.trim()) return [value.trim()];
-  return [];
-}
-
 function getMealTypeChips(recipe) {
-  const relationshipMealTypes = normalizeChipList(recipe.relationships?.mealTypes);
+  const relationshipMealTypes = normalizeList(recipe.relationships?.mealTypes);
   if (relationshipMealTypes.length) return relationshipMealTypes;
 
-  return normalizeChipList(recipe.details?.['Meal Type']);
+  return normalizeList(recipe.details?.['Meal Type']);
 }
 
 function getPrimaryDishTypeChip(recipe) {
-  return normalizeChipList(recipe.relationships?.dishTypes)[0] || '';
+  return normalizeList(recipe.relationships?.dishTypes)[0] || '';
 }
 
 function buildRecipeChips(recipe) {
@@ -235,6 +250,7 @@ async function loadFullRecipe(indexRecipe) {
       details: fullRecipe.details,
       relationships: fullRecipe.relationships,
       scaling: fullRecipe.scaling,
+      searchAliases: fullRecipe.searchAliases,
       searchText: buildRecipeSearchText(indexRecipe, fullRecipe)
     };
   } catch {
