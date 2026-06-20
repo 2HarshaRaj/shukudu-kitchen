@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.15.6`
+`v1.15.7`
 
 ## Overview
 
@@ -65,7 +65,7 @@ Recipes are adapted to match real kitchen use, including:
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
-- SVG-style utility icons for theme toggle, wake-lock, and Cooking Mode close controls
+- SVG-style utility icons for theme toggle, wake-lock, and close controls
 - Polished native category dropdown closed-state styling
 - Consistent button hover and active-state styling across light and dark modes
 - PWA manifest with standalone display mode
