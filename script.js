@@ -138,15 +138,15 @@ function getMealTypeChips(recipe) {
   return normalizeChipList(recipe.details?.['Meal Type']);
 }
 
-function getDishTypeChips(recipe) {
-  return normalizeChipList(recipe.relationships?.dishTypes);
+function getPrimaryDishTypeChip(recipe) {
+  return normalizeChipList(recipe.relationships?.dishTypes)[0] || '';
 }
 
 function buildRecipeChips(recipe) {
   const chips = [
     recipe.details?.Cuisine,
     ...getMealTypeChips(recipe),
-    ...getDishTypeChips(recipe),
+    getPrimaryDishTypeChip(recipe),
     buildBaseCue(recipe)
   ];
 
