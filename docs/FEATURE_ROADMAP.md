@@ -4,13 +4,15 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.15.0
+## Current Version - v1.15.2
 
 Shukudu Kitchen currently includes:
 
 - JSON-driven recipe storage
 - one recipe file per recipe
 - homepage recipe index, search, category filters, and meal type filters
+- homepage search aliases for alternate names and regional dish names
+- homepage search across relationship metadata such as Cuisine, meal types, dish types, and goes-well-with slugs
 - compact homepage relationship chips
 - individual recipe pages with full relationship details and base quantity
 - ingredient checklists
@@ -23,6 +25,7 @@ Shukudu Kitchen currently includes:
 - compact rice preset labels in scale controls
 - exact base-ingredient quantity scaling for supported recipes
 - practical ingredient rounding and gram guidance
+- optional referenceQuantity display for gram-based pantry staples
 - required roundingType validation for scalable ingredients with quantities
 - displayText safety validation for display-text-only fixed ingredients
 - scaling base ingredient reference validation
@@ -33,6 +36,7 @@ Shukudu Kitchen currently includes:
 - non-linear config uniqueness validation
 - scalingMode consistency validation
 - recipe relationship validation
+- search alias validation
 - completed automated recipe validation for the current non-image recipe model
 - documented and implemented recipe relationships model for meal types, dish types, and future pairings
 - saved light and dark themes
@@ -54,7 +58,7 @@ Shukudu Kitchen currently includes:
 - Stable ingredient IDs and structured steps
 - Shared quantities across Ingredients, Preparation, Cooking Method, and Cooking Mode
 
-### Recipe Relationships - Completed
+### Recipe Relationships - Completed for Metadata and Discovery
 
 - Dedicated relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Clear separation between `details` and `relationships`
@@ -65,11 +69,12 @@ Shukudu Kitchen currently includes:
 - `details["Meal Type"]` removed from current recipe JSON
 - Homepage cards use compact relationship chips: Cuisine, Meal Type, primary Dish Type, and base quantity
 - Homepage Meal Type filters use `relationships.mealTypes`
+- Homepage search includes relationship metadata
 - Recipe pages show full relationship details and generated base quantity
 - Validator enforces relationship metadata
 - `One Pot` classification rule documented
 
-### Homepage Filtering - Completed
+### Homepage Filtering and Search - Completed
 
 - Search filter
 - Category dropdown filter
@@ -77,6 +82,10 @@ Shukudu Kitchen currently includes:
 - Search, category, and meal type filters work together
 - Meal Type filters are driven by `relationships.mealTypes`
 - Mobile filter chips scroll horizontally instead of wrapping into a tall block
+- `searchAliases` added to `data/recipe-index.json`
+- Search includes recipe aliases, relationship fields, and non-common ingredient names
+- `docs/SEARCH.md` documents search sources and future search improvements
+- `scripts/validate-search.js` validates search alias structure and duplicates
 
 ### Recipe Scaling - Completed for Supported Recipes
 
@@ -93,6 +102,7 @@ Shukudu Kitchen currently includes:
 - Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
 - Required `roundingType` authoring intent for scalable ingredients with quantities
 - Display-text-only fixed ingredients protected from accidental scaling
+- Optional `referenceQuantity` metadata for gram-based pantry staples
 - Unit-aware formatting
 - Practical produce and small-whole rounding
 
@@ -128,6 +138,7 @@ Shukudu Kitchen currently includes:
 - Node.js 24 validation runtime
 - `scripts/validate-recipes.js`
 - `scripts/validate-produce-weights.js`
+- `scripts/validate-search.js`
 - `.github/workflows/validate-recipes.yml`
 - `data/validation/non-linear-ingredients.json`
 - Workflow trigger for `data/recipe-index.json`
@@ -135,11 +146,14 @@ Shukudu Kitchen currently includes:
 - Workflow trigger for `data/validation/**`
 - Workflow trigger for `scripts/validate-recipes.js`
 - Workflow trigger for `scripts/validate-produce-weights.js`
+- Workflow trigger for `scripts/validate-search.js`
 - Workflow trigger for `.github/workflows/validate-recipes.yml`
 - Required top-level recipe field validation
 - Recipe-index array validation
 - Recipe-index required field validation for `name`, `slug`, `category`, and `summary`
+- Optional recipe-index `searchAliases` validation
 - Duplicate recipe-index slug rejection
+- Duplicate search alias rejection
 - Recipe-index to recipe-file cross-checks
 - Every recipe JSON must be listed in `data/recipe-index.json`
 - Index `name`, `category`, and `summary` must match recipe JSON
@@ -162,6 +176,7 @@ Shukudu Kitchen currently includes:
 - `roundingType` allowed value validation
 - required `roundingType` validation for scalable ingredients with quantities
 - displayText safety validation for ingredients without quantity
+- referenceQuantity structure validation
 - non-linear config key format validation
 - non-linear config duplicate key rejection
 - non-linear config duplicate match value rejection
@@ -215,6 +230,7 @@ Completed:
 - Non-linear config uniqueness validation added for config rules
 - Rice recipe unit validation added for rice-cup-first recipes
 - Large-produce weightGrams validation added for count-based produce guidance
+- `referenceQuantity` support added for gram-based pantry staples
 
 ## Current Recipe Relationship Work
 
@@ -226,19 +242,46 @@ Completed:
 - Added empty `relationships.goesWellWith` arrays as the future curated pairing field
 - Updated homepage cards to prefer relationship data and keep cards compact
 - Added homepage Meal Type filters driven by `relationships.mealTypes`
+- Updated homepage search to include relationship metadata
 - Updated recipe page details rendering to display full relationship details
 - Added generated `Base` detail on recipe pages from scaling metadata
 - Updated validation to enforce the relationship model
 - Removed `details["Meal Type"]` from current recipe JSON
 - Documented `One Pot` classification rule
+- Documented `goesWellWith` pairing rules before adding curated pairings
+
+## Current Search Work
+
+Completed:
+
+- Added `searchAliases` to the recipe index
+- Added aliases for existing recipes
+- Homepage search now includes `searchAliases`
+- Homepage search now includes relationship metadata
+- Ingredient search still reads non-common ingredient names from full recipe JSON
+- Added `docs/SEARCH.md`
+- Added `scripts/validate-search.js`
+- Added search validation to the GitHub Actions workflow
+
+Future:
+
+- centralized ingredient alias config
+- search result reason
+- no-results suggestions
+- typo-tolerant matching if recipe count grows enough to justify it
 
 ## Future Features
 
-- Dish type filters using relationship metadata
+- Curated `relationships.goesWellWith` pairings
+  - Use recipe slugs only for now.
+  - Link only to recipes that already exist in `data/recipes/`.
+  - Keep pairings small and useful, usually 1-5 recipes.
+  - Do not add non-recipe serving items like papad, boondi, pickle, chips, roti, or plain curd until the data model supports non-recipe pairing items.
+  - Pairings may be one-way unless the reverse pairing is also genuinely useful.
 - “Goes well with” recipe links on recipe pages
-  - Use `relationships.goesWellWith` as the future curated pairing field.
   - Show a small curated set of pairings rather than every technically matching recipe.
   - For broad recipes like rasam, avoid linking every palya; prefer curated pairings such as 3-5 best matches, rotating categories, or a future rule-based pairing model.
+- Dish type filters using relationship metadata
 - Standard cup scaling input
 - Serving adjustment
 - Print view
@@ -257,6 +300,7 @@ Possible non-image validation enhancements:
 - duplicate ingredient name warning or error
 - preparation coverage checks
 - cooking method ingredient coverage checks
+- validate that `relationships.goesWellWith` slugs exist in the recipe index
 
 Once recipe images are introduced, possible validation checks include:
 
@@ -296,18 +340,21 @@ Once recipe images are introduced, possible validation checks include:
 26. Add recipe relationship validation - completed
 27. Add generated Base to recipe details - completed
 28. Add Meal Type filters - completed
-29. Clean up validator structure
-30. Duplicate ingredient name warning or error
-31. Preparation coverage validation
-32. Cooking method ingredient coverage validation
-33. Goes-well-with recipe pairings
-34. Dish type filters
-35. Serving adjustment
-36. Print view
-37. Recipe images and richer cards
-38. Optional standard-cup scaling input
-39. Offline recipe support
-40. Image metadata validation after recipe images are introduced
+29. Add search aliases and relationship-aware search - completed
+30. Document goesWellWith rules before pairings - completed
+31. Add curated goesWellWith recipe pairings
+32. Add goes-well-with recipe links on recipe pages
+33. Add dish type filters
+34. Clean up validator structure
+35. Duplicate ingredient name warning or error
+36. Preparation coverage validation
+37. Cooking method ingredient coverage validation
+38. Serving adjustment
+39. Print view
+40. Recipe images and richer cards
+41. Optional standard-cup scaling input
+42. Offline recipe support
+43. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
