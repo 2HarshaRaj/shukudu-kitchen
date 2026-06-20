@@ -14,17 +14,46 @@ Major.Minor.Patch
 
 ## Unreleased
 
-### Added
-
-- `docs/RECIPE_RELATIONSHIPS.md` to define the structured recipe relationship model
-- Target relationship structure for `mealTypes`, `dishTypes`, and `goesWellWith`
-- Migration direction for moving meal type data out of display-only `details`
-
 ### Planned
 
-- Add `relationships` to every recipe JSON
-- Update homepage cards and recipe details rendering to use relationship data
-- Add validator coverage for recipe relationships after the migration is implemented
+- Curated `relationships.goesWellWith` recipe pairings
+- Future meal type and dish type filters using relationship metadata
+- Image metadata validation after recipe images are introduced
+
+## 1.14.0 - 2026-06-20
+
+### Added
+
+- Structured `relationships` metadata across recipe JSON files
+- `relationships.mealTypes` for meal discovery
+- `relationships.dishTypes` for dish classification
+- `relationships.goesWellWith` as the future curated pairing field
+- Recipe relationship validation in `scripts/validate-recipes.js`
+- Base quantity display inside the recipe page Details section
+
+### Changed
+
+- Moved meal classification out of `details["Meal Type"]` and into `relationships.mealTypes`
+- Homepage recipe cards now show compact chips: Cuisine, Meal Type, primary Dish Type, and base quantity
+- Recipe pages now show full relationship details, including all dish types
+- Recipe details rendering now hides old `Base Quantity` display text and generates `Base` from scaling metadata
+- Tomato Bath and Menthya Rice Bath are classified as `One Pot` because rice cooks directly with the masala in the pressure cooker
+- Beans Palya cuisine label standardized to `South Indian · Karnataka`
+
+### Validation Rules
+
+- `relationships` must exist as an object
+- `relationships.mealTypes` must be a non-empty array of allowed values
+- `relationships.dishTypes` must be a non-empty array of allowed values
+- `relationships.goesWellWith` must be an array
+- `goesWellWith` values must be valid recipe slugs and must not self-reference the current recipe
+- `details` now requires only `Cuisine` and `Status`; `Meal Type` belongs in `relationships.mealTypes`
+
+### Improved
+
+- Keeps recipe metadata closer to an Anytype-style relationship model
+- Makes future filters and curated pairings easier to build
+- Keeps homepage cards cleaner while preserving full details on recipe pages
 
 ## 1.13.0 - 2026-06-19
 
