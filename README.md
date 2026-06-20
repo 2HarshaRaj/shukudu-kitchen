@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.13.0`
+`v1.14.0`
 
 ## Overview
 
@@ -19,6 +19,8 @@ Recipes are adapted to match real kitchen use, including:
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
 - structured recipe relationships for meal types, dish types, and future pairings
+- compact homepage relationship chips
+- full recipe-page relationship details with base quantity
 - mobile-friendly Cooking Mode
 - optional Cooking Mode screen wake-lock support
 - saved light and dark themes for comfortable kitchen use
@@ -42,12 +44,14 @@ Recipes are adapted to match real kitchen use, including:
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
 - Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
+- Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
+- Recipe pages show full relationship details and base quantity
 - Recipe-specific non-linear scaling overrides
 - Explicit rounding behavior for scalable ingredients
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
+- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -121,21 +125,25 @@ details = human-facing recipe metadata
 relationships = structured discovery, filtering, and pairing metadata
 ```
 
-Target structure:
+Current structure:
 
 ```json
 "details": {
-  "Cuisine": "South Indian",
+  "Cuisine": "South Indian · Karnataka",
   "Status": "Finalized"
 },
 "relationships": {
   "mealTypes": ["Lunch", "Dinner"],
-  "dishTypes": ["Rice"],
+  "dishTypes": ["Rice", "Bath", "One Pot"],
   "goesWellWith": []
 }
 ```
 
-This model supports richer homepage cards, future meal/dish filters, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or migrating relationship fields.
+Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary Dish Type, and base quantity. Recipe pages show the full details, including all dish types and the generated base quantity.
+
+`One Pot` means the rice or main ingredient cooks directly with the masala in the same vessel. Recipes where rice is cooked separately, cooled/rested, and then mixed into masala are not tagged as `One Pot`.
+
+This model supports richer homepage cards, future meal/dish filters, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
 
 ## Recipe Scaling
 
@@ -157,30 +165,3 @@ Rice recipes must keep `scaling.baseUnit` as `riceCup`. Rice and water ingredien
 Rice recipes may show rice quantities in the scale controls. Preset buttons may use compact `cup/cups` labels to reduce layout width, while the current selected value remains fully descriptive as `rice cup/rice cups`.
 
 Suitable non-rice recipes may use generic multiplier controls or exact base-ingredient quantity input.
-
-For exact quantity input, the engine calculates:
-
-```text
-selected scale = entered quantity ÷ base quantity
-```
-
-## Cooking Mode Wake Lock
-
-Cooking Mode includes an optional screen wake-lock control for active cooking.
-
-The wake-lock control:
-
-- is user initiated
-- appears only inside Cooking Mode
-- requests the browser Screen Wake Lock API when supported
-- releases the wake lock when Cooking Mode closes
-- gracefully shows an unsupported message when the browser does not support wake lock
-- may be released by the browser or operating system
-- can re-request wake lock when the page becomes visible again if the user had enabled it
-
-## UI Principles
-
-- Primary actions and confirmed states may use accent fill and soft shadows.
-- Utility controls are quiet by default and use subtle hover feedback.
-- Scale option buttons use borders and inset active styling rather than drop shadows to avoid clipped shadow artifacts in scrollable rows.
-- Native controls may be polished with CSS while preserving browser accessibility and behavior.
