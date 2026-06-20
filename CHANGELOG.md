@@ -44,6 +44,7 @@ Major.Minor.Patch
 - Homepage script asset version bumped to `script.js?v=1.15.2`
 - Homepage footer and README version updated to `v1.15.2`
 - Validation workflow now runs search alias validation
+- Relationship docs and roadmap now clarify the `goesWellWith` pairing standard before pairings are added
 
 ## 1.15.1 - 2026-06-20
 
