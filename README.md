@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.15.0`
+`v1.15.1`
 
 ## Overview
 
@@ -15,6 +15,7 @@ Recipes are adapted to match real kitchen use, including:
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
 - automatic standard cup equivalents for public readability
+- scalable reference quantities for gram-based pantry staples
 - practical ingredient rounding
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
@@ -45,6 +46,9 @@ Recipes are adapted to match real kitchen use, including:
 - Automatic conversion of an entered base quantity into an arbitrary recipe scale
 - Persistence of entered quantities and calculated scales per recipe
 - Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
+- Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
+- Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`
+- Technical debt and formatter cleanup notes tracked in `docs/TECHNICAL_DEBT.md`
 - Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
 - Homepage Meal Type filters use `relationships.mealTypes`
 - Recipe pages show full relationship details and base quantity
@@ -53,7 +57,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
+- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -107,6 +111,7 @@ shukudu-kitchen/
 - Index `name`, `category`, and `summary` values must match the recipe JSON.
 - Scalable recipes use structured ingredient objects with stable IDs.
 - Recipe relationship data is documented in `docs/RECIPE_RELATIONSHIPS.md` and separates human-facing `details` from structured `relationships`.
+- Reference quantity metadata is documented in `docs/REFERENCE_QUANTITY.md` and is used for gram-based pantry staples that need cup or spoon guidance.
 - Preparation and cooking steps reference those ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
 - Scaling metadata identifies the base ingredient, base quantity, base unit, and whether the recipe uses preset options or exact quantity input.
 - Scaling `baseIngredient`, when present, must match exactly one ingredient ID in the recipe.
