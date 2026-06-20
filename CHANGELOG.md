@@ -29,6 +29,19 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.3 - 2026-06-20
+
+### Added
+
+- Recipe pages now render a visible `Goes well with` section when `relationships.goesWellWith` contains recipe slugs
+- Added `recipe-pairings.js` to load curated pairings from recipe JSON and resolve display names from `data/recipe-index.json`
+- Recipe page section navigation now includes `Goes Well With` when pairings are available
+
+### Changed
+
+- Recipe page footer and README version updated to `v1.15.3`
+- Recipe page now loads `recipe-pairings.js?v=1.15.3`
+
 ## 1.15.2 - 2026-06-20
 
 ### Added
