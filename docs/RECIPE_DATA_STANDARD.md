@@ -8,7 +8,7 @@ This document defines how recipes must be written and stored so that:
 - Cooking Mode remains readable
 - ingredient quantities stay synchronized across sections
 - scaling remains predictable
-- relationship metadata remains useful for discovery and future filters
+- relationship metadata remains useful for discovery, filters, search, and curated pairings
 - future recipes can be added without relying on chat history
 
 ## Rice Cup and Standard Cup Conversion
@@ -89,6 +89,21 @@ Recipes that should scale from the exact amount of a base ingredient may use qua
 }
 ```
 
+Recipes may also define `baseIngredient`, `baseQuantity`, and `baseUnit` for display-only base details without using `inputMode: "quantity"`.
+
+Example:
+
+```json
+"scaling": {
+  "enabled": true,
+  "baseIngredient": "tomatoes",
+  "baseQuantity": 500,
+  "baseUnit": "g",
+  "baseScale": 1,
+  "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+}
+```
+
 ## Slug Rules
 
 The recipe slug is the stable recipe ID used by the index, recipe file, URL, and internal recipe identity.
@@ -120,6 +135,7 @@ Rules:
 - each index slug must point to `data/recipes/<slug>.json`
 - every recipe JSON file must be listed in `data/recipe-index.json`
 - index `name`, `category`, and `summary` must match the recipe JSON
+- index `searchAliases` may be used for alternate names and regional names
 
 ## Details Metadata Rules
 
@@ -180,6 +196,7 @@ Rice
 Bath
 Palya
 Rasam
+Dal
 Curd Rice
 Side Dish
 One Pot
@@ -208,6 +225,7 @@ Tomato Bath: Rice / Bath / One Pot
 Menthya Rice Bath: Rice / Bath / One Pot
 Bisi Bele Bath: Rice / Bath / One Pot
 Vangi Bath: Rice / Bath
+Punjabi Dal Tadka: Dal / Side Dish
 ```
 
 ### `goesWellWith`
@@ -215,11 +233,15 @@ Vangi Bath: Rice / Bath
 Rules:
 
 - must be an array
-- may be empty initially
+- may be empty
 - values must be recipe slugs
 - values must use slug format
+- values must point to existing recipe files
 - a recipe must not self-reference its own slug
 - pairings should be curated, not automatically mass-linked
+- keep pairings manual
+- do not auto-create reverse links
+- non-reciprocal pairings are warnings only, not errors
 
 ## Serving Suggestions and Notes
 
@@ -242,6 +264,16 @@ Rules:
 - `options`: supported preset scale values
 
 New rice recipes should generally default to 1 rice cup unless another rice-cup base better represents the finalized recipe.
+
+Base metadata is optional for normal scalable recipes. It should be used when it helps explain the recipe size on the recipe page.
+
+When `scaling.inputMode` is `quantity`, these fields are required:
+
+- `baseIngredient`
+- `baseQuantity`
+- `baseUnit`
+
+When `baseIngredient` is present, it must match exactly one ingredient ID.
 
 For quantity-input recipes, use the standard preset options:
 
@@ -323,6 +355,7 @@ When an ingredient has `scalable: true` and a `quantity`, it must also define `r
 - `displayText`
 - `scaleQuantities`
 - `scalingMode`
+- `referenceQuantity`
 
 ## Rounding and Scaling Rules
 
@@ -508,12 +541,15 @@ Quantity display must reflect how the ingredient is actually measured in the kit
 
 ## Recipe Validation
 
-Recipe data is validated by `scripts/validate-recipes.js` and the GitHub Actions workflow `.github/workflows/validate-recipes.yml`.
+Recipe data is validated by the GitHub Actions workflow `.github/workflows/validate-recipes.yml`.
 
-The workflow runs on push when recipe index data, recipe files, validation config, the validator script, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
+The workflow runs on push when recipe index data, recipe files, validation config, validation scripts, or the validation workflow changes. It uses Node.js 24 with `actions/checkout@v6` and `actions/setup-node@v6`, then runs:
 
 ```text
 node scripts/validate-recipes.js
+node scripts/validate-produce-weights.js
+node scripts/validate-search.js
+node scripts/validate-recipe-pairings.js
 ```
 
 Validator rules include:
@@ -526,6 +562,8 @@ Validator rules include:
 - `relationships.mealTypes` must be a non-empty array of allowed values
 - `relationships.dishTypes` must be a non-empty array of allowed values
 - `relationships.goesWellWith` must be an array of valid slugs when populated
+- `relationships.goesWellWith` slugs must point to existing recipes
+- non-reciprocal `goesWellWith` links are warnings only
 - `servingSuggestions` and `notes` must be arrays of non-empty strings when present
 - recipe slug must match `^[a-z0-9]+(-[a-z0-9]+)*$`
 - recipe file name must match the slug exactly as `<slug>.json`
@@ -534,7 +572,8 @@ Validator rules include:
 - `preparation` and `cookingMethod` ingredient references must point to existing ingredient IDs
 - cooking-step structure must be valid
 - quantity-input metadata must be valid
-- quantity-input `baseIngredient` must match exactly one ingredient ID
+- quantity-input recipes must define `baseIngredient`, `baseQuantity`, and `baseUnit`
+- when `baseIngredient` is present, it must match exactly one ingredient ID
 - gram-based quantity recipes must use `baseUnit: "g"`
 - ingredient groups must use `section` and `items`
 - abbreviated ingredient units are not allowed
@@ -543,8 +582,9 @@ Validator rules include:
 - `scalingMode` must be valid and consistent with `scaleQuantities`
 - `scaleQuantities` must exactly match recipe-level `scaling.options`
 - configured non-linear ingredients with `scalable: true` must define `scaleQuantities` unless `scalingMode: "linear"` is set
+- `searchAliases` must be structurally valid and unique
 
-New recipe creation must satisfy these validator rules before pushing. The validator is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
+New recipe creation must satisfy these validator rules before pushing. The validator set is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
 
 ## Tamarind Rule
 
@@ -577,23 +617,33 @@ Before adding or updating a recipe:
 8. Use stable ingredient IDs
 9. Confirm all ingredient quantities
 10. Add grams for vegetables where useful
-11. Define `baseIngredient`, `baseQuantity`, and `baseUnit` for scalable recipes
-12. Choose `inputMode: "options"` or `inputMode: "quantity"`
+11. Define `baseIngredient`, `baseQuantity`, and `baseUnit` when the recipe needs base display or quantity input
+12. Choose preset-only scaling or `inputMode: "quantity"`
 13. For quantity input, define `inputLabel`, `inputMin`, and `inputStep`
-14. For quantity input, ensure `baseIngredient` matches exactly one ingredient ID
-15. Use ingredient groups with `section` and `items`
-16. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
-17. Add measured water as a structured ingredient and reference it from steps
-18. Mark each ingredient scalable or non-scalable
-19. For every scalable ingredient with `quantity`, choose `roundingType`
-20. Use `scaleQuantities` where linear scaling is unsuitable or required by validation config
-21. Reference ingredient IDs from Preparation and Cooking Method
-22. Keep every preparation and cooking step as an object
-23. Keep one cooking action per step
-24. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
-25. Run `node scripts/validate-recipes.js`
-26. Test the normal recipe page and Cooking Mode
-27. Test every supported scale option
+14. For quantity input, ensure `baseIngredient`, `baseQuantity`, and `baseUnit` are present
+15. When `baseIngredient` is present, ensure it matches exactly one ingredient ID
+16. Use ingredient groups with `section` and `items`
+17. Use `teaspoon` and `tablespoon`, not `tsp` or `tbsp`
+18. Add measured water as a structured ingredient and reference it from steps
+19. Mark each ingredient scalable or non-scalable
+20. For every scalable ingredient with `quantity`, choose `roundingType`
+21. Use `scaleQuantities` where linear scaling is unsuitable or required by validation config
+22. Reference ingredient IDs from Preparation and Cooking Method
+23. Keep every preparation and cooking step as an object
+24. Keep one cooking action per step
+25. Keep `servingSuggestions` and `notes` as arrays of non-empty strings when present
+26. Run the full validation workflow locally when possible
+27. Test the normal recipe page and Cooking Mode
+28. Test every supported scale option
+
+Local validation commands:
+
+```text
+node scripts/validate-recipes.js
+node scripts/validate-produce-weights.js
+node scripts/validate-search.js
+node scripts/validate-recipe-pairings.js
+```
 
 ## Required References
 
@@ -604,3 +654,4 @@ Use together with:
 - `docs/FEATURE_ROADMAP.md`
 - `docs/BASE_INGREDIENT_SCALING.md`
 - `docs/RECIPE_RELATIONSHIPS.md`
+- `docs/SEARCH.md`
