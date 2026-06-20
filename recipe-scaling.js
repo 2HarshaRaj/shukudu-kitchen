@@ -98,6 +98,9 @@ function formatScaledReferenceQuantity(item, effectiveScale) {
   return ` (${prefix}${formatPracticalMeasuredQuantity(quantity, reference.unit)} ${pluralizeUnit(reference.unit, quantity)})`;
 }
 
+// This scaling-aware formatter overrides the base formatter in recipe.js.
+// Keep support for every display field used by the base formatter, including
+// riceCupEquivalent, referenceQuantity, weightGrams, preparation, and displayText.
 formatIngredient = function formatIngredientWithCupEquivalents(item, scale = 1) {
   if (typeof item === 'string') return item;
   if (item.displayText) return item.displayText;
