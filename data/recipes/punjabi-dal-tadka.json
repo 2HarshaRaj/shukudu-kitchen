@@ -205,11 +205,12 @@
   ],
   "preparation": [
     {
-      "lead": "Rinse thoroughly until the water runs mostly clear:",
+      "lead": "Rinse thoroughly until the water runs mostly clear, then soak for 20–30 minutes if time permits:",
       "ingredientIds": [
         "toor-dal",
         "moong-dal"
-      ]
+      ],
+      "after": "A 20–30 minute soak is ideal for softer dal and more even cooking. If short on time, soak for 10 minutes; if skipping soaking, keep the same cooking time and check softness after pressure release."
     },
     {
       "lead": "Prepare for pressure cooking:",
@@ -244,7 +245,7 @@
         "ghee-pressure",
         "water"
       ],
-      "after": "Pressure cook for 5 whistles on medium flame, then allow the pressure to release naturally. The ghee helps reduce dal foaming during pressure cooking."
+      "after": "Pressure cook for 5 whistles on medium flame, then allow the pressure to release naturally. For induction, build pressure first, then reduce to 100°C / 300 W for 14–15 minutes for an approximate 5-whistle equivalent. The ghee helps reduce dal foaming during pressure cooking."
     },
     {
       "text": "Mash the cooked dal lightly. Keep it thick enough to coat rice, adding only a little hot water if the dal is too thick."
@@ -293,6 +294,7 @@
     "The recipe is adapted from Hebbars Kitchen's Dal Tadka Recipe – Punjabi Dhaba Style, but the base quantity is adjusted to the household portion that worked well.",
     "Salt is intentionally set to 3/4 teaspoon at the 1x base because the earlier smaller version tasted bland with only 1/2 teaspoon.",
     "Crushing kasuri methi between palms before adding improves aroma and reduces blandness.",
-    "Use a 3 L pressure cooker comfortably for the 1x base quantity. Add ghee before pressure cooking and cook on medium flame to reduce foaming."
+    "Use a 3 L pressure cooker comfortably for the 1x base quantity. Add ghee before pressure cooking and cook on medium flame to reduce foaming.",
+    "Induction reference: the usual 3-whistle style is about 100°C / 300 W for 10 minutes after pressure builds. For this 5-whistle dal, use about 14–15 minutes at 100°C / 300 W after pressure builds, then natural release."
   ]
 }
