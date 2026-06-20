@@ -8,6 +8,11 @@
     "Meal Type": "Lunch / Dinner",
     "Status": "Finalized"
   },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner", "Side"],
+    "dishTypes": ["Palya", "Side Dish"],
+    "goesWellWith": []
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "raw-banana",
