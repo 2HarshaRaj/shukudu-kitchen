@@ -23,12 +23,13 @@ Major.Minor.Patch
 
 ### Changed
 
-- Relationship documentation now includes Dal examples and allowed dish type guidance
+- Relationship documentation now includes Dal examples, manual pairing guidance, and warning-only reciprocal pairing validation
+- Base-scaling documentation now clarifies that base metadata is optional for normal scalable recipes and required only for quantity-input recipes
+- Architecture, recipe data standard, roadmap, and README now reflect the current validation scripts and completed Pairings feature
 - Tomato Rasam pairings now stay manual and no longer link to Curd Rice by default
 
 ### Planned
 
-- Curated `relationships.goesWellWith` recipe pairings
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
