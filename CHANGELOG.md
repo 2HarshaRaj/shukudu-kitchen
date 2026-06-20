@@ -29,6 +29,14 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.8 - 2026-06-20
+
+### Changed
+
+- Homepage Meal Type filter pills now use a subtle border consistently in both light and dark mode
+- Homepage footer and README version updated to `v1.15.8`
+- Homepage now loads `homepage-filters.css?v=1.15.8`
+
 ## 1.15.7 - 2026-06-20
 
 ### Fixed
