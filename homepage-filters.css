@@ -38,6 +38,24 @@
   color: #fff;
 }
 
+[data-theme="dark"] .filter-chip {
+  border-color: var(--border);
+  background: #2b2420;
+  color: var(--text);
+}
+
+[data-theme="dark"] .filter-chip:hover {
+  border-color: #5a4940;
+  color: var(--accent);
+  background: #332a25;
+}
+
+[data-theme="dark"] .filter-chip.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
 @media (max-width: 760px) {
   .meal-filter-panel {
     margin-top: -28px;
