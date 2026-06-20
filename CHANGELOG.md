@@ -18,10 +18,13 @@ Major.Minor.Patch
 
 - Punjabi Dal Tadka recipe with a 150 g total dal base: 100 g toor dal and 50 g moong dal
 - `Dal` as a supported relationship dish type for recipe discovery and validation
+- Recipe pairing validator that warns when `relationships.goesWellWith` links are not reciprocal
+- Tomato Rasam base metadata using 500 g tomatoes, so the recipe Details section can show `Base: 500 g`
 
 ### Changed
 
 - Relationship documentation now includes Dal examples and allowed dish type guidance
+- Tomato Rasam pairings now stay manual and no longer link to Curd Rice by default
 
 ### Planned
 
@@ -157,34 +160,3 @@ Major.Minor.Patch
 - `relationships.goesWellWith` as the future curated pairing field
 - Recipe relationship validation in `scripts/validate-recipes.js`
 - Base quantity display inside the recipe page Details section
-
-### Changed
-
-- Moved meal classification out of `details[Meal Type]` and into `relationships.mealTypes`
-- Homepage recipe cards now show compact chips: Cuisine, Meal Type, primary Dish Type, and base quantity
-- Recipe pages now show full relationship details, including all dish types
-- Recipe details rendering now hides old Base Quantity display text and generates Base from scaling metadata
-- Tomato Bath and Menthya Rice Bath are classified as `One Pot` because rice cooks directly with the masala in the pressure cooker
-- Beans Palya cuisine label standardized to `South Indian · Karnataka`
-
-### Validation Rules
-
-- `relationships` must exist as an object
-- `relationships.mealTypes` must be a non-empty array of allowed values
-- `relationships.dishTypes` must be a non-empty array of allowed values
-- `relationships.goesWellWith` must be an array
-- `goesWellWith` values must be valid recipe slugs and must not self-reference the current recipe
-- `details` now requires only Cuisine and Status; Meal Type belongs in `relationships.mealTypes`
-
-### Improved
-
-- Keeps recipe metadata closer to an Anytype-style relationship model
-- Makes future filters and curated pairings easier to build
-- Keeps homepage cards cleaner while preserving full details on recipe pages
-
-## 1.13.0 - 2026-06-19
-
-### Added
-
-- Optional Cooking Mode screen wake-lock support through `wake-lock.js` and `wake-lock.css`
-- Wake-lock control inside Cooking Mode
