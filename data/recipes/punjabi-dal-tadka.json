@@ -28,6 +28,11 @@
           "quantity": 100,
           "unit": "g",
           "ingredient": "toor dal",
+          "referenceQuantity": {
+            "quantity": 0.5,
+            "unit": "cup",
+            "approx": true
+          },
           "scalable": true,
           "roundingType": "exact"
         },
@@ -36,6 +41,11 @@
           "quantity": 50,
           "unit": "g",
           "ingredient": "moong dal",
+          "referenceQuantity": {
+            "quantity": 0.25,
+            "unit": "cup",
+            "approx": true
+          },
           "scalable": true,
           "roundingType": "exact"
         },
@@ -289,7 +299,7 @@
     "For rice meals, keep the dal slightly flowing. For poori or chapati, simmer a little longer for a thicker consistency."
   ],
   "notes": [
-    "Base quantity is 150 g total dal: 100 g toor dal and 50 g moong dal. This is approximately 1/2 cup toor dal and 1/4 cup moong dal.",
+    "Base quantity is 150 g total dal: 100 g toor dal and 50 g moong dal.",
     "This base works for 2 people across 2 meals when dal and rice are the main meal.",
     "The recipe is adapted from Hebbars Kitchen's Dal Tadka Recipe – Punjabi Dhaba Style, but the base quantity is adjusted to the household portion that worked well.",
     "Salt is intentionally set to 3/4 teaspoon at the 1x base because the earlier smaller version tasted bland with only 1/2 teaspoon.",
