@@ -1,6 +1,7 @@
 const recipeGrid = document.getElementById('recipeGrid');
 const searchInput = document.getElementById('searchInput');
 const categoryFilter = document.getElementById('categoryFilter');
+const mealTypeFilter = document.getElementById('mealTypeFilter');
 const recipeCount = document.getElementById('recipeCount');
 const emptyState = document.getElementById('emptyState');
 
@@ -32,7 +33,10 @@ const COMMON_INGREDIENT_SEARCH_WORDS = new Set([
   'water'
 ]);
 
+const MEAL_TYPE_FILTERS = ['all', 'Breakfast', 'Lunch', 'Dinner', 'Snack', 'Side'];
+
 let recipes = [];
+let activeMealType = 'all';
 
 function normalizeSearchText(value = '') {
   return String(value).trim().toLowerCase().replace(/\s+/g, ' ');
@@ -164,6 +168,26 @@ function renderRecipeChips(recipe) {
   `;
 }
 
+function renderMealTypeFilters() {
+  if (!mealTypeFilter) return;
+
+  mealTypeFilter.innerHTML = MEAL_TYPE_FILTERS
+    .map((mealType) => {
+      const label = mealType === 'all' ? 'All' : mealType;
+      const isActive = mealType === activeMealType;
+
+      return `
+        <button
+          class="filter-chip${isActive ? ' is-active' : ''}"
+          type="button"
+          data-meal-type="${escapeHtml(mealType)}"
+          aria-pressed="${isActive}"
+        >${escapeHtml(label)}</button>
+      `;
+    })
+    .join('');
+}
+
 function renderRecipes(items) {
   recipeGrid.innerHTML = items
     .map(
@@ -192,8 +216,9 @@ function applyFilters() {
   const filtered = recipes.filter((recipe) => {
     const matchesText = !query || recipe.searchText.includes(query);
     const matchesCategory = category === 'all' || recipe.category === category;
+    const matchesMealType = activeMealType === 'all' || getMealTypeChips(recipe).includes(activeMealType);
 
-    return matchesText && matchesCategory;
+    return matchesText && matchesCategory && matchesMealType;
   });
 
   renderRecipes(filtered);
@@ -240,6 +265,7 @@ async function loadRecipes() {
       categoryFilter.appendChild(option);
     });
 
+    renderMealTypeFilters();
     renderRecipes(recipes);
 
     recipes = await Promise.all(recipes.map(loadFullRecipe));
@@ -251,5 +277,14 @@ async function loadRecipes() {
 
 searchInput.addEventListener('input', applyFilters);
 categoryFilter.addEventListener('change', applyFilters);
+
+mealTypeFilter?.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-meal-type]');
+  if (!button) return;
+
+  activeMealType = button.dataset.mealType;
+  renderMealTypeFilters();
+  applyFilters();
+});
 
 loadRecipes();
