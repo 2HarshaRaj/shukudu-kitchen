@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.14.0`
+`v1.15.0`
 
 ## Overview
 
@@ -20,6 +20,7 @@ Recipes are adapted to match real kitchen use, including:
 - structured preparation and cooking steps
 - structured recipe relationships for meal types, dish types, and future pairings
 - compact homepage relationship chips
+- homepage meal type filters
 - full recipe-page relationship details with base quantity
 - mobile-friendly Cooking Mode
 - optional Cooking Mode screen wake-lock support
@@ -29,7 +30,7 @@ Recipes are adapted to match real kitchen use, including:
 
 ## Main Features
 
-- Recipe cards with search and category filters
+- Recipe cards with search, category filters, and meal type filters
 - One JSON file per recipe
 - Ingredient checklists with saved progress
 - Sticky section navigation
@@ -45,6 +46,7 @@ Recipes are adapted to match real kitchen use, including:
 - Persistence of entered quantities and calculated scales per recipe
 - Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
+- Homepage Meal Type filters use `relationships.mealTypes`
 - Recipe pages show full relationship details and base quantity
 - Recipe-specific non-linear scaling overrides
 - Explicit rounding behavior for scalable ingredients
@@ -67,35 +69,30 @@ Recipes are adapted to match real kitchen use, including:
 
 ```text
 shukudu-kitchen/
-├─ data/
-│  ├─ recipe-index.json
-│  ├─ recipes/
-│  └─ validation/
-│     └─ non-linear-ingredients.json
-├─ docs/
-│  └─ RECIPE_RELATIONSHIPS.md
-├─ icons/
-├─ scripts/
-│  ├─ validate-recipes.js
-│  └─ validate-produce-weights.js
-├─ .github/
-│  └─ workflows/
-│     └─ validate-recipes.yml
-├─ index.html
-├─ recipe.html
-├─ manifest.webmanifest
-├─ script.js
-├─ recipe.js
-├─ recipe-scaling.js
-├─ recipe-scaling.css
-├─ wake-lock.js
-├─ wake-lock.css
-├─ theme.js
-├─ theme.css
-├─ theme-toggle-fix.css
-├─ brand.css
-├─ style.css
-└─ CHANGELOG.md
+- data/
+  - recipe-index.json
+  - recipes/
+  - validation/non-linear-ingredients.json
+- docs/
+- icons/
+- scripts/
+- .github/workflows/
+- index.html
+- recipe.html
+- manifest.webmanifest
+- script.js
+- recipe.js
+- recipe-scaling.js
+- recipe-scaling.css
+- homepage-filters.css
+- wake-lock.js
+- wake-lock.css
+- theme.js
+- theme.css
+- theme-toggle-fix.css
+- brand.css
+- style.css
+- CHANGELOG.md
 ```
 
 ## Recipe Storage
@@ -139,11 +136,11 @@ Current structure:
 }
 ```
 
-Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary Dish Type, and base quantity. Recipe pages show the full details, including all dish types and the generated base quantity.
+Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary Dish Type, and base quantity. Homepage Meal Type filters use `relationships.mealTypes`. Recipe pages show the full details, including all dish types and the generated base quantity.
 
 `One Pot` means the rice or main ingredient cooks directly with the masala in the same vessel. Recipes where rice is cooked separately, cooled/rested, and then mixed into masala are not tagged as `One Pot`.
 
-This model supports richer homepage cards, future meal/dish filters, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
+This model supports richer homepage cards, meal and dish filters, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
 
 ## Recipe Scaling
 
