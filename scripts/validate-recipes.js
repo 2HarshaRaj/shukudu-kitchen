@@ -12,7 +12,7 @@ const DISALLOWED_ABBREVIATED_UNITS = new Set(['tsp', 'tbsp']);
 const VALID_SCALING_MODES = new Set(['linear', 'non-linear']);
 const VALID_ROUNDING_TYPES = new Set(['exact', 'small-whole', 'large-produce']);
 const VALID_MEAL_TYPES = new Set(['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Side']);
-const VALID_DISH_TYPES = new Set(['Rice', 'Bath', 'Palya', 'Rasam', 'Curd Rice', 'Side Dish', 'One Pot']);
+const VALID_DISH_TYPES = new Set(['Rice', 'Bath', 'Palya', 'Rasam', 'Dal', 'Curd Rice', 'Side Dish', 'One Pot']);
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 let totalErrors = 0;
