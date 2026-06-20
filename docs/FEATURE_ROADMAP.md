@@ -4,13 +4,13 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.14.0
+## Current Version - v1.15.0
 
 Shukudu Kitchen currently includes:
 
 - JSON-driven recipe storage
 - one recipe file per recipe
-- homepage recipe index, search, and category filters
+- homepage recipe index, search, category filters, and meal type filters
 - compact homepage relationship chips
 - individual recipe pages with full relationship details and base quantity
 - ingredient checklists
@@ -64,9 +64,19 @@ Shukudu Kitchen currently includes:
 - `relationships.goesWellWith` is present as the future curated pairing field
 - `details["Meal Type"]` removed from current recipe JSON
 - Homepage cards use compact relationship chips: Cuisine, Meal Type, primary Dish Type, and base quantity
+- Homepage Meal Type filters use `relationships.mealTypes`
 - Recipe pages show full relationship details and generated base quantity
 - Validator enforces relationship metadata
 - `One Pot` classification rule documented
+
+### Homepage Filtering - Completed
+
+- Search filter
+- Category dropdown filter
+- Meal Type chip filters: All, Breakfast, Lunch, Dinner, Snack, and Side
+- Search, category, and meal type filters work together
+- Meal Type filters are driven by `relationships.mealTypes`
+- Mobile filter chips scroll horizontally instead of wrapping into a tall block
 
 ### Recipe Scaling - Completed for Supported Recipes
 
@@ -215,6 +225,7 @@ Completed:
 - Added `relationships.dishTypes` for structured discovery
 - Added empty `relationships.goesWellWith` arrays as the future curated pairing field
 - Updated homepage cards to prefer relationship data and keep cards compact
+- Added homepage Meal Type filters driven by `relationships.mealTypes`
 - Updated recipe page details rendering to display full relationship details
 - Added generated `Base` detail on recipe pages from scaling metadata
 - Updated validation to enforce the relationship model
@@ -223,7 +234,7 @@ Completed:
 
 ## Future Features
 
-- Meal type and dish type filters using relationship metadata
+- Dish type filters using relationship metadata
 - “Goes well with” recipe links on recipe pages
   - Use `relationships.goesWellWith` as the future curated pairing field.
   - Show a small curated set of pairings rather than every technically matching recipe.
@@ -284,18 +295,19 @@ Once recipe images are introduced, possible validation checks include:
 25. Update recipe details rendering for relationship-based meal types - completed
 26. Add recipe relationship validation - completed
 27. Add generated Base to recipe details - completed
-28. Clean up validator structure
-29. Duplicate ingredient name warning or error
-30. Preparation coverage validation
-31. Cooking method ingredient coverage validation
-32. Goes-well-with recipe pairings
-33. Meal type and dish type filters
-34. Serving adjustment
-35. Print view
-36. Recipe images and richer cards
-37. Optional standard-cup scaling input
-38. Offline recipe support
-39. Image metadata validation after recipe images are introduced
+28. Add Meal Type filters - completed
+29. Clean up validator structure
+30. Duplicate ingredient name warning or error
+31. Preparation coverage validation
+32. Cooking method ingredient coverage validation
+33. Goes-well-with recipe pairings
+34. Dish type filters
+35. Serving adjustment
+36. Print view
+37. Recipe images and richer cards
+38. Optional standard-cup scaling input
+39. Offline recipe support
+40. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
