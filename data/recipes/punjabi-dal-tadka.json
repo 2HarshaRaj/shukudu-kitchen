@@ -101,7 +101,6 @@
           "quantity": 0.75,
           "unit": "teaspoon",
           "ingredient": "salt",
-          "preparation": "adjust to taste after cooking",
           "scalable": true,
           "roundingType": "exact"
         },
@@ -241,23 +240,33 @@
   ],
   "cookingMethod": [
     {
-      "lead": "Add to a pressure cooker:",
+      "lead": "Add dals and water:",
       "ingredientIds": [
         "toor-dal",
         "moong-dal",
-        "tomato",
-        "onion",
-        "garlic-pressure",
-        "bay-leaf",
-        "black-cardamom",
-        "turmeric",
-        "salt",
-        "ghee-pressure",
         "water"
       ]
     },
     {
-      "text": "Pressure cook for 5 whistles on medium flame. Allow the pressure to release naturally."
+      "lead": "Add vegetables:",
+      "ingredientIds": [
+        "tomato",
+        "onion",
+        "garlic-pressure"
+      ]
+    },
+    {
+      "lead": "Add spices and ghee:",
+      "ingredientIds": [
+        "bay-leaf",
+        "black-cardamom",
+        "turmeric",
+        "salt",
+        "ghee-pressure"
+      ]
+    },
+    {
+      "text": "Pressure cook for 5 whistles on medium flame. Allow pressure to release naturally."
     },
     {
       "text": "Mash the cooked dal lightly. Keep it thick enough to coat rice, adding only a little hot water if the dal is too thick."
