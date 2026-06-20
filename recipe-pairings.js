@@ -46,6 +46,21 @@ function renderPairingLinks(pairingSlugs, recipeIndex) {
     .join('');
 }
 
+function scrollToPairingSection(link) {
+  const nav = link.closest('.section-nav');
+  const target = document.getElementById('pairings');
+  if (!nav || !target) return;
+
+  nav.querySelectorAll('a').forEach((item) => item.classList.remove('is-active'));
+  link.classList.add('is-active');
+
+  const left = link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2;
+  nav.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+
+  const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 18;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+
 function addPairingNavLink() {
   const nav = document.querySelector('.section-nav');
   if (!nav || nav.querySelector('a[href="#pairings"]')) return;
@@ -54,12 +69,17 @@ function addPairingNavLink() {
   link.href = '#pairings';
   link.textContent = 'Goes Well With';
 
-  const servingLink = nav.querySelector('a[href="#serving"]');
-  if (servingLink) {
-    nav.insertBefore(link, servingLink);
+  const ingredientsLink = nav.querySelector('a[href="#ingredients"]');
+  if (ingredientsLink) {
+    nav.insertBefore(link, ingredientsLink);
   } else {
     nav.appendChild(link);
   }
+
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    scrollToPairingSection(link);
+  });
 }
 
 async function loadRecipePairings() {
