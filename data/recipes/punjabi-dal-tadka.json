@@ -1,0 +1,298 @@
+{
+  "name": "Punjabi Dal Tadka",
+  "slug": "punjabi-dal-tadka",
+  "category": "Dal",
+  "summary": "Punjabi dhaba-style dal tadka made with toor dal, moong dal, onion, tomato, garlic, ghee and a spicy kasuri methi tempering.",
+  "details": {
+    "Cuisine": "North Indian · Punjabi",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Dal", "Side Dish"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseQuantity": 150,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Pressure Cook",
+      "items": [
+        {
+          "id": "toor-dal",
+          "quantity": 100,
+          "unit": "g",
+          "ingredient": "toor dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "moong-dal",
+          "quantity": 50,
+          "unit": "g",
+          "ingredient": "moong dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tomato",
+          "quantity": 120,
+          "unit": "g",
+          "ingredient": "tomato",
+          "preparation": "roughly chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 60,
+          "unit": "g",
+          "ingredient": "onion",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic-pressure",
+          "quantity": 6,
+          "countLabel": "garlic clove",
+          "weightGrams": 5,
+          "ingredient": "garlic",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "bay-leaf",
+          "displayText": "Bay leaf – 1",
+          "ingredient": "bay leaf",
+          "scalable": false
+        },
+        {
+          "id": "black-cardamom",
+          "displayText": "Black cardamom – 1",
+          "ingredient": "black cardamom",
+          "scalable": false
+        },
+        {
+          "id": "turmeric",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste after cooking",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "ghee-pressure",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 2.25,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "ghee-tempering",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic-tempering",
+          "quantity": 3,
+          "countLabel": "garlic clove",
+          "weightGrams": 2,
+          "ingredient": "garlic",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "kasuri-methi",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "kasuri methi",
+          "preparation": "crushed between palms",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – 1 pinch",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.125,
+            "0.75": 0.25,
+            "1": 0.25,
+            "1.25": 0.25,
+            "1.5": 0.375,
+            "2": 0.5
+          }
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "weightGrams": 5,
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1.25,
+            "1.5": 1.5,
+            "2": 2
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Rinse thoroughly until the water runs mostly clear:",
+      "ingredientIds": [
+        "toor-dal",
+        "moong-dal"
+      ]
+    },
+    {
+      "lead": "Prepare for pressure cooking:",
+      "ingredientIds": [
+        "tomato",
+        "onion",
+        "garlic-pressure"
+      ]
+    },
+    {
+      "lead": "Prepare for tempering:",
+      "ingredientIds": [
+        "garlic-tempering",
+        "kasuri-methi",
+        "coriander-leaves"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Add to a pressure cooker:",
+      "ingredientIds": [
+        "toor-dal",
+        "moong-dal",
+        "tomato",
+        "onion",
+        "garlic-pressure",
+        "bay-leaf",
+        "black-cardamom",
+        "turmeric",
+        "salt",
+        "ghee-pressure",
+        "water"
+      ],
+      "after": "Pressure cook for 5 whistles on medium flame, then allow the pressure to release naturally. The ghee helps reduce dal foaming during pressure cooking."
+    },
+    {
+      "text": "Mash the cooked dal lightly. Keep it thick enough to coat rice, adding only a little hot water if the dal is too thick."
+    },
+    {
+      "lead": "Heat for tempering:",
+      "ingredientIds": [
+        "ghee-tempering"
+      ]
+    },
+    {
+      "lead": "Add and fry until lightly golden:",
+      "ingredientIds": [
+        "garlic-tempering"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "cumin-seeds",
+        "kasuri-methi",
+        "red-chilli-powder",
+        "hing",
+        "garam-masala"
+      ],
+      "after": "Keep the flame low after adding the spice powders so they do not burn. Let the tempering sizzle briefly."
+    },
+    {
+      "text": "Pour the hot tempering over the cooked dal and mix well. Simmer for 2 minutes so the tadka flavour spreads into the dal."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "coriander-leaves"
+      ],
+      "after": "Taste and adjust salt before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain rice, jeera rice, chapati or poori.",
+    "For rice meals, keep the dal slightly flowing. For poori or chapati, simmer a little longer for a thicker consistency."
+  ],
+  "notes": [
+    "Base quantity is 150 g total dal: 100 g toor dal and 50 g moong dal. This is approximately 1/2 cup toor dal and 1/4 cup moong dal.",
+    "This base works for 2 people across 2 meals when dal and rice are the main meal.",
+    "The recipe is adapted from Hebbars Kitchen's Dal Tadka Recipe – Punjabi Dhaba Style, but the base quantity is adjusted to the household portion that worked well.",
+    "Salt is intentionally set to 3/4 teaspoon at the 1x base because the earlier smaller version tasted bland with only 1/2 teaspoon.",
+    "Crushing kasuri methi between palms before adding improves aroma and reduces blandness.",
+    "Use a 3 L pressure cooker comfortably for the 1x base quantity. Add ghee before pressure cooking and cook on medium flame to reduce foaming."
+  ]
+}
