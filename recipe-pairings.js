@@ -36,13 +36,7 @@ function renderPairingLinks(pairingSlugs, recipeIndex) {
   return pairingSlugs
     .map((slug) => recipeBySlug.get(slug))
     .filter(Boolean)
-    .map((recipe) => `
-      <li>
-        <a href="recipe.html?slug=${encodeURIComponent(recipe.slug)}">
-          ${escapePairingHtml(recipe.name)}
-        </a>
-      </li>
-    `)
+    .map((recipe) => `<a class="pairing-card" href="recipe.html?slug=${encodeURIComponent(recipe.slug)}"><span>${escapePairingHtml(recipe.name)}</span></a>`)
     .join('');
 }
 
@@ -67,7 +61,7 @@ function addPairingNavLink() {
 
   const link = document.createElement('a');
   link.href = '#pairings';
-  link.textContent = 'Goes Well With';
+  link.textContent = 'Pairings';
 
   const ingredientsLink = nav.querySelector('a[href="#ingredients"]');
   if (ingredientsLink) {
@@ -111,11 +105,8 @@ async function loadRecipePairings() {
 
     const section = document.createElement('section');
     section.id = 'pairings';
-    section.className = 'recipe-section anchor-section';
-    section.innerHTML = `
-      <h2>Goes well with</h2>
-      <ul>${links}</ul>
-    `;
+    section.className = 'recipe-section anchor-section pairings-section';
+    section.innerHTML = `<h2>Pairings</h2><div class="pairing-grid">${links}</div>`;
 
     detailsSection.insertAdjacentElement('afterend', section);
     addPairingNavLink();
