@@ -29,6 +29,18 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.7 - 2026-06-20
+
+### Fixed
+
+- Homepage Meal Type filter pills now keep the intended dark-mode styling instead of turning light beige in dark mode
+- Removed Tomato Rasam from Curd Rice pairings
+
+### Changed
+
+- Homepage footer and README version updated to `v1.15.7`
+- Homepage now loads `homepage-filters.css?v=1.15.7`
+
 ## 1.15.6 - 2026-06-20
 
 ### Changed
