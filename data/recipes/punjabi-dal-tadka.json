@@ -254,8 +254,10 @@
         "salt",
         "ghee-pressure",
         "water"
-      ],
-      "after": "Pressure cook for 5 whistles on medium flame, then allow the pressure to release naturally. For induction, build pressure first, then reduce to 100°C / 300 W for 14–15 minutes for an approximate 5-whistle equivalent. The ghee helps reduce dal foaming during pressure cooking."
+      ]
+    },
+    {
+      "text": "Pressure cook for 5 whistles on medium flame. Allow the pressure to release naturally."
     },
     {
       "text": "Mash the cooked dal lightly. Keep it thick enough to coat rice, adding only a little hot water if the dal is too thick."
@@ -273,18 +275,23 @@
       ]
     },
     {
-      "lead": "Add:",
+      "lead": "Add and let splutter:",
       "ingredientIds": [
-        "cumin-seeds",
+        "cumin-seeds"
+      ]
+    },
+    {
+      "lead": "Lower the flame and add one after another:",
+      "ingredientIds": [
         "kasuri-methi",
         "red-chilli-powder",
         "hing",
         "garam-masala"
       ],
-      "after": "Keep the flame low after adding the spice powders so they do not burn. Let the tempering sizzle briefly."
+      "after": "Stir briefly for 5–10 seconds and immediately pour over the dal."
     },
     {
-      "text": "Pour the hot tempering over the cooked dal and mix well. Simmer for 2 minutes so the tadka flavour spreads into the dal."
+      "text": "Simmer for 2 minutes so the tadka flavour spreads into the dal."
     },
     {
       "lead": "Finish with:",
