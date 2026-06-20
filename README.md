@@ -14,16 +14,18 @@ Recipes are adapted to match real kitchen use, including:
 
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
+- generated base quantity details on recipe pages
 - automatic standard cup equivalents for public readability
 - scalable reference quantities for gram-based pantry staples
 - practical ingredient rounding
 - gram guidance for vegetables and other ingredients
 - structured preparation and cooking steps
-- structured recipe relationships for meal types, dish types, and future pairings
+- structured recipe relationships for meal types, dish types, and curated pairings
+- manual Pairings links for curated recipe pairings
+- warning-only validation for non-reciprocal pairings
 - search aliases for alternate names and regional dish names
 - compact homepage relationship chips
 - homepage meal type filters
-- recipe-page Pairings links for curated recipe pairings
 - full recipe-page relationship details with base quantity
 - mobile-friendly Cooking Mode
 - optional Cooking Mode screen wake-lock support
@@ -61,7 +63,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, searchAliases structure, large-produce weightGrams, non-linear config uniqueness, and non-linear override validation
+- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, searchAliases structure, large-produce weightGrams, non-linear config uniqueness, non-linear override, and pairing validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -84,6 +86,10 @@ shukudu-kitchen/
 - docs/
 - icons/
 - scripts/
+  - validate-recipes.js
+  - validate-produce-weights.js
+  - validate-search.js
+  - validate-recipe-pairings.js
 - .github/workflows/
 - index.html
 - recipe.html
@@ -118,10 +124,12 @@ shukudu-kitchen/
 - Index `searchAliases` may be used for alternate names and regional names. See `docs/SEARCH.md`.
 - Scalable recipes use structured ingredient objects with stable IDs.
 - Recipe relationship data is documented in `docs/RECIPE_RELATIONSHIPS.md` and separates human-facing `details` from structured `relationships`.
+- Pairings are manual curated recipe slug links in `relationships.goesWellWith`; reverse links are not automatically created.
 - Reference quantity metadata is documented in `docs/REFERENCE_QUANTITY.md` and is used for gram-based pantry staples that need cup or spoon guidance.
-- Preparation and cooking steps reference those ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
+- Preparation and cooking steps reference ingredient IDs so quantities remain consistent across the full recipe and Cooking Mode.
 - Scaling metadata identifies the base ingredient, base quantity, base unit, and whether the recipe uses preset options or exact quantity input.
 - Scaling `baseIngredient`, when present, must match exactly one ingredient ID in the recipe.
+- `baseIngredient`, `baseQuantity`, and `baseUnit` are required only when `scaling.inputMode` is `quantity`.
 - Display-text-only ingredients must be non-scalable so fixed/manual ingredient wording does not accidentally enter the scaling engine.
 - Scalable count-based ingredients with `roundingType: "large-produce"` must include positive `weightGrams` for practical gram guidance.
 
@@ -152,7 +160,9 @@ Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary 
 
 `One Pot` means the rice or main ingredient cooks directly with the masala in the same vessel. Recipes where rice is cooked separately, cooled/rested, and then mixed into masala are not tagged as `One Pot`.
 
-This model supports richer homepage cards, meal and dish filters, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
+`relationships.goesWellWith` is manual and curated. Non-reciprocal pairings produce warnings, not errors, so intentionally one-way pairings remain possible.
+
+This model supports richer homepage cards, meal and dish filters, search, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
 
 ## Recipe Scaling
 
@@ -174,3 +184,16 @@ Rice recipes must keep `scaling.baseUnit` as `riceCup`. Rice and water ingredien
 Rice recipes may show rice quantities in the scale controls. Preset buttons may use compact `cup/cups` labels to reduce layout width, while the current selected value remains fully descriptive as `rice cup/rice cups`.
 
 Suitable non-rice recipes may use generic multiplier controls or exact base-ingredient quantity input.
+
+## Validation
+
+The GitHub Actions workflow is named **Validate Recipes** and runs:
+
+```text
+node scripts/validate-recipes.js
+node scripts/validate-produce-weights.js
+node scripts/validate-search.js
+node scripts/validate-recipe-pairings.js
+```
+
+The pairing validator fails only for missing pairing slugs. Non-reciprocal pairings are warnings.
