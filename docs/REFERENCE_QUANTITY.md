@@ -2,6 +2,8 @@
 
 `referenceQuantity` is optional display metadata for ingredients whose source-of-truth quantity is stored in another unit, especially grams, but where a cup or spoon reference helps during cooking.
 
+This document is an extension of `docs/RECIPE_DATA_STANDARD.md`. Use it together with the main recipe data standard when adding gram-based pantry staples that need cup or spoon guidance.
+
 ## Purpose
 
 Use `referenceQuantity` when an ingredient is measured accurately in grams but commonly understood in cups or spoons.
