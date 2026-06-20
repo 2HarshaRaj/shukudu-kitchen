@@ -9,6 +9,11 @@
     "Status": "Finalized",
     "Base Quantity": "500 g beans"
   },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner", "Side"],
+    "dishTypes": ["Palya", "Side Dish"],
+    "goesWellWith": []
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "beans",
