@@ -9,6 +9,7 @@ on:
       - 'scripts/validate-recipes.js'
       - 'scripts/validate-produce-weights.js'
       - 'scripts/validate-search.js'
+      - 'scripts/validate-recipe-pairings.js'
       - '.github/workflows/validate-recipes.yml'
 
 jobs:
@@ -32,3 +33,6 @@ jobs:
 
       - name: Validate search aliases
         run: node scripts/validate-search.js
+
+      - name: Validate recipe pairings
+        run: node scripts/validate-recipe-pairings.js
