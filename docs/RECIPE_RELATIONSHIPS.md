@@ -4,11 +4,11 @@
 
 Recipe relationships define how a recipe connects to meals, dish types, and other recipes.
 
-This document exists so relationship-style data stays consistent as the recipe library grows. It should be used before adding pairing, richer homepage discovery, or menu-planning features.
+This document exists so relationship-style data stays consistent as the recipe library grows. It should be used before adding meal filters, dish filters, pairing suggestions, or menu-planning features.
 
 ## Core Principle
 
-Separate display metadata from structured relationship data.
+Separate human-facing metadata from structured relationship data.
 
 ```text
 details = human-facing recipe metadata
@@ -17,25 +17,27 @@ relationships = structured discovery, filtering, and pairing metadata
 
 `details` should describe the recipe on the recipe page. `relationships` should help the website understand how the recipe connects to use cases and other recipes.
 
-## Target Structure
+## Current Standard Structure
 
-Use this structure for new and migrated recipes:
+Use this structure for recipes:
 
 ```json
 {
   "details": {
-    "Cuisine": "South Indian",
+    "Cuisine": "South Indian · Karnataka",
     "Status": "Finalized"
   },
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
-    "dishTypes": ["Rice"],
+    "dishTypes": ["Rice", "Bath", "One Pot"],
     "goesWellWith": []
   }
 }
 ```
 
-## Why `Meal Type` Moves Out of `details`
+`Meal Type` must not be stored inside `details`. Meal classification belongs in `relationships.mealTypes`.
+
+## Why `Meal Type` Belongs in `relationships`
 
 The old field:
 
@@ -45,15 +47,15 @@ The old field:
 }
 ```
 
-is good display text, but weak structured data.
+was good display text, but weak structured data.
 
 Problems:
 
-- it stores multiple values in one string
-- it is harder to filter reliably
-- it is harder to build homepage chips from it
-- it is harder to use for recipe pairing
-- it behaves like text, not an Anytype-style relationship
+- it stored multiple values in one string
+- it was harder to filter reliably
+- it was harder to build homepage chips from it
+- it was harder to use for recipe pairing
+- it behaved like text, not an Anytype-style relationship
 
 The structured version:
 
@@ -73,7 +75,7 @@ Purpose: when the recipe is commonly eaten.
 
 Type: array of strings.
 
-Allowed values for now:
+Allowed values:
 
 ```text
 Breakfast
@@ -97,7 +99,7 @@ Examples:
 ```
 
 ```json
-"mealTypes": ["Side"]
+"mealTypes": ["Lunch", "Dinner", "Side"]
 ```
 
 ### `dishTypes`
@@ -106,7 +108,7 @@ Purpose: what kind of dish the recipe is.
 
 Type: array of strings.
 
-Allowed starting values:
+Allowed values:
 
 ```text
 Rice
@@ -128,7 +130,7 @@ Rules:
 Examples:
 
 ```json
-"dishTypes": ["Rice", "Bath"]
+"dishTypes": ["Rice", "Bath", "One Pot"]
 ```
 
 ```json
@@ -137,6 +139,27 @@ Examples:
 
 ```json
 "dishTypes": ["Rasam"]
+```
+
+### `One Pot` Rule
+
+Use `One Pot` only when the rice or main ingredient cooks directly with the masala in the same vessel.
+
+```text
+One Pot = rice/main ingredient cooks directly with the masala in the same vessel.
+Not One Pot = rice is cooked separately, cooled/rested, then mixed into masala later.
+```
+
+Current examples:
+
+```text
+Tomato Bath: Rice / Bath / One Pot
+Menthya Rice Bath: Rice / Bath / One Pot
+Bisi Bele Bath: Rice / Bath / One Pot
+Vangi Bath: Rice / Bath
+Curd Rice: Rice / Curd Rice
+Palya: Palya / Side Dish
+Rasam: Rasam
 ```
 
 ### `goesWellWith`
@@ -153,100 +176,96 @@ Initial value:
 
 The field is intentionally present from the beginning but may stay empty until pairing is designed.
 
-Future supported shape may be either simple slugs:
+Currently supported shape: recipe slugs.
 
 ```json
 "goesWellWith": ["tomato-rasam", "beans-palya"]
 ```
 
-or richer objects:
+Rules:
 
-```json
-"goesWellWith": [
-  {
-    "slug": "tomato-rasam",
-    "reason": "Good rasam pairing for a rice meal."
-  }
-]
-```
+- use recipe slugs only
+- do not self-reference the current recipe
+- do not mass-link every technically related recipe
+- pairings should be curated and useful
 
-Do not mass-link every technically related recipe. Pairings should be curated and useful.
-
-## Current Migration Rule
-
-During migration, recipe files may temporarily have both:
-
-```json
-"details": {
-  "Cuisine": "South Indian",
-  "Meal Type": "Lunch / Dinner",
-  "Status": "Finalized"
-}
-```
-
-and:
-
-```json
-"relationships": {
-  "mealTypes": ["Lunch", "Dinner"],
-  "dishTypes": ["Rice"],
-  "goesWellWith": []
-}
-```
-
-After all recipe JSON files, UI rendering, and validation are updated, `details["Meal Type"]` should be removed.
+A future richer shape may be introduced later if reasons or pairing categories are needed.
 
 ## UI Usage
 
-Homepage recipe cards should prefer relationship data:
+### Homepage Cards
+
+Homepage recipe cards should stay compact.
+
+Show:
 
 ```text
-Cuisine chip -> details.Cuisine
-Meal chips -> relationships.mealTypes
-Dish/base chips -> relationships.dishTypes and scaling metadata where useful
+Cuisine + Meal Type + primary Dish Type + base quantity
 ```
 
-Fallback behavior during migration:
-
-1. Use `relationships.mealTypes` if present.
-2. Otherwise split `details["Meal Type"]` only for display.
-3. Do not treat split display fallback as the long-term data model.
-
-## Recipe Page Usage
-
-Recipe pages may continue to show human-friendly labels:
+Example:
 
 ```text
-Cuisine: South Indian
-Meal Type: Lunch, Dinner
+South Indian · Karnataka   Lunch   Dinner   Rice   1 rice cup base
+```
+
+For a recipe with multiple dish types, homepage cards show only the first dish type. The full relationship data remains in JSON for future filters.
+
+### Recipe Page Details
+
+Recipe pages should show full recipe details.
+
+Example:
+
+```text
+Cuisine: South Indian · Karnataka
 Status: Finalized
+Meal Type: Lunch / Dinner
+Dish Type: Rice / Bath / One Pot
+Base: 1 rice cup
 ```
 
-But the source for `Meal Type` should eventually be `relationships.mealTypes`, not `details["Meal Type"]`.
+`Base` is generated from `scaling.baseQuantity` and `scaling.baseUnit`, not from manual display text.
 
-## Validation Direction
+## Validation Standard
 
-The validator should eventually enforce:
+The validator enforces:
 
 - `relationships` exists as an object
 - `relationships.mealTypes` is a non-empty array
 - every `mealTypes` value is allowed
+- duplicate `mealTypes` values are rejected
 - `relationships.dishTypes` is a non-empty array
 - every `dishTypes` value is allowed
+- duplicate `dishTypes` values are rejected
 - `relationships.goesWellWith` is an array
-- `details["Meal Type"]` is not used after migration is complete
+- `goesWellWith` values use slug format
+- `goesWellWith` must not self-reference the current recipe
+- `details` requires `Cuisine` and `Status`
+- `details["Meal Type"]` is no longer part of the recipe data standard
 
-## Development Order
+Code may keep a legacy display fallback for older data, but new and current recipe JSON should use `relationships` as the source of truth.
 
-Recommended implementation order:
+## Implementation Status
 
-1. Document this relationship model.
-2. Add `relationships` to every existing recipe JSON.
-3. Update homepage cards to use `relationships.mealTypes` and `relationships.dishTypes`.
-4. Update recipe page details rendering to display meal types from `relationships`.
-5. Update validator to require the relationship model.
-6. Remove `details["Meal Type"]` once the migration is complete.
-7. Add curated `goesWellWith` pairings later.
+Completed:
+
+1. Relationship model documented.
+2. `relationships` added to every recipe JSON.
+3. Meal type data moved from `details["Meal Type"]` to `relationships.mealTypes`.
+4. `relationships.dishTypes` added for discovery.
+5. Empty `relationships.goesWellWith` arrays added for future pairings.
+6. Homepage cards updated to use relationship data.
+7. Recipe page details updated to show relationship data and generated base quantity.
+8. Validator updated to enforce relationship metadata.
+9. Old `details["Meal Type"]` removed from recipe JSON.
+
+Future:
+
+- curated `goesWellWith` pairings
+- meal type filters
+- dish type filters
+- recipe pairing display on recipe pages
 
 ## Design Boundary
 
@@ -255,7 +274,7 @@ Relationships should improve discovery without turning the homepage into a dense
 Good:
 
 ```text
-South Indian   Lunch   Dinner   Rice   1 rice cup base
+South Indian · Karnataka   Lunch   Dinner   Rice   1 rice cup base
 ```
 
 Too much:
