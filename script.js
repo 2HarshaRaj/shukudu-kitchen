@@ -125,10 +125,28 @@ function buildBaseCue(recipe) {
   return `${formatNumber(Number(scaling.baseQuantity))} ${scaling.baseUnit} base`;
 }
 
+function normalizeChipList(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === 'string' && value.trim()) return [value.trim()];
+  return [];
+}
+
+function getMealTypeChips(recipe) {
+  const relationshipMealTypes = normalizeChipList(recipe.relationships?.mealTypes);
+  if (relationshipMealTypes.length) return relationshipMealTypes;
+
+  return normalizeChipList(recipe.details?.['Meal Type']);
+}
+
+function getDishTypeChips(recipe) {
+  return normalizeChipList(recipe.relationships?.dishTypes);
+}
+
 function buildRecipeChips(recipe) {
   const chips = [
     recipe.details?.Cuisine,
-    recipe.details?.['Meal Type'],
+    ...getMealTypeChips(recipe),
+    ...getDishTypeChips(recipe),
     buildBaseCue(recipe)
   ];
 
@@ -190,6 +208,7 @@ async function loadFullRecipe(indexRecipe) {
     return {
       ...indexRecipe,
       details: fullRecipe.details,
+      relationships: fullRecipe.relationships,
       scaling: fullRecipe.scaling,
       searchText: buildRecipeSearchText(indexRecipe, fullRecipe)
     };
