@@ -255,6 +255,48 @@ function renderSimpleList(items) {
     .join('')}</ul>`;
 }
 
+function normalizeDetailList(value) {
+  if (Array.isArray(value)) return value.filter(Boolean);
+  if (typeof value === 'string' && value.trim()) return [value.trim()];
+  return [];
+}
+
+function formatDetailValue(value) {
+  const values = normalizeDetailList(value);
+  if (values.length) return values.join(' / ');
+  return value == null ? '' : String(value);
+}
+
+function buildRecipeDetails(recipe) {
+  const details = Object.entries(recipe.details || {})
+    .filter(([label]) => label !== 'Meal Type');
+
+  const mealTypes = normalizeDetailList(recipe.relationships?.mealTypes);
+  const fallbackMealTypes = normalizeDetailList(recipe.details?.['Meal Type']);
+  const dishTypes = normalizeDetailList(recipe.relationships?.dishTypes);
+
+  details.push(['Meal Type', mealTypes.length ? mealTypes : fallbackMealTypes]);
+
+  if (dishTypes.length) {
+    details.push(['Dish Type', dishTypes]);
+  }
+
+  return details.filter(([, value]) => formatDetailValue(value));
+}
+
+function renderRecipeDetails(recipe) {
+  const details = buildRecipeDetails(recipe);
+
+  return details
+    .map(([label, value]) => `
+      <div>
+        <span class="detail-label">${escapeHtml(label)}:</span>
+        <span>${escapeHtml(formatDetailValue(value))}</span>
+      </div>
+    `)
+    .join('');
+}
+
 function renderIngredientChecklist(recipe, scale = 1) {
   const savedState = loadChecklistState(recipe.slug);
   let itemIndex = 0;
@@ -511,15 +553,7 @@ function renderRecipe(recipe, initialScale = null) {
   document.title = `${recipe.name} | Shukudu Kitchen`;
   const ingredientMap = buildIngredientMap(recipe);
   let currentScale = initialScale ?? loadScale(recipe);
-
-  const details = Object.entries(recipe.details || {})
-    .map(([label, value]) => `
-      <div>
-        <span class="detail-label">${escapeHtml(label)}:</span>
-        <span>${escapeHtml(value)}</span>
-      </div>
-    `)
-    .join('');
+  const details = renderRecipeDetails(recipe);
 
   recipeContent.innerHTML = `
     <article>
