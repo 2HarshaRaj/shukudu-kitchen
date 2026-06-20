@@ -115,6 +115,7 @@ Rice
 Bath
 Palya
 Rasam
+Dal
 Curd Rice
 Side Dish
 One Pot
@@ -141,6 +142,10 @@ Examples:
 "dishTypes": ["Rasam"]
 ```
 
+```json
+"dishTypes": ["Dal", "Side Dish"]
+```
+
 ### `One Pot` Rule
 
 Use `One Pot` only when the rice or main ingredient cooks directly with the masala in the same vessel.
@@ -160,6 +165,7 @@ Vangi Bath: Rice / Bath
 Curd Rice: Rice / Curd Rice
 Palya: Palya / Side Dish
 Rasam: Rasam
+Dal Tadka: Dal / Side Dish
 ```
 
 ### `goesWellWith`
@@ -259,6 +265,7 @@ Completed:
 7. Recipe page details updated to show relationship data and generated base quantity.
 8. Validator updated to enforce relationship metadata.
 9. Old `details["Meal Type"]` removed from recipe JSON.
+10. `Dal` added as a supported dish type for North Indian dal recipes.
 
 Future:
 
