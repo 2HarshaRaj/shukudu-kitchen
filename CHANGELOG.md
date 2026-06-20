@@ -29,6 +29,16 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.5 - 2026-06-20
+
+### Changed
+
+- Recipe page pairing section now uses the shorter matching label `Pairings` for both the heading and nav pill
+- Pairing links now render as tap-friendly rounded recipe chips instead of a plain bullet list
+- Added `recipe-pairings.css` for pairing chip styling
+- Recipe page footer and README version updated to `v1.15.5`
+- Recipe page now loads `recipe-pairings.js?v=1.15.5` and `recipe-pairings.css?v=1.15.5`
+
 ## 1.15.4 - 2026-06-20
 
 ### Fixed
