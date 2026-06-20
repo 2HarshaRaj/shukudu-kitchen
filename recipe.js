@@ -267,18 +267,45 @@ function formatDetailValue(value) {
   return value == null ? '' : String(value);
 }
 
+function buildBaseDetail(recipe) {
+  const scaling = recipe.scaling;
+  const fallbackBase = recipe.details?.['Base Quantity'];
+
+  if (!scaling?.enabled || scaling.baseQuantity == null || !scaling.baseUnit) {
+    return fallbackBase || '';
+  }
+
+  const quantity = Number(scaling.baseQuantity);
+  if (!Number.isFinite(quantity)) return fallbackBase || '';
+
+  if (scaling.baseUnit === 'riceCup') {
+    return `${formatNumber(quantity)} ${pluralizeUnit('rice cup', quantity)}`;
+  }
+
+  if (scaling.baseUnit === 'g') {
+    return `${formatNumber(quantity)} g`;
+  }
+
+  return `${formatNumber(quantity)} ${pluralizeUnit(scaling.baseUnit, quantity)}`;
+}
+
 function buildRecipeDetails(recipe) {
   const details = Object.entries(recipe.details || {})
-    .filter(([label]) => label !== 'Meal Type');
+    .filter(([label]) => !['Meal Type', 'Base Quantity'].includes(label));
 
   const mealTypes = normalizeDetailList(recipe.relationships?.mealTypes);
   const fallbackMealTypes = normalizeDetailList(recipe.details?.['Meal Type']);
   const dishTypes = normalizeDetailList(recipe.relationships?.dishTypes);
+  const baseDetail = buildBaseDetail(recipe);
 
   details.push(['Meal Type', mealTypes.length ? mealTypes : fallbackMealTypes]);
 
   if (dishTypes.length) {
     details.push(['Dish Type', dishTypes]);
+  }
+
+  if (baseDetail) {
+    details.push(['Base', baseDetail]);
   }
 
   return details.filter(([, value]) => formatDetailValue(value));
