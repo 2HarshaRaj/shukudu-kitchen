@@ -8,6 +8,11 @@
     "Meal Type": "Lunch / Dinner",
     "Status": "Finalized"
   },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Rice", "Bath"],
+    "goesWellWith": []
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "rice",
