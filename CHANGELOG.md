@@ -29,6 +29,18 @@ Major.Minor.Patch
 - Dish type filters using relationship metadata
 - Image metadata validation after recipe images are introduced
 
+## 1.15.4 - 2026-06-20
+
+### Fixed
+
+- Recipe page `Goes Well With` nav pill now appears immediately after `Details`, matching the section order
+- Dynamic `Goes Well With` nav pill now uses the same smooth-scroll behavior as the other section pills
+
+### Changed
+
+- Recipe page footer and README version updated to `v1.15.4`
+- Recipe page now loads `recipe-pairings.js?v=1.15.4`
+
 ## 1.15.3 - 2026-06-20
 
 ### Added
