@@ -10,10 +10,13 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Rasam"],
-    "goesWellWith": ["beans-palya", "balekai-palya", "curd-rice"]
+    "goesWellWith": ["beans-palya", "balekai-palya"]
   },
   "scaling": {
     "enabled": true,
+    "baseIngredient": "tomatoes",
+    "baseQuantity": 500,
+    "baseUnit": "g",
     "baseScale": 1,
     "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
   },
