@@ -12,6 +12,22 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.16.3 - 2026-06-21
+
+### Changed
+
+- Pairing recipe chips now match the existing pill background style in both light and dark mode
+- Recipe page now loads `recipe-pairings.css?v=1.16.3`
+- Homepage, recipe page, and README versions updated to `v1.16.3`
+
+## 1.16.2 - 2026-06-21
+
+### Fixed
+
+- Mobile Meal Type filter chips now avoid top-border clipping during long press by adding scroll-row padding and disabling upward hover lift on touch devices
+- Homepage now loads `homepage-filters.css?v=1.16.2`
+- Homepage footer version updated to `v1.16.2`
+
 ## 1.16.1 - 2026-06-21
 
 ### Changed
