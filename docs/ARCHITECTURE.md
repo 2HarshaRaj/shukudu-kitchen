@@ -22,7 +22,8 @@ shukudu-kitchen/
 |  |- validate-recipes.js
 |  |- validate-produce-weights.js
 |  |- validate-search.js
-|  `- validate-recipe-pairings.js
+|  |- validate-recipe-pairings.js
+|  `- validate-theme.js
 |- .github/
 |  `- workflows/
 |     `- validate-recipes.yml
@@ -73,6 +74,7 @@ shukudu-kitchen/
 - `scripts/validate-produce-weights.js`: produce weight guidance validation for large-produce ingredients
 - `scripts/validate-search.js`: recipe-index search alias validation
 - `scripts/validate-recipe-pairings.js`: curated pairing validation, including missing slug errors and non-reciprocal warning checks
+- `scripts/validate-theme.js`: objective theme guardrails for theme documentation, known CSS files, CSS asset versions, approved hardcoded-color locations, approved shadow locations, and required dark-mode pill overrides
 - `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
 
 ## Page Loading
