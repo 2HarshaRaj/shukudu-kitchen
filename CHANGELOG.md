@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.1 - 2026-06-22
+
+### Added
+
+- Added Pumpkin Palya with a 500 g pumpkin base, exact quantity scaling, Karnataka-style tempering, coconut finish, and curated pairings.
+
+### Changed
+
+- Site version updated to `v1.18.1`.
+
 ## 1.18.0 - 2026-06-22
 
 ### Added
