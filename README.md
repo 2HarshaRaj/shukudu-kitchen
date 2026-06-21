@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.16.4`
+`v1.16.5`
 
 ## Overview
 
@@ -66,7 +66,7 @@ Recipes are adapted to match real kitchen use, including:
 - Config-driven non-linear ingredient validation
 - Automated recipe validation through GitHub Actions
 - Node.js 24 validation pipeline
-- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, searchAliases structure, large-produce weightGrams, non-linear config uniqueness, non-linear override, and pairing validation
+- Recipe-index, slug, metadata, relationship, step-structure, notes, scaling base ingredient, rice recipe units, scalingMode, roundingType, displayText safety, referenceQuantity structure, searchAliases structure, large-produce weightGrams, non-linear config uniqueness, non-linear override, pairing, and theme validation
 - Light and dark themes with device-theme fallback
 - Saved theme preference across the homepage, recipe pages, and Cooking Mode
 - Header-level theme controls with compact circular controls on mobile
@@ -95,6 +95,7 @@ shukudu-kitchen/
   - validate-produce-weights.js
   - validate-search.js
   - validate-recipe-pairings.js
+  - validate-theme.js
 - .github/workflows/
 - index.html
 - recipe.html
@@ -215,6 +216,9 @@ node scripts/validate-recipes.js
 node scripts/validate-produce-weights.js
 node scripts/validate-search.js
 node scripts/validate-recipe-pairings.js
+node scripts/validate-theme.js
 ```
 
 The pairing validator fails only for missing pairing slugs. Non-reciprocal pairings are warnings.
+
+The theme validator enforces objective theme guardrails such as required theme documentation, known CSS files, CSS asset versions, approved hardcoded-color locations, approved shadow locations, and required dark-mode overrides for key pill families.
