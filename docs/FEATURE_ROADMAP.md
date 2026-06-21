@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.15.9
+## Current Version - v1.16.1
 
 Shukudu Kitchen currently includes:
 
@@ -47,8 +47,9 @@ Shukudu Kitchen currently includes:
 - polished native select closed-state styling
 - consistent button hover, active, and shadow behavior across light and dark modes
 - installable PWA foundation
-- app icons, favicons, and Apple touch icon support
+- app icons, favicons, Apple touch icon, and social preview image support
 - homepage and recipe-page app branding
+- Open Graph and Twitter card metadata for large link previews
 - dynamic browser theme-color handling
 
 ## Completed Features
@@ -207,17 +208,20 @@ Shukudu Kitchen currently includes:
 - Footer text is centered
 - SVG-style utility icons replace emoji/font-dependent icon rendering
 
-### PWA Foundation and Branding - Completed
+### PWA, Branding, and Social Preview Foundation - Completed
 
 - `manifest.webmanifest` added
 - Installable app metadata added
 - Standalone display mode added
 - App name and short name standardized to `Shukudu Kitchen`
-- App icons, favicons, and Apple touch icon metadata added
+- App icons, favicons, Apple touch icon, and social preview image metadata added
 - Homepage brand icon added
 - Recipe page brand icon added
 - Dedicated `brand.css` added
 - Theme-color metadata updates with the selected theme and page context
+- `icons/social-preview.png` added for WhatsApp, Open Graph, and large link previews
+- Homepage Open Graph metadata added for title, description, site name, URL, and preview image
+- Twitter large-card metadata added for platforms that use Twitter card tags
 
 ## Current Recipe Scaling Work
 
@@ -297,6 +301,7 @@ Future:
 - Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
 - Khara/spice preference mode for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile
 - Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale
+- Cooking timers inside Cooking Mode for timed steps, with optional start, pause, reset controls and saved timer state per recipe step
 - Print view
 - Recipe images
 - Direct edit link
@@ -307,7 +312,7 @@ Future:
 
 ## Future Validation Enhancements
 
-Image metadata validation is deferred because images are not part of the current recipe model yet.
+Image metadata validation is deferred because recipe images are not part of the current recipe model yet. The social preview image is site-level branding, not recipe image data.
 
 Possible non-image validation enhancements:
 
@@ -359,19 +364,21 @@ Once recipe images are introduced, possible validation checks include:
 31. Add curated goesWellWith recipe pairings - completed
 32. Add goes-well-with recipe links on recipe pages - completed
 33. Add pairing reciprocity warning validation - completed
-34. Add dedicated Dish Type filter UI
-35. Household meal scaling by people and meal count
-36. Khara/spice preference mode
-37. Multi-Recipe Cooking Mode
-38. Clean up validator structure
-39. Duplicate ingredient name warning or error
-40. Preparation coverage validation
-41. Cooking method ingredient coverage validation
-42. Print view
-43. Recipe images and richer cards
-44. Optional standard-cup scaling input
-45. Offline recipe support
-46. Image metadata validation after recipe images are introduced
+34. Add social preview image and Open Graph metadata - completed
+35. Add dedicated Dish Type filter UI
+36. Household meal scaling by people and meal count
+37. Khara/spice preference mode
+38. Multi-Recipe Cooking Mode
+39. Cooking timers inside Cooking Mode
+40. Clean up validator structure
+41. Duplicate ingredient name warning or error
+42. Preparation coverage validation
+43. Cooking method ingredient coverage validation
+44. Print view
+45. Recipe images and richer cards
+46. Optional standard-cup scaling input
+47. Offline recipe support
+48. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
