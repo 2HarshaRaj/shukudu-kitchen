@@ -12,6 +12,13 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.17.3 - 2026-06-21
+
+### Changed
+
+- Simplified Curd Rice dish type metadata from `Rice` + `Curd Rice` to only `Rice`
+- Homepage footer version updated to `v1.17.3`
+
 ## 1.17.2 - 2026-06-21
 
 ### Changed
