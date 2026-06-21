@@ -1,0 +1,336 @@
+{
+  "name": "Pumpkin Palya",
+  "slug": "pumpkin-palya",
+  "category": "Palya",
+  "summary": "Karnataka-style pumpkin palya with onion, green chilli, simple tempering, fresh coconut and coriander.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Finalized",
+    "Base Quantity": "500 g pumpkin"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Palya"
+    ],
+    "goesWellWith": [
+      "tomato-rasam",
+      "curd-rice"
+    ]
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "pumpkin",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Pumpkin quantity",
+    "inputMin": 50,
+    "inputStep": 10,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Vegetables",
+      "items": [
+        {
+          "id": "pumpkin",
+          "quantity": 500,
+          "unit": "g",
+          "ingredient": "yellow pumpkin",
+          "preparation": "peeled and cut into 1.5 cm cubes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chilli",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "ingredient": "green chilli",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.25,
+            "0.75": 0.5,
+            "1": 0.5,
+            "1.25": 0.5,
+            "1.5": 0.75,
+            "2": 1
+          }
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "dry-red-chilli",
+          "quantity": 1,
+          "countLabel": "dry red chilli",
+          "ingredient": "dry red chilli",
+          "preparation": "broken",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 8,
+            "0.75": 10,
+            "1": 12,
+            "1.25": 12,
+            "1.5": 15,
+            "2": 18
+          }
+        }
+      ]
+    },
+    {
+      "section": "Spices",
+      "items": [
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 4,
+          "unit": "tablespoon",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Finish",
+      "items": [
+        {
+          "id": "fresh-coconut",
+          "quantity": 30,
+          "unit": "g",
+          "ingredient": "fresh coconut",
+          "preparation": "grated",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 10,
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 2.5,
+            "2": 3
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "pumpkin"
+      ],
+      "after": "Peel, remove the seeds and cut into even 1.5 cm cubes."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "onion",
+        "green-chilli"
+      ]
+    },
+    {
+      "lead": "Keep ready:",
+      "ingredientIds": [
+        "fresh-coconut",
+        "coriander-leaves"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat a kadai and add:",
+      "ingredientIds": [
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ],
+      "after": "Allow the mustard seeds to splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "urad-dal",
+        "chana-dal"
+      ],
+      "after": "Fry until the dals turn light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "dry-red-chilli",
+        "curry-leaves"
+      ],
+      "after": "Stir briefly without burning the chilli."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "onion",
+        "green-chilli"
+      ],
+      "after": "Saute for 2-3 minutes until the onion softens."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "pumpkin",
+        "turmeric-powder",
+        "salt"
+      ],
+      "after": "Mix gently to coat the pumpkin evenly."
+    },
+    {
+      "lead": "Sprinkle:",
+      "ingredientIds": [
+        "water"
+      ],
+      "after": "Cover and cook on low heat for 10-15 minutes, stirring every 4-5 minutes, until the pumpkin is soft but still holds shape."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "fresh-coconut",
+        "coriander-leaves"
+      ],
+      "after": "Mix gently and cook uncovered for 1 minute."
+    },
+    {
+      "text": "Switch off the heat and serve hot."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with hot rice and tomato rasam.",
+    "Serve as a side dish with sambar rice or curd rice.",
+    "Can also be served with chapati."
+  ],
+  "notes": [
+    "Use yellow pumpkin for the best Karnataka-style taste.",
+    "Pumpkin cooks quickly, so avoid overcooking after it turns soft.",
+    "The recipe is mildly spiced. Increase green chilli only when you intentionally want a spicier palya.",
+    "If the pumpkin is not naturally sweet, add a small pinch of jaggery near the end only after tasting.",
+    "Enter the exact pumpkin weight when it differs from the 500 g base recipe. The website calculates the scale automatically."
+  ]
+}
