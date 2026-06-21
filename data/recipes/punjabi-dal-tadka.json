@@ -9,7 +9,7 @@
   },
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
-    "dishTypes": ["Dal", "Side Dish"],
+    "dishTypes": ["Dal"],
     "goesWellWith": ["jeera-rice"]
   },
   "scaling": {
