@@ -12,6 +12,31 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.17.1 - 2026-06-21
+
+### Fixed
+
+- Added spacing between the Meal Type filter row and the Dish Type heading on mobile
+
+### Changed
+
+- Homepage script asset version updated to `script.js?v=1.17.1`
+- Homepage footer version updated to `v1.17.1`
+- Added `docs/DISH_TYPE_FILTERS.md`
+- Added `docs/releases/v1.17.1.md`
+
+## 1.17.0 - 2026-06-21
+
+### Added
+
+- Homepage Dish Type filter UI using existing `relationships.dishTypes` metadata
+- Combined homepage filtering across search, category, meal type, and dish type
+
+### Changed
+
+- Homepage script asset version updated to `script.js?v=1.17.0`
+- Homepage and recipe page footer versions updated to `v1.17.0`
+
 ## 1.16.5 - 2026-06-21
 
 ### Added
