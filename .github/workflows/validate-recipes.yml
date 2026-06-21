@@ -10,6 +10,18 @@ on:
       - 'scripts/validate-produce-weights.js'
       - 'scripts/validate-search.js'
       - 'scripts/validate-recipe-pairings.js'
+      - 'scripts/validate-theme.js'
+      - 'docs/UI_THEME_STANDARD.md'
+      - 'style.css'
+      - 'brand.css'
+      - 'theme.css'
+      - 'theme-toggle-fix.css'
+      - 'homepage-filters.css'
+      - 'recipe-pairings.css'
+      - 'recipe-scaling.css'
+      - 'wake-lock.css'
+      - 'index.html'
+      - 'recipe.html'
       - '.github/workflows/validate-recipes.yml'
 
 jobs:
@@ -36,3 +48,6 @@ jobs:
 
       - name: Validate recipe pairings
         run: node scripts/validate-recipe-pairings.js
+
+      - name: Validate theme rules
+        run: node scripts/validate-theme.js
