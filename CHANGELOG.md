@@ -22,7 +22,7 @@ Major.Minor.Patch
 
 - Changed site version to `v1.18.3`.
 
-## 1.18.2 - 2026-06-21
+## 1.18.2 - 2026-06-22
 
 ### Changed
 
