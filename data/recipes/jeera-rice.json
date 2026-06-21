@@ -10,7 +10,7 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Rice", "One Pot"],
-    "goesWellWith": ["punjabi-dal-tadka", "tomato-rasam", "curd-rice"]
+    "goesWellWith": ["punjabi-dal-tadka"]
   },
   "scaling": {
     "enabled": true,
@@ -271,7 +271,7 @@
     }
   ],
   "servingSuggestions": [
-    "Serve with dal tadka, tomato rasam, plain curd or pickle.",
+    "Serve with Punjabi dal tadka.",
     "Pair with potato fry, papad or a simple raita."
   ],
   "notes": [
