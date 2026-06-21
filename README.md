@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.15.9`
+`v1.16.0`
 
 ## Overview
 
@@ -32,6 +32,7 @@ Recipes are adapted to match real kitchen use, including:
 - saved light and dark themes for comfortable kitchen use
 - installable Progressive Web App support
 - app-style branding and dynamic browser theme-color handling
+- Open Graph and WhatsApp-ready social preview metadata
 
 ## Main Features
 
@@ -58,6 +59,7 @@ Recipes are adapted to match real kitchen use, including:
 - Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
 - Homepage Meal Type filters use `relationships.mealTypes`
 - Recipe pages show full relationship details, base quantity, and curated Pairings recipe links
+- Social preview image and metadata for large link previews
 - Recipe-specific non-linear scaling overrides
 - Explicit rounding behavior for scalable ingredients
 - Config-driven non-linear ingredient validation
