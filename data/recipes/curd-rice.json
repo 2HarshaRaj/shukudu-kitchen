@@ -9,7 +9,7 @@
   },
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
-    "dishTypes": ["Rice", "Curd Rice"],
+    "dishTypes": ["Rice"],
     "goesWellWith": ["beans-palya", "balekai-palya"]
   },
   "scaling": {
