@@ -12,6 +12,18 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.16.5 - 2026-06-21
+
+### Added
+
+- Phase 1 theme validator at `scripts/validate-theme.js`
+- Theme validation in the GitHub Actions workflow
+
+### Changed
+
+- README now documents the theme validator in the validation pipeline
+- Homepage and recipe page footer versions updated to `v1.16.5`
+
 ## 1.16.4 - 2026-06-21
 
 ### Added
@@ -193,7 +205,6 @@ Major.Minor.Patch
 ### Added
 
 - Homepage Meal Type filter chips: All, Breakfast, Lunch, Dinner, Snack, and Side
-- Dedicated `homepage-filters.css` for homepage filter chip styling
 
 ### Changed
 
