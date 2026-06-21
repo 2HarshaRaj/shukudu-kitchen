@@ -290,6 +290,7 @@ Future:
 - Standard cup scaling input
 - Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
 - Khara/spice preference mode for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile
+- Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale
 - Print view
 - Recipe images
 - Direct edit link
@@ -352,18 +353,19 @@ Once recipe images are introduced, possible validation checks include:
 31. Add curated goesWellWith recipe pairings - completed
 32. Add goes-well-with recipe links on recipe pages - completed
 33. Add pairing reciprocity warning validation - completed
-34. Add dish type filters
-35. Clean up validator structure
-36. Duplicate ingredient name warning or error
-37. Preparation coverage validation
-38. Cooking method ingredient coverage validation
-39. Household meal scaling by people and meal count
-40. Khara/spice preference mode
-41. Print view
-42. Recipe images and richer cards
-43. Optional standard-cup scaling input
-44. Offline recipe support
-45. Image metadata validation after recipe images are introduced
+34. Household meal scaling by people and meal count
+35. Khara/spice preference mode
+36. Multi-Recipe Cooking Mode
+37. Add dish type filters
+38. Clean up validator structure
+39. Duplicate ingredient name warning or error
+40. Preparation coverage validation
+41. Cooking method ingredient coverage validation
+42. Print view
+43. Recipe images and richer cards
+44. Optional standard-cup scaling input
+45. Offline recipe support
+46. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
