@@ -10,7 +10,7 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Dal", "Side Dish"],
-    "goesWellWith": []
+    "goesWellWith": ["jeera-rice"]
   },
   "scaling": {
     "enabled": true,
