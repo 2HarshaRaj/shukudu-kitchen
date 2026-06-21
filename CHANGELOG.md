@@ -12,7 +12,7 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
-## Unreleased
+## 1.15.9 - 2026-06-21
 
 ### Added
 
@@ -28,10 +28,11 @@ Major.Minor.Patch
 - Architecture, recipe data standard, roadmap, and README now reflect the current validation scripts and completed Pairings feature
 - Roadmap wording now distinguishes completed dish type metadata, search, and card display from the still-future dedicated Dish Type filter UI
 - Tomato Rasam pairings now stay manual and no longer link to Curd Rice by default
+- Current task changes are recorded directly under `1.15.9` instead of keeping an active `Unreleased` section
 
 ### Fixed
 
-- Recipe page footer version now aligns with the current `v1.15.8` site version
+- Homepage and recipe page footer versions now align with the current `v1.15.9` site version
 
 ### Planned
 
