@@ -13,22 +13,34 @@
   padding: 10px 14px;
   border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(159, 63, 47, 0.08);
+  background: #f3ece5;
   color: var(--muted);
   font-weight: 700;
   line-height: 1.2;
   text-decoration: none;
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
 .pairing-card:hover,
 .pairing-card:focus-visible {
   transform: translateY(-1px);
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  border-color: #d8c4b8;
+  background: #f3ece5;
   color: var(--accent);
-  box-shadow: 0 8px 18px rgba(159, 63, 47, 0.12);
   outline: none;
+}
+
+[data-theme="dark"] .pairing-card {
+  border-color: var(--border);
+  background: #2b2420;
+  color: var(--text);
+}
+
+[data-theme="dark"] .pairing-card:hover,
+[data-theme="dark"] .pairing-card:focus-visible {
+  border-color: #5a4940;
+  background: #2b2420;
+  color: var(--accent);
 }
 
 @media (max-width: 560px) {
@@ -40,5 +52,11 @@
   .pairing-card {
     justify-content: flex-start;
     width: 100%;
+  }
+}
+
+@media (hover: none) {
+  .pairing-card:hover {
+    transform: none;
   }
 }
