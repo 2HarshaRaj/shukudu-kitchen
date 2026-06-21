@@ -225,6 +225,7 @@ function ensureDishTypeFilter() {
   panel.setAttribute('aria-label', 'Recipe filters');
 
   const dishTypeGroup = document.createElement('div');
+  dishTypeGroup.className = 'dish-filter-group';
   dishTypeGroup.innerHTML = `
     <p class="eyebrow">Dish type</p>
     <div id="dishTypeFilter" class="filter-chips" role="group" aria-label="Filter recipes by dish type"></div>
