@@ -12,6 +12,18 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.16.0 - 2026-06-21
+
+### Added
+
+- Social preview image at `icons/social-preview.png` for WhatsApp, Open Graph, and large link previews
+- Open Graph metadata on the homepage for title, description, canonical URL, and preview image
+- Twitter large-image card metadata for platforms that use Twitter card tags
+
+### Changed
+
+- Homepage and recipe page footer versions updated to `v1.16.0`
+
 ## 1.15.9 - 2026-06-21
 
 ### Added
