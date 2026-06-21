@@ -12,6 +12,12 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.17.5 - 2026-06-22
+
+### Changed
+
+- Removed obsolete `Curd Rice` from validator allowed Dish Types.
+
 ## 1.17.4 - 2026-06-22
 
 ### Changed
