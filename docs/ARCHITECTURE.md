@@ -10,6 +10,7 @@ shukudu-kitchen/
 |  `- validation/
 |     `- non-linear-ingredients.json
 |- docs/
+|  `- UI_THEME_STANDARD.md
 |- icons/
 |  |- icon-192.png
 |  |- icon-512.png
@@ -64,6 +65,7 @@ shukudu-kitchen/
 - `theme-toggle-fix.css`: theme-control placement, sizing, SVG utility icons, select chevron polish, Cooking Mode close button styling, and theme-specific utility button surfaces
 - `brand.css`: brand icon layout, homepage responsive branding, and recipe back-link icon sizing
 - `style.css`: shared site layout, recipe cards, primary/secondary buttons, recipe layout, and Cooking Mode base styling
+- `docs/UI_THEME_STANDARD.md`: visual theme rules for colors, pills, chips, buttons, shadows, touch behavior, and light/dark mode review
 - `icons/`: install icons, favicons, Apple touch icon assets, and the site-level social preview image
 - `icons/social-preview.png`: Open Graph/WhatsApp/Twitter large-preview image referenced from `index.html`
 - `data/validation/non-linear-ingredients.json`: config list of ingredients that require recipe-specific non-linear scaling overrides when scalable
@@ -178,6 +180,8 @@ Theme-color behaviour:
 
 - homepage: uses the warm brand/header colour in both light and dark mode
 - recipe page: uses the light page background in light mode and the dark page background in dark mode
+
+UI theme standards are documented in `docs/UI_THEME_STANDARD.md`. Review that document before changing colors, pills, chips, buttons, shadows, hover states, active states, pressed states, or light/dark behavior.
 
 ## Recipe Data Architecture
 
