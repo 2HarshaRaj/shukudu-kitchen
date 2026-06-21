@@ -68,5 +68,12 @@
     "category": "Dal",
     "summary": "Punjabi dhaba-style dal tadka made with toor dal, moong dal, onion, tomato, garlic, ghee and a spicy kasuri methi tempering.",
     "searchAliases": ["dal tadka", "dhaba dal", "punjabi dal", "yellow dal tadka"]
+  },
+  {
+    "name": "Homemade Muesli",
+    "slug": "homemade-muesli",
+    "category": "Breakfast",
+    "summary": "Homemade muesli with roasted oats, wheat flakes, nuts, seeds, puffed amaranth and dried fruits.",
+    "searchAliases": ["muesli", "breakfast cereal", "oats muesli", "homemade cereal"]
   }
 ]
