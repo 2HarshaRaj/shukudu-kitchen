@@ -6,6 +6,10 @@
   margin-bottom: 10px;
 }
 
+.dish-filter-group {
+  margin-top: 18px;
+}
+
 .filter-chips {
   display: flex;
   flex-wrap: wrap;
