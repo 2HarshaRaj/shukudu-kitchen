@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.16.0`
+`v1.16.1`
 
 ## Overview
 
@@ -73,7 +73,7 @@ Recipes are adapted to match real kitchen use, including:
 - Polished native category dropdown closed-state styling
 - Consistent button hover and active-state styling across light and dark modes
 - PWA manifest with standalone display mode
-- App icons, favicons, and Apple touch icon support
+- App icons, favicons, Apple touch icon, and social preview image support
 - Brand icon on the homepage and recipe pages
 - Dynamic theme-color updates for Android/PWA status bar integration
 
@@ -87,6 +87,7 @@ shukudu-kitchen/
   - validation/non-linear-ingredients.json
 - docs/
 - icons/
+  - social-preview.png
 - scripts/
   - validate-recipes.js
   - validate-produce-weights.js
@@ -165,6 +166,16 @@ Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary 
 `relationships.goesWellWith` is manual and curated. Non-reciprocal pairings produce warnings, not errors, so intentionally one-way pairings remain possible.
 
 This model supports richer homepage cards, meal and dish filters, search, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
+
+## Social Preview
+
+The homepage includes Open Graph and Twitter card metadata for large link previews.
+
+- Preview image: `icons/social-preview.png`
+- Canonical preview URL: `https://2harsharaj.github.io/shukudu-kitchen/icons/social-preview.png`
+- Description: `Recipes refined through real cooking.`
+
+The social preview image is site-level branding and is separate from future recipe images.
 
 ## Recipe Scaling
 
