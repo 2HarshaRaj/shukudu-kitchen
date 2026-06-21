@@ -13,7 +13,7 @@ Shukudu Kitchen currently includes:
 - homepage recipe index, search, category filters, and meal type filters
 - homepage search aliases for alternate names and regional dish names
 - homepage search across relationship metadata such as Cuisine, meal types, dish types, and goes-well-with slugs
-- compact homepage relationship chips
+- compact homepage relationship chips including the primary dish type
 - individual recipe pages with full relationship details, generated base quantity, and curated Pairings links
 - ingredient checklists
 - sticky section navigation
@@ -72,13 +72,14 @@ Shukudu Kitchen currently includes:
 - `details["Meal Type"]` removed from current recipe JSON
 - Homepage cards use compact relationship chips: Cuisine, Meal Type, primary Dish Type, and base quantity
 - Homepage Meal Type filters use `relationships.mealTypes`
-- Homepage search includes relationship metadata
+- Homepage search includes relationship metadata, including dish types
 - Recipe pages show full relationship details and generated base quantity
 - Recipe pages show curated Pairings links when pairings exist
 - Main validator enforces relationship metadata
 - Pairing validator checks pairing slugs and warns when a pairing is not reciprocal
 - Reverse pairing links are not auto-created
 - `One Pot` classification rule documented
+- Dedicated Dish Type filter UI is not built yet; it remains a future homepage browsing feature
 
 ### Homepage Filtering and Search - Completed
 
@@ -90,6 +91,7 @@ Shukudu Kitchen currently includes:
 - Mobile filter chips scroll horizontally instead of wrapping into a tall block
 - `searchAliases` added to `data/recipe-index.json`
 - Search includes recipe aliases, relationship fields, and non-common ingredient names
+- Dish types are already searchable and visible as homepage card chips, but are not yet a dedicated filter control
 - `docs/SEARCH.md` documents search sources and future search improvements
 - `scripts/validate-search.js` validates search alias structure and duplicates
 
@@ -254,7 +256,7 @@ Completed:
 - Added `relationships.goesWellWith` arrays for curated pairings
 - Updated homepage cards to prefer relationship data and keep cards compact
 - Added homepage Meal Type filters driven by `relationships.mealTypes`
-- Updated homepage search to include relationship metadata
+- Updated homepage search to include relationship metadata, including dish types
 - Updated recipe page details rendering to display full relationship details
 - Added generated `Base` detail on recipe pages from scaling metadata
 - Added curated Pairings links on recipe pages
@@ -263,6 +265,10 @@ Completed:
 - Removed `details["Meal Type"]` from current recipe JSON
 - Documented `One Pot` classification rule
 - Documented manual pairing rules and the no-auto-reverse-link boundary
+
+Not yet built:
+
+- Dedicated Dish Type filter UI on the homepage
 
 ## Current Search Work
 
@@ -286,7 +292,7 @@ Future:
 
 ## Future Features
 
-- Dish type filters using relationship metadata
+- Dedicated Dish Type filter UI using existing `relationships.dishTypes` metadata
 - Standard cup scaling input
 - Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
 - Khara/spice preference mode for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile
@@ -353,10 +359,10 @@ Once recipe images are introduced, possible validation checks include:
 31. Add curated goesWellWith recipe pairings - completed
 32. Add goes-well-with recipe links on recipe pages - completed
 33. Add pairing reciprocity warning validation - completed
-34. Household meal scaling by people and meal count
-35. Khara/spice preference mode
-36. Multi-Recipe Cooking Mode
-37. Add dish type filters
+34. Add dedicated Dish Type filter UI
+35. Household meal scaling by people and meal count
+36. Khara/spice preference mode
+37. Multi-Recipe Cooking Mode
 38. Clean up validator structure
 39. Duplicate ingredient name warning or error
 40. Preparation coverage validation
