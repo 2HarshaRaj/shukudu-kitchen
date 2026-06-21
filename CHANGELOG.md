@@ -13,5 +13,4 @@ All notable changes to Shukudu Kitchen are recorded here.
 - 1.17.0 - Homepage Dish Type filter UI.
 - 1.16.5 - Phase 1 theme validator.
 - 1.16.4 - UI theme standard documentation.
-
-Earlier detailed changelog entries remain available in repository history.
+- See repository history for detailed older changelog entries.
