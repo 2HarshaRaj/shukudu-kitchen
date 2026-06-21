@@ -289,6 +289,7 @@ Future:
 - Dish type filters using relationship metadata
 - Standard cup scaling input
 - Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
+- Khara/spice preference mode for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile
 - Print view
 - Recipe images
 - Direct edit link
@@ -357,11 +358,12 @@ Once recipe images are introduced, possible validation checks include:
 37. Preparation coverage validation
 38. Cooking method ingredient coverage validation
 39. Household meal scaling by people and meal count
-40. Print view
-41. Recipe images and richer cards
-42. Optional standard-cup scaling input
-43. Offline recipe support
-44. Image metadata validation after recipe images are introduced
+40. Khara/spice preference mode
+41. Print view
+42. Recipe images and richer cards
+43. Optional standard-cup scaling input
+44. Offline recipe support
+45. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
