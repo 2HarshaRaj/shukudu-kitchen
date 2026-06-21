@@ -21,6 +21,13 @@
     "searchAliases": ["mosaranna", "mosaru anna", "thayir sadam", "yogurt rice"]
   },
   {
+    "name": "Jeera Rice",
+    "slug": "jeera-rice",
+    "category": "Rice",
+    "summary": "Simple onion jeera rice made with sona masuri rice, cumin, whole spices, onion and ghee in a pressure cooker.",
+    "searchAliases": ["cumin rice", "onion jeera rice", "jeera pulao", "cumin pulao"]
+  },
+  {
     "name": "Tomato Rasam",
     "slug": "tomato-rasam",
     "category": "Rasam",
