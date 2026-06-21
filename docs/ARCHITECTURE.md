@@ -11,6 +11,12 @@ shukudu-kitchen/
 |     `- non-linear-ingredients.json
 |- docs/
 |- icons/
+|  |- icon-192.png
+|  |- icon-512.png
+|  |- apple-touch-icon.png
+|  |- favicon-32.png
+|  |- favicon-16.png
+|  `- social-preview.png
 |- scripts/
 |  |- validate-recipes.js
 |  |- validate-produce-weights.js
@@ -41,7 +47,7 @@ shukudu-kitchen/
 
 ## Main Responsibilities
 
-- `index.html`: homepage layout, homepage theme-control host, PWA metadata, and brand header structure
+- `index.html`: homepage layout, homepage theme-control host, PWA metadata, Open Graph/Twitter social preview metadata, and brand header structure
 - `recipe.html`: recipe-page shell, recipe top bar, PWA metadata, recipe theme-control host, and wake-lock asset loading
 - `manifest.webmanifest`: installable app metadata, app name, start URL, display mode, theme color, and app icons
 - `script.js`: homepage search, filters, and compact recipe cards using relationship metadata
@@ -58,7 +64,8 @@ shukudu-kitchen/
 - `theme-toggle-fix.css`: theme-control placement, sizing, SVG utility icons, select chevron polish, Cooking Mode close button styling, and theme-specific utility button surfaces
 - `brand.css`: brand icon layout, homepage responsive branding, and recipe back-link icon sizing
 - `style.css`: shared site layout, recipe cards, primary/secondary buttons, recipe layout, and Cooking Mode base styling
-- `icons/`: install icons, favicons, and Apple touch icon assets
+- `icons/`: install icons, favicons, Apple touch icon assets, and the site-level social preview image
+- `icons/social-preview.png`: Open Graph/WhatsApp/Twitter large-preview image referenced from `index.html`
 - `data/validation/non-linear-ingredients.json`: config list of ingredients that require recipe-specific non-linear scaling overrides when scalable
 - `scripts/validate-recipes.js`: recipe JSON, index, slug, details, relationships, step, notes, scaling, rounding, non-linear override, scaling-mode consistency, and schema guardrails
 - `scripts/validate-produce-weights.js`: produce weight guidance validation for large-produce ingredients
@@ -119,11 +126,11 @@ The manifest defines:
 - default theme color
 - install icons
 
-Both `index.html` and `recipe.html` include manifest, theme-color, Apple touch icon, and favicon metadata.
+Both `index.html` and `recipe.html` include manifest, theme-color, Apple touch icon, and favicon metadata. The homepage also includes Open Graph and Twitter card metadata for link previews.
 
 Offline support is intentionally deferred until a future Service Worker phase.
 
-## Branding Architecture
+## Branding and Social Preview Architecture
 
 Brand icon layout is handled through `brand.css`.
 
@@ -138,6 +145,14 @@ Recipe page:
 - the app icon appears as a small visual marker beside `Back to recipes`
 - the icon is intentionally smaller than the homepage icon so it does not compete with the recipe title
 - icon asset: `icons/icon-192.png`
+
+Social preview:
+
+- preview image asset: `icons/social-preview.png`
+- homepage metadata references the social preview using an absolute GitHub Pages URL
+- Open Graph metadata includes type, site name, title, description, canonical URL, image URL, image type, and image dimensions
+- Twitter metadata uses `summary_large_image` and the same preview image
+- the social preview image is site-level branding, not recipe image data
 
 ## Theme Architecture
 
@@ -258,253 +273,3 @@ Pairings, when curated pairings exist
 ```
 
 `Base` is generated from `scaling.baseQuantity` and `scaling.baseUnit`.
-
-## Relationship Classification Rules
-
-`One Pot` means the rice or main ingredient cooks directly with the masala in the same vessel.
-
-```text
-One Pot = rice/main ingredient cooks directly with the masala in the same vessel.
-Not One Pot = rice is cooked separately, cooled/rested, then mixed into masala later.
-```
-
-Current examples:
-
-```text
-Tomato Bath: Rice / Bath / One Pot
-Menthya Rice Bath: Rice / Bath / One Pot
-Bisi Bele Bath: Rice / Bath / One Pot
-Vangi Bath: Rice / Bath
-```
-
-Curated pairings use `relationships.goesWellWith` as manual recipe slug links. Reverse links are not auto-created. Non-reciprocal links are allowed when intentional, but the pairing validator reports them as warnings.
-
-## Scaling Flow
-
-```text
-base recipe quantities
--> preset or exact base quantity
--> calculated scale
--> optional recipe override
--> roundingType-aware unit formatting
--> recipe page and Cooking Mode
-```
-
-For normal scaling:
-
-```text
-effective quantity = base quantity x selected scale
-```
-
-For exact base-ingredient quantity input:
-
-```text
-selected scale = entered quantity / base quantity
-```
-
-Rice recipes use rice cup as the canonical base. Standard cup values are derived for display using:
-
-```text
-1 standard cup = 0.75 rice cup
-```
-
-Rice preset buttons may use compact `cup/cups` labels to reduce width, while the current selected value remains fully descriptive as `rice cup/rice cups`.
-
-Quantity-input recipes must use standard preset options:
-
-```text
-[0.5, 0.75, 1, 1.25, 1.5, 2]
-```
-
-For gram-based quantity recipes, scaling metadata uses `baseUnit: "g"`.
-
-Base metadata is not required for every scalable recipe. When `scaling.inputMode` is `quantity`, `baseIngredient`, `baseQuantity`, and `baseUnit` are required. When `baseIngredient` is present, it must match exactly one ingredient ID.
-
-## Cooking Mode Architecture
-
-Cooking Mode is rendered by `recipe.js` and includes:
-
-- recipe title and current phase/step label
-- step body with scaled ingredients
-- progress bar
-- previous/next navigation
-- mark-complete control
-- close control
-
-Cooking Mode state is stored per recipe:
-
-```text
-shukudu-kitchen:<slug>:cooking-step
-shukudu-kitchen:<slug>:completed-steps
-```
-
-## Cooking Mode Wake Lock
-
-Cooking Mode includes optional screen wake-lock support through the browser Screen Wake Lock API.
-
-Wake-lock behavior:
-
-- the user must tap the wake-lock control to request screen wake lock
-- wake lock is requested only while Cooking Mode is open
-- wake lock is released when Cooking Mode closes
-- unsupported browsers show an unavailable message
-- the browser or operating system may release the wake lock at any time
-- if the user had enabled wake lock, the page attempts to re-request it when the page becomes visible again
-
-The feature is intentionally implemented outside `recipe.js` in `wake-lock.js` and `wake-lock.css` so it can remain a focused Cooking Mode enhancement without complicating the core recipe renderer.
-
-## Button and Control Styling Architecture
-
-Button states follow this pattern:
-
-- primary actions and confirmed states may use accent fill and soft drop shadows
-- utility controls are quiet by default and use subtle hover feedback
-- active toggles use strong accent styling to show state clearly
-- scale option buttons avoid drop shadows and use border/inset active styling so shadows do not clip inside scrollable rows
-- native controls such as `select` may be visually polished while keeping browser-native menu behavior
-
-SVG-style utility icons are used for:
-
-- theme sun/moon toggle
-- Cooking Mode wake-lock button
-- Cooking Mode close button
-- native select chevron
-
-## Rounding and Formatting Architecture
-
-`roundingType` records the intended display behavior for scalable ingredients with quantities.
-
-Allowed values:
-
-- `exact`: preserve the calculated value and use unit-aware formatting
-- `small-whole`: use practical count handling for small whole ingredients
-- `large-produce`: use practical count or gram guidance for larger produce
-
-The validator requires `roundingType` whenever `scalable: true` and `quantity` is present. Display-text-only fixed ingredients and non-scalable ingredients do not require it.
-
-## Non-Linear Scaling Architecture
-
-Most scalable ingredients use direct linear scaling.
-
-Some ingredients use recipe-specific `scaleQuantities` because taste, heat, sourness, aroma, or tempering balance does not scale cleanly in direct proportion.
-
-Runtime scaling logic stays recipe-specific:
-
-```text
-selected scale
--> if scaleQuantities has selected scale key, use override value
--> otherwise use base quantity x selected scale
-```
-
-The validator uses `data/validation/non-linear-ingredients.json` only as a data-quality guardrail. It does not globally calculate runtime quantities. Recipe JSON remains the runtime source of truth for final displayed quantities.
-
-`scalingMode` may be used when a recipe needs explicit intent:
-
-- `scalingMode: "linear"` skips automatic non-linear config matching and must not define `scaleQuantities`
-- `scalingMode: "non-linear"` requires `scaleQuantities`
-- missing `scalingMode` uses config matching from `data/validation/non-linear-ingredients.json`
-
-## Recipe Validation Architecture
-
-Recipe data quality is enforced through GitHub Actions.
-
-Workflow:
-
-```text
-.github/workflows/validate-recipes.yml
-```
-
-Runtime:
-
-```text
-Node.js 24
-```
-
-The workflow runs:
-
-```text
-node scripts/validate-recipes.js
-node scripts/validate-produce-weights.js
-node scripts/validate-search.js
-node scripts/validate-recipe-pairings.js
-```
-
-The workflow uses:
-
-- `actions/checkout@v6`
-- `actions/setup-node@v6`
-- `node-version: '24'`
-
-Validator guardrails include:
-
-- JSON parse validation
-- required top-level fields
-- array validation for `ingredients`, `preparation`, and `cookingMethod`
-- recipe-index validation and synchronization checks
-- slug format and file-name validation
-- duplicate ingredient ID detection
-- missing ingredient reference detection
-- cooking-step structure validation
-- details metadata validation for `Cuisine` and `Status`
-- relationship metadata validation for `mealTypes`, `dishTypes`, and `goesWellWith`
-- `servingSuggestions` and `notes` array validation
-- quantity-input scaling metadata validation
-- exact `baseIngredient` to ingredient ID matching when `baseIngredient` is present
-- required `baseIngredient`, `baseQuantity`, and `baseUnit` when `inputMode` is `quantity`
-- standard quantity options validation for quantity-input recipes
-- ingredient group structure validation
-- legacy ingredient-group `category` rejection
-- `teaspoon` / `tablespoon` unit standardization
-- structured measured-water enforcement
-- non-linear config shape, key, and duplicate validation
-- `roundingType` allowed value and required-field validation
-- `scalingMode` value and consistency validation
-- `scaleQuantities` validation against recipe-level `scaling.options`
-- configured non-linear override validation
-- rice unit validation
-- large-produce `weightGrams` validation
-- search alias validation
-- pairing missing-slug validation
-- non-reciprocal pairing warnings
-
-The validator set is complete for the current non-image recipe model. Image metadata validation is deferred until recipe images are introduced.
-
-## Browser Storage
-
-Per-recipe state:
-
-```text
-shukudu-kitchen:<slug>:ingredients
-shukudu-kitchen:<slug>:cooking-step
-shukudu-kitchen:<slug>:completed-steps
-shukudu-kitchen:<slug>:scale
-```
-
-Global theme state:
-
-```text
-shukudu-theme
-```
-
-## Maintenance Rules
-
-- Keep one recipe per JSON file.
-- Keep the recipe index lightweight and synchronized with recipe files.
-- Keep relationship metadata in `relationships`, not display-only `details`.
-- Keep validation config under `data/validation/`.
-- Keep scaling logic in `recipe-scaling.js`.
-- Keep exact quantity and scale-control styling in `recipe-scaling.css`.
-- Keep recipe-page Pairings rendering in `recipe-pairings.js`.
-- Keep recipe-page Pairings styling in `recipe-pairings.css`.
-- Keep wake-lock behavior in `wake-lock.js`.
-- Keep wake-lock styling in `wake-lock.css`.
-- Keep theme behaviour in `theme.js`.
-- Keep dark theme tokens in `theme.css`.
-- Keep theme-control and utility-control polish in `theme-toggle-fix.css`.
-- Keep brand icon layout rules in `brand.css`.
-- Keep PWA metadata in `manifest.webmanifest`, `index.html`, and `recipe.html` synchronized.
-- Keep validation rules in the scripts under `scripts/` and run the full workflow after recipe data or validation config changes.
-- Test light and dark themes on homepage, recipe pages, and Cooking Mode.
-- Test desktop, mobile, and zoomed desktop layouts for utility controls and scale controls.
-- Test installability and app icon behaviour after PWA metadata changes.
-- Update the changelog and visible versions for releases.
