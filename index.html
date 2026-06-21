@@ -19,4 +19,72 @@
   <meta name="twitter:description" content="Recipes refined through real cooking.">
   <meta name="twitter:image" content="https://2harsharaj.github.io/shukudu-kitchen/icons/social-preview.png">
   <title>Shukudu Kitchen</title>
-</head><body><header></header><main></main><footer class="site-footer"><div class="container" style="text-align:center;">Shukudu Kitchen • v1.16.0</div></footer></body></html>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
+  <link rel="stylesheet" href="style.css?v=1.15.1">
+  <link rel="stylesheet" href="brand.css?v=1.15.1">
+  <link rel="stylesheet" href="theme.css?v=1.15.1">
+  <link rel="stylesheet" href="theme-toggle-fix.css?v=1.15.1">
+  <link rel="stylesheet" href="homepage-filters.css?v=1.15.8">
+  <script src="theme.js?v=1.15.1"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header-row">
+      <div class="brand-lockup site-header-copy">
+        <img class="brand-icon" src="icons/icon-192.png" alt="" aria-hidden="true">
+        <div>
+          <p class="eyebrow">Personal cookbook</p>
+          <h1>Shukudu Kitchen</h1>
+          <p class="subtitle">Recipes refined through real cooking.</p>
+        </div>
+      </div>
+      <div class="theme-toggle-host" data-theme-toggle-host></div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls" aria-label="Recipe controls">
+      <label>
+        <span>Search recipes</span>
+        <input id="searchInput" type="search" placeholder="Search by name or category">
+      </label>
+
+      <label>
+        <span>Category</span>
+        <select id="categoryFilter">
+          <option value="all">All categories</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="meal-filter-panel" aria-label="Meal type filters">
+      <div>
+        <p class="eyebrow">Meal type</p>
+        <div id="mealTypeFilter" class="filter-chips" role="group" aria-label="Filter recipes by meal type"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Finalized recipes</p>
+          <h2>Cook from the collection</h2>
+        </div>
+        <p id="recipeCount" class="recipe-count"></p>
+      </div>
+
+      <div id="recipeGrid" class="recipe-grid" aria-live="polite"></div>
+      <p id="emptyState" class="empty-state" hidden>No recipes match your search.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="text-align: center;">Shukudu Kitchen &bull; v1.16.0</div>
+  </footer>
+
+  <script src="script.js?v=1.15.2"></script>
+</body>
+</html>
