@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.16.4 - 2026-06-21
+
+### Added
+
+- `docs/UI_THEME_STANDARD.md` to document theme rules for colors, pills, chips, buttons, shadows, touch behavior, and light/dark mode review
+
+### Changed
+
+- README and architecture docs now reference the UI theme standard
+- Homepage and recipe page footer versions updated to `v1.16.4`
+
 ## 1.16.3 - 2026-06-21
 
 ### Changed
