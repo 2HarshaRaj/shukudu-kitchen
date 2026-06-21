@@ -1,0 +1,272 @@
+{
+  "name": "Homemade Muesli",
+  "slug": "homemade-muesli",
+  "category": "Breakfast",
+  "summary": "Homemade muesli with roasted oats, wheat flakes, nuts, seeds, puffed amaranth and dried fruits.",
+  "details": {
+    "Cuisine": "International",
+    "Status": "Finalized",
+    "Total Quantity": "1.4 kg",
+    "Taste": "Toasty, nutty, mildly sweet",
+    "Storage": "Airtight container up to 1 month"
+  },
+  "relationships": {
+    "mealTypes": ["Breakfast", "Snack"],
+    "dishTypes": ["Side Dish"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rolled-oats",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Base Grains",
+      "items": [
+        {
+          "id": "rolled-oats",
+          "quantity": 500,
+          "unit": "g",
+          "ingredient": "rolled oats",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "wheat-flakes",
+          "quantity": 250,
+          "unit": "g",
+          "ingredient": "wheat flakes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "puffed-amaranth",
+          "quantity": 15,
+          "unit": "g",
+          "ingredient": "puffed amaranth",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Nuts",
+      "items": [
+        {
+          "id": "almonds",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "almonds",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cashews",
+          "quantity": 60,
+          "unit": "g",
+          "ingredient": "cashews",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "walnuts",
+          "quantity": 40,
+          "unit": "g",
+          "ingredient": "walnuts",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Seeds",
+      "items": [
+        {
+          "id": "pumpkin-seeds",
+          "quantity": 40,
+          "unit": "g",
+          "ingredient": "pumpkin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "sunflower-seeds",
+          "quantity": 40,
+          "unit": "g",
+          "ingredient": "sunflower seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "flax-seeds",
+          "quantity": 30,
+          "unit": "g",
+          "ingredient": "flax seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "chia-seeds",
+          "quantity": 30,
+          "unit": "g",
+          "ingredient": "chia seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Dried Fruits",
+      "items": [
+        {
+          "id": "raisins",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "raisins",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cranberries",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "dried cranberries",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "kalmi-dates",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "Kalmi dates",
+          "preparation": "deseeded and chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Flavor",
+      "items": [
+        {
+          "id": "cinnamon-powder",
+          "quantity": 2.5,
+          "unit": "g",
+          "ingredient": "cinnamon powder",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "text": "Keep a large wide plate or tray ready for cooling the roasted mix."
+    },
+    {
+      "lead": "Weigh and chop:",
+      "ingredientIds": [
+        "almonds",
+        "cashews"
+      ],
+      "after": "Use an electric chopper or knife and keep the pieces coarse. Do not powder them."
+    },
+    {
+      "lead": "Weigh and chop, but keep aside for the final mixing step:",
+      "ingredientIds": [
+        "walnuts"
+      ],
+      "after": "Do not roast the walnuts for this recipe."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "kalmi-dates"
+      ],
+      "after": "Deseed the dates, inspect them, and chop into small pieces so they spread evenly through the muesli."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "text": "Use a wide thick-bottomed pan on low to medium heat. Do not add oil. Stir continuously throughout roasting."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "rolled-oats"
+      ],
+      "after": "Roast for 4 minutes until slightly crisp and lightly aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "wheat-flakes"
+      ],
+      "after": "Roast with the oats for 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "almonds",
+        "cashews"
+      ],
+      "after": "Roast for 2 minutes until the nuts smell lightly toasted."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "flax-seeds",
+        "sunflower-seeds",
+        "pumpkin-seeds"
+      ],
+      "after": "Roast for 2 minutes until the flax starts popping lightly."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "puffed-amaranth"
+      ],
+      "after": "Roast for 30 seconds only, just to warm it through."
+    },
+    {
+      "lead": "Switch off the heat and add:",
+      "ingredientIds": [
+        "cinnamon-powder"
+      ],
+      "after": "Mix briefly using residual heat."
+    },
+    {
+      "text": "Immediately transfer the roasted mix to the wide plate or tray. Spread it out and cool completely before adding dried fruits and unroasted ingredients."
+    },
+    {
+      "lead": "After the roasted mix is fully cool, add:",
+      "ingredientIds": [
+        "walnuts",
+        "chia-seeds",
+        "raisins",
+        "cranberries",
+        "kalmi-dates"
+      ],
+      "after": "Mix thoroughly and store in an airtight container."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve half cup muesli per person with cold milk, warm milk or curd.",
+    "Add fresh banana or apple only while serving, not while storing.",
+    "Can also be eaten as a dry snack in a smaller portion."
+  ],
+  "notes": [
+    "Walnuts are not roasted in this version and are added only after the roasted mix cools.",
+    "Do not add dried fruits while the mix is hot, as trapped moisture can reduce crunch and shelf life.",
+    "Always use a dry spoon and keep the container closed tightly.",
+    "If any date looks infested or has black specks inside, discard that date and inspect the rest before using."
+  ]
+}
