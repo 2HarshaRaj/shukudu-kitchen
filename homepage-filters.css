@@ -64,8 +64,10 @@
   .filter-chips {
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-bottom: 6px;
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .filter-chips::-webkit-scrollbar {
@@ -74,5 +76,11 @@
 
   .filter-chip {
     flex: 0 0 auto;
+  }
+}
+
+@media (hover: none) {
+  .filter-chip:hover {
+    transform: none;
   }
 }
