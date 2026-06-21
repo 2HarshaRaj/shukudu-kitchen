@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.3 - 2026-06-22
+
+### Added
+
+- Added Rustic Pepper Jeera Tomato Rasam as a rustic freshly ground pepper-jeera tomato rasam recipe.
+
+### Changed
+
+- Changed site version to `v1.18.3`.
+
 ## 1.18.2 - 2026-06-21
 
 ### Changed
