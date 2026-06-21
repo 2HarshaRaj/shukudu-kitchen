@@ -12,6 +12,15 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.16.1 - 2026-06-21
+
+### Changed
+
+- Roadmap now includes Cooking timers inside Cooking Mode as a future feature after Multi-Recipe Cooking Mode
+- Roadmap, README, and architecture docs now document the completed social preview support consistently
+- Roadmap now clarifies that the site-level social preview image is separate from future recipe image metadata validation
+- Homepage and recipe page footer versions updated to `v1.16.1`
+
 ## 1.16.0 - 2026-06-21
 
 ### Added
