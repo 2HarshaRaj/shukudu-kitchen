@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.16.3`
+`v1.16.4`
 
 ## Overview
 
@@ -54,6 +54,7 @@ Recipes are adapted to match real kitchen use, including:
 - Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
 - Search alias rules documented in `docs/SEARCH.md`
+- UI theme rules documented in `docs/UI_THEME_STANDARD.md`
 - Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`
 - Technical debt and formatter cleanup notes tracked in `docs/TECHNICAL_DEBT.md`
 - Homepage cards show Cuisine, Meal Type, primary Dish Type, and base quantity
@@ -86,6 +87,7 @@ shukudu-kitchen/
   - recipes/
   - validation/non-linear-ingredients.json
 - docs/
+  - UI_THEME_STANDARD.md
 - icons/
   - social-preview.png
 - scripts/
@@ -166,6 +168,12 @@ Homepage cards intentionally show a compact subset: Cuisine, Meal Type, primary 
 `relationships.goesWellWith` is manual and curated. Non-reciprocal pairings produce warnings, not errors, so intentionally one-way pairings remain possible.
 
 This model supports richer homepage cards, meal and dish filters, search, and curated recipe pairings. See `docs/RECIPE_RELATIONSHIPS.md` before adding or changing relationship fields.
+
+## UI Theme Standard
+
+UI styling rules for colors, pills, chips, buttons, shadows, touch behavior, and light/dark mode are documented in `docs/UI_THEME_STANDARD.md`.
+
+Review this document before making UI polish changes so the design does not drift from the established warm cookbook theme.
 
 ## Social Preview
 
