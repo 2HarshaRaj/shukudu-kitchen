@@ -4,13 +4,13 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.16.1
+## Current Version - v1.17.1
 
 Shukudu Kitchen currently includes:
 
 - JSON-driven recipe storage
 - one recipe file per recipe
-- homepage recipe index, search, category filters, and meal type filters
+- homepage recipe index, search, category filters, meal type filters, and dish type filters
 - homepage search aliases for alternate names and regional dish names
 - homepage search across relationship metadata such as Cuisine, meal types, dish types, and goes-well-with slugs
 - compact homepage relationship chips including the primary dish type
@@ -22,39 +22,23 @@ Shukudu Kitchen currently includes:
 - structured preparation and cooking steps
 - scalable ingredient schema
 - rice-cup-first scaling for rice recipes
-- compact rice preset labels in scale controls
 - exact base-ingredient quantity scaling for supported recipes
-- optional base metadata for generated Recipe Details display
 - practical ingredient rounding and gram guidance
-- optional referenceQuantity display for gram-based pantry staples
-- required roundingType validation for scalable ingredients with quantities
-- displayText safety validation for display-text-only fixed ingredients
-- scaling base ingredient reference validation when `baseIngredient` is present
-- quantity-input base metadata validation when `inputMode` is `quantity`
-- rice recipe unit validation
-- large-produce weightGrams validation
 - recipe-specific non-linear scaling overrides
-- config-driven non-linear ingredient validation
-- non-linear config uniqueness validation
-- scalingMode consistency validation
 - recipe relationship validation
 - recipe pairing validation with warning-only non-reciprocal checks
 - search alias validation
-- completed automated recipe validation for the current non-image recipe model
-- documented and implemented recipe relationships model for meal types, dish types, and curated pairings
+- phase 1 theme validation
 - saved light and dark themes
-- SVG-style theme, wake-lock, and close icons
-- polished native select closed-state styling
-- consistent button hover, active, and shadow behavior across light and dark modes
 - installable PWA foundation
 - app icons, favicons, Apple touch icon, and social preview image support
 - homepage and recipe-page app branding
 - Open Graph and Twitter card metadata for large link previews
 - dynamic browser theme-color handling
 
-## Completed Features
+## Completed Feature Groups
 
-### Recipe Data Architecture - Completed
+### Recipe Data Architecture
 
 - One JSON file per recipe under `data/recipes/`
 - Lightweight homepage metadata in `data/recipe-index.json`
@@ -62,17 +46,16 @@ Shukudu Kitchen currently includes:
 - Stable ingredient IDs and structured steps
 - Shared quantities across Ingredients, Preparation, Cooking Method, and Cooking Mode
 
-### Recipe Relationships - Completed for Metadata, Discovery, and Curated Pairings
+### Recipe Relationships, Discovery, and Pairings
 
 - Dedicated relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Clear separation between `details` and `relationships`
-- `details` now stores human-facing metadata such as `Cuisine` and `Status`
 - `relationships.mealTypes` stores meal classification
 - `relationships.dishTypes` stores dish classification
 - `relationships.goesWellWith` stores manual curated recipe pairings
-- `details["Meal Type"]` removed from current recipe JSON
 - Homepage cards use compact relationship chips: Cuisine, Meal Type, primary Dish Type, and base quantity
 - Homepage Meal Type filters use `relationships.mealTypes`
+- Homepage Dish Type filters use `relationships.dishTypes`
 - Homepage search includes relationship metadata, including dish types
 - Recipe pages show full relationship details and generated base quantity
 - Recipe pages show curated Pairings links when pairings exist
@@ -80,135 +63,77 @@ Shukudu Kitchen currently includes:
 - Pairing validator checks pairing slugs and warns when a pairing is not reciprocal
 - Reverse pairing links are not auto-created
 - `One Pot` classification rule documented
-- Dedicated Dish Type filter UI is not built yet; it remains a future homepage browsing feature
+- Dish Type filter behavior documented in `docs/DISH_TYPE_FILTERS.md`
 
-### Homepage Filtering and Search - Completed
+### Homepage Filtering and Search
 
 - Search filter
 - Category dropdown filter
 - Meal Type chip filters: All, Breakfast, Lunch, Dinner, Snack, and Side
-- Search, category, and meal type filters work together
-- Meal Type filters are driven by `relationships.mealTypes`
+- Dish Type chip filters generated from existing `relationships.dishTypes`
+- Search, category, meal type, and dish type filters work together
 - Mobile filter chips scroll horizontally instead of wrapping into a tall block
 - `searchAliases` added to `data/recipe-index.json`
 - Search includes recipe aliases, relationship fields, and non-common ingredient names
-- Dish types are already searchable and visible as homepage card chips, but are not yet a dedicated filter control
 - `docs/SEARCH.md` documents search sources and future search improvements
 - `scripts/validate-search.js` validates search alias structure and duplicates
 
-### Recipe Scaling - Completed for Supported Recipes
+### Recipe Scaling
 
 - Preset scaling controls
 - Rice-cup-first canonical base for rice recipes
-- Compact rice preset button labels using `cup/cups` while keeping current selected values fully descriptive
+- Compact rice preset button labels
 - Automatic standard cup equivalents
 - Exact base-ingredient quantity input
 - Arbitrary scale calculation and persistence
 - Optional base metadata for generated Recipe Details display
-- Scaling base ingredient reference validation when `baseIngredient` is present
-- Quantity-input base metadata validation when `inputMode` is `quantity`
-- Rice recipe unit validation
-- Large-produce weightGrams validation
 - Recipe-specific non-linear overrides through `scaleQuantities`
-- Optional `scalingMode` authoring intent for `linear` and `non-linear` ingredients
 - Required `roundingType` authoring intent for scalable ingredients with quantities
 - Display-text-only fixed ingredients protected from accidental scaling
 - Optional `referenceQuantity` metadata for gram-based pantry staples
 - Unit-aware formatting
 - Practical produce and small-whole rounding
 
-### Cooking Mode Wake Lock and UI Polish - Completed
+### Cooking Mode, Wake Lock, and UI Polish
 
+- Ingredient checklists with saved progress
+- Sticky section navigation
+- Cooking Mode with step tracking
 - Optional screen wake-lock support in Cooking Mode
-- Wake-lock control added beside the Cooking Mode close button
+- Wake-lock control beside the Cooking Mode close button
 - Wake lock releases when Cooking Mode closes
-- Wake lock shows graceful unavailable messaging when unsupported
-- Wake-lock status text added below the Cooking Mode title
-- SVG-style wake-lock icon added
-- Cooking Mode close button moved to SVG-style icon rendering
-- Wake-lock and close buttons aligned to the same 42 px control size
-- Dark-mode hover behavior improved for the Mark Complete button
-- Utility controls use quiet default states and subtle hover states
-- Active/confirmed controls use clear accent styling
-- Scale preset active state changed to inset styling to avoid clipped shadow artifacts
-
-### Homepage and Recipe Page UI Polish - Completed
-
+- Wake-lock status text below the Cooking Mode title
+- SVG-style wake-lock and close icons
 - Theme toggle uses SVG-style sun and moon icons
 - Native category dropdown closed state uses a custom SVG chevron
-- Select focus styling aligned with the rest of the UI
 - Homepage cards show a selective, calm metadata chip set
-- Recipe pages show full relationship details, generated base quantity, and Pairings links
-- Button shadow logic clarified: primary actions and confirmed states may use shadows; scale choices remain flat/inset
-- Desktop and zoomed-desktop layouts improved for utility controls and scale controls
+- Pairing recipe chips match the existing pill background style in light and dark mode
+- Meal Type and Dish Type filter rows follow the same pill visual language
+- Dish Type row spacing refined for mobile in `v1.17.1`
 
-### Recipe Validation Framework - Completed for Current Non-Image Model
+### Validation Framework
 
-- Automated recipe validation workflow
-- GitHub Actions integration
+- Automated validation workflow in GitHub Actions
 - Node.js 24 validation runtime
 - `scripts/validate-recipes.js`
 - `scripts/validate-produce-weights.js`
 - `scripts/validate-search.js`
 - `scripts/validate-recipe-pairings.js`
-- `.github/workflows/validate-recipes.yml`
-- `data/validation/non-linear-ingredients.json`
-- Workflow trigger for `data/recipe-index.json`
-- Workflow trigger for `data/recipes/**`
-- Workflow trigger for `data/validation/**`
-- Workflow trigger for validation scripts under `scripts/`
-- Workflow trigger for `.github/workflows/validate-recipes.yml`
-- Required top-level recipe field validation
-- Recipe-index array validation
-- Recipe-index required field validation for `name`, `slug`, `category`, and `summary`
-- Optional recipe-index `searchAliases` validation
-- Duplicate recipe-index slug rejection
-- Duplicate search alias rejection
-- Recipe-index to recipe-file cross-checks
-- Every recipe JSON must be listed in `data/recipe-index.json`
-- Index `name`, `category`, and `summary` must match recipe JSON
-- Slug format validation
-- Slug to file-name validation
+- `scripts/validate-theme.js`
+- Recipe-index and recipe-file cross-checks
+- Slug and filename validation
 - Ingredient reference validation
-- Duplicate ingredient ID detection
-- Scaling base ingredient reference validation when `baseIngredient` is present
-- Quantity-input base metadata validation when `inputMode` is `quantity`
+- Scaling base ingredient reference validation
+- Quantity-input base metadata validation
 - Rice recipe unit validation
-- Large-produce weightGrams validation
-- Quantity-input metadata validation
-- Ingredient-group structure validation
-- Unit standardization enforcement
-- Structured-water enforcement
-- Cooking-step structure validation
-- Details metadata validation for `Cuisine` and `Status`
-- Relationship metadata validation for `mealTypes`, `dishTypes`, and `goesWellWith`
+- Large-produce `weightGrams` validation
+- Relationship metadata validation
 - Pairing missing-slug validation
 - Non-reciprocal pairing warnings
-- `servingSuggestions` validation
-- `notes` validation
-- `roundingType` allowed value validation
-- required `roundingType` validation for scalable ingredients with quantities
-- displayText safety validation for ingredients without quantity
-- referenceQuantity structure validation
-- non-linear config key format validation
-- non-linear config duplicate key rejection
-- non-linear config duplicate match value rejection
-- `scalingMode` value validation
-- `scalingMode` consistency validation
-- `scaleQuantities` completeness validation against recipe-level scale options
-- Config-driven required non-linear override validation
+- Search alias validation
+- Phase 1 theme guardrails for CSS files, hardcoded colors, shadows, asset versions, and dark-mode overrides
 
-### Light and Dark Themes - Completed
-
-- Warm light and dark palettes
-- Device-theme fallback on first visit
-- Saved preference under `shukudu-theme`
-- Theme controls on homepage and recipe page
-- Cooking Mode inherits the active theme
-- Footer text is centered
-- SVG-style utility icons replace emoji/font-dependent icon rendering
-
-### PWA, Branding, and Social Preview Foundation - Completed
+### PWA, Branding, and Social Preview
 
 - `manifest.webmanifest` added
 - Installable app metadata added
@@ -223,85 +148,13 @@ Shukudu Kitchen currently includes:
 - Homepage Open Graph metadata added for title, description, site name, URL, and preview image
 - Twitter large-card metadata added for platforms that use Twitter card tags
 
-## Current Recipe Scaling Work
-
-Completed:
-
-- Tomato Bath migrated to a canonical 1 rice cup base
-- Vangi Bath migrated to the scalable schema
-- Curd Rice migrated to the scalable schema
-- Tomato Rasam now has 500 g tomato base metadata for generated Recipe Details display
-- Punjabi Dal Tadka uses a 150 g total dal base
-- Explicit rice scaling metadata
-- Recipe-aware scale controls
-- Compact rice preset labels
-- Exact quantity scaling architecture
-- Arbitrary scale persistence
-- Mixed-vegetable boundaries documented
-- Beans Palya migrated to validator-compliant quantity-input schema
-- Balekai Palya migrated to validator-compliant quantity-input schema
-- Quantity-input mode adopted for suitable single-base-ingredient recipes
-- Non-linear override coverage added for configured ingredients across existing recipes
-- RoundingType coverage added for scalable ingredients across existing recipes
-- DisplayText safety validation added for display-text-only fixed ingredients
-- Scaling base ingredient reference validation added when `baseIngredient` is present
-- Non-linear config uniqueness validation added for config rules
-- Rice recipe unit validation added for rice-cup-first recipes
-- Large-produce weightGrams validation added for count-based produce guidance
-- `referenceQuantity` support added for gram-based pantry staples
-
-## Current Recipe Relationship Work
-
-Completed:
-
-- Added `relationships` to every recipe JSON
-- Moved meal type data from `details["Meal Type"]` into `relationships.mealTypes`
-- Added `relationships.dishTypes` for structured discovery
-- Added `relationships.goesWellWith` arrays for curated pairings
-- Updated homepage cards to prefer relationship data and keep cards compact
-- Added homepage Meal Type filters driven by `relationships.mealTypes`
-- Updated homepage search to include relationship metadata, including dish types
-- Updated recipe page details rendering to display full relationship details
-- Added generated `Base` detail on recipe pages from scaling metadata
-- Added curated Pairings links on recipe pages
-- Updated validation to enforce the relationship model
-- Added pairing validator for missing slugs and non-reciprocal warnings
-- Removed `details["Meal Type"]` from current recipe JSON
-- Documented `One Pot` classification rule
-- Documented manual pairing rules and the no-auto-reverse-link boundary
-
-Not yet built:
-
-- Dedicated Dish Type filter UI on the homepage
-
-## Current Search Work
-
-Completed:
-
-- Added `searchAliases` to the recipe index
-- Added aliases for existing recipes
-- Homepage search now includes `searchAliases`
-- Homepage search now includes relationship metadata
-- Ingredient search still reads non-common ingredient names from full recipe JSON
-- Added `docs/SEARCH.md`
-- Added `scripts/validate-search.js`
-- Added search validation to the GitHub Actions workflow
-
-Future:
-
-- centralized ingredient alias config
-- search result reason
-- no-results suggestions
-- typo-tolerant matching if recipe count grows enough to justify it
-
 ## Future Features
 
-- Dedicated Dish Type filter UI using existing `relationships.dishTypes` metadata
-- Standard cup scaling input
 - Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
 - Khara/spice preference mode for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile
 - Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale
 - Cooking timers inside Cooking Mode for timed steps, with optional start, pause, reset controls and saved timer state per recipe step
+- Standard cup scaling input
 - Print view
 - Recipe images
 - Direct edit link
@@ -320,6 +173,7 @@ Possible non-image validation enhancements:
 - duplicate ingredient name warning or error
 - preparation coverage checks
 - cooking method ingredient coverage checks
+- stricter CSS/theme validation after more UI components stabilize
 
 Once recipe images are introduced, possible validation checks include:
 
@@ -365,20 +219,21 @@ Once recipe images are introduced, possible validation checks include:
 32. Add goes-well-with recipe links on recipe pages - completed
 33. Add pairing reciprocity warning validation - completed
 34. Add social preview image and Open Graph metadata - completed
-35. Add dedicated Dish Type filter UI
-36. Household meal scaling by people and meal count
-37. Khara/spice preference mode
-38. Multi-Recipe Cooking Mode
-39. Cooking timers inside Cooking Mode
-40. Clean up validator structure
-41. Duplicate ingredient name warning or error
-42. Preparation coverage validation
-43. Cooking method ingredient coverage validation
-44. Print view
-45. Recipe images and richer cards
-46. Optional standard-cup scaling input
-47. Offline recipe support
-48. Image metadata validation after recipe images are introduced
+35. Add UI theme standard and phase 1 theme validator - completed
+36. Add dedicated Dish Type filter UI - completed
+37. Household meal scaling by people and meal count
+38. Khara/spice preference mode
+39. Multi-Recipe Cooking Mode
+40. Cooking timers inside Cooking Mode
+41. Clean up validator structure
+42. Duplicate ingredient name warning or error
+43. Preparation coverage validation
+44. Cooking method ingredient coverage validation
+45. Print view
+46. Recipe images and richer cards
+47. Optional standard-cup scaling input
+48. Offline recipe support
+49. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 
