@@ -1,0 +1,284 @@
+{
+  "name": "Jeera Rice",
+  "slug": "jeera-rice",
+  "category": "Rice",
+  "summary": "Simple onion jeera rice made with sona masuri rice, cumin, whole spices, onion and ghee in a pressure cooker.",
+  "details": {
+    "Cuisine": "Indian",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Rice", "One Pot"],
+    "goesWellWith": ["punjabi-dal-tadka", "tomato-rasam", "curd-rice"]
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Main",
+      "items": [
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "sona masuri rice",
+          "preparation": "washed, soaked for 20 minutes and drained",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 1.5,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 0.67,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "ghee",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Whole Spices",
+      "items": [
+        {
+          "id": "bay-leaf",
+          "quantity": 1,
+          "countLabel": "small bay leaf",
+          "ingredient": "bay leaf",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 1,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1,
+            "2": 2
+          }
+        },
+        {
+          "id": "cloves",
+          "quantity": 2,
+          "countLabel": "clove",
+          "ingredient": "cloves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 2,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        },
+        {
+          "id": "cinnamon",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "cinnamon stick",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "green-cardamom",
+          "quantity": 2,
+          "countLabel": "green cardamom",
+          "ingredient": "green cardamom",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 2,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        }
+      ]
+    },
+    {
+      "section": "Vegetables",
+      "items": [
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "thinly sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "section": "Optional",
+      "items": [
+        {
+          "id": "green-chilli",
+          "quantity": 1,
+          "countLabel": "small green chilli",
+          "ingredient": "green chilli",
+          "preparation": "slit lengthwise",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1,
+            "1": 1,
+            "1.25": 2,
+            "1.5": 2,
+            "2": 2
+          }
+        }
+      ]
+    },
+    {
+      "section": "Garnish",
+      "items": [
+        {
+          "id": "coriander-leaves",
+          "quantity": 4,
+          "unit": "tablespoon",
+          "weightGrams": 20,
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 2,
+            "0.75": 3,
+            "1": 4,
+            "1.25": 5,
+            "1.5": 6,
+            "2": 8
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Wash and soak:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Soak for 20 minutes, then drain."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "onion",
+        "green-chilli",
+        "coriander-leaves"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat in a pressure cooker:",
+      "ingredientIds": [
+        "ghee"
+      ]
+    },
+    {
+      "lead": "Add whole spices:",
+      "ingredientIds": [
+        "bay-leaf",
+        "cloves",
+        "cinnamon",
+        "green-cardamom"
+      ],
+      "after": "Sauté for 15–20 seconds until aromatic. Do not let the spices burn."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "cumin-seeds"
+      ],
+      "after": "Allow the cumin seeds to splutter."
+    },
+    {
+      "lead": "Add and sauté:",
+      "ingredientIds": [
+        "onion",
+        "green-chilli"
+      ],
+      "after": "Sauté for 4–5 minutes until the onion becomes soft and lightly golden. Keep the green chilli optional for a milder batch."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Sauté gently for 30 seconds without breaking the grains."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "water",
+        "salt"
+      ],
+      "after": "Mix once. Close the cooker and build pressure on Boil mode until the pressure indicator rises, then reduce to 300 W for 7 minutes. Turn off heat and allow natural pressure release."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": [
+        "coriander-leaves"
+      ],
+      "after": "Open the cooker, fluff the rice gently and mix in the coriander leaves."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with dal tadka, tomato rasam, plain curd or pickle.",
+    "Pair with potato fry, papad or a simple raita."
+  ],
+  "notes": [
+    "This recipe uses 1 rice cup as the canonical scaling base.",
+    "The water ratio is 1.5 rice cups water for 1 rice cup soaked sona masuri rice.",
+    "The induction method is based on building pressure on Boil mode until the pressure indicator rises, then cooking at 300 W for 7 minutes.",
+    "Onions should be lightly golden, not deeply browned.",
+    "For stronger aroma, add an extra 0.5 teaspoon ghee after opening the cooker."
+  ]
+}
