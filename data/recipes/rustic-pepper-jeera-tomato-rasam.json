@@ -1,0 +1,319 @@
+{
+  "name": "Rustic Pepper Jeera Tomato Rasam",
+  "slug": "rustic-pepper-jeera-tomato-rasam",
+  "category": "Rasam",
+  "summary": "A rustic tomato rasam made with freshly ground jeera, coriander seeds, pepper, garlic, tomato and Indira tamarind paste.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Finalized",
+    "Serves": "3–4"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner"
+    ],
+    "dishTypes": [
+      "Rasam"
+    ],
+    "goesWellWith": [
+      "beans-palya",
+      "balekai-palya",
+      "pumpkin-palya"
+    ]
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "tomatoes",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "For Grinding",
+      "items": [
+        {
+          "id": "tomatoes",
+          "quantity": 75,
+          "unit": "g",
+          "ingredient": "tomato",
+          "preparation": "roughly chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "jeera",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-seeds",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "coriander seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "black-pepper",
+          "quantity": 1.25,
+          "unit": "teaspoon",
+          "ingredient": "black pepper",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic",
+          "quantity": 12,
+          "unit": "g",
+          "ingredient": "garlic",
+          "preparation": "about 6–7 medium cloves",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "green-chilli",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "ingredient": "green chillies",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 2,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        },
+        {
+          "id": "curry-leaves-grinding",
+          "displayText": "Few curry leaves",
+          "ingredient": "curry leaves",
+          "scalable": false
+        },
+        {
+          "id": "fresh-coconut",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "fresh coconut",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Main Rasam",
+      "items": [
+        {
+          "id": "tomatoes-chopped",
+          "quantity": 425,
+          "unit": "g",
+          "ingredient": "tomato",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "indira-tamarind-paste",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "Indira tamarind paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 5,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-garnish",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "curry-leaves-tempering",
+          "displayText": "Few curry leaves",
+          "ingredient": "curry leaves",
+          "scalable": false
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – 1 pinch",
+          "ingredient": "hing",
+          "scalable": false
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Reserve tomato for grinding.",
+      "ingredientIds": [
+        "tomatoes"
+      ],
+      "after": "Keep 75 g tomato aside for the ground masala."
+    },
+    {
+      "lead": "Chop the remaining tomato.",
+      "ingredientIds": [
+        "tomatoes-chopped"
+      ],
+      "after": "Finely chop the remaining 425 g tomato."
+    },
+    {
+      "lead": "Grind the masala.",
+      "ingredientIds": [
+        "tomatoes",
+        "cumin-seeds",
+        "coriander-seeds",
+        "black-pepper",
+        "garlic",
+        "green-chilli",
+        "curry-leaves-grinding",
+        "fresh-coconut"
+      ],
+      "after": "Grind into a slightly coarse paste using a little water."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat the oil.",
+      "ingredientIds": [
+        "oil"
+      ],
+      "after": "Heat oil in a rasam pot."
+    },
+    {
+      "lead": "Temper the spices.",
+      "ingredientIds": [
+        "mustard-seeds",
+        "curry-leaves-tempering",
+        "hing"
+      ],
+      "after": "Add mustard seeds, curry leaves and hing. Allow the mustard seeds to splutter."
+    },
+    {
+      "lead": "Fry the ground paste.",
+      "ingredientIds": [
+        "tomatoes",
+        "cumin-seeds",
+        "coriander-seeds",
+        "black-pepper",
+        "garlic",
+        "green-chilli",
+        "curry-leaves-grinding",
+        "fresh-coconut"
+      ],
+      "after": "Fry for 3–4 minutes until aromatic and the raw smell reduces."
+    },
+    {
+      "lead": "Cook the chopped tomato.",
+      "ingredientIds": [
+        "tomatoes-chopped"
+      ],
+      "after": "Cook until soft, mushy and the raw tomato smell is gone."
+    },
+    {
+      "lead": "Simmer the rasam.",
+      "ingredientIds": [
+        "indira-tamarind-paste",
+        "water",
+        "salt"
+      ],
+      "after": "Add Indira tamarind paste, water and salt. Simmer gently for 10–12 minutes; do not boil aggressively."
+    },
+    {
+      "text": "Taste with rice before final adjustment. Adjust salt first, tamarind second and pepper last."
+    },
+    {
+      "lead": "Finish and rest.",
+      "ingredientIds": [
+        "coriander-garnish"
+      ],
+      "after": "Finish with coriander leaves. Rest for 5 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain rice and ghee.",
+    "Serve with papad, potato fry, beans palya, balekai palya or pumpkin palya.",
+    "Serve in a cup as a light warming rasam."
+  ],
+  "notes": [
+    "This is a Karnataka-style rustic tomato rasam / light tomato saaru made without cooked dal water.",
+    "Pepper is kept moderate because the rasam becomes spicier after resting overnight.",
+    "Coriander seeds are slightly higher so the rasam has enough flavour when mixed with rice.",
+    "For a richer version, use 1 tablespoon ghee plus 1 tablespoon oil for tempering.",
+    "If a single reheated portion needs more punch, crush a little pepper, jeera and garlic, fry briefly in ghee, and add only to that portion.",
+    "Taste with rice before increasing spice, because rasam that tastes balanced as a drink can feel mild with rice.",
+    "Refrigerate leftovers within 2 hours and reheat only the required portion."
+  ]
+}

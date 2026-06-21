@@ -11,7 +11,7 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner", "Side"],
     "dishTypes": ["Palya"],
-    "goesWellWith": ["tomato-rasam", "curd-rice"]
+    "goesWellWith": ["tomato-rasam", "curd-rice", "rustic-pepper-jeera-tomato-rasam"]
   },
   "scaling": {
     "enabled": true,

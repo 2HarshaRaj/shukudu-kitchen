@@ -58,6 +58,18 @@
     ]
   },
   {
+    "name": "Rustic Pepper Jeera Tomato Rasam",
+    "slug": "rustic-pepper-jeera-tomato-rasam",
+    "category": "Rasam",
+    "summary": "A rustic tomato rasam made with freshly ground jeera, coriander seeds, pepper, garlic, tomato and Indira tamarind paste.",
+    "searchAliases": [
+      "pepper jeera rasam",
+      "tomato rasam",
+      "milagu jeera rasam",
+      "fresh ground rasam"
+    ]
+  },
+  {
     "name": "Balekai Palya",
     "slug": "balekai-palya",
     "category": "Palya",
