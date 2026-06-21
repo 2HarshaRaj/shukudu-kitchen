@@ -10,7 +10,7 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Rasam"],
-    "goesWellWith": ["beans-palya", "balekai-palya"]
+    "goesWellWith": ["beans-palya", "balekai-palya", "pumpkin-palya"]
   },
   "scaling": {
     "enabled": true,
