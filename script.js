@@ -226,6 +226,7 @@ function ensureDishTypeFilter() {
 
   const dishTypeGroup = document.createElement('div');
   dishTypeGroup.className = 'dish-filter-group';
+  dishTypeGroup.style.marginTop = '18px';
   dishTypeGroup.innerHTML = `
     <p class="eyebrow">Dish type</p>
     <div id="dishTypeFilter" class="filter-chips" role="group" aria-label="Filter recipes by dish type"></div>
