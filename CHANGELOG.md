@@ -12,6 +12,13 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.2 - 2026-06-21
+
+### Changed
+
+- Added reciprocal Pumpkin Palya pairings to Tomato Rasam and Curd Rice.
+- Site version updated to `v1.18.2`.
+
 ## 1.18.1 - 2026-06-22
 
 ### Added

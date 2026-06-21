@@ -1,4 +1,4 @@
-const SITE_VERSION = 'v1.18.1';
+const SITE_VERSION = 'v1.18.2';
 
 const renderSiteVersion = () => {
   document.querySelectorAll('[data-site-version]').forEach((element) => {
