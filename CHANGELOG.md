@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.0 - 2026-06-22
+
+### Added
+
+- Added a shared site version script so homepage and recipe page footer versions stay in sync.
+
+### Changed
+
+- Homepage and recipe page footers now render the visible site version from one source of truth.
+
 ## 1.17.5 - 2026-06-22
 
 ### Changed

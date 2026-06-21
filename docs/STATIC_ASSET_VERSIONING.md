@@ -23,6 +23,8 @@ Homepage assets are loaded from `index.html`.
 
 Recipe page assets are loaded from `recipe.html`.
 
+The visible site version is defined in `site-version.js` and rendered into footer elements with `data-site-version`.
+
 Use the visible site version for the query value unless there is a reason to use a smaller patch-specific value.
 
 ## Why This Matters
@@ -43,6 +45,6 @@ When changing JS/CSS:
 
 1. Update the file.
 2. Update the related `?v=` query in `index.html` and/or `recipe.html`.
-3. Update the visible footer version if the change is user-facing.
+3. Update `SITE_VERSION` in `site-version.js` if the change is user-facing.
 4. Test in normal browser and incognito.
 5. Test one refresh and one interaction path, such as changing recipe scale.
