@@ -37,6 +37,8 @@ const MEAL_TYPE_FILTERS = ['all', 'Breakfast', 'Lunch', 'Dinner', 'Snack', 'Side
 
 let recipes = [];
 let activeMealType = 'all';
+let activeDishType = 'all';
+let dishTypeFilter = null;
 
 function normalizeSearchText(value = '') {
   return String(value).trim().toLowerCase().replace(/\s+/g, ' ');
@@ -157,8 +159,12 @@ function getMealTypeChips(recipe) {
   return normalizeList(recipe.details?.['Meal Type']);
 }
 
+function getDishTypeChips(recipe) {
+  return normalizeList(recipe.relationships?.dishTypes);
+}
+
 function getPrimaryDishTypeChip(recipe) {
-  return normalizeList(recipe.relationships?.dishTypes)[0] || '';
+  return getDishTypeChips(recipe)[0] || '';
 }
 
 function buildRecipeChips(recipe) {
@@ -183,23 +189,72 @@ function renderRecipeChips(recipe) {
   `;
 }
 
+function buildFilterButton({ label, value, activeValue, dataAttribute }) {
+  const isActive = value === activeValue;
+
+  return `
+    <button
+      class="filter-chip${isActive ? ' is-active' : ''}"
+      type="button"
+      ${dataAttribute}="${escapeHtml(value)}"
+      aria-pressed="${isActive}"
+    >${escapeHtml(label)}</button>
+  `;
+}
+
 function renderMealTypeFilters() {
   if (!mealTypeFilter) return;
 
   mealTypeFilter.innerHTML = MEAL_TYPE_FILTERS
-    .map((mealType) => {
-      const label = mealType === 'all' ? 'All' : mealType;
-      const isActive = mealType === activeMealType;
+    .map((mealType) => buildFilterButton({
+      label: mealType === 'all' ? 'All' : mealType,
+      value: mealType,
+      activeValue: activeMealType,
+      dataAttribute: 'data-meal-type'
+    }))
+    .join('');
+}
 
-      return `
-        <button
-          class="filter-chip${isActive ? ' is-active' : ''}"
-          type="button"
-          data-meal-type="${escapeHtml(mealType)}"
-          aria-pressed="${isActive}"
-        >${escapeHtml(label)}</button>
-      `;
-    })
+function ensureDishTypeFilter() {
+  if (dishTypeFilter || !mealTypeFilter) return dishTypeFilter;
+
+  const panel = mealTypeFilter.closest('.meal-filter-panel');
+  if (!panel) return null;
+
+  panel.classList.add('filter-panel');
+  panel.setAttribute('aria-label', 'Recipe filters');
+
+  const dishTypeGroup = document.createElement('div');
+  dishTypeGroup.innerHTML = `
+    <p class="eyebrow">Dish type</p>
+    <div id="dishTypeFilter" class="filter-chips" role="group" aria-label="Filter recipes by dish type"></div>
+  `;
+
+  panel.appendChild(dishTypeGroup);
+  dishTypeFilter = document.getElementById('dishTypeFilter');
+  return dishTypeFilter;
+}
+
+function getDishTypeFilters() {
+  const dishTypes = recipes.flatMap(getDishTypeChips).filter(Boolean);
+  return ['all', ...new Set(dishTypes)].sort((a, b) => {
+    if (a === 'all') return -1;
+    if (b === 'all') return 1;
+    return a.localeCompare(b);
+  });
+}
+
+function renderDishTypeFilters() {
+  const filter = ensureDishTypeFilter();
+  if (!filter) return;
+
+  filter.innerHTML = getDishTypeFilters()
+    .map((dishType) => buildFilterButton({
+      label: dishType === 'all' ? 'All' : dishType,
+      value: dishType,
+      activeValue: activeDishType,
+      dataAttribute: 'data-dish-type'
+    }))
     .join('');
 }
 
@@ -232,8 +287,9 @@ function applyFilters() {
     const matchesText = !query || recipe.searchText.includes(query);
     const matchesCategory = category === 'all' || recipe.category === category;
     const matchesMealType = activeMealType === 'all' || getMealTypeChips(recipe).includes(activeMealType);
+    const matchesDishType = activeDishType === 'all' || getDishTypeChips(recipe).includes(activeDishType);
 
-    return matchesText && matchesCategory && matchesMealType;
+    return matchesText && matchesCategory && matchesMealType && matchesDishType;
   });
 
   renderRecipes(filtered);
@@ -285,6 +341,7 @@ async function loadRecipes() {
     renderRecipes(recipes);
 
     recipes = await Promise.all(recipes.map(loadFullRecipe));
+    renderDishTypeFilters();
     applyFilters();
   } catch (error) {
     recipeGrid.innerHTML = `<div class="error-box">${escapeHtml(error.message)}</div>`;
@@ -300,6 +357,15 @@ mealTypeFilter?.addEventListener('click', (event) => {
 
   activeMealType = button.dataset.mealType;
   renderMealTypeFilters();
+  applyFilters();
+});
+
+mealTypeFilter?.closest('.meal-filter-panel')?.addEventListener('click', (event) => {
+  const button = event.target.closest('button[data-dish-type]');
+  if (!button) return;
+
+  activeDishType = button.dataset.dishType;
+  renderDishTypeFilters();
   applyFilters();
 });
 
