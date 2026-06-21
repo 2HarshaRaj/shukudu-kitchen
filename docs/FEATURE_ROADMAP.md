@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.15.8
+## Current Version - v1.15.9
 
 Shukudu Kitchen currently includes:
 
