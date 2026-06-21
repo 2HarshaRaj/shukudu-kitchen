@@ -12,6 +12,14 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.17.4 - 2026-06-22
+
+### Changed
+
+- Removed broad `Side Dish` dish type metadata from Palya and Dal recipes.
+- Mapped Homemade Muesli from `Side Dish` to `Cereal`.
+- Homepage footer version updated to `v1.17.4`.
+
 ## 1.17.3 - 2026-06-21
 
 ### Changed
