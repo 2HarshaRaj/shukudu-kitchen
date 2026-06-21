@@ -12,7 +12,7 @@
   },
   "relationships": {
     "mealTypes": ["Breakfast", "Snack"],
-    "dishTypes": ["Cereal"],
+    "dishTypes": ["Side Dish"],
     "goesWellWith": []
   },
   "scaling": {
