@@ -288,7 +288,7 @@ Future:
 
 - Dish type filters using relationship metadata
 - Standard cup scaling input
-- Serving adjustment
+- Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
 - Print view
 - Recipe images
 - Direct edit link
@@ -356,7 +356,7 @@ Once recipe images are introduced, possible validation checks include:
 36. Duplicate ingredient name warning or error
 37. Preparation coverage validation
 38. Cooking method ingredient coverage validation
-39. Serving adjustment
+39. Household meal scaling by people and meal count
 40. Print view
 41. Recipe images and richer cards
 42. Optional standard-cup scaling input
