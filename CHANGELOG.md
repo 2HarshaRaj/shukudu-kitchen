@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.4 - 2026-06-22
+
+### Added
+
+- Added Veg Pulao as a South Indian pressure-cooker rice recipe with mixed vegetables, capsicum, gedde kosu and a coriander-only masala paste.
+
+### Changed
+
+- Changed site version to `v1.18.4`.
+
 ## 1.18.3 - 2026-06-22
 
 ### Added
