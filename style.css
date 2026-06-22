@@ -322,6 +322,36 @@ select {
   gap: 10px;
 }
 
+.household-selector {
+  display: grid;
+  gap: 18px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.household-selector-controls {
+  display: grid;
+  gap: 16px;
+}
+
+.household-control {
+  display: grid;
+  grid-template-columns: minmax(84px, max-content) minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+
+.household-label {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.household-options {
+  justify-content: flex-start;
+}
+
 .scale-button {
   min-width: 58px;
   min-height: 42px;
@@ -621,6 +651,15 @@ select {
 }
 
 @media (max-width: 760px) {
+  .household-control {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .household-options {
+    justify-content: flex-start;
+  }
+
   .site-header {
     padding: 52px 0 42px;
   }
