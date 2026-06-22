@@ -637,6 +637,29 @@ function initialiseSectionNavigation() {
   updateActiveSection();
 }
 
+function initialiseMealAction(recipe) {
+  const button = recipeContent.querySelector('#addToMeal');
+  if (!button || typeof addRecipeToCurrentMeal !== 'function') return;
+
+  function updateButton() {
+    const inMeal = typeof isRecipeInCurrentMeal === 'function' && isRecipeInCurrentMeal(recipe.slug);
+    button.textContent = inMeal ? '✓ In Current Meal' : 'Add to Meal';
+    button.classList.toggle('is-active', inMeal);
+    button.disabled = inMeal;
+    button.setAttribute('aria-disabled', String(inMeal));
+    button.setAttribute('aria-pressed', String(inMeal));
+  }
+
+  button.addEventListener('click', () => {
+    if (button.disabled || (typeof isRecipeInCurrentMeal === 'function' && isRecipeInCurrentMeal(recipe.slug))) return;
+    addRecipeToCurrentMeal(recipe.slug);
+    updateButton();
+  });
+
+  window.addEventListener('current-meal-updated', updateButton);
+  updateButton();
+}
+
 function initialiseCookingMode(recipe, ingredientMap, getScale) {
   const startButton = recipeContent.querySelector('#startCooking');
   const modal = recipeContent.querySelector('#cookingMode');
@@ -743,7 +766,10 @@ function renderRecipe(recipe, initialScale = null) {
         <p class="eyebrow">${escapeHtml(recipe.category)}</p>
         <h1>${escapeHtml(recipe.name)}</h1>
         <p class="meta">${escapeHtml(recipe.summary)}</p>
-        <button id="startCooking" class="primary-button" type="button">Start Cooking</button>
+        <div class="recipe-hero-actions">
+          <button id="startCooking" class="primary-button" type="button">Start Cooking</button>
+          <button id="addToMeal" class="secondary-button meal-add-button" type="button" aria-pressed="false">Add to Meal</button>
+        </div>
       </header>
 
       ${renderScaleControls(recipe, currentScale)}
@@ -820,6 +846,7 @@ function renderRecipe(recipe, initialScale = null) {
     </div>
   `;
 
+  initialiseMealAction(recipe);
   initialiseIngredientChecklist(recipe);
   initialiseHouseholdSelector(recipe, () => {
     renderRecipe(recipe, currentScale);

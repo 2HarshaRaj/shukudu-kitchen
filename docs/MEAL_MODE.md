@@ -1,16 +1,16 @@
-# Multi-Recipe Cooking Mode
+# Meal Mode
 
 ## Purpose
 
-Users may cook two or more recipes together, such as rice + dal, rasam + palya, or bath + curd rice. Multi-Recipe Cooking Mode should make those real kitchen workflows easier by keeping multiple active recipes available at the same time.
+Users may cook two or more recipes together, such as rice + dal, rasam + palya, or bath + curd rice. Meal Mode should make those real kitchen workflows easier by keeping multiple active recipes available at the same time.
 
 The goal is to preserve each active recipe's selected scale, ingredient checklist state, and cooking step progress while allowing the user to move between recipes without losing their place.
 
-This document describes a future design direction only. It does not implement schema, UI, validation, timers, or persistence changes yet.
+This document describes a design direction. Phase 1 implements a simple local Current Meal workflow and recipe-by-recipe Prepare Meal view; combined ingredients, saved named meals, timers, and smart timelines remain future work.
 
 ## Core Principle
 
-Multi-Recipe Cooking Mode should not merge multiple recipes into one combined recipe.
+Meal Mode should not merge multiple recipes into one combined recipe.
 
 Each recipe remains independent:
 
@@ -19,11 +19,11 @@ Each recipe remains independent:
 - ingredient checklist progress stays tied to that recipe
 - cooking step progress stays tied to that recipe
 
-The UI only helps users switch between active cooking sessions. Existing single-recipe Cooking Mode remains the foundation, and multi-recipe behavior should build on that model rather than replacing it.
+The UI only helps users switch between active cooking sessions. Existing single-recipe Cooking Mode remains the foundation, and Meal Mode behavior should build on that model rather than replacing it.
 
-## Active Recipe Sessions
+## Current Meal and Active Recipe Sessions
 
-A future active cooking session model could track one session per active recipe. Each active recipe session may include:
+Phase 1 stores a local Current Meal list of recipe slugs until the user clears it. A future active cooking session model could track one session per active recipe. Each active recipe session may include:
 
 - recipe slug
 - selected scale
@@ -78,23 +78,23 @@ Future persistence may need a shared active-session list that records which reci
 
 Curated Pairings could later help users start a second recipe quickly from a related recipe. For example, a rice recipe could offer a paired dal, or a rasam recipe could offer a paired palya.
 
-Multi-Recipe Cooking Mode should not depend on pairings. Users should be able to add any recipe manually, whether or not a curated pairing exists.
+Meal Mode should not depend on pairings. Users should be able to add any recipe manually, whether or not a curated pairing exists.
 
 ## Future Timer Compatibility
 
-Cooking Timers are a separate future feature. Multi-Recipe Cooking Mode should still leave room for timer state in each active recipe session, including possible per-recipe or per-step timers.
+Cooking Timers are a separate future feature. Meal Mode should still leave room for timer state in each active recipe session, including possible per-recipe or per-step timers.
 
 ## Future Validation
 
 Future validation could check:
 
 - active session state keys remain stable
-- multi-recipe UI references valid recipe slugs
+- Meal Mode UI references valid recipe slugs
 - session cleanup does not delete recipe progress unexpectedly
 
 ## Future Implementation Order
 
-1. Document multi-recipe cooking model
+1. Document Meal Mode model
 2. Define active cooking session state shape
 3. Add active recipe switcher UI
 4. Preserve per-recipe scale, checklist, and step progress while switching
@@ -102,3 +102,33 @@ Future validation could check:
 6. Keep wake lock active while any recipe session is open
 7. Optionally allow adding paired recipes quickly
 8. Add validation or state cleanup checks if needed
+
+
+## Phase 1 Current Meal Scope
+
+Implemented Phase 1 behavior:
+
+- Current Meal navigation link
+- Add to Meal action on recipe pages
+- local Current Meal persistence until manual clear
+- In Current Meal card badge/state
+- Current Meal page for listing, removing, reordering, and clearing selected recipes
+- Prepare Meal section that keeps ingredients and steps separated by recipe
+- each recipe continues using its own saved recipe scale and People × Meals selection
+
+Intentionally deferred:
+
+- combined ingredient merging
+- smart interleaved cooking timeline
+- saved named meals
+- shared scale controls across a meal
+- timer coordination across recipes
+
+## Future Improvements
+
+The following review notes are intentionally recorded as future improvements, not Phase 1 bugs:
+
+- Reuse shared recipe formatting/rendering helpers in Meal Mode instead of maintaining duplicate formatting logic inside `current-meal.js`.
+- Consider a more compact Prepare Meal experience where each recipe is shown as a block with an “Open Cooking Mode” action instead of rendering every ingredient and every step on one long page.
+- Add quick “+ Meal” actions directly on homepage recipe cards without requiring the recipe page.
+- Standardize navigation labels across pages, likely using “Home” and “Current Meal” everywhere instead of mixing “Back to recipes” and “Current Meal”.

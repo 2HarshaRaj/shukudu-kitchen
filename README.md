@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.18.10`
+`v1.19.0`
 
 ## Overview
 
@@ -21,6 +21,7 @@ Current highlights:
 - full recipe-page relationship details with generated base quantity
 - curated Pairings links between recipes
 - mobile-friendly Cooking Mode with saved progress
+- Meal Mode Phase 1 with a local Current Meal workflow
 - optional Cooking Mode screen wake-lock support
 - saved light and dark themes
 - installable Progressive Web App support
@@ -35,6 +36,7 @@ Current highlights:
 - Ingredient checklists with saved progress
 - Sticky section navigation
 - Cooking Mode with step tracking
+- Current Meal cart-style workflow with Add to Meal and Prepare Meal
 - Scalable ingredients with per-recipe persistence
 - Rice-cup-first display for rice recipes
 - Exact base-ingredient quantity input for supported recipes
@@ -43,7 +45,7 @@ Current highlights:
 - Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
 - Future household meal scaling model documented in `docs/HOUSEHOLD_MEAL_SCALING.md`
 - Future spice preference mode documented in `docs/SPICE_PREFERENCE_MODE.md`
-- Future multi-recipe cooking mode documented in `docs/MULTI_RECIPE_COOKING_MODE.md`
+- Meal Mode Phase 1 documented in `docs/MEAL_MODE.md`
 - Search alias rules documented in `docs/SEARCH.md`
 - UI theme rules documented in `docs/UI_THEME_STANDARD.md`
 - Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`

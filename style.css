@@ -778,3 +778,118 @@ select {
     min-width: 0;
   }
 }
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 13px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.nav-pill:hover,
+.nav-pill.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.recipe-hero-actions,
+.meal-actions,
+.meal-item-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.meal-add-button.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.meal-add-button.is-active:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.current-meal-list {
+  display: grid;
+  gap: 14px;
+}
+
+.current-meal-item,
+.meal-recipe-block {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.current-meal-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.current-meal-item h3,
+.meal-recipe-block h3 {
+  margin: 4px 0 6px;
+}
+
+.prepare-meal-section .section-title-row {
+  margin-bottom: 12px;
+}
+
+.meal-recipe-block + .meal-recipe-block {
+  margin-top: 18px;
+}
+
+.meal-recipe-block h4 {
+  margin: 20px 0 8px;
+  color: var(--accent);
+}
+
+.meal-recipe-block h5 {
+  margin: 14px 0 6px;
+}
+
+@media (max-width: 760px) {
+  .top-nav,
+  .recipe-hero-actions,
+  .meal-actions,
+  .meal-item-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .nav-pill,
+  .recipe-hero-actions .primary-button,
+  .recipe-hero-actions .secondary-button,
+  .meal-actions .primary-button,
+  .meal-actions .secondary-button,
+  .meal-item-actions .secondary-button {
+    width: 100%;
+  }
+
+  .current-meal-item {
+    grid-template-columns: 1fr;
+  }
+}

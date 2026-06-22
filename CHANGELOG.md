@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.19.0 - 2026-06-22
+
+### Added
+
+- Added Meal Mode Phase 1 with a local Current Meal workflow, Add to Meal action, In Current Meal card badge, Current Meal page management, and recipe-by-recipe Prepare Meal view.
+
+### Changed
+
+- Renamed the planned Multi-Recipe Cooking Mode concept to Meal Mode in roadmap documentation.
+- Changed site version to `v1.19.0`.
+
 ## 1.18.10 - 2026-06-22
 
 ### Added

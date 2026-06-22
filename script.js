@@ -180,6 +180,7 @@ function buildRecipeChips(recipe) {
 
 function renderRecipeChips(recipe) {
   const chips = buildRecipeChips(recipe);
+  if (typeof isRecipeInCurrentMeal === 'function' && isRecipeInCurrentMeal(recipe.slug)) chips.push('In Current Meal');
   if (!chips.length) return '';
 
   return `
@@ -368,6 +369,11 @@ mealTypeFilter?.closest('.meal-filter-panel')?.addEventListener('click', (event)
   activeDishType = button.dataset.dishType;
   renderDishTypeFilters();
   applyFilters();
+});
+
+window.addEventListener('current-meal-updated', applyFilters);
+window.addEventListener('storage', (event) => {
+  if (event.key === 'shukudu-kitchen:current-meal') applyFilters();
 });
 
 loadRecipes();
