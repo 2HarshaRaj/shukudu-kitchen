@@ -181,13 +181,13 @@ Rules:
 - `label` should include the people and meals numbers in readable form
 - add `householdBase` only when it is supported by the recipe's existing base assumptions
 
-For now, `householdBase` is display-only. Recipe pages may show a generated Recipe Details row such as:
+`householdBase` defines the base People × Meals reference used by the recipe page household selector. Recipe pages may show a generated Recipe Details row such as:
 
 ```text
 Household Base: 2 people × 2 meals
 ```
 
-Do not use this metadata to change ingredient quantities, scaling controls, or Cooking Mode yet. People × Meals selector support and scaling-engine integration are future work.
+When a household selection is available, rendered quantities use `effectiveScale = selectedRecipeScale × householdMultiplier`, where `householdMultiplier` compares the selected People × Meals values with `householdBase.people × householdBase.meals`. The recipe scale controls themselves remain based on the selected recipe scale.
 
 ## Relationship Metadata Rules
 
