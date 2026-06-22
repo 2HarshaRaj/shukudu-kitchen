@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.19.1 - 2026-06-23
+
+### Added
+
+- Added repository-level Codex guidance through `AGENTS.md` so future Codex changes follow Shukudu Kitchen recipe, UI, validation, documentation, and versioning rules.
+
+### Changed
+
+- Changed site version to `v1.19.1`.
+
 ## 1.19.0 - 2026-06-22
 
 ### Added
