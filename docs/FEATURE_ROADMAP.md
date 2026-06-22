@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.18.6
+## Current Version - v1.18.7
 
 Shukudu Kitchen currently includes:
 
@@ -24,6 +24,8 @@ Shukudu Kitchen currently includes:
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
 - display-only household base metadata on selected recipes
+- People × Meals selector for recipes with household base metadata
+- per-recipe persistence for household People and Meals selections
 - practical ingredient rounding and gram guidance
 - recipe-specific non-linear scaling overrides
 - recipe relationship validation
@@ -90,6 +92,8 @@ Shukudu Kitchen currently includes:
 - Arbitrary scale calculation and persistence
 - Optional base metadata for generated Recipe Details display
 - Optional household base metadata for display-only Recipe Details context
+- People × Meals selector UI for recipes with household base metadata
+- Per-recipe household People and Meals selection persistence
 - Recipe-specific non-linear overrides through `scaleQuantities`
 - Required `roundingType` authoring intent for scalable ingredients with quantities
 - Display-text-only fixed ingredients protected from accidental scaling
@@ -154,7 +158,7 @@ Shukudu Kitchen currently includes:
 
 ## Future Features
 
-- Household meal scaling by people and meal count remains future overall. The metadata/display/validation foundation is implemented for selected recipes, but the People × Meals selector, household scaling integration, persistence, and search/filter support remain future work. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`.
+- Household meal scaling by people and meal count remains future overall. The metadata/display/validation foundation, People × Meals selector, and per-recipe selector persistence are implemented for selected recipes, but household scaling engine integration and search/filter support remain future work. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`.
 - Khara/spice preference mode remains future work for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile. Design is documented in `docs/SPICE_PREFERENCE_MODE.md`; implementation is not completed yet.
 - Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale. Design is documented in `docs/MULTI_RECIPE_COOKING_MODE.md`; implementation remains future work.
 - Cooking timers inside Cooking Mode for timed steps, with optional start, pause, reset controls and saved timer state per recipe step

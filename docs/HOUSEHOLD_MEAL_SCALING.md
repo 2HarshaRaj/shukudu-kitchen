@@ -34,13 +34,13 @@ Recipes may optionally declare household base metadata when the recipe's practic
 
 The metadata describes the practical household meaning of the recipe's current base quantity. The `label` field is used for human-readable display in Recipe Details.
 
-PR 1 scope is intentionally limited to:
+PR 1 scope was intentionally limited to:
 
 - optional `householdBase` metadata on recipes where the base is known
 - display-only `Household Base` in Recipe Details when `householdBase.label` exists
 - validation for the optional metadata shape
 
-Recipes without this metadata continue to use only the existing scaling controls. PR 1 does not add a People × Meals selector, does not change ingredient quantities, does not change existing scaling behavior, and does not add household search or filters.
+Recipes without this metadata continue to use only the existing scaling controls. PR 2 adds the People × Meals selector and per-recipe persistence only. It does not change ingredient quantities, does not change existing scaling behavior, does not integrate household choices with the scaling engine, and does not add household search or filters.
 
 ## Examples
 
@@ -86,14 +86,16 @@ Examples:
 
 This formula is a starting point. Recipe-specific exceptions may still be needed for ingredients that do not scale linearly, recipes with side-dish assumptions, or recipes where leftovers behave differently from freshly cooked portions.
 
-## Future UI
+## Selector UI and Persistence
 
-Possible future selector:
+Recipes with `householdBase` metadata show a Household selector below the Recipe Details base information. The selector includes simple pill buttons for:
 
-- People
-- Meals
+- People: 1, 2, 3, 4
+- Meals: 1, 2, 3
 
-The selected household scaling should persist per recipe, similar to the existing scale persistence. Returning to a recipe should restore the household selection when that recipe supports household scaling.
+The initial selection comes from the recipe's `householdBase.people` and `householdBase.meals` values. The selected household choice persists per recipe using local storage and is restored when returning to the same recipe.
+
+This selector currently affects only UI state. It does not modify ingredient quantities, does not modify scale, and does not calculate multipliers yet.
 
 ## Validation
 
@@ -108,7 +110,7 @@ The selected household scaling should persist per recipe, similar to the existin
 2. Add optional metadata to recipe schema - completed in PR 1
 3. Show household base in Recipe Details - completed in PR 1
 4. Add validation - completed in PR 1
-5. Add people × meals selector
-6. Persist household selection
+5. Add people × meals selector - completed in PR 2
+6. Persist household selection - completed in PR 2
 7. Combine with existing scaling engine
 8. Add household search and filters if needed

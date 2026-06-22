@@ -25,6 +25,10 @@ function getScaleKey(slug) {
   return `shukudu-kitchen:${slug}:scale`;
 }
 
+function getHouseholdSelectionKey(slug) {
+  return `household-selection-${slug}`;
+}
+
 function loadChecklistState(slug) {
   try {
     return JSON.parse(localStorage.getItem(getChecklistKey(slug))) || {};
@@ -67,6 +71,33 @@ function loadScale(recipe) {
 
 function saveScale(slug, scale) {
   localStorage.setItem(getScaleKey(slug), String(scale));
+}
+
+function normalizeHouseholdSelection(selection, householdBase) {
+  const basePeople = Number(householdBase?.people);
+  const baseMeals = Number(householdBase?.meals);
+  const people = Number(selection?.people);
+  const meals = Number(selection?.meals);
+
+  return {
+    people: [1, 2, 3, 4].includes(people) ? people : basePeople,
+    meals: [1, 2, 3].includes(meals) ? meals : baseMeals
+  };
+}
+
+function loadHouseholdSelection(slug, householdBase) {
+  const fallback = normalizeHouseholdSelection(householdBase, householdBase);
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(getHouseholdSelectionKey(slug)));
+    return normalizeHouseholdSelection(saved || fallback, householdBase);
+  } catch {
+    return fallback;
+  }
+}
+
+function saveHouseholdSelection(slug, selection) {
+  localStorage.setItem(getHouseholdSelectionKey(slug), JSON.stringify(selection));
 }
 
 function normalizeStep(step) {
@@ -339,6 +370,47 @@ function renderRecipeDetails(recipe) {
     .join('');
 }
 
+
+function renderHouseholdSelector(recipe) {
+  if (!recipe.householdBase) return '';
+
+  const selection = loadHouseholdSelection(recipe.slug, recipe.householdBase);
+  const peopleOptions = [1, 2, 3, 4];
+  const mealOptions = [1, 2, 3];
+
+  const renderOptions = (label, name, options, selected) => `
+    <div class="household-control">
+      <p class="household-label">${escapeHtml(label)}</p>
+      <div class="scale-options household-options" role="group" aria-label="Choose ${escapeHtml(label.toLowerCase())}">
+        ${options
+          .map((option) => `
+            <button
+              class="scale-button${option === selected ? ' is-active' : ''}"
+              type="button"
+              data-household-field="${name}"
+              data-household-value="${option}"
+              aria-pressed="${option === selected}"
+            >${option}</button>
+          `)
+          .join('')}
+      </div>
+    </div>
+  `;
+
+  return `
+    <section class="household-selector" aria-label="Household selection">
+      <div class="household-selector-heading">
+        <p class="eyebrow">Household</p>
+        <p class="scale-current">Selected: <strong><span data-household-current>${selection.people} people × ${selection.meals} meals</span></strong></p>
+      </div>
+      <div class="household-selector-controls">
+        ${renderOptions('People', 'people', peopleOptions, selection.people)}
+        ${renderOptions('Meals', 'meals', mealOptions, selection.meals)}
+      </div>
+    </section>
+  `;
+}
+
 function renderIngredientChecklist(recipe, scale = 1) {
   const savedState = loadChecklistState(recipe.slug);
   let itemIndex = 0;
@@ -394,6 +466,41 @@ function renderScaleControls(recipe, scale) {
       </div>
     </section>
   `;
+}
+
+
+function initialiseHouseholdSelector(recipe) {
+  const selector = recipeContent.querySelector('.household-selector');
+  if (!selector || !recipe.householdBase) return;
+
+  let selection = loadHouseholdSelection(recipe.slug, recipe.householdBase);
+  const current = selector.querySelector('[data-household-current]');
+
+  function updateSelection(field, value) {
+    selection = { ...selection, [field]: value };
+    saveHouseholdSelection(recipe.slug, selection);
+
+    selector.querySelectorAll(`[data-household-field="${field}"]`).forEach((button) => {
+      const isActive = Number(button.dataset.householdValue) === value;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    if (current) {
+      current.textContent = `${selection.people} people × ${selection.meals} meals`;
+    }
+  }
+
+  selector.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-household-field][data-household-value]');
+    if (!button) return;
+
+    const field = button.dataset.householdField;
+    const value = Number(button.dataset.householdValue);
+    if (!['people', 'meals'].includes(field) || !Number.isFinite(value) || selection[field] === value) return;
+
+    updateSelection(field, value);
+  });
 }
 
 function initialiseIngredientChecklist(recipe) {
@@ -620,6 +727,7 @@ function renderRecipe(recipe, initialScale = null) {
       <section id="details" class="recipe-section anchor-section">
         <h2>Recipe Details</h2>
         <div class="details-grid">${details}</div>
+        ${renderHouseholdSelector(recipe)}
       </section>
 
       <section id="ingredients" class="recipe-section ingredient-checklist anchor-section">
@@ -680,6 +788,7 @@ function renderRecipe(recipe, initialScale = null) {
   `;
 
   initialiseIngredientChecklist(recipe);
+  initialiseHouseholdSelector(recipe);
   initialiseSectionNavigation();
   const cookingMode = initialiseCookingMode(recipe, ingredientMap, () => currentScale);
   initialiseScaleControls(recipe, currentScale, (nextScale) => {

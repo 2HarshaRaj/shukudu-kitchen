@@ -12,6 +12,18 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.7 - 2026-06-22
+
+### Added
+
+- Added Household selector UI for recipes with householdBase metadata.
+- Added per-recipe persistence for People and Meals selections.
+
+### Changed
+
+- Household selector currently affects only UI state and does not modify ingredient quantities yet.
+- Changed site version to `v1.18.7`.
+
 ## 1.18.6 - 2026-06-22
 
 ### Added
