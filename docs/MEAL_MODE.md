@@ -132,3 +132,4 @@ The following review notes are intentionally recorded as future improvements, no
 - Consider a more compact Prepare Meal experience where each recipe is shown as a block with an “Open Cooking Mode” action instead of rendering every ingredient and every step on one long page.
 - Add quick “+ Meal” actions directly on homepage recipe cards without requiring the recipe page.
 - Standardize navigation labels across pages, likely using “Home” and “Current Meal” everywhere instead of mixing “Back to recipes” and “Current Meal”.
+- Add ability to jump directly from Prepare Meal into a recipe's Cooking Mode while preserving Current Meal context.
