@@ -43,6 +43,7 @@ Current highlights:
 - Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
 - Future household meal scaling model documented in `docs/HOUSEHOLD_MEAL_SCALING.md`
 - Future spice preference mode documented in `docs/SPICE_PREFERENCE_MODE.md`
+- Future multi-recipe cooking mode documented in `docs/MULTI_RECIPE_COOKING_MODE.md`
 - Search alias rules documented in `docs/SEARCH.md`
 - UI theme rules documented in `docs/UI_THEME_STANDARD.md`
 - Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`
