@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.17.1
+## Current Version - v1.18.5
 
 Shukudu Kitchen currently includes:
 
@@ -109,7 +109,7 @@ Shukudu Kitchen currently includes:
 - Homepage cards show a selective, calm metadata chip set
 - Pairing recipe chips match the existing pill background style in light and dark mode
 - Meal Type and Dish Type filter rows follow the same pill visual language
-- Dish Type row spacing refined for mobile in `v1.17.1`
+- Dish Type row spacing refined for mobile in `v1.17.1` and layout-only inline styling removed in `v1.17.2`
 
 ### Validation Framework
 

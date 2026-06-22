@@ -30,6 +30,7 @@ shukudu-kitchen/
 |- index.html
 |- recipe.html
 |- manifest.webmanifest
+|- site-version.js
 |- script.js
 |- recipe.js
 |- recipe-pairings.js
@@ -52,13 +53,14 @@ shukudu-kitchen/
 - `index.html`: homepage layout, homepage theme-control host, PWA metadata, Open Graph/Twitter social preview metadata, and brand header structure
 - `recipe.html`: recipe-page shell, recipe top bar, PWA metadata, recipe theme-control host, and wake-lock asset loading
 - `manifest.webmanifest`: installable app metadata, app name, start URL, display mode, theme color, and app icons
+- `site-version.js`: shared visible site version source and footer renderer
 - `script.js`: homepage search, filters, and compact recipe cards using relationship metadata
 - `recipe.js`: recipe rendering, details rendering, ingredient checklist, and Cooking Mode
 - `recipe-pairings.js`: recipe-page Pairings section rendering from curated `relationships.goesWellWith` slugs
 - `recipe-pairings.css`: Pairings chip styling on recipe pages
 - `recipe-scaling.js`: recipe scaling, exact quantity input, overrides, and formatting
 - `recipe-scaling.css`: scaling-control layout, compact preset display, scroll behavior, active scale styling, and responsive scaling UI
-- `homepage-filters.css`: homepage meal type filter chip styling
+- `homepage-filters.css`: homepage meal type and dish type filter chip styling
 - `wake-lock.js`: Cooking Mode screen wake-lock behavior and wake-lock UI injection
 - `wake-lock.css`: wake-lock button styling, SVG-style icon rendering, and wake-lock status text layout
 - `theme.js`: theme selection, saved preference, toggle behaviour, and dynamic browser theme-color updates
@@ -75,7 +77,7 @@ shukudu-kitchen/
 - `scripts/validate-search.js`: recipe-index search alias validation
 - `scripts/validate-recipe-pairings.js`: curated pairing validation, including missing slug errors and non-reciprocal warning checks
 - `scripts/validate-theme.js`: objective theme guardrails for theme documentation, known CSS files, CSS asset versions, approved hardcoded-color locations, approved shadow locations, and required dark-mode pill overrides
-- `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe validation on push
+- `.github/workflows/validate-recipes.yml`: GitHub Actions workflow that runs recipe, produce-weight, search, pairing, and theme validation on push
 
 ## Page Loading
 
@@ -89,6 +91,7 @@ index.html
 -> theme.css
 -> theme-toggle-fix.css
 -> theme.js
+-> site-version.js
 -> script.js
 -> data/recipe-index.json
 ```
@@ -105,6 +108,7 @@ recipe.html
 -> theme.css
 -> theme-toggle-fix.css
 -> theme.js
+-> site-version.js
 -> recipe.js
 -> recipe-scaling.js
 -> recipe-pairings.js
