@@ -338,7 +338,6 @@ Completed:
 
 Future:
 
-- dish type filters
 - optional richer pairing shape with reasons or categories
 - support for non-recipe serving items if needed later
 
