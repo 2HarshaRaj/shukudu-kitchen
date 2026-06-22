@@ -101,12 +101,13 @@ Future validation could check that:
 - `householdBase` wording is present when needed
 - household scaling is only shown when metadata exists
 
-## Implementation Order
+## Future Implementation Order
 
 1. Document household model
 2. Add optional metadata to recipe schema
-3. Show Household Base in Recipe Details
+3. Show household base in Recipe Details
 4. Add people × meals selector
 5. Persist household selection
 6. Combine with existing scaling engine
 7. Add validation
+8. Add household search and filters if needed
