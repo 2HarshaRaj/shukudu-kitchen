@@ -53,6 +53,11 @@ Each recipe file must contain:
     "dishTypes": ["Rice", "Bath"],
     "goesWellWith": []
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "rice",
@@ -153,6 +158,36 @@ Do not store relationship-style values in `details`. In particular:
 - use `relationships.mealTypes`, not `details["Meal Type"]`
 - use `relationships.dishTypes`, not a display-only dish type string
 - use `scaling.baseQuantity` and `scaling.baseUnit` for base quantity; the recipe page generates the `Base` detail from scaling metadata
+
+## Household Base Metadata
+
+Recipes may optionally include `householdBase` when the practical household meaning of the current base recipe is reasonably known.
+
+Use this shape:
+
+```json
+"householdBase": {
+  "people": 2,
+  "meals": 2,
+  "label": "2 people × 2 meals"
+}
+```
+
+Rules:
+
+- `people` must be a positive number
+- `meals` must be a positive number
+- `label` must be a non-empty human-readable string
+- `label` should include the people and meals numbers in readable form
+- add `householdBase` only when it is supported by the recipe's existing base assumptions
+
+For now, `householdBase` is display-only. Recipe pages may show a generated Recipe Details row such as:
+
+```text
+Household Base: 2 people × 2 meals
+```
+
+Do not use this metadata to change ingredient quantities, scaling controls, or Cooking Mode yet. People × Meals selector support and scaling-engine integration are future work.
 
 ## Relationship Metadata Rules
 

@@ -12,6 +12,18 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.6 - 2026-06-22
+
+### Added
+
+- Added display-only household base metadata to selected recipes where the current base is known.
+- Added Recipe Details display for household base labels.
+- Added validation for optional `householdBase` metadata.
+
+### Changed
+
+- Changed site version to `v1.18.6`.
+
 ## 1.18.5 - 2026-06-22
 
 ### Changed

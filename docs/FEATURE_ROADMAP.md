@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.18.5
+## Current Version - v1.18.6
 
 Shukudu Kitchen currently includes:
 
@@ -23,6 +23,7 @@ Shukudu Kitchen currently includes:
 - scalable ingredient schema
 - rice-cup-first scaling for rice recipes
 - exact base-ingredient quantity scaling for supported recipes
+- display-only household base metadata on selected recipes
 - practical ingredient rounding and gram guidance
 - recipe-specific non-linear scaling overrides
 - recipe relationship validation
@@ -58,6 +59,7 @@ Shukudu Kitchen currently includes:
 - Homepage Dish Type filters use `relationships.dishTypes`
 - Homepage search includes relationship metadata, including dish types
 - Recipe pages show full relationship details and generated base quantity
+- Recipe pages show display-only household base when recipe metadata includes a `householdBase.label`
 - Recipe pages show curated Pairings links when pairings exist
 - Main validator enforces relationship metadata
 - Pairing validator checks pairing slugs and warns when a pairing is not reciprocal
@@ -87,6 +89,7 @@ Shukudu Kitchen currently includes:
 - Exact base-ingredient quantity input
 - Arbitrary scale calculation and persistence
 - Optional base metadata for generated Recipe Details display
+- Optional household base metadata for display-only Recipe Details context
 - Recipe-specific non-linear overrides through `scaleQuantities`
 - Required `roundingType` authoring intent for scalable ingredients with quantities
 - Display-text-only fixed ingredients protected from accidental scaling
@@ -126,6 +129,7 @@ Shukudu Kitchen currently includes:
 - Scaling base ingredient reference validation
 - Quantity-input base metadata validation
 - Rice recipe unit validation
+- Optional household base metadata validation
 - Large-produce `weightGrams` validation
 - Relationship metadata validation
 - Pairing missing-slug validation
@@ -150,7 +154,7 @@ Shukudu Kitchen currently includes:
 
 ## Future Features
 
-- Household meal scaling by people and meal count, using recipe-specific household references such as 2 people × 2 meals as the base instead of generic serving labels. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`; implementation remains future work.
+- Household meal scaling by people and meal count remains future overall. The metadata/display/validation foundation is implemented for selected recipes, but the People × Meals selector, household scaling integration, persistence, and search/filter support remain future work. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`.
 - Khara/spice preference mode remains future work for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile. Design is documented in `docs/SPICE_PREFERENCE_MODE.md`; implementation is not completed yet.
 - Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale. Design is documented in `docs/MULTI_RECIPE_COOKING_MODE.md`; implementation remains future work.
 - Cooking timers inside Cooking Mode for timed steps, with optional start, pause, reset controls and saved timer state per recipe step
@@ -221,19 +225,21 @@ Once recipe images are introduced, possible validation checks include:
 34. Add social preview image and Open Graph metadata - completed
 35. Add UI theme standard and phase 1 theme validator - completed
 36. Add dedicated Dish Type filter UI - completed
-37. Household meal scaling by people and meal count
-38. Khara/spice preference mode
-39. Multi-Recipe Cooking Mode
-40. Cooking timers inside Cooking Mode
-41. Clean up validator structure
-42. Duplicate ingredient name warning or error
-43. Preparation coverage validation
-44. Cooking method ingredient coverage validation
-45. Print view
-46. Recipe images and richer cards
-47. Optional standard-cup scaling input
-48. Offline recipe support
-49. Image metadata validation after recipe images are introduced
+37. Household meal scaling metadata, display, and validation foundation - completed
+38. Household meal scaling People × Meals selector
+39. Household meal scaling integration with scaling engine
+40. Khara/spice preference mode
+41. Multi-Recipe Cooking Mode
+42. Cooking timers inside Cooking Mode
+43. Clean up validator structure
+44. Duplicate ingredient name warning or error
+45. Preparation coverage validation
+46. Cooking method ingredient coverage validation
+47. Print view
+48. Recipe images and richer cards
+49. Optional standard-cup scaling input
+50. Offline recipe support
+51. Image metadata validation after recipe images are introduced
 
 ## Development Principle
 

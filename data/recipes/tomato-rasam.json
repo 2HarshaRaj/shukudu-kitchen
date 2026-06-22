@@ -12,6 +12,11 @@
     "dishTypes": ["Rasam"],
     "goesWellWith": ["beans-palya", "balekai-palya", "pumpkin-palya"]
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "tomatoes",

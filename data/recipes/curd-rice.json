@@ -12,6 +12,11 @@
     "dishTypes": ["Rice"],
     "goesWellWith": ["beans-palya", "balekai-palya", "pumpkin-palya"]
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 1,
+    "label": "2 people × 1 meal"
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "rice",

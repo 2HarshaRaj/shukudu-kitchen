@@ -22,17 +22,25 @@ Existing rice-cup scaling remains unchanged. Exact quantity scaling also remains
 
 ## Household Base Metadata
 
-A future recipe may optionally declare household base metadata. This is only a proposed future shape and should not be treated as implemented schema yet.
+Recipes may optionally declare household base metadata when the recipe's practical household base is reasonably known.
 
 ```json
 "householdBase": {
   "people": 2,
   "meals": 2,
-  "note": "User household reference"
+  "label": "2 people × 2 meals"
 }
 ```
 
-The metadata would describe the practical household meaning of the recipe's current base quantity. Recipes without this metadata would continue to use only the existing scaling controls.
+The metadata describes the practical household meaning of the recipe's current base quantity. The `label` field is used for human-readable display in Recipe Details.
+
+PR 1 scope is intentionally limited to:
+
+- optional `householdBase` metadata on recipes where the base is known
+- display-only `Household Base` in Recipe Details when `householdBase.label` exists
+- validation for the optional metadata shape
+
+Recipes without this metadata continue to use only the existing scaling controls. PR 1 does not add a People × Meals selector, does not change ingredient quantities, does not change existing scaling behavior, and does not add household search or filters.
 
 ## Examples
 
@@ -80,11 +88,6 @@ This formula is a starting point. Recipe-specific exceptions may still be needed
 
 ## Future UI
 
-Possible future Recipe Details display:
-
-- Base
-- Household Base
-
 Possible future selector:
 
 - People
@@ -92,22 +95,20 @@ Possible future selector:
 
 The selected household scaling should persist per recipe, similar to the existing scale persistence. Returning to a recipe should restore the household selection when that recipe supports household scaling.
 
-## Validation Future
-
-Future validation could check that:
+## Validation
 
 - `householdBase.people` is positive
 - `householdBase.meals` is positive
-- `householdBase` wording is present when needed
-- household scaling is only shown when metadata exists
+- `householdBase.label` is a non-empty string
+- `householdBase.label` includes the people and meals numbers in readable form
 
 ## Future Implementation Order
 
 1. Document household model
-2. Add optional metadata to recipe schema
-3. Show household base in Recipe Details
-4. Add people × meals selector
-5. Persist household selection
-6. Combine with existing scaling engine
-7. Add validation
+2. Add optional metadata to recipe schema - completed in PR 1
+3. Show household base in Recipe Details - completed in PR 1
+4. Add validation - completed in PR 1
+5. Add people × meals selector
+6. Persist household selection
+7. Combine with existing scaling engine
 8. Add household search and filters if needed
