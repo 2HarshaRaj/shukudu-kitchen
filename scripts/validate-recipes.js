@@ -223,6 +223,45 @@ function validateRelationships(recipe, errors) {
   }
 }
 
+function validateHouseholdBase(recipe, errors) {
+  if (recipe.householdBase == null) return;
+
+  const householdBase = recipe.householdBase;
+  if (!householdBase || typeof householdBase !== 'object' || Array.isArray(householdBase)) {
+    addError(errors, 'householdBase must be an object when present');
+    return;
+  }
+
+  const people = Number(householdBase.people);
+  const meals = Number(householdBase.meals);
+
+  if (!Number.isFinite(people) || people <= 0) {
+    addError(errors, 'householdBase.people must be a positive number');
+  }
+
+  if (!Number.isFinite(meals) || meals <= 0) {
+    addError(errors, 'householdBase.meals must be a positive number');
+  }
+
+  if (!isNonEmptyString(householdBase.label)) {
+    addError(errors, 'householdBase.label must be a non-empty string');
+    return;
+  }
+
+  const label = householdBase.label.toLowerCase();
+  if (Number.isFinite(people) && !label.includes(String(people))) {
+    addError(errors, 'householdBase.label should include the people number');
+  }
+
+  if (Number.isFinite(meals) && !label.includes(String(meals))) {
+    addError(errors, 'householdBase.label should include the meals number');
+  }
+
+  if (!/\bpeople?\b/.test(label) || !/\bmeals?\b/.test(label)) {
+    addError(errors, 'householdBase.label should include readable people and meals wording');
+  }
+}
+
 function validateStringArray(recipe, fieldName, errors) {
   if (recipe[fieldName] == null) return;
 
@@ -624,6 +663,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     validateTopLevel(recipe, errors);
     validateDetails(recipe, errors);
     validateRelationships(recipe, errors);
+    validateHouseholdBase(recipe, errors);
     validateStringArray(recipe, 'servingSuggestions', errors);
     validateStringArray(recipe, 'notes', errors);
     validateSlug(recipe, fileName, errors);

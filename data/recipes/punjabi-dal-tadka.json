@@ -12,6 +12,11 @@
     "dishTypes": ["Dal"],
     "goesWellWith": ["jeera-rice"]
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
   "scaling": {
     "enabled": true,
     "baseQuantity": 150,

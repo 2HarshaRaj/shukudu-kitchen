@@ -319,6 +319,10 @@ function buildRecipeDetails(recipe) {
     details.push(['Base', baseDetail]);
   }
 
+  if (recipe.householdBase?.label) {
+    details.push(['Household Base', recipe.householdBase.label]);
+  }
+
   return details.filter(([, value]) => formatDetailValue(value));
 }
 

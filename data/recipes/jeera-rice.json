@@ -12,6 +12,11 @@
     "dishTypes": ["Rice", "One Pot"],
     "goesWellWith": ["punjabi-dal-tadka"]
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "rice",
