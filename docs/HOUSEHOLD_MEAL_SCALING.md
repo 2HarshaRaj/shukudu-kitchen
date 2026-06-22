@@ -42,6 +42,15 @@ PR 1 scope was intentionally limited to:
 
 Recipes without this metadata continue to use only the existing scaling controls. PR 2 added the People × Meals selector and per-recipe persistence only. PR 3 connects that selector to the existing recipe scaling engine. Household search and filters remain future work.
 
+## Current Household Base Assumptions
+
+Current known household bases use practical recipe-family assumptions:
+
+- 1 rice cup rice/bath recipes generally use a household base of 2 people × 2 meals.
+- 500 g Palya recipes use a household base of 2 people × 2 meals.
+- Muesli is intentionally excluded until breakfast-specific and batch scaling are designed.
+- Rustic rasam remains pending confirmation and should not receive household base metadata yet.
+
 ## Examples
 
 ### Tomato Bath

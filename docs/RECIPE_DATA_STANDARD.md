@@ -180,6 +180,7 @@ Rules:
 - `label` must be a non-empty human-readable string
 - `label` should include the people and meals numbers in readable form
 - add `householdBase` only when it is supported by the recipe's existing base assumptions
+- for current 500 g Palya recipes, `householdBase` should be 2 people × 2 meals
 
 `householdBase` defines the base People × Meals reference used by the recipe page household selector. Recipe pages may show a generated Recipe Details row such as:
 

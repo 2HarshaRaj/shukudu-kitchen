@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.9 - 2026-06-22
+
+### Added
+
+- Added household base metadata to known 500 g Palya and rice/bath recipes.
+
+### Changed
+
+- Documented current household base assumptions for 500 g Palya and 1 rice cup rice/bath recipes.
+- Changed site version to `v1.18.9`.
+
 ## 1.18.8 - 2026-06-22
 
 ### Added
