@@ -29,10 +29,13 @@ shukudu-kitchen/
 |     `- validate-recipes.yml
 |- index.html
 |- recipe.html
+|- current-meal.html
 |- manifest.webmanifest
 |- site-version.js
 |- script.js
 |- recipe.js
+|- current-meal.js
+|- meal-state.js
 |- recipe-pairings.js
 |- recipe-pairings.css
 |- recipe-scaling.js
@@ -51,11 +54,14 @@ shukudu-kitchen/
 ## Main Responsibilities
 
 - `index.html`: homepage layout, homepage theme-control host, PWA metadata, Open Graph/Twitter social preview metadata, and brand header structure
-- `recipe.html`: recipe-page shell, recipe top bar, PWA metadata, recipe theme-control host, and wake-lock asset loading
+- `recipe.html`: recipe-page shell, recipe top bar, Current Meal navigation, PWA metadata, recipe theme-control host, and wake-lock asset loading
+- `current-meal.html`: Current Meal page shell, navigation, theme-control host, and Prepare Meal host
 - `manifest.webmanifest`: installable app metadata, app name, start URL, display mode, theme color, and app icons
 - `site-version.js`: shared visible site version source and footer renderer
-- `script.js`: homepage search, filters, and compact recipe cards using relationship metadata
-- `recipe.js`: recipe rendering, details rendering, ingredient checklist, and Cooking Mode
+- `script.js`: homepage search, filters, compact recipe cards using relationship metadata, and In Current Meal badges
+- `recipe.js`: recipe rendering, details rendering, ingredient checklist, Add to Meal action, and Cooking Mode
+- `meal-state.js`: shared local Current Meal slug persistence helpers
+- `current-meal.js`: Current Meal listing, remove/reorder/clear controls, and recipe-by-recipe Prepare Meal rendering
 - `recipe-pairings.js`: recipe-page Pairings section rendering from curated `relationships.goesWellWith` slugs
 - `recipe-pairings.css`: Pairings chip styling on recipe pages
 - `recipe-scaling.js`: recipe scaling, exact quantity input, overrides, and formatting
@@ -92,6 +98,7 @@ index.html
 -> theme-toggle-fix.css
 -> theme.js
 -> site-version.js
+-> meal-state.js
 -> script.js
 -> data/recipe-index.json
 ```
@@ -109,6 +116,7 @@ recipe.html
 -> theme-toggle-fix.css
 -> theme.js
 -> site-version.js
+-> meal-state.js
 -> recipe.js
 -> recipe-scaling.js
 -> recipe-pairings.js
@@ -283,3 +291,18 @@ Pairings, when curated pairings exist
 ```
 
 `Base` is generated from `scaling.baseQuantity` and `scaling.baseUnit`.
+
+Current Meal page:
+
+```text
+current-meal.html
+-> style.css
+-> brand.css
+-> theme.css
+-> theme-toggle-fix.css
+-> theme.js
+-> site-version.js
+-> meal-state.js
+-> current-meal.js
+-> data/recipes/<selected-slug>.json
+```

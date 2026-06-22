@@ -32,6 +32,7 @@
 }
 
 [data-theme="dark"] .secondary-button,
+[data-theme="dark"] .nav-pill,
 [data-theme="dark"] .icon-button,
 [data-theme="dark"] .scale-button,
 [data-theme="dark"] .section-nav a {

@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.18.10
+## Current Version - v1.19.0
 
 Shukudu Kitchen currently includes:
 
@@ -18,6 +18,7 @@ Shukudu Kitchen currently includes:
 - ingredient checklists
 - sticky section navigation
 - Cooking Mode with saved progress
+- Meal Mode Phase 1 with a local Current Meal and recipe-by-recipe Prepare Meal flow
 - optional Cooking Mode screen wake-lock support
 - structured preparation and cooking steps
 - scalable ingredient schema
@@ -105,12 +106,13 @@ Shukudu Kitchen currently includes:
 - Unit-aware formatting
 - Practical produce and small-whole rounding
 
-### Cooking Mode, Wake Lock, and UI Polish
+### Cooking Mode, Meal Mode, Wake Lock, and UI Polish
 
 - Ingredient checklists with saved progress
 - Sticky section navigation
 - Cooking Mode with step tracking
 - Optional screen wake-lock support in Cooking Mode
+- Meal Mode Phase 1 with Current Meal navigation, Add to Meal actions, In Current Meal badges, local persistence, remove/reorder/clear management, and recipe-by-recipe Prepare Meal rendering
 - Wake-lock control beside the Cooking Mode close button
 - Wake lock releases when Cooking Mode closes
 - Wake-lock status text below the Cooking Mode title
@@ -164,7 +166,7 @@ Shukudu Kitchen currently includes:
 
 - Household search/filter support remains future work. Household metadata/display/validation, People × Meals selector persistence, and scaling engine integration are implemented for selected recipes. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`.
 - Khara/spice preference mode remains future work for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile. Design is documented in `docs/SPICE_PREFERENCE_MODE.md`; implementation is not completed yet.
-- Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale. Design is documented in `docs/MULTI_RECIPE_COOKING_MODE.md`; implementation remains future work.
+- Later Meal Mode phases for combined active cooking sessions, quick switching without losing per-recipe progress, and wake-lock coordination. Phase 1 Current Meal and recipe-by-recipe Prepare Meal are implemented; combined ingredients, saved named meals, and smart timelines remain future work. Design is documented in `docs/MEAL_MODE.md`.
 - Cooking timers inside Cooking Mode for timed steps, with optional start, pause, reset controls and saved timer state per recipe step
 - Standard cup scaling input
 - Print view
@@ -237,7 +239,7 @@ Once recipe images are introduced, possible validation checks include:
 38. Household meal scaling People × Meals selector
 39. Household meal scaling integration with scaling engine
 40. Khara/spice preference mode
-41. Multi-Recipe Cooking Mode
+41. Meal Mode Phase 1 - completed
 42. Cooking timers inside Cooking Mode
 43. Clean up validator structure
 44. Duplicate ingredient name warning or error

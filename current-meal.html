@@ -3,20 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Recipe from Shukudu Kitchen">
+  <meta name="description" content="Current Meal from Shukudu Kitchen">
   <meta name="theme-color" content="#2A1D18">
-  <title>Recipe | Shukudu Kitchen</title>
+  <title>Current Meal | Shukudu Kitchen</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
   <link rel="stylesheet" href="style.css?v=1.19.0">
   <link rel="stylesheet" href="brand.css?v=1.15.1">
-  <link rel="stylesheet" href="recipe-scaling.css?v=1.15.1">
-  <link rel="stylesheet" href="wake-lock.css?v=1.15.1">
   <link rel="stylesheet" href="theme.css?v=1.15.1">
   <link rel="stylesheet" href="theme-toggle-fix.css?v=1.15.1">
-  <link rel="stylesheet" href="recipe-pairings.css?v=1.16.3">
   <script src="theme.js?v=1.15.1"></script>
 </head>
 <body>
@@ -25,11 +22,11 @@
       <div class="recipe-topbar">
         <nav class="top-nav" aria-label="Primary navigation">
           <a class="back-link recipe-brand-link" href="index.html"><img class="brand-icon" src="icons/icon-192.png" alt="" aria-hidden="true">Back to recipes</a>
-          <a class="nav-pill" href="current-meal.html">Current Meal</a>
+          <a class="nav-pill is-active" href="current-meal.html">Current Meal</a>
         </nav>
         <div class="theme-toggle-host" data-theme-toggle-host></div>
       </div>
-      <div id="recipeContent" aria-live="polite"></div>
+      <div id="currentMealContent" aria-live="polite"></div>
     </div>
   </main>
 
@@ -39,9 +36,6 @@
 
   <script src="site-version.js?v=1.19.0"></script>
   <script src="meal-state.js?v=1.19.0"></script>
-  <script src="recipe.js?v=1.19.0"></script>
-  <script src="recipe-scaling.js?v=1.15.1"></script>
-  <script src="recipe-pairings.js?v=1.15.5"></script>
-  <script src="wake-lock.js?v=1.15.1"></script>
+  <script src="current-meal.js?v=1.19.0"></script>
 </body>
 </html>
