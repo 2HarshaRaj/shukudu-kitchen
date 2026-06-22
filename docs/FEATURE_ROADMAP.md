@@ -4,7 +4,7 @@
 
 This roadmap records completed functionality and the planned development path for Shukudu Kitchen.
 
-## Current Version - v1.18.8
+## Current Version - v1.18.10
 
 Shukudu Kitchen currently includes:
 
@@ -31,6 +31,7 @@ Shukudu Kitchen currently includes:
 - recipe-specific non-linear scaling overrides
 - recipe relationship validation
 - recipe pairing validation with warning-only non-reciprocal checks
+- household base assumption warning validation for known recipe families
 - search alias validation
 - phase 1 theme validation
 - saved light and dark themes
@@ -65,6 +66,7 @@ Shukudu Kitchen currently includes:
 - Recipe pages show display-only household base when recipe metadata includes a `householdBase.label`
 - Recipe pages show curated Pairings links when pairings exist
 - Main validator enforces relationship metadata
+- Main validator warns when known recipe families are missing expected household base metadata
 - Pairing validator checks pairing slugs and warns when a pairing is not reciprocal
 - Reverse pairing links are not auto-created
 - `One Pot` classification rule documented

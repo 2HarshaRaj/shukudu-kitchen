@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.10 - 2026-06-22
+
+### Added
+
+- Added warning-only validation for known household base assumptions.
+
+### Changed
+
+- Documented household base assumption validation as guidance rather than a hard error.
+- Changed site version to `v1.18.10`.
+
 ## 1.18.9 - 2026-06-22
 
 ### Added
