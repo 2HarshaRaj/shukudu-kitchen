@@ -4,7 +4,7 @@ Recipes refined through real cooking.
 
 ## Current Version
 
-`v1.18.8`
+`v1.18.9`
 
 ## Overview
 

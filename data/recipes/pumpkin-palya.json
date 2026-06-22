@@ -23,6 +23,11 @@
       "rustic-pepper-jeera-tomato-rasam"
     ]
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "pumpkin",
