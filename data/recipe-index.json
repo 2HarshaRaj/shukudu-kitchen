@@ -47,6 +47,18 @@
     ]
   },
   {
+    "name": "Veg Pulao",
+    "slug": "veg-pulao",
+    "category": "Rice",
+    "summary": "South Indian veg pulao with basmati rice, mixed vegetables, capsicum, gedde kosu and a coriander-only masala paste.",
+    "searchAliases": [
+      "vegetable pulao",
+      "veg palav",
+      "vegetable palav",
+      "vegetable pulav"
+    ]
+  },
+  {
     "name": "Tomato Rasam",
     "slug": "tomato-rasam",
     "category": "Rasam",

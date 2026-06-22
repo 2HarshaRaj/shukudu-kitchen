@@ -1,0 +1,515 @@
+{
+  "name": "Veg Pulao",
+  "slug": "veg-pulao",
+  "category": "Rice",
+  "summary": "South Indian veg pulao with basmati rice, mixed vegetables, capsicum, gedde kosu and a coriander-only masala paste.",
+  "details": {
+    "Cuisine": "South Indian",
+    "Cooking Method": "Pressure cooker on induction",
+    "Health Rating": "4.5 out of 5",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner"
+    ],
+    "dishTypes": [
+      "Rice",
+      "One Pot"
+    ],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "To Grind",
+      "items": [
+        {
+          "id": "coriander-leaves",
+          "quantity": 0.75,
+          "unit": "cup",
+          "weightGrams": 28,
+          "ingredient": "coriander leaves",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.5,
+            "1": 0.75,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "ginger",
+          "quantity": 1,
+          "unit": "inch",
+          "weightGrams": 8,
+          "ingredient": "ginger",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1.25,
+            "1.5": 1.5,
+            "2": 2
+          }
+        },
+        {
+          "id": "garlic",
+          "quantity": 3,
+          "countLabel": "garlic clove",
+          "weightGrams": 9,
+          "ingredient": "garlic",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "green-chilies",
+          "quantity": 2,
+          "countLabel": "green chili",
+          "weightGrams": 6,
+          "ingredient": "green chilies",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 2,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        },
+        {
+          "id": "grind-cardamom",
+          "quantity": 2,
+          "countLabel": "cardamom pod",
+          "ingredient": "cardamom",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "grind-cinnamon",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "cinnamon",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "grind-cloves",
+          "quantity": 5,
+          "countLabel": "clove",
+          "ingredient": "cloves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "fennel-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "weightGrams": 3,
+          "ingredient": "fennel seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "grind-water",
+          "quantity": 0.19,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "To Temper",
+      "items": [
+        {
+          "id": "ghee",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 30,
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "weightGrams": 3,
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "bay-leaf",
+          "quantity": 1,
+          "countLabel": "bay leaf",
+          "ingredient": "bay leaf",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "temper-cinnamon",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "cinnamon",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "temper-cardamom",
+          "quantity": 2,
+          "countLabel": "cardamom pod",
+          "ingredient": "cardamom",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "temper-cloves",
+          "quantity": 3,
+          "countLabel": "clove",
+          "ingredient": "cloves",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "whole-black-pepper",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "weightGrams": 1.5,
+          "ingredient": "whole black pepper",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 0.75,
+          "countLabel": "medium onion",
+          "weightGrams": 90,
+          "ingredient": "onion",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "section": "Vegetables",
+      "items": [
+        {
+          "id": "tomato",
+          "quantity": 1,
+          "countLabel": "medium tomato",
+          "weightGrams": 120,
+          "ingredient": "tomato",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "beans",
+          "quantity": 7,
+          "countLabel": "bean",
+          "weightGrams": 55,
+          "ingredient": "beans",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-peas",
+          "quantity": 2.5,
+          "unit": "tablespoon",
+          "weightGrams": 30,
+          "ingredient": "green peas",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "carrot",
+          "quantity": 0.75,
+          "countLabel": "medium carrot",
+          "weightGrams": 70,
+          "ingredient": "carrot",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "potato",
+          "quantity": 0.5,
+          "countLabel": "medium potato",
+          "weightGrams": 80,
+          "ingredient": "potato",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "gedde-kosu",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "gedde kosu",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 0.33,
+          "countLabel": "medium capsicum",
+          "weightGrams": 50,
+          "ingredient": "capsicum",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "large-produce",
+          "displayText": "⅓ medium capsicum (50 g), cubed"
+        }
+      ]
+    },
+    {
+      "section": "Main",
+      "items": [
+        {
+          "id": "ground-masala-paste",
+          "displayText": "Ground masala paste (from To Grind ingredients)",
+          "ingredient": "ground masala paste",
+          "scalable": false
+        },
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "basmati rice",
+          "preparation": "washed 3–4 times, soaked for 20 minutes and drained",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1.25,
+          "unit": "teaspoon",
+          "weightGrams": 7,
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "adjust to taste"
+        },
+        {
+          "id": "water",
+          "quantity": 0.94,
+          "unit": "rice cup",
+          "ingredient": "main water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "rinse-water",
+          "quantity": 0.19,
+          "unit": "rice cup",
+          "ingredient": "rinse water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "lemon-juice",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "lemon juice",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1,
+            "1": 1.5,
+            "1.25": 2,
+            "1.5": 2,
+            "2": 3
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Wash:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Wash 3–4 times until the water runs clear."
+    },
+    {
+      "lead": "Soak:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Soak for 20 minutes."
+    },
+    {
+      "lead": "Drain:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Drain before cooking."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Grind:",
+      "ingredientIds": [
+        "coriander-leaves",
+        "ginger",
+        "garlic",
+        "green-chilies",
+        "grind-cardamom",
+        "grind-cinnamon",
+        "grind-cloves",
+        "fennel-seeds",
+        "grind-water"
+      ],
+      "after": "Grind to a smooth coriander-only masala paste."
+    },
+    {
+      "lead": "Heat in a pressure cooker:",
+      "ingredientIds": [
+        "ghee"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "cumin-seeds",
+        "bay-leaf",
+        "temper-cinnamon",
+        "temper-cardamom",
+        "temper-cloves",
+        "whole-black-pepper"
+      ],
+      "after": "Sauté until aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "onion"
+      ],
+      "after": "Sauté until soft."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "tomato"
+      ],
+      "after": "Cook until soft and mushy."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "beans",
+        "green-peas",
+        "carrot",
+        "potato",
+        "gedde-kosu"
+      ],
+      "after": "Sauté for 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "capsicum"
+      ],
+      "after": "Sauté for 30–45 seconds."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "ground-masala-paste",
+        "salt"
+      ],
+      "after": "Cook for 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "rinse-water"
+      ],
+      "after": "Mix well."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "water"
+      ],
+      "after": "Bring to a rolling boil."
+    },
+    {
+      "text": "Taste water; it should be slightly saltier than desired."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "rice"
+      ],
+      "after": "Stir gently once."
+    },
+    {
+      "text": "Cover with pressure cooker lid and whistle."
+    },
+    {
+      "text": "Bring pressure on high heat."
+    },
+    {
+      "text": "Once pressure builds, reduce induction to 100°C / 300W and cook for 9 minutes."
+    },
+    {
+      "text": "Switch off and allow pressure to release naturally."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "lemon-juice"
+      ],
+      "after": "Fluff gently and serve."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with onion tomato raita, plain curd or moong dal.",
+    "Serve hot after natural pressure release and gentle fluffing."
+  ],
+  "notes": [
+    "This recipe uses 1 rice cup as the canonical base, equivalent to 1⅓ standard cups because 1 standard cup = 0.75 rice cup.",
+    "Pressure cooker total liquid is 1.5 standard cups.",
+    "Main water is 1¼ standard cups and rinse water is ¼ standard cup.",
+    "Add capsicum late to retain texture.",
+    "Natural pressure release is required.",
+    "This recipe intentionally uses no pudina or mint."
+  ]
+}
