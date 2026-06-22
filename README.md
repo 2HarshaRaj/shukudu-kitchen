@@ -41,6 +41,7 @@ Current highlights:
 - Structured recipe relationship model documented in `docs/RECIPE_RELATIONSHIPS.md`
 - Dish Type filter behavior documented in `docs/DISH_TYPE_FILTERS.md`
 - Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
+- Future household meal scaling model documented in `docs/HOUSEHOLD_MEAL_SCALING.md`
 - Search alias rules documented in `docs/SEARCH.md`
 - UI theme rules documented in `docs/UI_THEME_STANDARD.md`
 - Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`

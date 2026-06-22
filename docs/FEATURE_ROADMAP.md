@@ -150,7 +150,7 @@ Shukudu Kitchen currently includes:
 
 ## Future Features
 
-- Household meal scaling by people and meal count, using recipe-specific household references such as 2 people x 2 meals as the base instead of generic serving labels
+- Household meal scaling by people and meal count, using recipe-specific household references such as 2 people × 2 meals as the base instead of generic serving labels. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`; implementation remains future work.
 - Khara/spice preference mode for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile
 - Multi-Recipe Cooking Mode for keeping two or more active recipes open while cooking and switching quickly between them without losing each recipe's step progress, ingredient checklist state, or scale
 - Cooking timers inside Cooking Mode for timed steps, with optional start, pause, reset controls and saved timer state per recipe step
