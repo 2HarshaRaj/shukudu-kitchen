@@ -80,8 +80,8 @@ function normalizeHouseholdSelection(selection, householdBase) {
   const meals = Number(selection?.meals);
 
   return {
-    people: [1, 2, 3, 4].includes(people) ? people : basePeople,
-    meals: [1, 2, 3].includes(meals) ? meals : baseMeals
+    people: [1, 2, 3, 4].includes(people) ? people : ([1, 2, 3, 4].includes(basePeople) ? basePeople : 1),
+    meals: [1, 2, 3].includes(meals) ? meals : ([1, 2, 3].includes(baseMeals) ? baseMeals : 1)
   };
 }
 
@@ -98,6 +98,29 @@ function loadHouseholdSelection(slug, householdBase) {
 
 function saveHouseholdSelection(slug, selection) {
   localStorage.setItem(getHouseholdSelectionKey(slug), JSON.stringify(selection));
+}
+
+function getHouseholdMultiplier(recipe, selection = null) {
+  const basePeople = Number(recipe.householdBase?.people);
+  const baseMeals = Number(recipe.householdBase?.meals);
+
+  if (!Number.isFinite(basePeople) || basePeople <= 0 || !Number.isFinite(baseMeals) || baseMeals <= 0) {
+    return 1;
+  }
+
+  const householdSelection = selection || loadHouseholdSelection(recipe.slug, recipe.householdBase);
+  const selectedPeople = Number(householdSelection?.people);
+  const selectedMeals = Number(householdSelection?.meals);
+
+  if (!Number.isFinite(selectedPeople) || selectedPeople <= 0 || !Number.isFinite(selectedMeals) || selectedMeals <= 0) {
+    return 1;
+  }
+
+  return (selectedPeople * selectedMeals) / (basePeople * baseMeals);
+}
+
+function getEffectiveScale(recipe, recipeScale) {
+  return recipeScale * getHouseholdMultiplier(recipe);
 }
 
 function normalizeStep(step) {
@@ -377,6 +400,7 @@ function renderHouseholdSelector(recipe) {
   const selection = loadHouseholdSelection(recipe.slug, recipe.householdBase);
   const peopleOptions = [1, 2, 3, 4];
   const mealOptions = [1, 2, 3];
+  const householdMultiplier = getHouseholdMultiplier(recipe, selection);
 
   const renderOptions = (label, name, options, selected) => `
     <div class="household-control">
@@ -402,6 +426,7 @@ function renderHouseholdSelector(recipe) {
       <div class="household-selector-heading">
         <p class="eyebrow">Household</p>
         <p class="scale-current">Selected: <strong><span data-household-current>${selection.people} people × ${selection.meals} meals</span></strong></p>
+        <p class="scale-current household-multiplier">Household multiplier: <strong><span data-household-multiplier>${formatNumber(householdMultiplier)}×</span></strong></p>
       </div>
       <div class="household-selector-controls">
         ${renderOptions('People', 'people', peopleOptions, selection.people)}
@@ -469,12 +494,13 @@ function renderScaleControls(recipe, scale) {
 }
 
 
-function initialiseHouseholdSelector(recipe) {
+function initialiseHouseholdSelector(recipe, onHouseholdChange) {
   const selector = recipeContent.querySelector('.household-selector');
   if (!selector || !recipe.householdBase) return;
 
   let selection = loadHouseholdSelection(recipe.slug, recipe.householdBase);
   const current = selector.querySelector('[data-household-current]');
+  const multiplier = selector.querySelector('[data-household-multiplier]');
 
   function updateSelection(field, value) {
     selection = { ...selection, [field]: value };
@@ -489,6 +515,12 @@ function initialiseHouseholdSelector(recipe) {
     if (current) {
       current.textContent = `${selection.people} people × ${selection.meals} meals`;
     }
+
+    if (multiplier) {
+      multiplier.textContent = `${formatNumber(getHouseholdMultiplier(recipe, selection))}×`;
+    }
+
+    onHouseholdChange?.(selection);
   }
 
   selector.addEventListener('click', (event) => {
@@ -702,6 +734,7 @@ function renderRecipe(recipe, initialScale = null) {
   document.title = `${recipe.name} | Shukudu Kitchen`;
   const ingredientMap = buildIngredientMap(recipe);
   let currentScale = initialScale ?? loadScale(recipe);
+  const effectiveScale = getEffectiveScale(recipe, currentScale);
   const details = renderRecipeDetails(recipe);
 
   recipeContent.innerHTML = `
@@ -735,17 +768,17 @@ function renderRecipe(recipe, initialScale = null) {
           <h2>Ingredients</h2>
           <button id="resetIngredients" class="text-button" type="button">Reset ingredients</button>
         </div>
-        ${renderIngredientChecklist(recipe, currentScale)}
+        ${renderIngredientChecklist(recipe, effectiveScale)}
       </section>
 
       <section id="preparation" class="recipe-section anchor-section">
         <h2>Preparation</h2>
-        ${renderStepList(recipe.preparation, ingredientMap, currentScale)}
+        ${renderStepList(recipe.preparation, ingredientMap, effectiveScale)}
       </section>
 
       <section id="method" class="recipe-section anchor-section">
         <h2>Cooking Method</h2>
-        ${renderStepList(recipe.cookingMethod, ingredientMap, currentScale)}
+        ${renderStepList(recipe.cookingMethod, ingredientMap, effectiveScale)}
       </section>
 
       <section id="serving" class="recipe-section anchor-section">
@@ -788,9 +821,11 @@ function renderRecipe(recipe, initialScale = null) {
   `;
 
   initialiseIngredientChecklist(recipe);
-  initialiseHouseholdSelector(recipe);
+  initialiseHouseholdSelector(recipe, () => {
+    renderRecipe(recipe, currentScale);
+  });
   initialiseSectionNavigation();
-  const cookingMode = initialiseCookingMode(recipe, ingredientMap, () => currentScale);
+  const cookingMode = initialiseCookingMode(recipe, ingredientMap, () => getEffectiveScale(recipe, currentScale));
   initialiseScaleControls(recipe, currentScale, (nextScale) => {
     currentScale = nextScale;
     renderRecipe(recipe, currentScale);

@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.8 - 2026-06-22
+
+### Added
+
+- Connected Household selector selections to recipe quantity scaling.
+
+### Changed
+
+- Household scaling now combines the selected recipe scale with the selected People × Meals multiplier.
+- Changed site version to `v1.18.8`.
+
 ## 1.18.7 - 2026-06-22
 
 ### Added
