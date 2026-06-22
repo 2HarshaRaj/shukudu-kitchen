@@ -108,14 +108,15 @@ Mobile touch behavior must be checked for:
 
 Any completed UI theme change should receive a patch version bump.
 
-## Future Validation Ideas
+## Theme Validation
 
-Validation can later help prevent obvious drift:
+Phase 1 theme validation is active through `scripts/validate-theme.js`. It checks objective guardrails such as known CSS files, CSS asset versions, approved hardcoded-color locations, approved shadow locations, and required dark-mode pill overrides.
 
-- flag hardcoded colors outside approved CSS files
+Future stricter validation can expand this coverage:
+
 - flag duplicate pill styles that drift from the standard
-- flag new shadow usage outside approved selectors
-- require CSS asset version bumps when CSS files change
-- check that light and dark overrides exist for selected component families
+- add broader selected-component light and dark override checks
+- detect newly introduced theme-token gaps
+- cover additional component families as the UI grows
 
 Validation should support this document, not replace visual review.

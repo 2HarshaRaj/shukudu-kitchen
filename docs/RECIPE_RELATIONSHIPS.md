@@ -116,9 +116,9 @@ Bath
 Palya
 Rasam
 Dal
-Curd Rice
 Side Dish
 One Pot
+Cereal
 ```
 
 Rules:
@@ -135,7 +135,7 @@ Examples:
 ```
 
 ```json
-"dishTypes": ["Palya", "Side Dish"]
+"dishTypes": ["Palya"]
 ```
 
 ```json
@@ -143,7 +143,7 @@ Examples:
 ```
 
 ```json
-"dishTypes": ["Dal", "Side Dish"]
+"dishTypes": ["Dal"]
 ```
 
 ### `One Pot` Rule
@@ -162,10 +162,11 @@ Tomato Bath: Rice / Bath / One Pot
 Menthya Rice Bath: Rice / Bath / One Pot
 Bisi Bele Bath: Rice / Bath / One Pot
 Vangi Bath: Rice / Bath
-Curd Rice: Rice / Curd Rice
-Palya: Palya / Side Dish
+Curd Rice: Rice
+Palya: Palya
 Rasam: Rasam
-Dal Tadka: Dal / Side Dish
+Dal Tadka: Dal
+Homemade Muesli: Cereal
 ```
 
 ### `goesWellWith`

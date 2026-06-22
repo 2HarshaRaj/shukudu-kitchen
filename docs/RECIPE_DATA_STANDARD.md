@@ -197,9 +197,9 @@ Bath
 Palya
 Rasam
 Dal
-Curd Rice
 Side Dish
 One Pot
+Cereal
 ```
 
 Rules:
@@ -225,7 +225,7 @@ Tomato Bath: Rice / Bath / One Pot
 Menthya Rice Bath: Rice / Bath / One Pot
 Bisi Bele Bath: Rice / Bath / One Pot
 Vangi Bath: Rice / Bath
-Punjabi Dal Tadka: Dal / Side Dish
+Punjabi Dal Tadka: Dal
 ```
 
 ### `goesWellWith`
@@ -550,6 +550,7 @@ node scripts/validate-recipes.js
 node scripts/validate-produce-weights.js
 node scripts/validate-search.js
 node scripts/validate-recipe-pairings.js
+node scripts/validate-theme.js
 ```
 
 Validator rules include:
@@ -643,6 +644,7 @@ node scripts/validate-recipes.js
 node scripts/validate-produce-weights.js
 node scripts/validate-search.js
 node scripts/validate-recipe-pairings.js
+node scripts/validate-theme.js
 ```
 
 ## Required References

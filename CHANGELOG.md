@@ -12,6 +12,13 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.18.5 - 2026-06-22
+
+### Changed
+
+- Refreshed documentation to match current dish type validation, theme validation status, shared site-version loading, Dish Type filter maintenance notes, roadmap version, and the full validation workflow.
+- Changed site version to `v1.18.5`.
+
 ## 1.18.4 - 2026-06-22
 
 ### Added

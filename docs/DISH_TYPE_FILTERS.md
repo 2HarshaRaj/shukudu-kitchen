@@ -54,4 +54,4 @@ Rules:
 
 Added in `v1.17.0`.
 
-Spacing refined in `v1.17.1`.
+Spacing refined in `v1.17.1`; layout-only inline styling removed in `v1.17.2`.
