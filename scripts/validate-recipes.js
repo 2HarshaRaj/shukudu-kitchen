@@ -16,6 +16,11 @@ const VALID_DISH_TYPES = new Set(['Rice', 'Bath', 'Palya', 'Rasam', 'Dal', 'Side
 const SLUG_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const REFERENCE_QUANTITY_RECOMMENDED_TERMS = ['rice', 'dal', 'poha', 'avalakki', 'rava', 'sooji', 'flour', 'besan'];
 
+const HOUSEHOLD_BASE_WARNING_EXCLUDED_SLUGS = new Set([
+  'homemade-muesli',
+  'rustic-pepper-jeera-tomato-rasam'
+]);
+
 let totalErrors = 0;
 let totalWarnings = 0;
 
@@ -260,6 +265,61 @@ function validateHouseholdBase(recipe, errors) {
   if (!/\bpeople?\b/.test(label) || !/\bmeals?\b/.test(label)) {
     addError(errors, 'householdBase.label should include readable people and meals wording');
   }
+}
+
+
+function householdBaseMatches(recipe, people, meals) {
+  if (!recipe.householdBase || typeof recipe.householdBase !== 'object' || Array.isArray(recipe.householdBase)) {
+    return false;
+  }
+
+  return Number(recipe.householdBase.people) === people && Number(recipe.householdBase.meals) === meals;
+}
+
+function validateHouseholdBaseAssumptions(recipe, warnings) {
+  if (HOUSEHOLD_BASE_WARNING_EXCLUDED_SLUGS.has(recipe.slug)) return;
+
+  const scaling = recipe.scaling || {};
+  const dishTypes = recipe.relationships && Array.isArray(recipe.relationships.dishTypes)
+    ? recipe.relationships.dishTypes
+    : [];
+  const baseQuantity = Number(scaling.baseQuantity);
+
+  const expectedAssumptions = [];
+
+  if (dishTypes.includes('Palya') && scaling.baseUnit === 'g' && baseQuantity === 500) {
+    expectedAssumptions.push({
+      people: 2,
+      meals: 2,
+      warning: '500 g Palya recipes should use householdBase 2 people × 2 meals'
+    });
+  }
+
+  if (
+    (dishTypes.includes('Rice') || dishTypes.includes('Bath'))
+    && scaling.baseUnit === 'riceCup'
+    && baseQuantity === 1
+  ) {
+    expectedAssumptions.push({
+      people: 2,
+      meals: 2,
+      warning: '1 rice cup rice/bath recipes should use householdBase 2 people × 2 meals'
+    });
+  }
+
+  if (recipe.slug === 'curd-rice' && scaling.baseUnit === 'riceCup' && baseQuantity === 0.25) {
+    expectedAssumptions.push({
+      people: 2,
+      meals: 1,
+      warning: 'Curd Rice 0.25 rice cup base should use householdBase 2 people × 1 meal'
+    });
+  }
+
+  expectedAssumptions.forEach((assumption) => {
+    if (!householdBaseMatches(recipe, assumption.people, assumption.meals)) {
+      addWarning(warnings, assumption.warning);
+    }
+  });
 }
 
 function validateStringArray(recipe, fieldName, errors) {
@@ -664,6 +724,7 @@ function validateRecipe(fileName, recipeMap, nonLinearRules) {
     validateDetails(recipe, errors);
     validateRelationships(recipe, errors);
     validateHouseholdBase(recipe, errors);
+    validateHouseholdBaseAssumptions(recipe, warnings);
     validateStringArray(recipe, 'servingSuggestions', errors);
     validateStringArray(recipe, 'notes', errors);
     validateSlug(recipe, fileName, errors);

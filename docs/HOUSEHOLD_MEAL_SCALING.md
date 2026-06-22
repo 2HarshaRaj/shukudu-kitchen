@@ -48,8 +48,11 @@ Current known household bases use practical recipe-family assumptions:
 
 - 1 rice cup rice/bath recipes generally use a household base of 2 people × 2 meals.
 - 500 g Palya recipes use a household base of 2 people × 2 meals.
+- Curd Rice at a 0.25 rice cup base uses a household base of 2 people × 1 meal.
 - Muesli is intentionally excluded until breakfast-specific and batch scaling are designed.
 - Rustic rasam remains pending confirmation and should not receive household base metadata yet.
+
+The recipe validator warns, but does not fail, when these known recipe families are missing the expected `householdBase` metadata or use a different People × Meals base. These warnings are guidance for currently known assumptions only; muesli and rustic rasam are explicitly excluded from the warning checks.
 
 ## Examples
 
@@ -114,10 +117,14 @@ The selector saves the selected People and Meals values per recipe. When either 
 
 ## Validation
 
+Hard validation applies only to the optional metadata shape when `householdBase` is present:
+
 - `householdBase.people` is positive
 - `householdBase.meals` is positive
 - `householdBase.label` is a non-empty string
 - `householdBase.label` includes the people and meals numbers in readable form
+
+Known recipe-family household assumptions are warning-only checks. Missing or different `householdBase` metadata for 500 g Palya recipes, 1 rice cup rice/bath recipes, and the Curd Rice 0.25 rice cup base should be reviewed, but those warnings do not block validation.
 
 ## Future Implementation Order
 
