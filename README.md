@@ -42,6 +42,7 @@ Current highlights:
 - Dish Type filter behavior documented in `docs/DISH_TYPE_FILTERS.md`
 - Reference quantity metadata documented in `docs/REFERENCE_QUANTITY.md`
 - Future household meal scaling model documented in `docs/HOUSEHOLD_MEAL_SCALING.md`
+- Future spice preference mode documented in `docs/SPICE_PREFERENCE_MODE.md`
 - Search alias rules documented in `docs/SEARCH.md`
 - UI theme rules documented in `docs/UI_THEME_STANDARD.md`
 - Static asset versioning documented in `docs/STATIC_ASSET_VERSIONING.md`
