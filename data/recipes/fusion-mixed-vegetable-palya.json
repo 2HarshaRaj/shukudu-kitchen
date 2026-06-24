@@ -44,45 +44,64 @@
         },
         {
           "id": "potato",
-          "displayText": "Potato – 150 g, cubed",
+          "quantity": 150,
+          "unit": "g",
           "ingredient": "potato",
-          "scalable": false
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "onion",
-          "displayText": "Onion – 80 g, chopped",
+          "quantity": 80,
+          "unit": "g",
           "ingredient": "onion",
-          "scalable": false
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "tomato",
-          "displayText": "Tomato – 80 g, chopped",
+          "quantity": 80,
+          "unit": "g",
           "ingredient": "tomato",
-          "scalable": false
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "beans",
-          "displayText": "Beans – 50 g, chopped",
+          "quantity": 50,
+          "unit": "g",
           "ingredient": "beans",
-          "scalable": false
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "carrot",
-          "displayText": "Carrot – 70 g, diced",
+          "quantity": 70,
+          "unit": "g",
           "ingredient": "carrot",
-          "scalable": false
+          "preparation": "diced",
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "frozen-peas",
-          "displayText": "Frozen peas – 40 g",
+          "quantity": 40,
+          "unit": "g",
           "ingredient": "frozen peas",
-          "scalable": false
+          "scalable": true,
+          "roundingType": "exact"
         },
         {
           "id": "frozen-sweet-corn",
-          "displayText": "Frozen sweet corn – 30 g",
+          "quantity": 30,
+          "unit": "g",
           "ingredient": "frozen sweet corn",
-          "scalable": false
+          "scalable": true,
+          "roundingType": "exact"
         }
       ]
     },
@@ -149,6 +168,7 @@
   "notes": [
     "Keep this dry when serving with rasam rice.",
     "Coconut is optional; add it for a more Karnataka-style finish.",
+    "Mixed vegetables total is the scaling base; the listed tested mix is the default 500 g breakdown and scales proportionally.",
     "The tested mix uses potato, onion, tomato, beans, carrot, peas and sweet corn.",
     "For a flexible version, keep the total vegetables close to 500 g and substitute with vegetables such as capsicum, cabbage, chow chow, knol khol, cauliflower, baby corn, peas, mushroom or zucchini.",
     "Use beetroot or sweet potato only in smaller amounts, around 50 g to 100 g, because they can dominate the taste.",
