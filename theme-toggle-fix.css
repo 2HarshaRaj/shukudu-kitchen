@@ -11,6 +11,14 @@
   flex: 1 1 auto;
 }
 
+.header-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .theme-toggle-host {
   flex: 0 0 auto;
   display: flex;
@@ -55,14 +63,16 @@
   white-space: nowrap;
 }
 
-.site-header .theme-toggle {
+.site-header .theme-toggle,
+.site-header .nav-pill {
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(255, 255, 255, 0.94);
   color: #26231f;
   box-shadow: none;
 }
 
-[data-theme="dark"] .site-header .theme-toggle {
+[data-theme="dark"] .site-header .theme-toggle,
+[data-theme="dark"] .site-header .nav-pill {
   border-color: #51433b;
   background: #211c19;
   color: #f3ece6;
@@ -153,9 +163,18 @@ select:focus {
 }
 
 @media (max-width: 760px) {
-  .site-header-row,
+  .site-header-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .recipe-topbar {
     align-items: center;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .theme-toggle {
@@ -171,4 +190,18 @@ select:focus {
   .theme-toggle-text {
     display: none;
   }
+}
+
+[data-theme="dark"] .nav-pill.is-active,
+[data-theme="dark"] .nav-pill.is-active:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+[data-theme="dark"] .meal-add-button.is-active,
+[data-theme="dark"] .meal-add-button.is-active:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
 }

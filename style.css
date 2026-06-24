@@ -238,6 +238,11 @@ select {
   box-shadow: 0 8px 18px rgba(159, 63, 47, 0.22);
 }
 
+a.primary-button,
+a.secondary-button {
+  text-decoration: none;
+}
+
 .primary-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(159, 63, 47, 0.28);
@@ -299,7 +304,7 @@ select {
   box-shadow: 0 8px 18px rgba(159, 63, 47, 0.22);
 }
 
-.recipe-hero .primary-button {
+.recipe-hero > .primary-button {
   margin-top: 18px;
 }
 
@@ -686,7 +691,7 @@ select {
     border-radius: 14px;
   }
 
-  .recipe-hero .primary-button {
+  .recipe-hero > .primary-button {
     width: 100%;
   }
 
@@ -789,19 +794,24 @@ select {
 .nav-pill {
   display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  padding: 8px 13px;
+  min-height: 42px;
+  padding: 9px 14px;
   border: 1px solid var(--border);
   border-radius: 999px;
   background: var(--surface);
-  color: var(--accent);
-  font-size: 0.92rem;
+  color: var(--text);
+  font-size: 0.88rem;
   font-weight: 800;
   line-height: 1;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.nav-pill:hover,
+.nav-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .nav-pill.is-active {
   border-color: var(--accent);
   background: var(--accent);
@@ -824,9 +834,10 @@ select {
   color: var(--accent);
 }
 
-.meal-add-button.is-active:disabled {
-  cursor: default;
-  opacity: 1;
+.meal-add-button.is-active:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .current-meal-list {

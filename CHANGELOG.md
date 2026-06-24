@@ -12,6 +12,13 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.19.4 - 2026-06-24
+
+### Changed
+
+- Fixed Meal Mode Phase 1 header and button UX inconsistencies, including Current Meal header counts, aligned header action grouping, recipe hero meal-action toggle behavior, aligned Current Meal page actions, and button-styled link underlines.
+- Changed site version to `v1.19.4`.
+
 ## 1.19.3 - 2026-06-24
 
 ### Added
