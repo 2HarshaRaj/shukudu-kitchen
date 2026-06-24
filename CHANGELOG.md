@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.19.3 - 2026-06-24
+
+### Added
+
+- Added Fusion Mixed Vegetable Palya as a dry Karnataka-style fusion palya with a tested 500 g mixed vegetable base, ginger-garlic paste, optional coconut, lemon finish, rasam rice pairings and flexible vegetable substitution notes.
+- Added a roadmap note for a future Flexible Recipes feature, with Fusion Mixed Vegetable Palya as the first best candidate.
+
+### Changed
+
+- Changed site version to `v1.19.3`.
+
 
 ## 1.19.2 - 2026-06-24
 
