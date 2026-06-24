@@ -643,16 +643,18 @@ function initialiseMealAction(recipe) {
 
   function updateButton() {
     const inMeal = typeof isRecipeInCurrentMeal === 'function' && isRecipeInCurrentMeal(recipe.slug);
-    button.textContent = inMeal ? '✓ In Current Meal' : 'Add to Meal';
+    button.textContent = inMeal ? 'Remove from Meal' : 'Add to Meal';
     button.classList.toggle('is-active', inMeal);
-    button.disabled = inMeal;
-    button.setAttribute('aria-disabled', String(inMeal));
     button.setAttribute('aria-pressed', String(inMeal));
   }
 
   button.addEventListener('click', () => {
-    if (button.disabled || (typeof isRecipeInCurrentMeal === 'function' && isRecipeInCurrentMeal(recipe.slug))) return;
-    addRecipeToCurrentMeal(recipe.slug);
+    const inMeal = typeof isRecipeInCurrentMeal === 'function' && isRecipeInCurrentMeal(recipe.slug);
+    if (inMeal && typeof removeRecipeFromCurrentMeal === 'function') {
+      removeRecipeFromCurrentMeal(recipe.slug);
+    } else {
+      addRecipeToCurrentMeal(recipe.slug);
+    }
     updateButton();
   });
 

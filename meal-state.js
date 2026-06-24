@@ -35,3 +35,22 @@ function clearCurrentMeal() {
   window.dispatchEvent(new CustomEvent('current-meal-updated', { detail: { slugs: [] } }));
   return [];
 }
+
+
+function updateCurrentMealLinks(slugs = loadCurrentMealSlugs()) {
+  const count = slugs.length;
+  document.querySelectorAll('[data-current-meal-link]').forEach((link) => {
+    link.textContent = count ? `Current Meal · ${count}` : 'Current Meal';
+    link.setAttribute('aria-label', count ? `Current Meal, ${count} selected ${count === 1 ? 'recipe' : 'recipes'}` : 'Current Meal');
+  });
+}
+
+window.addEventListener('current-meal-updated', (event) => {
+  updateCurrentMealLinks(event.detail?.slugs || loadCurrentMealSlugs());
+});
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => updateCurrentMealLinks());
+} else {
+  updateCurrentMealLinks();
+}

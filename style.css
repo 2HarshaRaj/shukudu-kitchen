@@ -238,6 +238,11 @@ select {
   box-shadow: 0 8px 18px rgba(159, 63, 47, 0.22);
 }
 
+.primary-button,
+.secondary-button {
+  text-decoration: none;
+}
+
 .primary-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 24px rgba(159, 63, 47, 0.28);
@@ -299,7 +304,7 @@ select {
   box-shadow: 0 8px 18px rgba(159, 63, 47, 0.22);
 }
 
-.recipe-hero .primary-button {
+.recipe-hero > .primary-button {
   margin-top: 18px;
 }
 
