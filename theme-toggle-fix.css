@@ -11,6 +11,14 @@
   flex: 1 1 auto;
 }
 
+.header-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .theme-toggle-host {
   flex: 0 0 auto;
   display: flex;
@@ -55,17 +63,80 @@
   white-space: nowrap;
 }
 
-.site-header .theme-toggle {
+
+.header-actions .nav-pill {
+  min-height: 42px;
+  padding: 9px 14px;
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: none;
+  font-size: 0.88rem;
+}
+
+.header-actions .nav-pill:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.header-actions .nav-pill.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+[data-theme="dark"] .header-actions .nav-pill {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+[data-theme="dark"] .header-actions .nav-pill:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+[data-theme="dark"] .header-actions .nav-pill.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.site-header .theme-toggle,
+.site-header .nav-pill {
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(255, 255, 255, 0.94);
   color: #26231f;
   box-shadow: none;
 }
 
-[data-theme="dark"] .site-header .theme-toggle {
+.site-header .nav-pill {
+  min-height: 42px;
+  padding: 9px 14px;
+  font-size: 0.88rem;
+}
+
+.site-header .nav-pill:hover,
+.site-header .nav-pill.is-active {
+  border-color: rgba(255, 255, 255, 0.48);
+  background: #fff;
+  color: var(--accent);
+}
+
+[data-theme="dark"] .site-header .theme-toggle,
+[data-theme="dark"] .site-header .nav-pill {
   border-color: #51433b;
   background: #211c19;
   color: #f3ece6;
+}
+
+[data-theme="dark"] .site-header .nav-pill:hover,
+[data-theme="dark"] .site-header .nav-pill.is-active {
+  border-color: var(--accent);
+  background: #2b2420;
+  color: var(--accent);
 }
 
 .recipe-topbar {
@@ -158,6 +229,28 @@ select:focus {
     align-items: center;
   }
 
+  .site-header-row {
+    flex-direction: column;
+  }
+
+  .site-header-row > .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .recipe-topbar {
+    flex-wrap: wrap;
+  }
+
+  .recipe-topbar > .top-nav,
+  .recipe-topbar > .header-actions {
+    width: 100%;
+  }
+
+  .recipe-topbar > .header-actions {
+    justify-content: flex-start;
+  }
+
   .theme-toggle {
     width: 44px;
     height: 44px;
@@ -166,6 +259,12 @@ select:focus {
     padding: 0;
     gap: 0;
     border-radius: 50%;
+  }
+
+  .header-actions .nav-pill {
+    min-height: 44px;
+    padding: 10px 14px;
+    white-space: nowrap;
   }
 
   .theme-toggle-text {

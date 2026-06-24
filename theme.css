@@ -72,3 +72,15 @@
     display: none;
   }
 }
+[data-theme="dark"] .nav-pill.is-active,
+[data-theme="dark"] .nav-pill:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+[data-theme="dark"] .meal-add-button.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
