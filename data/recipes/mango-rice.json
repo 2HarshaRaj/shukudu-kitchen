@@ -1,0 +1,325 @@
+{
+  "name": "Mango Rice",
+  "slug": "mango-rice",
+  "category": "Rice",
+  "summary": "Karnataka-style mavinakayi chitranna made with separately cooked rice, grated raw mango, tempering, peanuts or cashews, coconut powder, and coriander.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Cooking Method": "Pressure cooker on induction + kadai mixing",
+    "Health Rating": "4 out of 5",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Rice"],
+    "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Rice",
+      "items": [
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "sona masuri rice",
+          "preparation": "rinsed and soaked for 20–30 minutes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 2,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Mango",
+      "items": [
+        {
+          "id": "raw-mango",
+          "quantity": 1.33,
+          "unit": "cup",
+          "weightGrams": 270,
+          "ingredient": "raw mango",
+          "preparation": "peeled and grated using the 3 mm grater side",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – 1 pinch",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 8,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 5,
+            "0.75": 6,
+            "1": 8,
+            "1.25": 8,
+            "1.5": 10,
+            "2": 12
+          }
+        },
+        {
+          "id": "roasted-peanuts-or-cashews",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "ingredient": "roasted peanuts or cashews",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Main Flavoring",
+      "items": [
+        {
+          "id": "green-chillies",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 3
+          }
+        },
+        {
+          "id": "turmeric",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "displayText": "Salt, to taste",
+          "ingredient": "salt",
+          "scalable": false
+        }
+      ]
+    },
+    {
+      "section": "Finishing",
+      "items": [
+        {
+          "id": "coconut",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "coconut powder or grated coconut",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 2.5,
+            "2": 3
+          }
+        },
+        {
+          "id": "lemon-juice",
+          "quantity": 0.5,
+          "unit": "tablespoon",
+          "ingredient": "lemon juice",
+          "preparation": "optional, only if the mango is not tangy enough",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.25,
+            "0.75": 0.25,
+            "1": 0.5,
+            "1.25": 0.5,
+            "1.5": 0.75,
+            "2": 1
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Wash and soak:",
+      "ingredientIds": ["rice"],
+      "after": "Soak for 20–30 minutes."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": ["raw-mango", "green-chillies", "coriander-leaves"]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Add to the pressure cooker:",
+      "ingredientIds": ["rice", "water"]
+    },
+    {
+      "text": "Build pressure normally on induction."
+    },
+    {
+      "text": "After pressure builds, cook at 300 W for 10 minutes."
+    },
+    {
+      "text": "Let pressure release naturally."
+    },
+    {
+      "text": "Spread the cooked rice on a plate and cool completely."
+    },
+    {
+      "lead": "Heat in a kadai:",
+      "ingredientIds": ["oil"]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["mustard-seeds", "urad-dal", "chana-dal", "hing", "curry-leaves"],
+      "after": "Let the tempering splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["roasted-peanuts-or-cashews"],
+      "after": "Sauté briefly."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["raw-mango", "green-chillies", "turmeric"],
+      "after": "Sauté about 1 minute until the mango softens slightly."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["rice", "salt"],
+      "after": "Mix gently without breaking the grains."
+    },
+    {
+      "text": "Cover and cook on low heat for 2 minutes."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": ["coconut", "coriander-leaves"],
+      "after": "Mix gently."
+    },
+    {
+      "lead": "Taste and add only if needed:",
+      "ingredientIds": ["lemon-juice"],
+      "after": "Use lemon juice only if the mango is not tangy enough."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot.",
+    "Goes well with curd, onion raita, papad, or potato chips."
+  ],
+  "notes": [
+    "Rice for mixed rice dishes should be slightly firmer than regular plain rice.",
+    "For Harsha’s induction method, use 2 rice cups water for 1 rice cup soaked rice.",
+    "Spread cooked rice on a plate before mixing so grains stay separate.",
+    "Use the 3 mm grater side for mango.",
+    "For mild mango, use 1.33 to 1.5 cups grated raw mango; for medium sour mango, use 1.25 to 1.33 cups; for very sour mango, use 1 cup.",
+    "Normal store-bought raw mango may be milder than Totapuri; adjust mango and lemon accordingly.",
+    "Iron kadai may slightly darken the rice; this is normal.",
+    "Coconut powder gives a slightly drier finish than fresh coconut.",
+    "Peanuts can be replaced with roasted cashews."
+  ]
+}

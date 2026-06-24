@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+
+## 1.19.2 - 2026-06-24
+
+### Added
+
+- Added Mango Rice as a Karnataka-style mavinakayi chitranna recipe with household scaling, induction rice-cooking notes, raw mango sourness guidance, and coconut powder option.
+
+### Changed
+
+- Changed site version to `v1.19.2`.
+
 ## 1.19.1 - 2026-06-23
 
 ### Added
