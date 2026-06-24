@@ -7,6 +7,33 @@
 - Prefer one logical change per PR.
 - Avoid touching unrelated files.
 
+## Codex Prompt and Review Guidance
+
+Codex prompts and final responses should clearly identify:
+
+- Task
+- Context
+- Files inspected or changed
+- Constraints followed
+- Validation performed
+- Recipe/data/index/UI/theme impact
+- Changelog and visible site version impact
+- Assumptions and intentionally deferred items
+
+Review Shukudu Kitchen changes for:
+
+- recipe JSON validity
+- recipe-index synchronization
+- stable lowercase hyphenated slugs
+- ingredient ID consistency across ingredients, preparation, cooking method, and Cooking Mode
+- `householdBase` only when known
+- reciprocal pairings where appropriate
+- approved dish type usage
+- UI changes following `docs/UI_THEME_STANDARD.md`
+- light/dark mode, hover, active, pressed, and disabled states for UI changes
+- relevant validation scripts
+- changelog and visible site version impact for shipped user-facing changes
+
 ## Recipe Data Rules
 
 - Follow `docs/RECIPE_DATA_STANDARD.md` for recipe JSON structure.
