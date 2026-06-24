@@ -131,6 +131,20 @@
     ]
   },
   {
+    "name": "Fusion Mixed Vegetable Palya",
+    "slug": "fusion-mixed-vegetable-palya",
+    "category": "Palya",
+    "summary": "Dry Karnataka-style fusion mixed vegetable palya with potato, onion, tomato, beans, carrot, peas, sweet corn, mild spices, lemon and optional coconut.",
+    "searchAliases": [
+      "mixed vegetable palya",
+      "mixed veg palya",
+      "mixed vegetable stir fry",
+      "vegetable poriyal",
+      "fusion palya",
+      "rasam rice side dish"
+    ]
+  },
+  {
     "name": "Bisi Bele Bath",
     "slug": "bisi-bele-bath",
     "category": "Rice",

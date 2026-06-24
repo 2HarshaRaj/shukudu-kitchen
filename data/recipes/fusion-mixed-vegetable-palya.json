@@ -1,0 +1,177 @@
+{
+  "name": "Fusion Mixed Vegetable Palya",
+  "slug": "fusion-mixed-vegetable-palya",
+  "category": "Palya",
+  "summary": "Dry Karnataka-style fusion mixed vegetable palya with potato, onion, tomato, beans, carrot, peas, sweet corn, mild spices, lemon and optional coconut.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka Fusion",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner", "Side"],
+    "dishTypes": ["Palya"],
+    "goesWellWith": ["tomato-rasam", "rustic-pepper-jeera-tomato-rasam", "curd-rice"]
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "mixed-vegetables",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Mixed vegetables quantity",
+    "inputMin": 50,
+    "inputStep": 10,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Vegetables",
+      "items": [
+        {
+          "id": "mixed-vegetables",
+          "quantity": 500,
+          "unit": "g",
+          "ingredient": "mixed vegetables total",
+          "preparation": "potato, onion, tomato, beans, carrot, frozen peas and frozen sweet corn",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "potato",
+          "quantity": 150,
+          "unit": "g",
+          "ingredient": "potato",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "onion",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tomato",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "tomato",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "beans",
+          "quantity": 50,
+          "unit": "g",
+          "ingredient": "beans",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "carrot",
+          "quantity": 70,
+          "unit": "g",
+          "ingredient": "carrot",
+          "preparation": "diced",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "frozen-peas",
+          "quantity": 40,
+          "unit": "g",
+          "ingredient": "frozen peas",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "frozen-sweet-corn",
+          "quantity": 30,
+          "unit": "g",
+          "ingredient": "frozen sweet corn",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        { "id": "oil", "quantity": 2, "unit": "tablespoon", "ingredient": "oil", "scalable": true, "roundingType": "exact" },
+        { "id": "mustard-seeds", "quantity": 0.5, "unit": "teaspoon", "ingredient": "mustard seeds", "scalable": true, "roundingType": "exact", "scaleQuantities": { "0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 1 } },
+        { "id": "cumin-seeds", "quantity": 0.5, "unit": "teaspoon", "ingredient": "cumin seeds", "scalable": true, "roundingType": "exact" },
+        { "id": "urad-dal", "quantity": 1, "unit": "teaspoon", "ingredient": "urad dal", "scalable": true, "roundingType": "exact", "scaleQuantities": { "0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5 } },
+        { "id": "chana-dal", "quantity": 1, "unit": "teaspoon", "ingredient": "chana dal", "scalable": true, "roundingType": "exact", "scaleQuantities": { "0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5 } },
+        { "id": "curry-leaves", "quantity": 8, "countLabel": "curry leaf", "ingredient": "curry leaves", "scalable": true, "roundingType": "small-whole", "scaleQuantities": { "0.5": 6, "0.75": 8, "1": 8, "1.25": 10, "1.5": 10, "2": 12 } },
+        { "id": "green-chilli", "quantity": 2, "countLabel": "green chilli", "ingredient": "green chilli", "preparation": "slit", "scalable": true, "roundingType": "small-whole", "scaleQuantities": { "0.5": 1, "0.75": 1, "1": 2, "1.25": 2, "1.5": 2, "2": 3 } },
+        { "id": "ginger-garlic-paste", "quantity": 1.5, "unit": "teaspoon", "ingredient": "ginger-garlic paste", "scalable": true, "roundingType": "exact", "scaleQuantities": { "0.5": 1, "0.75": 1.25, "1": 1.5, "1.25": 1.75, "1.5": 2, "2": 2.5 } }
+      ]
+    },
+    {
+      "section": "Spices",
+      "items": [
+        { "id": "turmeric-powder", "quantity": 0.25, "unit": "teaspoon", "ingredient": "turmeric powder", "scalable": true, "roundingType": "exact" },
+        { "id": "red-chilli-powder", "quantity": 0.5, "unit": "teaspoon", "ingredient": "red chilli powder", "scalable": true, "roundingType": "exact" },
+        { "id": "coriander-powder", "quantity": 1, "unit": "teaspoon", "ingredient": "coriander powder", "scalable": true, "roundingType": "exact" },
+        { "id": "salt", "quantity": 1, "unit": "teaspoon", "ingredient": "salt", "preparation": "adjust to taste", "scalable": true, "roundingType": "exact" },
+        { "id": "water", "quantity": 100, "unit": "ml", "ingredient": "water", "preparation": "75 ml to 100 ml, only as needed for covered cooking", "scalable": true, "roundingType": "exact" }
+      ]
+    },
+    {
+      "section": "Finish",
+      "items": [
+        { "id": "coriander-leaves", "quantity": 2, "unit": "tablespoon", "ingredient": "coriander leaves", "preparation": "chopped", "scalable": true, "roundingType": "exact", "scaleQuantities": { "0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 3, "2": 4 } },
+        { "id": "grated-coconut", "quantity": 2, "unit": "tablespoon", "ingredient": "grated coconut", "preparation": "optional", "scalable": true, "roundingType": "exact" },
+        { "id": "lemon-juice", "quantity": 1, "unit": "teaspoon", "ingredient": "lemon juice", "scalable": true, "roundingType": "exact", "scaleQuantities": { "0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.5, "2": 2 } }
+      ]
+    }
+  ],
+  "preparation": [
+    { "lead": "Prepare the tested vegetable mix:", "ingredientIds": ["mixed-vegetables"], "after": "Use 150 g cubed potato, 80 g chopped onion, 80 g chopped tomato, 50 g chopped beans, 70 g diced carrot, 40 g frozen peas and 30 g frozen sweet corn." },
+    { "lead": "Keep ready:", "ingredientIds": ["oil", "mustard-seeds", "cumin-seeds", "urad-dal", "chana-dal", "curry-leaves", "green-chilli", "ginger-garlic-paste"] },
+    { "lead": "Measure:", "ingredientIds": ["turmeric-powder", "red-chilli-powder", "coriander-powder", "salt", "water"] },
+    { "lead": "Prepare the finish:", "ingredientIds": ["coriander-leaves", "grated-coconut", "lemon-juice"] }
+  ],
+  "cookingMethod": [
+    { "lead": "Heat a pan and add:", "ingredientIds": ["oil"] },
+    { "lead": "Add:", "ingredientIds": ["mustard-seeds"], "after": "Let the mustard seeds splutter." },
+    { "lead": "Add:", "ingredientIds": ["cumin-seeds", "urad-dal", "chana-dal"], "after": "Fry briefly until the dals start turning light golden." },
+    { "lead": "Add:", "ingredientIds": ["curry-leaves", "green-chilli"], "after": "Stir briefly." },
+    { "lead": "Add:", "ingredientIds": ["ginger-garlic-paste"], "after": "Fry briefly until the raw smell reduces." },
+    { "lead": "Add:", "ingredientIds": ["onion"], "after": "Saute until softened." },
+    { "lead": "Add:", "ingredientIds": ["tomato"], "after": "Cook until soft." },
+    { "lead": "Add:", "ingredientIds": ["potato", "beans", "carrot", "frozen-peas", "frozen-sweet-corn"], "after": "Mix well." },
+    { "lead": "Add:", "ingredientIds": ["turmeric-powder", "red-chilli-powder", "coriander-powder", "salt"], "after": "Mix until the vegetables are evenly coated." },
+    { "lead": "Sprinkle only as needed:", "ingredientIds": ["water"], "after": "Do not make the palya watery." },
+    { "text": "Cover and cook on low heat until the vegetables are cooked through." },
+    { "text": "Open and cook until the moisture evaporates and the palya is dry." },
+    { "lead": "Finish with:", "ingredientIds": ["coriander-leaves", "grated-coconut", "lemon-juice"], "after": "Mix gently and switch off the heat." },
+    { "text": "Serve hot." }
+  ],
+  "servingSuggestions": [
+    "Serve with tomato rasam and rice.",
+    "Serve with rustic pepper jeera tomato rasam and rice.",
+    "Serve with curd rice.",
+    "Can also be served with chapati."
+  ],
+  "notes": [
+    "Keep this dry when serving with rasam rice.",
+    "Coconut is optional; add it for a more Karnataka-style finish.",
+    "Mixed vegetables total is the scaling base; the listed tested mix is the default 500 g breakdown and scales proportionally.",
+    "The tested mix uses potato, onion, tomato, beans, carrot, peas and sweet corn.",
+    "For a flexible version, keep the total vegetables close to 500 g and substitute with vegetables such as capsicum, cabbage, chow chow, knol khol, cauliflower, baby corn, peas, mushroom or zucchini.",
+    "Use beetroot or sweet potato only in smaller amounts, around 50 g to 100 g, because they can dominate the taste.",
+    "This recipe is a good future candidate for a formal Flexible Recipes feature, but this recipe remains a normal palya for now."
+  ]
+}

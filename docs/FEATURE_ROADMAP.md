@@ -164,6 +164,7 @@ Shukudu Kitchen currently includes:
 
 ## Future Features
 
+- Flexible Recipes remain future work for recipes with a stable tested base and practical substitutions. Fusion Mixed Vegetable Palya is the first best candidate because it has a tested 500 g mixed vegetable base while allowing vegetable substitutions that still total about 500 g; this roadmap note does not implement the feature.
 - Household search/filter support remains future work. Household metadata/display/validation, People × Meals selector persistence, and scaling engine integration are implemented for selected recipes. Design is documented in `docs/HOUSEHOLD_MEAL_SCALING.md`.
 - Khara/spice preference mode remains future work for adjusting chilli, green chilli, red chilli powder, and similar heat ingredients when cooking for guests who prefer spicier food, without changing the overall masala profile. Design is documented in `docs/SPICE_PREFERENCE_MODE.md`; implementation is not completed yet.
 - Later Meal Mode phases for combined active cooking sessions, quick switching without losing per-recipe progress, and wake-lock coordination. Phase 1 Current Meal and recipe-by-recipe Prepare Meal are implemented; combined ingredients, saved named meals, and smart timelines remain future work. Design is documented in `docs/MEAL_MODE.md`.
