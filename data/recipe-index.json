@@ -47,6 +47,19 @@
     ]
   },
   {
+    "name": "Mango Rice",
+    "slug": "mango-rice",
+    "category": "Rice",
+    "summary": "Karnataka-style mavinakayi chitranna made with separately cooked rice, grated raw mango, tempering, peanuts or cashews, coconut powder, and coriander.",
+    "searchAliases": [
+      "mavinakayi chitranna",
+      "mavinakayi chitrana",
+      "raw mango rice",
+      "mango chitranna",
+      "manga sadam"
+    ]
+  },
+  {
     "name": "Veg Pulao",
     "slug": "veg-pulao",
     "category": "Rice",
