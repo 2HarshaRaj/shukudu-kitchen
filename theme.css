@@ -80,6 +80,13 @@
 }
 
 [data-theme="dark"] .meal-add-button.is-active {
+  border-color: color-mix(in srgb, var(--border) 72%, var(--accent));
+  background: var(--surface);
+  color: var(--text);
+}
+
+[data-theme="dark"] .meal-add-button.is-active:hover,
+[data-theme="dark"] .meal-add-button.is-active:focus-visible {
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
