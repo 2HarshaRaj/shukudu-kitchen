@@ -12,6 +12,13 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.19.5 - 2026-06-24
+
+### Changed
+
+- Calmed Meal Mode recipe-page remove buttons, Current Meal header pill states, selected recipe title links, and Current Meal remove text action styling for more consistent light and dark mode polish.
+- Changed site version to `v1.19.5`.
+
 ## 1.19.4 - 2026-06-24
 
 ### Fixed

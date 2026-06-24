@@ -824,6 +824,13 @@ select {
 }
 
 .meal-add-button.is-active {
+  border-color: color-mix(in srgb, var(--border) 72%, var(--accent));
+  background: var(--surface);
+  color: var(--text);
+}
+
+.meal-add-button.is-active:hover,
+.meal-add-button.is-active:focus-visible {
   border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
@@ -857,6 +864,28 @@ select {
 .current-meal-item h3,
 .meal-recipe-block h3 {
   margin: 4px 0 6px;
+}
+
+.current-meal-item h3 a {
+  color: var(--text);
+  text-decoration: none;
+  text-underline-offset: 0.18em;
+}
+
+.current-meal-item h3 a:hover,
+.current-meal-item h3 a:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.current-meal-item .text-button[data-remove] {
+  color: var(--muted);
+}
+
+.current-meal-item .text-button[data-remove]:hover,
+.current-meal-item .text-button[data-remove]:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .prepare-meal-section .section-title-row {
