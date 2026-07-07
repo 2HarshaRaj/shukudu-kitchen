@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.0 - 2026-07-07
+
+### Added
+
+- Added Garlic Butter Rice and Mushroom Vegetable Pepper Sauté as a paired Indo-Continental Fusion meal combination with reciprocal pairings, 2 people × 2 meals household bases, rice-cup scaling for the rice, and dry glossy sauté guidance without cornflour.
+
+### Changed
+
+- Changed site version to `v1.20.0`.
+
 ## 1.19.6 - 2026-07-07
 
 ### Added

@@ -1,0 +1,221 @@
+{
+  "name": "Garlic Butter Rice",
+  "slug": "garlic-butter-rice",
+  "category": "Rice",
+  "summary": "Mild garlic butter rice made with separately cooked sona masuri rice, lightly golden garlic, spring onion, pepper and optional herbs.",
+  "details": {
+    "Cuisine": "Indo-Continental Fusion",
+    "Status": "Testing"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Rice"],
+    "goesWellWith": ["mushroom-vegetable-pepper-saute"]
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Rice",
+      "items": [
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "sona masuri rice",
+          "preparation": "washed 2–3 times, soaked for 20 minutes, fully drained and air-dried in a strainer for 20–30 minutes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 1.75,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "rice-cooking-oil",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste; add more only if genuinely needed after cooking",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Garlic Butter Toss",
+      "items": [
+        {
+          "id": "butter",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "butter",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tossing-oil",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic",
+          "quantity": 20,
+          "unit": "g",
+          "ingredient": "garlic",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "spring-onion-whites",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "spring onion white portion",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "spring-onion-greens",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "spring onion greens",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "black-pepper-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "black pepper powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-flakes",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "red chilli flakes",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mixed-herbs-or-oregano",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "mixed herbs or oregano",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare the rice:",
+      "ingredientIds": ["rice"],
+      "after": "Wash 2–3 times, soak for 20 minutes, drain fully and air-dry in a strainer for 20–30 minutes."
+    },
+    {
+      "lead": "Measure for pressure cooking:",
+      "ingredientIds": ["water", "rice-cooking-oil", "salt"]
+    },
+    {
+      "lead": "Finely chop:",
+      "ingredientIds": ["garlic"]
+    },
+    {
+      "lead": "Separate and chop:",
+      "ingredientIds": ["spring-onion-whites", "spring-onion-greens"],
+      "after": "Keep the whites and greens separate because they are added at different stages."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Add to the pressure cooker:",
+      "ingredientIds": ["rice", "water", "rice-cooking-oil", "salt"],
+      "after": "Mix once."
+    },
+    {
+      "text": "Build pressure on the induction cooker."
+    },
+    {
+      "text": "Reduce to 300 W at 100°C and cook until the rice is slightly firm and suitable for later tossing. Keep the exact low-power duration as a testing note until the repeat trial confirms it."
+    },
+    {
+      "text": "Allow natural pressure release."
+    },
+    {
+      "text": "Open, fluff gently, spread on a wide plate and cool before tossing."
+    },
+    {
+      "lead": "In a wide kadai, heat:",
+      "ingredientIds": ["tossing-oil", "butter"]
+    },
+    {
+      "lead": "Add and sauté:",
+      "ingredientIds": ["garlic"],
+      "after": "Cook only until aromatic and lightly golden."
+    },
+    {
+      "lead": "Add and sauté:",
+      "ingredientIds": ["spring-onion-whites"],
+      "after": "Cook for 30–60 seconds."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["black-pepper-powder", "red-chilli-flakes", "mixed-herbs-or-oregano"]
+    },
+    {
+      "lead": "Add the cooled rice and toss gently:",
+      "ingredientIds": ["rice"],
+      "after": "Use medium-high heat for 2–3 minutes without breaking the grains. Taste and add more salt only if genuinely needed."
+    },
+    {
+      "lead": "Switch off the heat and finish with:",
+      "ingredientIds": ["spring-onion-greens"]
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with Mushroom Vegetable Pepper Sauté as a tested meal combination."
+  ],
+  "notes": [
+    "This is not a One Pot rice recipe because the rice is cooked separately, cooled and tossed.",
+    "Cooling the rice before tossing reduces sticking and breakage.",
+    "Draining and briefly air-drying soaked sona masuri rice helps produce firmer, more separated grains.",
+    "Keep garlic lightly golden; dark garlic may become bitter.",
+    "Keep the seasoning mild because the vegetable sauté is the stronger component.",
+    "Recipe remains in Testing status until the repeat trial confirms the rice water and induction duration."
+  ]
+}

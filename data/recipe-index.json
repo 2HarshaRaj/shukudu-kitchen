@@ -47,6 +47,29 @@
     ]
   },
   {
+    "name": "Garlic Butter Rice",
+    "slug": "garlic-butter-rice",
+    "category": "Rice",
+    "summary": "Mild garlic butter rice made with separately cooked sona masuri rice, lightly golden garlic, spring onion, pepper and optional herbs.",
+    "searchAliases": [
+      "garlic rice",
+      "butter garlic rice",
+      "garlic fried rice"
+    ]
+  },
+  {
+    "name": "Mushroom Vegetable Pepper Sauté",
+    "slug": "mushroom-vegetable-pepper-saute",
+    "category": "Side Dish",
+    "summary": "Dry glossy mushroom vegetable pepper sauté with crisp-tender mixed vegetables, butter, garlic, pepper, chilli vinegar and no cornflour.",
+    "searchAliases": [
+      "mixed vegetable saute",
+      "mushroom vegetable saute",
+      "pepper vegetables",
+      "sauteed vegetables"
+    ]
+  },
+  {
     "name": "Mango Rice",
     "slug": "mango-rice",
     "category": "Rice",
