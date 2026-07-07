@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.1 - 2026-07-07
+
+### Fixed
+
+- Corrected homepage link-preview metadata for better compatibility with clients such as WhatsApp.
+
+### Changed
+
+- Changed site version to `v1.20.1`.
+
 ## 1.20.0 - 2026-07-07
 
 ### Added
