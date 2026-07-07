@@ -72,6 +72,19 @@
     ]
   },
   {
+    "name": "Dal Khichdi (Pan-Mixed Version)",
+    "slug": "dal-khichdi-pan-mixed",
+    "category": "Rice",
+    "summary": "Soft pan-mixed dal khichdi made with moong dal, rice, frozen peas, onion-tomato masala, cumin, coriander and butter.",
+    "searchAliases": [
+      "khichdi",
+      "dal khichdi",
+      "moong dal khichdi",
+      "kichadi",
+      "kichdi"
+    ]
+  },
+  {
     "name": "Tomato Rasam",
     "slug": "tomato-rasam",
     "category": "Rasam",

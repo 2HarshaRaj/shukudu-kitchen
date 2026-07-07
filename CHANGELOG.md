@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.19.6 - 2026-07-07
+
+### Added
+
+- Added Dal Khichdi (Pan-Mixed Version) as a Draft rice-and-dal recipe with rice-cup-first scaling, pressure-cooked dal-rice base, and pan-mixed onion-tomato masala.
+
+### Changed
+
+- Changed site version to `v1.19.6`.
+
 ## 1.19.5 - 2026-06-24
 
 ### Changed

@@ -1,0 +1,370 @@
+{
+    "name": "Dal Khichdi (Pan-Mixed Version)",
+    "slug": "dal-khichdi-pan-mixed",
+    "category": "Rice",
+    "summary": "Soft pan-mixed dal khichdi made with moong dal, rice, frozen peas, onion-tomato masala, cumin, coriander and butter.",
+    "details": {
+        "Cuisine": "Indian",
+        "Status": "Draft"
+    },
+    "relationships": {
+        "mealTypes": [
+            "Lunch",
+            "Dinner"
+        ],
+        "dishTypes": [
+            "Rice",
+            "Dal"
+        ],
+        "goesWellWith": []
+    },
+    "householdBase": {
+        "people": 2,
+        "meals": 2,
+        "label": "2 people \u00d7 2 meals"
+    },
+    "scaling": {
+        "enabled": true,
+        "baseIngredient": "rice",
+        "baseQuantity": 1,
+        "baseUnit": "riceCup",
+        "baseScale": 1,
+        "inputMode": "options",
+        "options": [
+            0.5,
+            0.75,
+            1,
+            1.25,
+            1.5,
+            2
+        ]
+    },
+    "ingredients": [
+        {
+            "section": "Pressure Cook",
+            "items": [
+                {
+                    "id": "rice",
+                    "quantity": 1,
+                    "unit": "rice cup",
+                    "ingredient": "raw rice",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "moong-dal",
+                    "quantity": 0.5,
+                    "unit": "standard cup",
+                    "ingredient": "moong dal",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "frozen-green-peas",
+                    "quantity": 100,
+                    "unit": "g",
+                    "ingredient": "frozen green peas",
+                    "preparation": "75\u2013100 g based on preference",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "water-pressure",
+                    "quantity": 3.75,
+                    "unit": "rice cup",
+                    "ingredient": "water",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "turmeric-pressure",
+                    "quantity": 0.25,
+                    "unit": "teaspoon",
+                    "ingredient": "turmeric powder",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "salt-pressure",
+                    "displayText": "Salt, to taste",
+                    "ingredient": "salt",
+                    "scalable": false
+                },
+                {
+                    "id": "ghee-pressure",
+                    "quantity": 0.25,
+                    "unit": "teaspoon",
+                    "ingredient": "ghee",
+                    "preparation": "optional",
+                    "scalable": true,
+                    "roundingType": "exact"
+                }
+            ]
+        },
+        {
+            "section": "To Chop",
+            "items": [
+                {
+                    "id": "onion",
+                    "quantity": 150,
+                    "unit": "g",
+                    "ingredient": "onion",
+                    "preparation": "finely chopped",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "tomato",
+                    "quantity": 150,
+                    "unit": "g",
+                    "ingredient": "tomato",
+                    "preparation": "chopped",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "green-chilli",
+                    "quantity": 15,
+                    "unit": "g",
+                    "ingredient": "green chillies",
+                    "preparation": "chopped",
+                    "scalable": true,
+                    "roundingType": "exact",
+                    "scaleQuantities": {
+                        "0.5": 8,
+                        "0.75": 12,
+                        "1": 15,
+                        "1.25": 18,
+                        "1.5": 22,
+                        "2": 30
+                    }
+                },
+                {
+                    "id": "garlic",
+                    "quantity": 6,
+                    "unit": "g",
+                    "ingredient": "garlic",
+                    "preparation": "finely chopped",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "coriander-leaves",
+                    "quantity": 12,
+                    "unit": "g",
+                    "ingredient": "coriander leaves",
+                    "preparation": "chopped",
+                    "scalable": true,
+                    "roundingType": "exact",
+                    "scaleQuantities": {
+                        "0.5": 6,
+                        "0.75": 9,
+                        "1": 12,
+                        "1.25": 15,
+                        "1.5": 18,
+                        "2": 24
+                    }
+                }
+            ]
+        },
+        {
+            "section": "Tempering",
+            "items": [
+                {
+                    "id": "oil",
+                    "quantity": 2,
+                    "unit": "tablespoon",
+                    "ingredient": "oil",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "cumin-seeds",
+                    "quantity": 1,
+                    "unit": "teaspoon",
+                    "ingredient": "cumin seeds",
+                    "scalable": true,
+                    "roundingType": "exact"
+                }
+            ]
+        },
+        {
+            "section": "Spices & Seasoning",
+            "items": [
+                {
+                    "id": "jeera-powder",
+                    "quantity": 1.5,
+                    "unit": "teaspoon",
+                    "ingredient": "jeera powder",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "red-chilli-powder",
+                    "quantity": 0.75,
+                    "unit": "teaspoon",
+                    "ingredient": "red chilli powder",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "turmeric-seasoning",
+                    "quantity": 0.5,
+                    "unit": "teaspoon",
+                    "ingredient": "turmeric powder",
+                    "scalable": true,
+                    "roundingType": "exact"
+                },
+                {
+                    "id": "salt-final",
+                    "displayText": "Salt, to taste",
+                    "ingredient": "salt",
+                    "scalable": false
+                },
+                {
+                    "id": "butter",
+                    "quantity": 1,
+                    "unit": "teaspoon",
+                    "ingredient": "butter",
+                    "scalable": true,
+                    "roundingType": "exact"
+                }
+            ]
+        }
+    ],
+    "preparation": [
+        {
+            "lead": "Rinse:",
+            "ingredientIds": [
+                "rice",
+                "moong-dal"
+            ],
+            "after": "Rinse until the water runs mostly clear."
+        },
+        {
+            "lead": "Prepare before starting the kadai step:",
+            "ingredientIds": [
+                "onion",
+                "tomato",
+                "green-chilli",
+                "garlic",
+                "coriander-leaves"
+            ]
+        }
+    ],
+    "cookingMethod": [
+        {
+            "lead": "Add to the pressure cooker:",
+            "ingredientIds": [
+                "rice",
+                "moong-dal",
+                "frozen-green-peas",
+                "water-pressure",
+                "turmeric-pressure",
+                "salt-pressure",
+                "ghee-pressure"
+            ]
+        },
+        {
+            "text": "Cook on High/Boil until pressure builds."
+        },
+        {
+            "text": "Reduce to 300 W and cook for 10 minutes."
+        },
+        {
+            "text": "Allow natural pressure release."
+        },
+        {
+            "lead": "Heat in a kadai:",
+            "ingredientIds": [
+                "oil"
+            ]
+        },
+        {
+            "lead": "Add:",
+            "ingredientIds": [
+                "cumin-seeds"
+            ],
+            "after": "Let them splutter."
+        },
+        {
+            "lead": "Add:",
+            "ingredientIds": [
+                "garlic"
+            ],
+            "after": "Saut\u00e9 until lightly golden."
+        },
+        {
+            "lead": "Add:",
+            "ingredientIds": [
+                "onion"
+            ],
+            "after": "Saut\u00e9 until translucent."
+        },
+        {
+            "lead": "Add:",
+            "ingredientIds": [
+                "green-chilli"
+            ],
+            "after": "Saut\u00e9 for about 30 seconds."
+        },
+        {
+            "lead": "Add:",
+            "ingredientIds": [
+                "tomato"
+            ],
+            "after": "Cook until soft and mushy."
+        },
+        {
+            "lead": "Add:",
+            "ingredientIds": [
+                "jeera-powder",
+                "red-chilli-powder",
+                "turmeric-seasoning"
+            ],
+            "after": "Mix well and saut\u00e9 on low flame for about 30 seconds."
+        },
+        {
+            "lead": "Add the pressure-cooked mixture with:",
+            "ingredientIds": [
+                "rice",
+                "moong-dal",
+                "frozen-green-peas"
+            ]
+        },
+        {
+            "text": "Add hot water as required to adjust consistency."
+        },
+        {
+            "lead": "Adjust:",
+            "ingredientIds": [
+                "salt-final"
+            ],
+            "after": "Taste and balance the seasoning."
+        },
+        {
+            "text": "Simmer for 2\u20133 minutes."
+        },
+        {
+            "lead": "Finish with:",
+            "ingredientIds": [
+                "coriander-leaves",
+                "butter"
+            ],
+            "after": "Mix gently and switch off the heat."
+        }
+    ],
+    "servingSuggestions": [
+        "Serve hot with onion raita, papad or pickle.",
+        "Keep the khichdi slightly loose while switching off because it thickens as it rests."
+    ],
+    "notes": [
+        "This is a pan-mixed khichdi, not a one-pot masala khichdi, because the dal-rice mixture is pressure cooked first and then mixed into the kadai masala.",
+        "Base rice quantity is 1 rice cup raw rice.",
+        "Base dal quantity is 0.5 standard cup moong dal.",
+        "Base pressure-cooking water is 3.75 rice cups.",
+        "Frozen peas can be kept around 75\u2013100 g based on preference.",
+        "This recipe is currently Draft because it is being added before repeat testing.",
+        "If the final added hot water amount becomes consistent after testing, replace \u201cas required\u201d with an exact range."
+    ]
+}
