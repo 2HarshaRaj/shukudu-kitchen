@@ -12,6 +12,20 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.2 - 2026-07-08
+
+### Fixed
+
+- Switched the homepage social-preview image to a dedicated JPEG asset for improved WhatsApp link-preview compatibility.
+
+### Removed
+
+- Removed the temporary social-preview diagnostic page after testing was completed.
+
+### Changed
+
+- Changed site version to `v1.20.2`.
+
 ## 1.20.1 - 2026-07-07
 
 ### Fixed
