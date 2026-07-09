@@ -1,0 +1,337 @@
+{
+  "name": "Beetroot Palya",
+  "slug": "beetroot-palya",
+  "category": "Palya",
+  "summary": "Simple Karnataka-style beetroot palya with green chilli, tempering, jaggery, and either coconut powder or fresh grated coconut.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Palya"
+    ],
+    "goesWellWith": [
+      "tomato-rasam",
+      "curd-rice",
+      "rustic-pepper-jeera-tomato-rasam"
+    ]
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "beetroot",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Beetroot quantity",
+    "inputMin": 50,
+    "inputStep": 10,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Vegetable",
+      "items": [
+        {
+          "id": "beetroot",
+          "quantity": 3,
+          "countLabel": "medium beetroot",
+          "weightGrams": 500,
+          "ingredient": "beetroot",
+          "preparation": "peeled and cut into small even cubes",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – ⅛ teaspoon",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 3,
+          "countLabel": "green chilli",
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 2,
+            "1": 3,
+            "1.25": 3,
+            "1.5": 4,
+            "2": 5
+          }
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 8,
+            "0.75": 10,
+            "1": 12,
+            "1.25": 12,
+            "1.5": 15,
+            "2": 18
+          }
+        }
+      ]
+    },
+    {
+      "section": "Seasoning",
+      "items": [
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "jaggery-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "jaggery powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Finish",
+      "items": [
+        {
+          "id": "coconut-powder",
+          "quantity": 20,
+          "unit": "g",
+          "ingredient": "coconut powder",
+          "preparation": "choose this or fresh grated coconut",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "fresh-coconut",
+          "quantity": 30,
+          "unit": "g",
+          "ingredient": "fresh coconut",
+          "preparation": "grated; alternative to coconut powder",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "beetroot"
+      ],
+      "after": "Peel it and cut it into small, evenly sized cubes."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "green-chillies"
+      ],
+      "after": "Slit them."
+    },
+    {
+      "lead": "Keep ready:",
+      "ingredientIds": [
+        "curry-leaves",
+        "mustard-seeds",
+        "urad-dal",
+        "chana-dal",
+        "hing"
+      ]
+    },
+    {
+      "lead": "Keep either option ready:",
+      "ingredientIds": [
+        "coconut-powder",
+        "fresh-coconut"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat a kadai and add:",
+      "ingredientIds": [
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ],
+      "after": "Allow them to splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "urad-dal",
+        "chana-dal"
+      ],
+      "after": "Fry until light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "hing",
+        "green-chillies",
+        "curry-leaves"
+      ],
+      "after": "Sauté for 20–30 seconds."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "beetroot",
+        "turmeric-powder",
+        "salt",
+        "jaggery-powder"
+      ],
+      "after": "Mix thoroughly and cook for 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "water"
+      ],
+      "after": "Cover and cook over low-medium heat for 15–20 minutes, stirring every 4–5 minutes, until the beetroot is tender but still holds its shape."
+    },
+    {
+      "text": "Remove the lid and cook for another 3–5 minutes until excess moisture evaporates."
+    },
+    {
+      "lead": "Add either one:",
+      "ingredientIds": [
+        "coconut-powder",
+        "fresh-coconut"
+      ],
+      "after": "Use one option, not both. Mix and cook for 1 minute."
+    },
+    {
+      "text": "Switch off the heat and allow the palya to rest for 5 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with hot rice and Tomato Rasam.",
+    "Serve with hot rice and Rustic Pepper Jeera Tomato Rasam.",
+    "Serve as a side dish with Curd Rice or sambar rice.",
+    "Can also be served with chapati."
+  ],
+  "notes": [
+    "Cut the beetroot into small, uniform cubes for even cooking.",
+    "Do not add excessive water because beetroot releases some moisture while cooking.",
+    "Jaggery balances the earthy beetroot flavour and should not make the palya noticeably sweet.",
+    "Use either coconut powder or fresh grated coconut, not both.",
+    "Coconut powder gives a slightly drier finish than fresh coconut.",
+    "Enter the exact beetroot weight when it differs from the 500 g base recipe; the website calculates the scale automatically."
+  ]
+}
