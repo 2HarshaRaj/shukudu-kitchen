@@ -143,6 +143,18 @@
     ]
   },
   {
+    "name": "Beetroot Palya",
+    "slug": "beetroot-palya",
+    "category": "Palya",
+    "summary": "Simple Karnataka-style beetroot palya with green chilli, tempering, jaggery, and either coconut powder or fresh grated coconut.",
+    "searchAliases": [
+      "beetroot poriyal",
+      "beetroot stir fry",
+      "beetroot sabzi",
+      "beet stir fry"
+    ]
+  },
+  {
     "name": "Beans Palya",
     "slug": "beans-palya",
     "category": "Palya",

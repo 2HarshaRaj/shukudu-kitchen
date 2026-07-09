@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.3 - 2026-07-09
+
+### Added
+
+- Added Beetroot Palya as a Draft Karnataka-style 500 g palya with exact beetroot quantity scaling, mild tempering, jaggery balance, and a choice of coconut powder or fresh grated coconut.
+
+### Changed
+
+- Added reciprocal Beetroot Palya pairings to Tomato Rasam, Curd Rice, and Rustic Pepper Jeera Tomato Rasam.
+- Changed site version to `v1.20.3`.
+
 ## 1.20.2 - 2026-07-08
 
 ### Fixed
