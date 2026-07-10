@@ -51,7 +51,7 @@
           "quantity": 500,
           "unit": "g",
           "ingredient": "alasande kayi / cowpea long beans",
-          "preparation": "trimmed and cut into small 1–1.5 cm pieces",
+          "preparation": "trimmed and cut across into approximately 1 cm pieces",
           "scalable": true,
           "roundingType": "exact"
         }
@@ -129,7 +129,7 @@
         {
           "id": "fresh-grated-coconut",
           "quantity": 0.5,
-          "unit": "cup",
+          "unit": "standard cup",
           "ingredient": "fresh grated coconut",
           "preparation": "alternative to coconut powder",
           "scalable": true,
@@ -154,7 +154,7 @@
         {
           "id": "grinding-water",
           "quantity": 0.25,
-          "unit": "cup",
+          "unit": "standard cup",
           "ingredient": "water",
           "preparation": "for coarse grinding",
           "scalable": true,
@@ -247,7 +247,7 @@
         {
           "id": "cooking-water",
           "quantity": 0.25,
-          "unit": "cup",
+          "unit": "standard cup",
           "ingredient": "water",
           "preparation": "for cooking the beans",
           "scalable": true,
@@ -262,7 +262,7 @@
       "ingredientIds": [
         "alasande-kayi"
       ],
-      "after": "Wash, trim, and cut into small pieces."
+      "after": "Wash, trim both ends, and cut across into approximately 1 cm pieces."
     },
     {
       "lead": "Keep the roasting ingredients ready:",
