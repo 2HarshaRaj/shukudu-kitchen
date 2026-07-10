@@ -2,10 +2,6 @@
 
 Recipes refined through real cooking.
 
-## Current Version
-
-`v1.19.6`
-
 ## Overview
 
 Shukudu Kitchen is a lightweight public recipe website built with HTML, CSS, JavaScript, and JSON. It is designed as a practical cooking-ready cookbook rather than a static archive of copied recipes.

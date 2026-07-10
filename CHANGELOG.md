@@ -12,6 +12,20 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.4 - 2026-07-10
+
+### Added
+
+- Added Alasande Kayi Palya as a Draft Sringeri-side inspired 500 g alasande kayi palya with exact vegetable quantity scaling, a reddish-brown roasted coconut masala, tamarind, jaggery, and semi-moist rice-mixing guidance.
+
+### Removed
+
+- Removed stale manually maintained current-version labels from README.md and the feature roadmap because site-version.js is the authoritative visible website version and CHANGELOG.md is the official release history.
+
+### Changed
+
+- Changed site version to `v1.20.4`.
+
 ## 1.20.3 - 2026-07-09
 
 ### Added
