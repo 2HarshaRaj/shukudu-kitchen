@@ -1,0 +1,412 @@
+{
+  "name": "Alasande Kayi Palya",
+  "slug": "alasande-kayi-palya",
+  "category": "Palya",
+  "summary": "Sringeri-side inspired alasande kayi palya with a reddish-brown roasted coconut masala, tamarind, and jaggery, cooked semi-moist for mixing with plain rice.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka · Malnad",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Palya"
+    ],
+    "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "alasande-kayi",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Alasande kayi quantity",
+    "inputMin": 50,
+    "inputStep": 10,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Main vegetable",
+      "items": [
+        {
+          "id": "alasande-kayi",
+          "quantity": 500,
+          "unit": "g",
+          "ingredient": "alasande kayi / cowpea long beans",
+          "preparation": "trimmed and cut into small 1–1.5 cm pieces",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Roasted masala",
+      "items": [
+        {
+          "id": "roasting-oil",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "preparation": "for roasting",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dry-red-chillies",
+          "quantity": 4,
+          "countLabel": "dry red chilli",
+          "ingredient": "dry red chillies",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 2,
+            "0.75": 3,
+            "1": 4,
+            "1.25": 4,
+            "1.5": 5,
+            "2": 6
+          }
+        },
+        {
+          "id": "coriander-seeds",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "coriander seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "coconut-powder",
+          "quantity": 4,
+          "unit": "tablespoon",
+          "ingredient": "coconut powder",
+          "preparation": "choose this or fresh grated coconut",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "fresh-grated-coconut",
+          "quantity": 0.5,
+          "unit": "cup",
+          "ingredient": "fresh grated coconut",
+          "preparation": "alternative to coconut powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tamarind-paste",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "tamarind paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "jaggery-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "jaggery powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "grinding-water",
+          "quantity": 0.25,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for coarse grinding",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering and cooking",
+      "items": [
+        {
+          "id": "tempering-oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 8,
+            "0.75": 10,
+            "1": 12,
+            "1.25": 12,
+            "1.5": 15,
+            "2": 18
+          }
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – ⅛ teaspoon",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1.25,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cooking-water",
+          "quantity": 0.25,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for cooking the beans",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "alasande-kayi"
+      ],
+      "after": "Wash, trim, and cut into small pieces."
+    },
+    {
+      "lead": "Keep the roasting ingredients ready:",
+      "ingredientIds": [
+        "roasting-oil",
+        "dry-red-chillies",
+        "coriander-seeds",
+        "cumin-seeds",
+        "masala-chana-dal"
+      ]
+    },
+    {
+      "lead": "Keep either coconut option ready:",
+      "ingredientIds": [
+        "coconut-powder",
+        "fresh-grated-coconut"
+      ],
+      "after": "Use one option, not both."
+    },
+    {
+      "lead": "Keep ready for grinding:",
+      "ingredientIds": [
+        "tamarind-paste",
+        "jaggery-powder",
+        "grinding-water"
+      ]
+    },
+    {
+      "lead": "Keep the tempering and cooking ingredients ready:",
+      "ingredientIds": [
+        "tempering-oil",
+        "mustard-seeds",
+        "urad-dal",
+        "curry-leaves",
+        "hing",
+        "turmeric-powder",
+        "salt",
+        "cooking-water"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat a small pan and add:",
+      "ingredientIds": [
+        "roasting-oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "dry-red-chillies",
+        "coriander-seeds",
+        "cumin-seeds",
+        "masala-chana-dal"
+      ],
+      "after": "Roast over low heat for 2–3 minutes until aromatic and the dal becomes lightly golden."
+    },
+    {
+      "lead": "Add either one:",
+      "ingredientIds": [
+        "coconut-powder",
+        "fresh-grated-coconut"
+      ],
+      "after": "Use one option, not both. Roast briefly for 30–60 seconds until aromatic; do not burn it."
+    },
+    {
+      "text": "Cool the roasted mixture slightly."
+    },
+    {
+      "lead": "Coarsely grind the roasted mixture with:",
+      "ingredientIds": [
+        "tamarind-paste",
+        "jaggery-powder",
+        "grinding-water"
+      ],
+      "after": "Keep the masala coarse and thick, not a smooth watery paste."
+    },
+    {
+      "lead": "In a kadai, heat:",
+      "ingredientIds": [
+        "tempering-oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ],
+      "after": "Allow them to splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "urad-dal"
+      ],
+      "after": "Fry until lightly golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "curry-leaves",
+        "hing"
+      ],
+      "after": "Stir briefly."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "alasande-kayi",
+        "turmeric-powder",
+        "salt",
+        "cooking-water"
+      ],
+      "after": "Mix, cover, and cook over low-medium heat for 12–16 minutes, stirring every 3–4 minutes, until tender rather than very crunchy."
+    },
+    {
+      "text": "If any excess cooking water remains, cook uncovered briefly until the pan is moist but not watery."
+    },
+    {
+      "text": "Add the coarse ground masala."
+    },
+    {
+      "text": "Mix thoroughly and cook uncovered over low heat for 3–5 minutes until the masala coats the beans and the raw moisture reduces."
+    },
+    {
+      "text": "Keep the final palya semi-moist and masala-coated so it can be mixed with plain white rice; do not make it watery like a curry or completely dry like an ordinary beans palya."
+    },
+    {
+      "text": "Switch off the heat and rest for about 5 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Mix with hot plain white rice.",
+    "Serve as a masala palya alongside a regular Karnataka meal."
+  ],
+  "notes": [
+    "Shopping apps may call the vegetable “Beans Lobia”.",
+    "This recipe uses the long green cowpea pod, not regular French beans and not dried lobia or black-eyed peas.",
+    "This is a reconstructed Sringeri-side inspired recipe and needs a cooking trial.",
+    "The expected result is reddish-brown, coarse-masala-coated, and semi-moist.",
+    "Use either coconut powder or fresh grated coconut, not both.",
+    "Coconut powder is measured by spoon or cup volume, not grams.",
+    "Sesame is intentionally not included in the first trial.",
+    "Enter the exact vegetable weight when it differs from the 500 g base recipe; the website calculates the scale automatically."
+  ]
+}
