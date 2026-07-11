@@ -2,7 +2,7 @@
   "name": "Mushroom Vegetable Pepper Gravy",
   "slug": "mushroom-vegetable-pepper-saute",
   "category": "Side Dish",
-  "summary": "Light garlic-pepper mushroom and mixed vegetable gravy with crisp-tender vegetables, butter, soy sauce and chilli vinegar, paired with Garlic Butter Rice.",
+  "summary": "Light garlic-pepper mushroom and mixed vegetable gravy with crisp-tender vegetables, butter, garlic, pepper and chilli vinegar, paired with Garlic Butter Rice.",
   "details": {
     "Cuisine": "Indo-Continental Fusion",
     "Status": "Testing"
@@ -205,11 +205,20 @@
           "roundingType": "exact"
         },
         {
-          "id": "hot-water",
-          "quantity": 200,
+          "id": "gravy-water",
+          "quantity": 150,
           "unit": "ml",
           "ingredient": "hot water",
-          "preparation": "divided",
+          "preparation": "for starting the gravy",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "reserved-hot-water",
+          "quantity": 50,
+          "unit": "ml",
+          "ingredient": "hot water",
+          "preparation": "use only as needed to loosen the gravy",
           "scalable": true,
           "roundingType": "exact"
         }
@@ -292,7 +301,8 @@
         "soy-sauce",
         "chilli-vinegar",
         "salt",
-        "hot-water"
+        "gravy-water",
+        "reserved-hot-water"
       ]
     }
   ],
@@ -349,13 +359,11 @@
       "after": "Mix until evenly distributed."
     },
     {
-      "lead": "Add 150 ml of the hot water first:",
+      "lead": "Add:",
       "ingredientIds": [
-        "hot-water"
-      ]
-    },
-    {
-      "text": "Bring to a gentle simmer for 1–2 minutes."
+        "gravy-water"
+      ],
+      "after": "Bring to a gentle simmer for 1–2 minutes."
     },
     {
       "lead": "Stir the prepared cornflour slurry again:",
@@ -371,10 +379,11 @@
       "text": "Cook for only 30–60 seconds, until the liquid becomes a light, glossy and pourable gravy."
     },
     {
-      "lead": "Add the remaining hot water, up to 50 ml, only if required to loosen the gravy:",
+      "lead": "Add only if required to loosen the gravy:",
       "ingredientIds": [
-        "hot-water"
-      ]
+        "reserved-hot-water"
+      ],
+      "after": "Add gradually until the gravy is light and pourable."
     },
     {
       "lead": "Add during the final 20–30 seconds:",
