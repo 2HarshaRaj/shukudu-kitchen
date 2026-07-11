@@ -139,6 +139,29 @@
           "roundingType": "exact"
         }
       ]
+    },
+    {
+      "section": "Optional Extra Garlic Chips — Use-Up Option",
+      "items": [
+        {
+          "id": "extra-garlic-for-chips",
+          "quantity": 30,
+          "unit": "g",
+          "ingredient": "extra garlic",
+          "preparation": "thinly sliced; optional fixed use-up amount",
+          "scalable": false,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic-chip-oil",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "preparation": "for frying the optional garlic chips",
+          "scalable": false,
+          "roundingType": "exact"
+        }
+      ]
     }
   ],
   "preparation": [
@@ -159,6 +182,11 @@
       "lead": "Separate and chop:",
       "ingredientIds": ["spring-onion-whites", "spring-onion-greens"],
       "after": "Keep the whites and greens separate because they are added at different stages."
+    },
+    {
+      "lead": "For the optional garlic chips, thinly slice:",
+      "ingredientIds": ["extra-garlic-for-chips"],
+      "after": "Keep the slices reasonably even so they brown at the same rate. Skip this step when not using the extra-garlic option."
     }
   ],
   "cookingMethod": [
@@ -178,6 +206,19 @@
     },
     {
       "text": "Open, fluff gently, spread on a wide plate and cool before tossing."
+    },
+    {
+      "lead": "For the optional garlic chips, heat in a small pan over low-medium heat:",
+      "ingredientIds": ["garlic-chip-oil"],
+      "after": "Skip this and the next chip steps when not using the optional extra garlic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["extra-garlic-for-chips"],
+      "after": "Fry slowly, stirring frequently, until the slices become pale golden."
+    },
+    {
+      "text": "Remove the garlic chips immediately to a plate or absorbent paper. Do not wait for them to become dark brown because they continue colouring after removal and may turn bitter."
     },
     {
       "lead": "In a wide kadai, heat:",
@@ -205,6 +246,9 @@
     {
       "lead": "Switch off the heat and finish with:",
       "ingredientIds": ["spring-onion-greens"]
+    },
+    {
+      "text": "Optional finish: sprinkle the prepared garlic chips over the Garlic Butter Rice, or divide them between the rice and Mushroom Vegetable Pepper Gravy while serving."
     }
   ],
   "servingSuggestions": [
@@ -216,6 +260,13 @@
     "Draining and briefly air-drying soaked sona masuri rice helps produce firmer, more separated grains.",
     "Keep garlic lightly golden; dark garlic may become bitter.",
     "Keep the seasoning mild because the vegetable gravy is the stronger component.",
-    "Recipe remains in Testing status until the repeat trial confirms the rice water and induction duration."
+    "Recipe remains in Testing status until the repeat trial confirms the rice water and induction duration.",
+    "The standard Garlic Butter Rice garlic remains 20 g at 1× and scales normally.",
+    "At 1.25×, the standard rice recipe uses 25 g garlic.",
+    "The optional extra 30 g garlic-chip amount is fixed and does not scale.",
+    "The optional chips are intended for using leftover peeled garlic without making the main rice excessively garlicky.",
+    "Do not add the entire optional 30 g directly to the Garlic Butter Toss.",
+    "Keep the optional garlic chips pale golden because dark garlic becomes bitter.",
+    "Use-up example: Mushroom Vegetable Pepper Gravy at 1× uses 45 g garlic, Garlic Butter Rice at 1.25× uses 25 g garlic, and the optional chips use the remaining 30 g from a total of 100 g peeled garlic."
   ]
 }
