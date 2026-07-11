@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.6 - 2026-07-11
+
+### Added
+
+- Added an optional fixed 30 g garlic-chip use-up option to Garlic Butter Rice.
+
+### Changed
+
+- Preserved the standard scalable garlic quantity for Garlic Butter Rice while keeping the optional chips separate.
+- Changed site version to `v1.20.6`.
+
 ## 1.20.5 - 2026-07-11
 
 ### Changed
