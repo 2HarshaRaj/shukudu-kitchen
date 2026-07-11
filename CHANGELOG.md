@@ -12,6 +12,14 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.5 - 2026-07-11
+
+### Changed
+
+- Increased the Mushroom Vegetable Pepper recipe quantity for the 2 people × 2 meals household base while keeping mushroom at 200 g in the revised stored 1× recipe.
+- Converted the dry sauté into a light garlic-pepper gravy and updated the displayed recipe name to Mushroom Vegetable Pepper Gravy while preserving the published `mushroom-vegetable-pepper-saute` slug.
+- Changed site version to `v1.20.5`.
+
 ## 1.20.4 - 2026-07-10
 
 ### Added

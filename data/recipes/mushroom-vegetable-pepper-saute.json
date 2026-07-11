@@ -1,16 +1,24 @@
 {
-  "name": "Mushroom Vegetable Pepper Sauté",
+  "name": "Mushroom Vegetable Pepper Gravy",
   "slug": "mushroom-vegetable-pepper-saute",
   "category": "Side Dish",
-  "summary": "Dry glossy mushroom vegetable pepper sauté with crisp-tender mixed vegetables, butter, garlic, pepper, chilli vinegar and no cornflour.",
+  "summary": "Light garlic-pepper mushroom and mixed vegetable gravy with crisp-tender vegetables, butter, garlic, pepper and chilli vinegar, paired with Garlic Butter Rice.",
   "details": {
     "Cuisine": "Indo-Continental Fusion",
     "Status": "Testing"
   },
   "relationships": {
-    "mealTypes": ["Lunch", "Dinner", "Side"],
-    "dishTypes": ["Side Dish"],
-    "goesWellWith": ["garlic-butter-rice"]
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Side Dish"
+    ],
+    "goesWellWith": [
+      "garlic-butter-rice"
+    ]
   },
   "householdBase": {
     "people": 2,
@@ -21,76 +29,392 @@
     "enabled": true,
     "baseScale": 1,
     "inputMode": "options",
-    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
   },
   "ingredients": [
     {
       "section": "Vegetables",
       "items": [
-        { "id": "potato", "quantity": 80, "unit": "g", "ingredient": "potato", "preparation": "cut into small cubes", "scalable": true, "roundingType": "exact" },
-        { "id": "beans", "quantity": 40, "unit": "g", "ingredient": "beans", "preparation": "cut into thin diagonal slices", "scalable": true, "roundingType": "exact" },
-        { "id": "carrot", "quantity": 50, "unit": "g", "ingredient": "carrot", "preparation": "cut into thin strips", "scalable": true, "roundingType": "exact" },
-        { "id": "capsicum", "quantity": 90, "unit": "g", "ingredient": "mixed green, red and yellow capsicum", "preparation": "cut into medium strips", "scalable": true, "roundingType": "exact" },
-        { "id": "button-mushroom", "quantity": 200, "unit": "g", "ingredient": "button mushroom", "preparation": "cut into thick slices", "scalable": true, "roundingType": "exact" },
-        { "id": "baby-corn", "quantity": 50, "unit": "g", "ingredient": "baby corn", "preparation": "cut diagonally", "scalable": true, "roundingType": "exact" },
-        { "id": "broccoli", "quantity": 80, "unit": "g", "ingredient": "broccoli", "preparation": "cut into small florets and thin tender-stem slices", "scalable": true, "roundingType": "exact" },
-        { "id": "frozen-sweet-corn", "quantity": 60, "unit": "g", "ingredient": "frozen sweet corn", "scalable": true, "roundingType": "exact" },
-        { "id": "onion", "quantity": 90, "unit": "g", "ingredient": "onion", "preparation": "separated into petals", "scalable": true, "roundingType": "exact" },
-        { "id": "garlic", "quantity": 30, "unit": "g", "ingredient": "garlic", "preparation": "finely chopped", "scalable": true, "roundingType": "exact" },
-        { "id": "spring-onion-greens", "quantity": 2, "unit": "tablespoon", "ingredient": "spring onion greens", "preparation": "chopped", "scalable": true, "roundingType": "exact" }
+        {
+          "id": "potato",
+          "quantity": 120,
+          "unit": "g",
+          "ingredient": "potato",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut into small cubes"
+        },
+        {
+          "id": "beans",
+          "quantity": 60,
+          "unit": "g",
+          "ingredient": "beans",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut into thin diagonal slices"
+        },
+        {
+          "id": "carrot",
+          "quantity": 75,
+          "unit": "g",
+          "ingredient": "carrot",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut into thin strips"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 135,
+          "unit": "g",
+          "ingredient": "mixed green, red and yellow capsicum",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut into medium strips"
+        },
+        {
+          "id": "button-mushroom",
+          "quantity": 200,
+          "unit": "g",
+          "ingredient": "button mushroom",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut into thick slices"
+        },
+        {
+          "id": "baby-corn",
+          "quantity": 75,
+          "unit": "g",
+          "ingredient": "baby corn",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut diagonally"
+        },
+        {
+          "id": "broccoli",
+          "quantity": 120,
+          "unit": "g",
+          "ingredient": "broccoli",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "cut into small florets and thin tender-stem slices"
+        },
+        {
+          "id": "frozen-sweet-corn",
+          "quantity": 90,
+          "unit": "g",
+          "ingredient": "frozen sweet corn",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 135,
+          "unit": "g",
+          "ingredient": "onion",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "separated into petals"
+        },
+        {
+          "id": "garlic",
+          "quantity": 45,
+          "unit": "g",
+          "ingredient": "garlic",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "finely chopped"
+        },
+        {
+          "id": "spring-onion-greens",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "ingredient": "spring onion greens",
+          "scalable": true,
+          "roundingType": "exact",
+          "preparation": "chopped"
+        }
       ]
     },
     {
       "section": "Cooking and Seasoning",
       "items": [
-        { "id": "butter", "quantity": 1.5, "unit": "tablespoon", "ingredient": "butter", "scalable": true, "roundingType": "exact" },
-        { "id": "oil", "quantity": 1, "unit": "tablespoon", "ingredient": "oil", "scalable": true, "roundingType": "exact" },
-        { "id": "black-pepper-powder", "quantity": 0.75, "unit": "teaspoon", "ingredient": "black pepper powder", "scalable": true, "roundingType": "exact" },
-        { "id": "red-chilli-flakes", "quantity": 0.25, "unit": "teaspoon", "ingredient": "red chilli flakes", "preparation": "optional", "scalable": true, "roundingType": "exact" },
-        { "id": "soy-sauce", "quantity": 0.75, "unit": "teaspoon", "ingredient": "soy sauce", "preparation": "optional", "scalable": true, "roundingType": "exact" },
-        { "id": "chilli-vinegar", "quantity": 1, "unit": "teaspoon", "ingredient": "chilli vinegar", "scalable": true, "roundingType": "exact" },
-        { "id": "salt", "quantity": 0.5, "unit": "teaspoon", "ingredient": "salt", "preparation": "adjust after tasting", "scalable": true, "roundingType": "exact" },
-        { "id": "hot-water", "quantity": 5, "unit": "tablespoon", "ingredient": "hot water", "preparation": "3–5 tablespoons, only if required", "scalable": true, "roundingType": "exact" }
+        {
+          "id": "butter",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "butter",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "oil",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "black-pepper-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "black pepper powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-flakes",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "red chilli flakes",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "soy-sauce",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "soy sauce",
+          "preparation": "optional",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "chilli-vinegar",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "chilli vinegar",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust after tasting",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "gravy-water",
+          "quantity": 150,
+          "unit": "ml",
+          "ingredient": "hot water",
+          "preparation": "for starting the gravy",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "reserved-hot-water",
+          "quantity": 50,
+          "unit": "ml",
+          "ingredient": "hot water",
+          "preparation": "use only as needed to loosen the gravy",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Cornflour Slurry",
+      "items": [
+        {
+          "id": "cornflour",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "cornflour",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "slurry-water",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "ingredient": "cold water",
+          "preparation": "for the cornflour slurry",
+          "scalable": true,
+          "roundingType": "exact"
+        }
       ]
     }
   ],
   "preparation": [
-    { "lead": "Soak, drain and dry:", "ingredientIds": ["potato"], "after": "Keep the potato cubes in water for 10–15 minutes, then drain and dry." },
-    { "lead": "Briefly rinse and dry:", "ingredientIds": ["button-mushroom"], "after": "Do not soak the mushrooms; dry well before slicing." },
-    { "lead": "Blanch briefly:", "ingredientIds": ["broccoli"], "after": "Place in hot salted water for 2 minutes and drain." },
-    { "lead": "Prepare the remaining vegetables:", "ingredientIds": ["beans", "carrot", "capsicum", "baby-corn", "frozen-sweet-corn", "onion", "garlic", "spring-onion-greens"], "after": "Use the cuts recorded in the ingredient list and keep the vegetables reasonably dry." },
-    { "lead": "Measure the cooking and seasoning ingredients:", "ingredientIds": ["butter", "oil", "black-pepper-powder", "red-chilli-flakes", "soy-sauce", "chilli-vinegar", "salt", "hot-water"] }
+    {
+      "lead": "Soak, drain and dry:",
+      "ingredientIds": [
+        "potato"
+      ],
+      "after": "Keep the potato cubes in water for 10–15 minutes, then drain and dry."
+    },
+    {
+      "lead": "Briefly rinse and dry:",
+      "ingredientIds": [
+        "button-mushroom"
+      ],
+      "after": "Do not soak the mushrooms; dry well before slicing."
+    },
+    {
+      "lead": "Blanch briefly:",
+      "ingredientIds": [
+        "broccoli"
+      ],
+      "after": "Place in hot salted water for 2 minutes and drain."
+    },
+    {
+      "lead": "Prepare the remaining vegetables:",
+      "ingredientIds": [
+        "beans",
+        "carrot",
+        "capsicum",
+        "baby-corn",
+        "frozen-sweet-corn",
+        "onion",
+        "garlic",
+        "spring-onion-greens"
+      ],
+      "after": "Use the cuts recorded in the ingredient list and keep the vegetables reasonably dry."
+    },
+    {
+      "lead": "Mix the slurry until completely smooth and keep aside:",
+      "ingredientIds": [
+        "cornflour",
+        "slurry-water"
+      ],
+      "after": "Stir again immediately before adding because cornflour settles."
+    },
+    {
+      "lead": "Measure the cooking and seasoning ingredients:",
+      "ingredientIds": [
+        "butter",
+        "oil",
+        "black-pepper-powder",
+        "red-chilli-flakes",
+        "soy-sauce",
+        "chilli-vinegar",
+        "salt",
+        "gravy-water",
+        "reserved-hot-water"
+      ]
+    }
   ],
   "cookingMethod": [
-    { "lead": "Heat in a wide kadai on medium-high heat:", "ingredientIds": ["oil", "butter"], "after": "Do not cover the kadai at any point." },
-    { "lead": "Add and sauté:", "ingredientIds": ["garlic"], "after": "Cook for 20–30 seconds until aromatic." },
-    { "lead": "Add:", "ingredientIds": ["potato", "beans", "carrot", "broccoli"] },
-    { "text": "Stir-fry for 4–5 minutes." },
-    { "lead": "Add:", "ingredientIds": ["baby-corn", "onion", "button-mushroom"] },
-    { "text": "Cook on high heat for 4–5 minutes so the mushroom releases moisture without the vegetables boiling." },
-    { "lead": "Add:", "ingredientIds": ["capsicum", "frozen-sweet-corn"] },
-    { "text": "Stir-fry for around 2 minutes." },
-    { "lead": "Add:", "ingredientIds": ["black-pepper-powder", "red-chilli-flakes", "soy-sauce", "salt"] },
-    { "text": "Mix and assess the moisture." },
-    { "lead": "Add only if the sauté is too dry:", "ingredientIds": ["hot-water"], "after": "Use 3–5 tablespoons as needed; do not automatically add the full amount." },
-    { "text": "Toss until the vegetables have a light glossy coating." },
-    { "lead": "Add during the final 20–30 seconds:", "ingredientIds": ["chilli-vinegar"] },
-    { "text": "Switch off the heat." },
-    { "lead": "Add and mix:", "ingredientIds": ["spring-onion-greens"] }
+    {
+      "lead": "Heat in the widest available kadai on medium-high heat:",
+      "ingredientIds": [
+        "oil",
+        "butter"
+      ]
+    },
+    {
+      "lead": "Add and sauté:",
+      "ingredientIds": [
+        "garlic"
+      ],
+      "after": "Cook for 20–30 seconds until aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "potato",
+        "beans",
+        "carrot",
+        "broccoli"
+      ],
+      "after": "Stir-fry for approximately 5–6 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "baby-corn",
+        "onion",
+        "button-mushroom"
+      ],
+      "after": "Cook on high heat for approximately 5–6 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "capsicum",
+        "frozen-sweet-corn"
+      ],
+      "after": "Stir-fry for approximately 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "black-pepper-powder",
+        "red-chilli-flakes",
+        "soy-sauce",
+        "salt"
+      ],
+      "after": "Mix until evenly distributed."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "gravy-water"
+      ],
+      "after": "Bring to a gentle simmer for 1–2 minutes."
+    },
+    {
+      "lead": "Stir the prepared cornflour slurry again:",
+      "ingredientIds": [
+        "cornflour",
+        "slurry-water"
+      ]
+    },
+    {
+      "text": "Add the slurry gradually while stirring continuously."
+    },
+    {
+      "text": "Cook for only 30–60 seconds, until the liquid becomes a light, glossy and pourable gravy."
+    },
+    {
+      "lead": "Add only if required to loosen the gravy:",
+      "ingredientIds": [
+        "reserved-hot-water"
+      ],
+      "after": "Add gradually until the gravy is light and pourable."
+    },
+    {
+      "lead": "Add during the final 20–30 seconds:",
+      "ingredientIds": [
+        "chilli-vinegar"
+      ]
+    },
+    {
+      "text": "Switch off the heat."
+    },
+    {
+      "lead": "Add and mix gently:",
+      "ingredientIds": [
+        "spring-onion-greens"
+      ]
+    }
   ],
   "servingSuggestions": [
     "Serve with Garlic Butter Rice as a tested meal combination."
   ],
   "notes": [
-    "This is a dry glossy sauté, not a gravy.",
-    "Do not add cornflour.",
-    "Add hot water only when needed; do not automatically add the full amount.",
-    "Use the widest kadai available.",
-    "Do not cover the pan.",
-    "Keep vegetables slightly crunchy.",
-    "Mushroom supplies natural moisture and savoury body.",
-    "Add capsicum late so it retains colour and bite.",
-    "Chilli vinegar should brighten the dish without dominating it.",
-    "Recipe remains in Testing status until the repeat trial confirms the final moisture and timing."
+    "This revised version intentionally has a light garlic-pepper gravy, not a dry sauté.",
+    "The finished gravy should be glossy, pourable and suitable for spooning over or beside Garlic Butter Rice.",
+    "Keep the gravy lightly bodied and not watery, but do not make it thick like Manchurian gravy.",
+    "Cornflour is used only for light body; add the slurry gradually because mushroom moisture varies.",
+    "Use the final reserved hot water to adjust consistency only if the gravy needs loosening.",
+    "Use the widest available kadai. If the vegetables are crowded and start steaming heavily, stir-fry them in two batches before combining them for the gravy.",
+    "Do not reduce the recipe quantity merely to fit a smaller pan.",
+    "Keep the vegetables distinct and slightly crisp rather than soft.",
+    "Mushroom remains 200 g in the revised stored 1× recipe and continues to scale normally when a website recipe scale other than 1× is selected.",
+    "The revised 1× recipe is intended for 2 people × 2 meals.",
+    "Recipe remains in Testing status until the new quantity and gravy consistency are kitchen-tested."
   ]
 }
