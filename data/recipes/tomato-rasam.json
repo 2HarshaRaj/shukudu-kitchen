@@ -10,7 +10,7 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Rasam"],
-    "goesWellWith": ["beans-palya", "balekai-palya", "pumpkin-palya", "fusion-mixed-vegetable-palya", "beetroot-palya"]
+    "goesWellWith": ["beans-palya", "balekai-palya", "pumpkin-palya", "fusion-mixed-vegetable-palya", "beetroot-palya", "bendekayi-palya"]
   },
   "householdBase": {
     "people": 2,

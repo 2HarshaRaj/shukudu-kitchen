@@ -1,0 +1,342 @@
+{
+  "name": "Bendekayi Palya",
+  "slug": "bendekayi-palya",
+  "category": "Palya",
+  "summary": "Dry Karnataka-style bendekayi palya with onion, tomato, green chilli, mild spices, and coconut powder, cooked uncovered to reduce stickiness.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Palya"
+    ],
+    "goesWellWith": [
+      "tomato-rasam",
+      "curd-rice",
+      "rustic-pepper-jeera-tomato-rasam"
+    ]
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "bendekayi",
+    "baseQuantity": 500,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Bendekayi quantity",
+    "inputMin": 50,
+    "inputStep": 10,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Vegetables",
+      "items": [
+        {
+          "id": "bendekayi",
+          "quantity": 500,
+          "unit": "g",
+          "ingredient": "bendekayi / okra",
+          "preparation": "washed, dried completely, ends trimmed, and cut into approximately 1.5 cm pieces",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "sliced or finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomato",
+          "quantity": 1,
+          "countLabel": "small tomato",
+          "weightGrams": 100,
+          "ingredient": "tomato",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2.5,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.25,
+            "0.75": 0.5,
+            "1": 0.5,
+            "1.25": 0.5,
+            "1.5": 0.75,
+            "2": 1
+          }
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "preparation": "10 to 12 leaves at 1×",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 8,
+            "0.75": 10,
+            "1": 12,
+            "1.25": 12,
+            "1.5": 15,
+            "2": 18
+          }
+        }
+      ]
+    },
+    {
+      "section": "Spices",
+      "items": [
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "coriander powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Finish",
+      "items": [
+        {
+          "id": "coconut-powder",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "coconut powder",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Wash:",
+      "ingredientIds": [
+        "bendekayi"
+      ],
+      "after": "Wash it well."
+    },
+    {
+      "lead": "Dry:",
+      "ingredientIds": [
+        "bendekayi"
+      ],
+      "after": "Dry it completely before chopping so the palya does not become sticky."
+    },
+    {
+      "lead": "Trim and cut:",
+      "ingredientIds": [
+        "bendekayi"
+      ],
+      "after": "Trim the ends and cut into approximately 1.5 cm pieces."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "onion",
+        "tomato",
+        "green-chillies"
+      ],
+      "after": "Slice or finely chop the onion, finely chop the tomato, and slit the green chillies."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat a wide kadai and add:",
+      "ingredientIds": [
+        "oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ],
+      "after": "Allow them to splutter."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "urad-dal"
+      ],
+      "after": "Fry until light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "curry-leaves",
+        "green-chillies",
+        "onion"
+      ]
+    },
+    {
+      "text": "Saute until the onion softens."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "bendekayi"
+      ],
+      "after": "Spread it across the kadai."
+    },
+    {
+      "text": "Cook uncovered over medium-high heat for 7-8 minutes."
+    },
+    {
+      "text": "Stir gently only once every 1-2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "turmeric-powder"
+      ]
+    },
+    {
+      "text": "Continue cooking uncovered over medium heat for 6-8 minutes."
+    },
+    {
+      "lead": "Once the bendekayi is mostly cooked and the sticky texture has reduced, add:",
+      "ingredientIds": [
+        "tomato",
+        "red-chilli-powder",
+        "coriander-powder",
+        "salt"
+      ]
+    },
+    {
+      "text": "Cook uncovered for another 5-7 minutes until the tomato softens and coats the bendekayi without forming a watery gravy."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "coconut-powder"
+      ]
+    },
+    {
+      "text": "Mix gently and cook for 1-2 minutes."
+    },
+    {
+      "text": "Switch off the heat and leave the palya uncovered for 2 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with plain rice and Tomato Rasam.",
+    "Serve with plain rice and Rustic Pepper Jeera Tomato Rasam.",
+    "Serve as a side dish with Curd Rice.",
+    "Can also be served with chapati."
+  ],
+  "notes": [
+    "Bendekayi must be completely dry before chopping.",
+    "The 1.5 cm cut helps the pieces retain their structure.",
+    "A wide kadai helps moisture evaporate.",
+    "Do not cover the kadai.",
+    "Do not add water.",
+    "Tomato is added only after the bendekayi is mostly cooked.",
+    "Stir gently and infrequently to prevent the pieces from breaking.",
+    "Use the website quantity input when the available bendekayi differs from the 500 g base."
+  ]
+}

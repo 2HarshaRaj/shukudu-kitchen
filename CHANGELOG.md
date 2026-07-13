@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.7 - 2026-07-13
+
+### Added
+
+- Added Bendekayi Palya as a Draft Karnataka-style 500 g okra palya with onion, tomato, exact quantity scaling, 1.5 cm pieces, and uncovered cooking guidance to reduce stickiness.
+
+### Changed
+
+- Added reciprocal Bendekayi Palya pairings to Tomato Rasam, Curd Rice, and Rustic Pepper Jeera Tomato Rasam.
+- Changed site version to `v1.20.7`.
+
 ## 1.20.6 - 2026-07-11
 
 ### Added
