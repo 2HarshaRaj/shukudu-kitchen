@@ -12,6 +12,15 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.8 - 2026-07-13
+
+### Changed
+
+- Finalized Alasande Kayi Palya after a successful cooking trial.
+- Confirmed the existing 12–16 minute covered cooking guidance.
+- Added an optional future trial note for 1 teaspoon white sesame seeds.
+- Changed site version to `v1.20.8`.
+
 ## 1.20.7 - 2026-07-13
 
 ### Added
