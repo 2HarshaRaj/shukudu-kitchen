@@ -5,7 +5,7 @@
   "summary": "Sringeri-side inspired alasande kayi palya with a reddish-brown roasted coconut masala, tamarind, and jaggery, cooked semi-moist for mixing with plain rice.",
   "details": {
     "Cuisine": "South Indian · Karnataka · Malnad",
-    "Status": "Draft"
+    "Status": "Finalized"
   },
   "relationships": {
     "mealTypes": [
@@ -402,11 +402,11 @@
   "notes": [
     "Shopping apps may call the vegetable “Beans Lobia”.",
     "This recipe uses the long green cowpea pod, not regular French beans and not dried lobia or black-eyed peas.",
-    "This is a reconstructed Sringeri-side inspired recipe and needs a cooking trial.",
+    "Tested successfully with the 12–16 minute covered cooking time; the beans became tender and the masala retained the intended semi-moist finish.",
     "The expected result is reddish-brown, coarse-masala-coated, and semi-moist.",
     "Use either coconut powder or fresh grated coconut, not both.",
     "Coconut powder is measured by spoon or cup volume, not grams.",
-    "Sesame is intentionally not included in the first trial.",
+    "Optional next trial: add 1 teaspoon white sesame seeds after the chilli, coriander, cumin, and chana dal become aromatic. Roast for 30–45 seconds before adding the coconut, then grind the sesame with the masala.",
     "Enter the exact vegetable weight when it differs from the 500 g base recipe; the website calculates the scale automatically."
   ]
 }
