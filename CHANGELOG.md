@@ -12,6 +12,13 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.10 - 2026-07-15
+
+### Changed
+
+- Strengthened Menthya Rice Bath seasoning after blandness feedback by increasing chilli, spice and tamarind balance while reducing jaggery.
+- Changed site version to `v1.20.10`.
+
 ## 1.20.9 - 2026-07-15
 
 ### Added
