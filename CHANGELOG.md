@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.9 - 2026-07-15
+
+### Added
+
+- Added Paneer Bhurji Gravy as a Draft North Indian side dish with a 200 g paneer base, exact paneer-quantity scaling, coarse paneer crumbling guidance, besan-thickened gravy, and safe storage notes.
+
+### Changed
+
+- Changed site version to `v1.20.9`.
+
 ## 1.20.8 - 2026-07-13
 
 ### Changed
