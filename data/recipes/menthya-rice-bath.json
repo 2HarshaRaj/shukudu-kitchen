@@ -5,11 +5,18 @@
   "summary": "Karnataka-style methi rice bath made with sona masuri rice, fresh methi leaves, whole spices, tamarind and jaggery.",
   "details": {
     "Cuisine": "South Indian · Karnataka",
-    "Status": "Finalized"
+    "Status": "Draft"
   },
   "relationships": {
-    "mealTypes": ["Lunch", "Dinner"],
-    "dishTypes": ["Rice", "Bath", "One Pot"],
+    "mealTypes": [
+      "Lunch",
+      "Dinner"
+    ],
+    "dishTypes": [
+      "Rice",
+      "Bath",
+      "One Pot"
+    ],
     "goesWellWith": []
   },
   "householdBase": {
@@ -24,7 +31,14 @@
     "baseUnit": "riceCup",
     "baseScale": 1,
     "inputMode": "options",
-    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
   },
   "ingredients": [
     {
@@ -68,20 +82,20 @@
         },
         {
           "id": "green-chillies",
-          "quantity": 3,
+          "quantity": 4,
           "countLabel": "green chilli",
-          "weightGrams": 15,
+          "weightGrams": 20,
           "ingredient": "green chillies",
           "preparation": "slit",
           "scalable": true,
           "roundingType": "small-whole",
           "scaleQuantities": {
             "0.5": 2,
-            "0.75": 2,
-            "1": 3,
-            "1.25": 3,
-            "1.5": 4,
-            "2": 5
+            "0.75": 3,
+            "1": 4,
+            "1.25": 4,
+            "1.5": 5,
+            "2": 6
           }
         },
         {
@@ -133,7 +147,16 @@
           "unit": "teaspoon",
           "ingredient": "salt",
           "scalable": true,
-          "roundingType": "exact"
+          "roundingType": "exact",
+          "preparation": "adjust after cooking if needed",
+          "scaleQuantities": {
+            "0.5": 0.75,
+            "0.75": 1,
+            "1": 1.5,
+            "1.25": 1.75,
+            "1.5": 2,
+            "2": 2.5
+          }
         }
       ]
     },
@@ -219,6 +242,22 @@
             "1.5": 1,
             "2": 2
           }
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 12,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 6,
+            "0.75": 8,
+            "1": 12,
+            "1.25": 12,
+            "1.5": 16,
+            "2": 20
+          }
         }
       ]
     },
@@ -242,15 +281,31 @@
           }
         },
         {
-          "id": "garam-masala",
+          "id": "coriander-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "coriander powder",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1.25,
+            "1.5": 1.5,
+            "2": 2
+          }
+        },
+        {
+          "id": "red-chilli-powder",
           "quantity": 0.5,
           "unit": "teaspoon",
-          "ingredient": "garam masala",
+          "ingredient": "red chilli powder",
           "scalable": true,
           "roundingType": "exact",
           "scaleQuantities": {
             "0.5": 0.25,
-            "0.75": 0.5,
+            "0.75": 0.375,
             "1": 0.5,
             "1.25": 0.5,
             "1.5": 0.75,
@@ -258,35 +313,51 @@
           }
         },
         {
+          "id": "garam-masala",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.5,
+            "1": 0.75,
+            "1.25": 0.75,
+            "1.5": 1,
+            "2": 1.25
+          }
+        },
+        {
           "id": "tamarind-paste",
-          "quantity": 1,
+          "quantity": 1.5,
           "unit": "teaspoon",
           "ingredient": "tamarind paste",
           "scalable": true,
           "roundingType": "exact",
           "scaleQuantities": {
-            "0.5": 0.5,
-            "0.75": 0.75,
-            "1": 1,
-            "1.25": 1,
-            "1.5": 1.25,
-            "2": 1.5
+            "0.5": 0.75,
+            "0.75": 1,
+            "1": 1.5,
+            "1.25": 1.75,
+            "1.5": 2,
+            "2": 2.5
           }
         },
         {
           "id": "jaggery",
-          "quantity": 1,
+          "quantity": 0.75,
           "unit": "teaspoon",
           "ingredient": "jaggery",
           "scalable": true,
           "roundingType": "exact",
           "scaleQuantities": {
             "0.5": 0.5,
-            "0.75": 0.75,
-            "1": 1,
-            "1.25": 1,
-            "1.5": 1.25,
-            "2": 1.5
+            "0.75": 0.5,
+            "1": 0.75,
+            "1.25": 0.75,
+            "1.5": 1,
+            "2": 1.25
           }
         }
       ]
@@ -295,57 +366,102 @@
   "preparation": [
     {
       "lead": "Rinse and soak:",
-      "ingredientIds": ["rice"],
+      "ingredientIds": [
+        "rice"
+      ],
       "after": "Soak for 20 minutes."
     },
     {
       "lead": "Clean and prepare:",
-      "ingredientIds": ["methi-bunches"],
+      "ingredientIds": [
+        "methi-bunches"
+      ],
       "after": "Separate leaves from the thick lower stems. Keep the tender upper stems, wash thoroughly 2–3 times and chop roughly."
     },
     {
       "lead": "Prepare:",
-      "ingredientIds": ["onion", "green-chillies", "coriander-leaves"]
+      "ingredientIds": [
+        "onion",
+        "green-chillies",
+        "coriander-leaves"
+      ]
     }
   ],
   "cookingMethod": [
     {
       "lead": "Heat in a pressure cooker:",
-      "ingredientIds": ["oil"]
+      "ingredientIds": [
+        "oil"
+      ]
     },
     {
       "lead": "Add whole spices:",
-      "ingredientIds": ["mustard-seeds", "cumin-seeds", "cinnamon", "cloves", "bay-leaf"],
+      "ingredientIds": [
+        "mustard-seeds",
+        "cumin-seeds",
+        "cinnamon",
+        "cloves",
+        "bay-leaf",
+        "curry-leaves"
+      ],
       "after": "Fry for 20–30 seconds until aromatic."
     },
     {
       "lead": "Add:",
-      "ingredientIds": ["onion", "green-chillies"],
+      "ingredientIds": [
+        "onion",
+        "green-chillies"
+      ],
       "after": "Sauté for 4–5 minutes until the onion softens."
     },
     {
       "lead": "Add:",
-      "ingredientIds": ["ginger-garlic-paste"],
+      "ingredientIds": [
+        "ginger-garlic-paste"
+      ],
       "after": "Sauté for 1 minute until the raw smell reduces."
     },
     {
       "lead": "Add:",
-      "ingredientIds": ["methi-bunches"],
+      "ingredientIds": [
+        "methi-bunches"
+      ],
       "after": "Cook for 3–4 minutes until the leaves wilt and the raw methi smell reduces."
     },
     {
-      "lead": "Add powdered spices and balancing ingredients:",
-      "ingredientIds": ["turmeric", "garam-masala", "tamarind-paste", "jaggery", "salt"],
-      "after": "Mix well and cook for 1 minute."
+      "lead": "Add:",
+      "ingredientIds": [
+        "turmeric",
+        "coriander-powder",
+        "red-chilli-powder"
+      ],
+      "after": "Fry on low heat for 30–40 seconds, without burning the spices."
     },
     {
       "lead": "Add:",
-      "ingredientIds": ["water"],
-      "after": "Bring to a boil."
+      "ingredientIds": [
+        "garam-masala"
+      ],
+      "after": "Fry for about 15 seconds."
+    },
+    {
+      "lead": "Add measured water with:",
+      "ingredientIds": [
+        "water",
+        "tamarind-paste",
+        "jaggery",
+        "salt"
+      ],
+      "after": "Mix thoroughly and bring the liquid to a proper boil."
+    },
+    {
+      "text": "Taste the boiling liquid before adding rice. It should taste slightly stronger, saltier and tangier than the desired finished rice because the rice will absorb and soften the seasoning."
     },
     {
       "lead": "Drain and add:",
-      "ingredientIds": ["rice"],
+      "ingredientIds": [
+        "rice"
+      ],
       "after": "Mix gently without breaking the grains."
     },
     {
@@ -353,7 +469,9 @@
     },
     {
       "lead": "Finish with:",
-      "ingredientIds": ["coriander-leaves"],
+      "ingredientIds": [
+        "coriander-leaves"
+      ],
       "after": "Fluff gently and mix after opening the cooker."
     }
   ],
@@ -364,8 +482,10 @@
     "This recipe uses 250 g methi bunches as the practical purchase quantity before cleaning.",
     "After removing thick stems, 250 g methi bunches usually gives enough cleaned leaves and tender stems for 1 rice cup rice.",
     "Use all leaves and only the tender upper stems; discard thick lower stems.",
-    "Green chillies, whole spices, garam masala, tamarind paste, jaggery and coriander leaves use recipe-specific scale quantities instead of blind linear scaling.",
-    "Jaggery balances the natural bitterness of methi without making the rice bath sweet.",
-    "Taste for salt after opening the cooker and adjust if needed."
+    "The strengthened green chilli, powdered-spice and tamarind balance addresses the earlier bland result while preserving the Karnataka-style methi, tamarind and jaggery character.",
+    "Jaggery is intentionally lower than tamarind so it balances methi bitterness without muting the tang.",
+    "The boiling liquid should taste more intense than the final cooked rice because rice absorbs and softens the seasoning.",
+    "Taste for salt after opening the cooker and adjust if needed.",
+    "Green chillies, curry leaves, whole spices, garam masala, tamarind paste, jaggery, salt and coriander leaves use recipe-specific scale quantities instead of blind linear scaling."
   ]
 }
