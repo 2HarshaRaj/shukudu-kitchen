@@ -74,6 +74,20 @@
     ]
   },
   {
+    "name": "Paneer Bhurji Gravy",
+    "slug": "paneer-bhurji-gravy",
+    "category": "Side Dish",
+    "summary": "North Indian paneer bhurji gravy with onion, tomato, capsicum, besan, spices, kasuri methi and coarsely crumbled paneer.",
+    "searchAliases": [
+      "paneer bhurji",
+      "paneer bhurji masala",
+      "paneer bhurji curry",
+      "paneer gravy",
+      "crumbled paneer gravy",
+      "cottage cheese bhurji"
+    ]
+  },
+  {
     "name": "Mango Rice",
     "slug": "mango-rice",
     "category": "Rice",

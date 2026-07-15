@@ -1,0 +1,307 @@
+{
+  "name": "Paneer Bhurji Gravy",
+  "slug": "paneer-bhurji-gravy",
+  "category": "Side Dish",
+  "summary": "North Indian paneer bhurji gravy with onion, tomato, capsicum, besan, spices, kasuri methi and coarsely crumbled paneer.",
+  "details": {
+    "Cuisine": "North Indian",
+    "Health Rating": "4 out of 5",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Side Dish"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "paneer",
+    "baseQuantity": 200,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Paneer quantity",
+    "inputMin": 50,
+    "inputStep": 50,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "To Chop",
+      "items": [
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomatoes",
+          "quantity": 3,
+          "countLabel": "medium tomato",
+          "weightGrams": 300,
+          "ingredient": "tomatoes",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 0.5,
+          "countLabel": "medium capsicum",
+          "weightGrams": 75,
+          "ingredient": "capsicum",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2.5,
+            "1.5": 3,
+            "2": 4
+          }
+        }
+      ]
+    },
+    {
+      "section": "Whole Spices",
+      "items": [
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Powdered Spices",
+      "items": [
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "coriander powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.25,
+            "0.75": 0.375,
+            "1": 0.5,
+            "1.25": 0.5,
+            "1.5": 0.75,
+            "2": 1
+          }
+        },
+        {
+          "id": "salt",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Others",
+      "items": [
+        {
+          "id": "paneer",
+          "quantity": 200,
+          "unit": "g",
+          "ingredient": "paneer",
+          "preparation": "softened if refrigerated and coarsely crumbled",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "butter",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "butter",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "ginger-garlic-paste",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "ginger-garlic paste",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "besan",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "besan",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 1,
+          "unit": "cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "kasuri-methi",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "kasuri methi",
+          "preparation": "crushed",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": ["onion", "tomatoes", "capsicum", "coriander-leaves"],
+      "after": "Finely chop the onion, tomatoes, capsicum, and coriander leaves."
+    },
+    {
+      "lead": "Soften refrigerated paneer:",
+      "ingredientIds": ["paneer"],
+      "after": "Remove the paneer block from the refrigerator 10–15 minutes before cooking. Place it in comfortably warm water for 5–7 minutes. Do not use boiling-hot water. Remove and gently pat dry."
+    },
+    {
+      "lead": "Crumble:",
+      "ingredientIds": ["paneer"],
+      "after": "Crumble using clean fingers or a fork. Keep it coarse and grainy with a few small chunks. Do not mash it into a paste."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat:",
+      "ingredientIds": ["oil", "butter", "cumin-seeds"],
+      "after": "Saute until the cumin becomes aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["onion", "ginger-garlic-paste"],
+      "after": "Saute over medium heat until the onion becomes golden."
+    },
+    {
+      "lead": "Lower the heat and add:",
+      "ingredientIds": ["turmeric-powder", "red-chilli-powder", "cumin-powder", "coriander-powder", "salt", "besan"],
+      "after": "Saute for 30–45 seconds until aromatic. Low heat prevents the spices and besan from burning."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tomatoes"],
+      "after": "Cook until completely soft and mushy and the raw smell disappears."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["capsicum"],
+      "after": "Saute for 1 minute so it retains a slight bite."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["water"],
+      "after": "Mix well, scrape the masala from the bottom, and bring to a gentle simmer."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["paneer"],
+      "after": "Fold gently into the gravy."
+    },
+    {
+      "text": "Cover and simmer on low heat for 2 minutes only. Longer cooking may make the paneer firm or chewy."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": ["garam-masala", "kasuri-methi", "coriander-leaves"],
+      "after": "Mix gently and switch off the heat."
+    },
+    {
+      "text": "Rest for 2–3 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with chapati, roti, pav, naan or jeera rice.",
+    "Add a small splash of hot water while reheating if the besan thickens the gravy too much."
+  ],
+  "notes": [
+    "Besan gives the gravy thickness and body and should be sauteed briefly to remove the raw flavour.",
+    "Crumble the paneer coarsely instead of mashing it finely.",
+    "Warm-water soaking softens refrigerated paneer and restores some moisture.",
+    "The gravy thickens slightly as it rests.",
+    "Refrigerate soon after it stops steaming heavily.",
+    "Do not leave the cooked paneer gravy on the kitchen slab from afternoon until night.",
+    "Reheat only the required portion until steaming throughout.",
+    "This is a Draft recipe and should be finalized only after a successful cooking trial."
+  ]
+}
