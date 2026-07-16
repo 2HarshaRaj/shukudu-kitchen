@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.13 - 2026-07-16
+
+### Added
+
+- Added Creamy Mushroom Masala as a Draft North Indian side dish with a 400 g mushroom scaling base, onion-tomato gravy, 130 ml fresh cream, kasuri methi and chapati-focused serving guidance.
+
+### Changed
+
+- Changed site version to `v1.20.13`.
+
 ## 1.20.12 - 2026-07-16
 
 ### Changed

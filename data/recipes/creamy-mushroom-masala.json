@@ -1,0 +1,369 @@
+{
+  "name": "Creamy Mushroom Masala",
+  "slug": "creamy-mushroom-masala",
+  "category": "Side Dish",
+  "summary": "North Indian-style creamy mushroom masala with button mushrooms, onion-tomato gravy, fresh cream, kasuri methi and warming spices, designed for chapati.",
+  "details": {
+    "Cuisine": "North Indian",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Side Dish"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "button-mushrooms",
+    "baseQuantity": 400,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Mushroom quantity",
+    "inputMin": 100,
+    "inputStep": 50,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Main Ingredient",
+      "items": [
+        {
+          "id": "button-mushrooms",
+          "quantity": 400,
+          "unit": "g",
+          "ingredient": "button mushrooms",
+          "preparation": "trimmed and sliced approximately 5–7 mm thick",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Vegetables and Aromatics",
+      "items": [
+        {
+          "id": "onion",
+          "quantity": 2,
+          "countLabel": "medium onion",
+          "weightGrams": 220,
+          "ingredient": "onion",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomatoes",
+          "quantity": 3,
+          "countLabel": "medium tomato",
+          "weightGrams": 240,
+          "ingredient": "tomatoes",
+          "preparation": "blended into a purée",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chilli",
+          "quantity": 1,
+          "countLabel": "medium green chilli",
+          "weightGrams": 5,
+          "ingredient": "green chilli",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 1,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "ginger-garlic-paste",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "weightGrams": 22,
+          "ingredient": "ginger-garlic paste",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.75,
+            "0.75": 1,
+            "1": 1.5,
+            "1.25": 1.5,
+            "1.5": 1.75,
+            "2": 2.25
+          }
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 8,
+          "ingredient": "fresh coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 2.5,
+            "2": 3
+          }
+        }
+      ]
+    },
+    {
+      "section": "Cream and Oil",
+      "items": [
+        {
+          "id": "mushroom-saute-oil",
+          "quantity": 0.5,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "preparation": "for sautéing the mushrooms",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-oil",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "preparation": "for the masala",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "fresh-cream",
+          "quantity": 130,
+          "unit": "ml",
+          "ingredient": "Amul Fresh Cream",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Spices",
+      "items": [
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "kashmiri-chilli-powder",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "Kashmiri chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-powder",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "coriander powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.5,
+            "1": 0.75,
+            "1.25": 0.75,
+            "1.5": 1,
+            "2": 1.25
+          }
+        },
+        {
+          "id": "kasuri-methi",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "kasuri methi",
+          "preparation": "crushed",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1.25,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.75,
+            "0.75": 1,
+            "1": 1.25,
+            "1.25": 1.25,
+            "1.5": 1.5,
+            "2": 2
+          }
+        }
+      ]
+    },
+    {
+      "section": "Water",
+      "items": [
+        {
+          "id": "gravy-water",
+          "quantity": 200,
+          "unit": "ml",
+          "ingredient": "hot water",
+          "preparation": "for the gravy",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "reserved-hot-water",
+          "quantity": 50,
+          "unit": "ml",
+          "ingredient": "hot water",
+          "preparation": "use only as needed to prevent sticking or loosen the gravy",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Briefly rinse or wipe, trim and slice:",
+      "ingredientIds": ["button-mushrooms"],
+      "after": "Do not soak. Trim only the dry stem ends, dry well, then slice approximately 5–7 mm thick."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": ["onion", "green-chilli"],
+      "after": "Finely chop the onion and green chilli."
+    },
+    {
+      "lead": "Blend:",
+      "ingredientIds": ["tomatoes"],
+      "after": "Blend into a smooth purée."
+    },
+    {
+      "lead": "Chop:",
+      "ingredientIds": ["coriander-leaves"],
+      "after": "Chop the coriander leaves."
+    },
+    {
+      "lead": "Crush:",
+      "ingredientIds": ["kasuri-methi"],
+      "after": "Crush between the palms."
+    },
+    {
+      "lead": "Measure before cooking:",
+      "ingredientIds": ["fresh-cream", "mushroom-saute-oil", "masala-oil", "cumin-seeds", "turmeric-powder", "kashmiri-chilli-powder", "coriander-powder", "cumin-powder", "garam-masala", "salt", "gravy-water", "reserved-hot-water"],
+      "after": "Keep the cream, oils, spices and hot water ready."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "text": "Heat a broad kadai or wide pan over medium-high heat."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["mushroom-saute-oil", "button-mushrooms"],
+      "after": "Sauté uncovered over medium-high heat for approximately 7–9 minutes. Continue until most released water evaporates and the mushrooms have a few light brown spots; transfer to a plate without fully overcooking."
+    },
+    {
+      "text": "Reduce the heat to medium."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["masala-oil", "cumin-seeds"],
+      "after": "Cook for approximately 20 seconds."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["onion", "green-chilli"],
+      "after": "Sauté for approximately 7–9 minutes, until the onion is soft and light golden."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["ginger-garlic-paste"],
+      "after": "Sauté for approximately 1–2 minutes, until the raw aroma disappears."
+    },
+    {
+      "lead": "Reduce the heat to low and add:",
+      "ingredientIds": ["turmeric-powder", "kashmiri-chilli-powder", "coriander-powder", "cumin-powder"],
+      "after": "Cook for approximately 30 seconds."
+    },
+    {
+      "lead": "Add only if required to prevent sticking or burning:",
+      "ingredientIds": ["reserved-hot-water"],
+      "after": "Use only as much as needed."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tomatoes", "salt"],
+      "after": "Cook uncovered over medium heat for approximately 8–10 minutes, until the raw smell disappears, the gravy is considerably thicker and a little oil releases around the edges."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["button-mushrooms", "gravy-water"],
+      "after": "Mix well and bring to a gentle boil. Partially cover and cook over medium-low heat for approximately 6–8 minutes so the mushrooms absorb the masala."
+    },
+    {
+      "lead": "Reduce to the lowest heat and add:",
+      "ingredientIds": ["fresh-cream", "garam-masala", "kasuri-methi"],
+      "after": "Mix gently and cook uncovered for approximately 2–3 minutes. Do not allow the gravy to boil vigorously after adding the cream."
+    },
+    {
+      "lead": "Switch off the heat and add:",
+      "ingredientIds": ["coriander-leaves"],
+      "after": "Rest covered for approximately 5 minutes. The gravy should be creamy and thick enough to scoop with chapati, not thin like a pasta sauce."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with chapati, phulka, roti, naan or jeera rice.",
+    "Target yield pending household testing: the 400 g mushroom batch is planned for 2 people × 2 meals with approximately 10–12 medium chapatis in total."
+  ],
+  "notes": [
+    "Use a broad pan so the 400 g mushrooms sauté instead of steaming excessively.",
+    "Do not soak mushrooms in water.",
+    "Sautéing the mushrooms separately keeps their released water from diluting the onion-tomato masala.",
+    "Add the cream only on low heat and do not boil the gravy vigorously afterward.",
+    "The gravy thickens slightly while resting.",
+    "Use reserved hot water only when necessary.",
+    "Refrigerate the dinner portion after it stops steaming heavily.",
+    "Reheat only the required portion over low heat with a small splash of water.",
+    "Avoid repeatedly heating the whole curry.",
+    "The planned 2 people × 2 meals yield is awaiting a real cooking trial."
+  ]
+}
