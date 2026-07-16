@@ -5,7 +5,7 @@
     "summary": "Soft pan-mixed dal khichdi made with moong dal, rice, frozen peas, onion-tomato masala, cumin, coriander and butter.",
     "details": {
         "Cuisine": "Indian",
-        "Status": "Draft"
+        "Status": "Finalized"
     },
     "relationships": {
         "mealTypes": [
@@ -364,7 +364,6 @@
         "Base dal quantity is 0.5 standard cup moong dal.",
         "Base pressure-cooking water is 3.75 rice cups.",
         "Frozen peas can be kept around 75\u2013100 g based on preference.",
-        "This recipe is currently Draft because it is being added before repeat testing.",
         "If the final added hot water amount becomes consistent after testing, replace \u201cas required\u201d with an exact range."
     ]
 }
