@@ -12,6 +12,17 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.11 - 2026-07-16
+
+### Added
+
+- Added Methi Matar Malai as a Draft North Indian side dish with a 65 g fresh-methi scaling base, green peas, cashew-onion paste and cream.
+
+### Changed
+
+- Added the reciprocal Jeera Rice pairing for Methi Matar Malai.
+- Changed site version to `v1.20.11`.
+
 ## 1.20.10 - 2026-07-15
 
 ### Changed

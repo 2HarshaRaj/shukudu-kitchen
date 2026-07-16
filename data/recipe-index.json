@@ -88,6 +88,20 @@
     ]
   },
   {
+    "name": "Methi Matar Malai",
+    "slug": "methi-matar-malai",
+    "category": "Side Dish",
+    "summary": "Mild and creamy North Indian curry made with fresh methi leaves, green peas, cashews, onion and cream, balancing gentle sweetness, green-chilli heat and slight fenugreek bitterness.",
+    "searchAliases": [
+      "methi mutter malai",
+      "methi malai matar",
+      "methi matar curry",
+      "fenugreek peas curry",
+      "fenugreek and peas curry",
+      "methi peas malai"
+    ]
+  },
+  {
     "name": "Mango Rice",
     "slug": "mango-rice",
     "category": "Rice",
