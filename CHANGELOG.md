@@ -12,6 +12,15 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.12 - 2026-07-16
+
+### Changed
+
+- Finalized Paneer Bhurji Gravy after a successful household cooking trial.
+- Confirmed the 200 g paneer base serves 2 people × 2 meals, tested with approximately 12 chapatis total.
+- Added the confirmed household base metadata.
+- Changed site version to `v1.20.12`.
+
 ## 1.20.11 - 2026-07-16
 
 ### Added
