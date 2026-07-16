@@ -6,12 +6,17 @@
   "details": {
     "Cuisine": "North Indian",
     "Health Rating": "4 out of 5",
-    "Status": "Draft"
+    "Status": "Finalized"
   },
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Side Dish"],
     "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
   },
   "scaling": {
     "enabled": true,
@@ -292,7 +297,8 @@
   ],
   "servingSuggestions": [
     "Serve hot with chapati, roti, pav, naan or jeera rice.",
-    "Add a small splash of hot water while reheating if the besan thickens the gravy too much."
+    "Add a small splash of hot water while reheating if the besan thickens the gravy too much.",
+    "Tested yield: the 1× batch served 2 people × 2 meals with approximately 12 chapatis total, or about 3 chapatis per person per meal."
   ],
   "notes": [
     "Besan gives the gravy thickness and body and should be sauteed briefly to remove the raw flavour.",
@@ -302,6 +308,6 @@
     "Refrigerate soon after it stops steaming heavily.",
     "Do not leave the cooked paneer gravy on the kitchen slab from afternoon until night.",
     "Reheat only the required portion until steaming throughout.",
-    "This is a Draft recipe and should be finalized only after a successful cooking trial."
+    "Tested successfully with the existing 200 g paneer base, gravy method and 2-minute paneer simmer."
   ]
 }
