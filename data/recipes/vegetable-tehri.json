@@ -1,0 +1,116 @@
+{
+  "name": "Vegetable Tehri",
+  "slug": "vegetable-tehri",
+  "category": "Rice",
+  "summary": "North Indian-style one-pot yellow rice with potato, cauliflower, carrot, peas, tomato and warm spices.",
+  "details": {
+    "Cuisine": "North Indian",
+    "Cooking Method": "Pressure cooker on induction",
+    "Health Rating": "4 out of 5",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Rice", "One Pot"],
+    "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Rice and Vegetables",
+      "items": [
+        {"id":"rice","quantity":1,"unit":"rice cup","ingredient":"sona masuri rice","preparation":"washed, soaked for 20 minutes and drained","scalable":true,"roundingType":"exact"},
+        {"id":"water","quantity":2.25,"unit":"rice cup","ingredient":"water","scalable":true,"roundingType":"exact"},
+        {"id":"potato","quantity":1,"countLabel":"large potato","weightGrams":250,"ingredient":"potato","preparation":"cut into approximately 2 cm cubes","scalable":true,"roundingType":"large-produce"},
+        {"id":"cauliflower","quantity":2.5,"unit":"cup","weightGrams":200,"ingredient":"cauliflower florets","preparation":"medium florets","scalable":true,"roundingType":"exact"},
+        {"id":"carrot","quantity":1,"countLabel":"medium carrot","weightGrams":100,"ingredient":"carrot","preparation":"cut into approximately 1.5 cm pieces","scalable":true,"roundingType":"large-produce"},
+        {"id":"green-peas","quantity":0.75,"unit":"cup","weightGrams":100,"ingredient":"frozen green peas","scalable":true,"roundingType":"exact"},
+        {"id":"onion","quantity":1,"countLabel":"large onion","weightGrams":180,"ingredient":"onion","preparation":"thinly sliced","scalable":true,"roundingType":"large-produce"},
+        {"id":"tomato","quantity":2,"countLabel":"medium tomato","weightGrams":180,"ingredient":"tomato","preparation":"finely chopped","scalable":true,"roundingType":"large-produce"},
+        {"id":"green-chillies","quantity":2,"countLabel":"medium green chilli","weightGrams":10,"ingredient":"green chillies","preparation":"slit","scalable":true,"roundingType":"small-whole","scalingMode":"non-linear","scaleQuantities":{"0.5":1,"0.75":1,"1":2,"1.25":2,"1.5":3,"2":4}},
+        {"id":"coriander-leaves","quantity":0.5,"unit":"cup","weightGrams":15,"ingredient":"fresh coriander leaves","preparation":"finely chopped","scalable":true,"roundingType":"exact","scalingMode":"non-linear","scaleQuantities":{"0.5":0.25,"0.75":0.5,"1":0.5,"1.25":0.5,"1.5":0.75,"2":1}}
+      ]
+    },
+    {
+      "section": "Aromatics and Whole Spices",
+      "items": [
+        {"id":"ginger-garlic-paste","quantity":1,"unit":"tablespoon","ingredient":"ginger-garlic paste","scalable":true,"roundingType":"exact","scalingMode":"non-linear","scaleQuantities":{"0.5":0.5,"0.75":0.75,"1":1,"1.25":1,"1.5":1.25,"2":1.5}},
+        {"id":"oil","quantity":2,"unit":"tablespoon","ingredient":"oil","scalable":true,"roundingType":"exact"},
+        {"id":"ghee","quantity":1,"unit":"tablespoon","ingredient":"ghee","scalable":true,"roundingType":"exact"},
+        {"id":"cumin-seeds","quantity":1.5,"unit":"teaspoon","ingredient":"cumin seeds","scalable":true,"roundingType":"exact"},
+        {"id":"bay-leaf","quantity":1,"countLabel":"bay leaf","ingredient":"bay leaf","scalable":true,"roundingType":"small-whole","scalingMode":"non-linear","scaleQuantities":{"0.5":1,"0.75":1,"1":1,"1.25":1,"1.5":1,"2":2}},
+        {"id":"cinnamon","quantity":1,"unit":"inch","weightGrams":2.5,"ingredient":"cinnamon stick","scalable":true,"roundingType":"exact","scalingMode":"non-linear","scaleQuantities":{"0.5":0.5,"0.75":0.75,"1":1,"1.25":1,"1.5":1.25,"2":1.5}},
+        {"id":"cloves","quantity":4,"countLabel":"clove","ingredient":"cloves","scalable":true,"roundingType":"small-whole","scalingMode":"non-linear","scaleQuantities":{"0.5":2,"0.75":3,"1":4,"1.25":4,"1.5":5,"2":6}},
+        {"id":"green-cardamom","quantity":3,"countLabel":"green cardamom pod","ingredient":"green cardamom","scalable":true,"roundingType":"small-whole","scalingMode":"non-linear","scaleQuantities":{"0.5":2,"0.75":2,"1":3,"1.25":3,"1.5":4,"2":5}}
+      ]
+    },
+    {
+      "section": "Powdered Spices and Finishing",
+      "items": [
+        {"id":"turmeric","quantity":0.75,"unit":"teaspoon","ingredient":"turmeric powder","scalable":true,"roundingType":"exact"},
+        {"id":"kashmiri-chilli-powder","quantity":1.5,"unit":"teaspoon","ingredient":"Kashmiri chilli powder","scalable":true,"roundingType":"exact","scalingMode":"non-linear","scaleQuantities":{"0.5":0.75,"0.75":1,"1":1.5,"1.25":1.5,"1.5":2,"2":2.5}},
+        {"id":"coriander-powder","quantity":2,"unit":"teaspoon","ingredient":"coriander powder","scalable":true,"roundingType":"exact"},
+        {"id":"cumin-powder","quantity":0.5,"unit":"teaspoon","ingredient":"cumin powder","scalable":true,"roundingType":"exact"},
+        {"id":"garam-masala","quantity":1,"unit":"teaspoon","ingredient":"garam masala","scalable":true,"roundingType":"exact","scalingMode":"non-linear","scaleQuantities":{"0.5":0.5,"0.75":0.75,"1":1,"1.25":1,"1.5":1.25,"2":1.5}},
+        {"id":"black-pepper-powder","quantity":0.25,"unit":"teaspoon","ingredient":"black pepper powder","scalable":true,"roundingType":"exact"},
+        {"id":"salt","quantity":2.25,"unit":"teaspoon","ingredient":"salt","preparation":"adjustable to taste","scalable":true,"roundingType":"exact"},
+        {"id":"lemon-juice","quantity":1,"unit":"tablespoon","ingredient":"lemon juice","scalable":true,"roundingType":"exact","scalingMode":"non-linear","scaleQuantities":{"0.5":0.5,"0.75":0.75,"1":1,"1.25":1,"1.5":1.25,"2":1.5}}
+      ]
+    }
+  ],
+  "preparation": [
+    {"lead":"Wash:","ingredientIds":["rice"],"after":"Wash until the water is mostly clear."},
+    {"lead":"Soak:","ingredientIds":["rice"],"after":"Soak for 20 minutes."},
+    {"lead":"Drain:","ingredientIds":["rice"],"after":"Drain completely before cooking."},
+    {"lead":"Cut:","ingredientIds":["potato"],"after":"Cut into approximately 2 cm cubes."},
+    {"lead":"Prepare:","ingredientIds":["cauliflower"],"after":"Cut into medium florets."},
+    {"lead":"Cut:","ingredientIds":["carrot"],"after":"Cut into approximately 1.5 cm pieces."},
+    {"lead":"Slice:","ingredientIds":["onion"],"after":"Thinly slice."},
+    {"lead":"Chop:","ingredientIds":["tomato","coriander-leaves"],"after":"Finely chop."},
+    {"lead":"Slit:","ingredientIds":["green-chillies"]},
+    {"lead":"Rinse and soak:","ingredientIds":["cauliflower"],"after":"Soak in hot water with a small pinch of salt for 5 minutes, then drain thoroughly. This preparation water and salt are not part of the measured cooking water or cooking salt."}
+  ],
+  "cookingMethod": [
+    {"text":"Heat the pressure cooker over medium heat."},
+    {"lead":"Add:","ingredientIds":["oil","ghee","cumin-seeds","bay-leaf","cinnamon","cloves","green-cardamom"],"after":"Sauté for 30–40 seconds, until aromatic."},
+    {"lead":"Add:","ingredientIds":["onion","green-chillies"],"after":"Sauté for 5–6 minutes, until the onion becomes lightly golden."},
+    {"lead":"Add:","ingredientIds":["ginger-garlic-paste"],"after":"Sauté for 1 minute, until the raw smell reduces."},
+    {"lead":"Add:","ingredientIds":["tomato","salt"],"after":"Cook for 4–5 minutes, until the tomatoes become soft and pulpy."},
+    {"text":"Reduce the heat to low."},
+    {"lead":"Add:","ingredientIds":["turmeric","kashmiri-chilli-powder","coriander-powder","cumin-powder","black-pepper-powder"],"after":"Mix and cook for 30 seconds. Use a small splash from the measured cooking water if the masala begins sticking; do not add water beyond the measured amount."},
+    {"lead":"Add:","ingredientIds":["potato","cauliflower","carrot","green-peas"],"after":"Mix until coated with the masala. Sauté for 4 minutes, stirring occasionally."},
+    {"lead":"Add:","ingredientIds":["rice"],"after":"Fold gently and sauté for 1 minute without breaking the grains."},
+    {"lead":"Add:","ingredientIds":["water","garam-masala"],"after":"Mix gently. The cooking liquid should taste slightly saltier than the intended finished rice."},
+    {"text":"Close the pressure cooker. For induction, bring the cooker towards pressure at medium-high heat. Once pressure begins building, reduce to 100°C / approximately 300 W, cook for 9 minutes, switch off and allow natural pressure release for at least 10 minutes."},
+    {"text":"For a gas stove, cook over medium heat until the first whistle, reduce to low heat and cook for 3 minutes, switch off, then allow natural pressure release."},
+    {"text":"Open the cooker and leave the tehri undisturbed for 5 minutes."},
+    {"lead":"Finish with:","ingredientIds":["lemon-juice","coriander-leaves"],"after":"Gently fluff from the sides using a flat spoon."}
+  ],
+  "servingSuggestions": [
+    "Serve with plain curd or onion raita.",
+    "Serve with cucumber raita, papad or pickle.",
+    "Serve sliced onion and lemon on the side."
+  ],
+  "notes": [
+    "Tehri should be yellow, rustic and moderately moist rather than dry and separate like pulao.",
+    "Potato is an important part of this recipe and should not be reduced excessively.",
+    "Keep the cauliflower florets medium-sized so they do not disintegrate during pressure cooking.",
+    "For a slightly richer serving, 1 additional teaspoon of ghee may be added at the table.",
+    "Reheat the second meal covered with 1–2 tablespoons of water to prevent drying.",
+    "This recipe uses powdered spices rather than the ground masala paste used in Veg Pulao.",
+    "The recipe remains Draft until it is cooked and household-tested."
+  ]
+}
