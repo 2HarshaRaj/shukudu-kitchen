@@ -102,7 +102,7 @@
           "referenceQuantity": {
             "quantity": 0.25,
             "unit": "standard cup",
-            "approx": false
+            "approx": true
           },
           "preparation": "soaked in hot water for 30 minutes and drained",
           "scalable": true,
@@ -134,11 +134,6 @@
           "quantity": 65,
           "unit": "g",
           "ingredient": "fresh methi leaves",
-          "referenceQuantity": {
-            "quantity": 2,
-            "unit": "standard cup",
-            "approx": false
-          },
           "preparation": "finely chopped",
           "scalable": true,
           "roundingType": "exact"
@@ -309,11 +304,7 @@
       "after": "Saute for about 1 minute."
     },
     {
-      "lead": "Cool and grind with only a little if needed:",
-      "ingredientIds": [
-        "water"
-      ],
-      "after": "Cool the mixture slightly and grind it into a smooth paste. Use only a small amount of the measured recipe water if needed for blending; do not add unlisted extra water."
+      "text": "Cool the mixture slightly and grind it into a smooth paste. If moisture is needed to help the blades move, use only a small amount taken from the measured recipe water. Do not add any extra unlisted water."
     },
     {
       "lead": "Heat in a kadai:",
@@ -339,7 +330,7 @@
         "water",
         "fresh-cream"
       ],
-      "after": "Mix continuously until smooth. Keep the heat low so the cream does not split."
+      "after": "Add only the remaining measured water after accounting for any amount used while grinding. Mix continuously until smooth. Keep the heat low so the cream does not split."
     },
     {
       "lead": "Add:",
@@ -358,11 +349,7 @@
       "after": "Mix gently."
     },
     {
-      "lead": "Check consistency:",
-      "ingredientIds": [
-        "water"
-      ],
-      "after": "If adjustment is necessary, use only an explicitly reserved portion of the measured recipe water rather than introducing a new unlisted quantity."
+      "text": "Check the consistency. Do not introduce additional unlisted water during the first trial; note whether the measured 1 standard cup total needs adjustment next time."
     },
     {
       "text": "Turn off the heat and rest for 2 minutes before serving."
@@ -378,6 +365,7 @@
   "notes": [
     "Finely chopping the methi gives a more uniform gravy.",
     "Clean methi thoroughly because fresh leaves may contain soil.",
+    "At the 1× base, 65 g cleaned methi leaves is roughly 2 loosely packed standard cups. Use grams as the scaling source of truth because leaf volume varies with packing.",
     "Sauteing methi for 2–3 minutes helps control bitterness.",
     "Blanching is an optional future variation for someone who prefers very low bitterness, but it is not the default method.",
     "Add cream only on low heat to reduce the chance of splitting.",
