@@ -74,6 +74,21 @@
     ]
   },
   {
+    "name": "Creamy Mushroom Masala",
+    "slug": "creamy-mushroom-masala",
+    "category": "Side Dish",
+    "summary": "North Indian-style creamy mushroom masala with button mushrooms, onion-tomato gravy, fresh cream, kasuri methi and warming spices, designed for chapati.",
+    "searchAliases": [
+      "mushroom masala",
+      "mushroom curry",
+      "mushroom cream masala",
+      "creamy mushroom gravy",
+      "mushroom gravy",
+      "cream mushroom curry",
+      "north indian mushroom curry"
+    ]
+  },
+  {
     "name": "Paneer Bhurji Gravy",
     "slug": "paneer-bhurji-gravy",
     "category": "Side Dish",
