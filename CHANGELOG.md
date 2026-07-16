@@ -12,6 +12,14 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.15 - 2026-07-16
+
+### Changed
+
+- Finalized Methi Matar Malai after a successful household cooking trial and confirmed its 2 people × 2 meals household base.
+- Finalized Menthya Rice Bath after validating the revised seasoning.
+- Changed site version to `v1.20.15`.
+
 ## 1.20.14 - 2026-07-16
 
 ### Added

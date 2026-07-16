@@ -5,7 +5,7 @@
   "summary": "Mild and creamy North Indian curry made with fresh methi leaves, green peas, cashews, onion and cream, balancing gentle sweetness, green-chilli heat and slight fenugreek bitterness.",
   "details": {
     "Cuisine": "North Indian",
-    "Status": "Draft",
+    "Status": "Finalized",
     "Source": "Hebbars Kitchen"
   },
   "relationships": {
@@ -19,6 +19,11 @@
     "goesWellWith": [
       "jeera-rice"
     ]
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 2,
+    "label": "2 people × 2 meals"
   },
   "scaling": {
     "enabled": true,
@@ -372,6 +377,6 @@
     "The curry intentionally contains no turmeric or red chilli powder, preserving its pale creamy colour.",
     "Green chillies provide the main heat.",
     "This is adapted from Hebbars Kitchen.",
-    "This is a Draft recipe pending household testing."
+    "Tested successfully with the existing 65 g methi base, ingredient quantities and cooking method."
   ]
 }
