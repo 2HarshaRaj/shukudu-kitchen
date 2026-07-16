@@ -18,6 +18,7 @@ Major.Minor.Patch
 
 - Finalized Methi Matar Malai after a successful household cooking trial and confirmed its 2 people × 2 meals household base.
 - Finalized Menthya Rice Bath after validating the revised seasoning.
+- Finalized Beetroot Palya, Dal Khichdi (Pan-Mixed Version), and Bendekayi Palya after successful household cooking trials.
 - Changed site version to `v1.20.15`.
 
 ## 1.20.14 - 2026-07-16
