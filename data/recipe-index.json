@@ -142,6 +142,22 @@
     ]
   },
   {
+    "name": "Vegetable Tehri",
+    "slug": "vegetable-tehri",
+    "category": "Rice",
+    "summary": "North Indian-style one-pot yellow rice with potato, cauliflower, carrot, peas, tomato and warm spices.",
+    "searchAliases": [
+      "veg tehri",
+      "vegetable tahri",
+      "veg tahri",
+      "vegetable tahari",
+      "aloo tehri",
+      "tehri rice",
+      "tahari rice",
+      "north indian vegetable rice"
+    ]
+  },
+  {
     "name": "Dal Khichdi (Pan-Mixed Version)",
     "slug": "dal-khichdi-pan-mixed",
     "category": "Rice",

@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.20.14 - 2026-07-16
+
+### Added
+
+- Added Vegetable Tehri as a Draft North Indian one-pot rice dish with potato, cauliflower, carrot, peas, tomato, powdered spices and a 1 rice cup household base.
+
+### Changed
+
+- Changed site version to `v1.20.14`.
+
 ## 1.20.13 - 2026-07-16
 
 ### Added
