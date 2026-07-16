@@ -10,7 +10,7 @@
   "relationships": {
     "mealTypes": ["Lunch", "Dinner"],
     "dishTypes": ["Rice", "One Pot"],
-    "goesWellWith": ["punjabi-dal-tadka"]
+    "goesWellWith": ["punjabi-dal-tadka", "methi-matar-malai"]
   },
   "householdBase": {
     "people": 2,

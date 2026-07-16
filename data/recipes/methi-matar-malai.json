@@ -1,0 +1,377 @@
+{
+  "name": "Methi Matar Malai",
+  "slug": "methi-matar-malai",
+  "category": "Side Dish",
+  "summary": "Mild and creamy North Indian curry made with fresh methi leaves, green peas, cashews, onion and cream, balancing gentle sweetness, green-chilli heat and slight fenugreek bitterness.",
+  "details": {
+    "Cuisine": "North Indian",
+    "Status": "Draft",
+    "Source": "Hebbars Kitchen"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner"
+    ],
+    "dishTypes": [
+      "Side Dish"
+    ],
+    "goesWellWith": [
+      "jeera-rice"
+    ]
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "methi-leaves",
+    "baseQuantity": 65,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Methi leaves quantity",
+    "inputMin": 25,
+    "inputStep": 5,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Masala Paste",
+      "items": [
+        {
+          "id": "masala-oil",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 100,
+          "ingredient": "onion",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 2,
+            "2": 3
+          }
+        },
+        {
+          "id": "ginger-garlic-paste",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "ginger-garlic paste",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "cashews",
+          "quantity": 35,
+          "unit": "g",
+          "ingredient": "cashews",
+          "referenceQuantity": {
+            "quantity": 0.25,
+            "unit": "standard cup",
+            "approx": true
+          },
+          "preparation": "soaked in hot water for 30 minutes and drained",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Curry",
+      "items": [
+        {
+          "id": "curry-oil",
+          "quantity": 3,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "methi-leaves",
+          "quantity": 65,
+          "unit": "g",
+          "ingredient": "fresh methi leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 1,
+          "unit": "standard cup",
+          "ingredient": "water",
+          "referenceQuantity": {
+            "quantity": 240,
+            "unit": "ml",
+            "approx": false
+          },
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1.125,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "fresh-cream",
+          "quantity": 0.5,
+          "unit": "standard cup",
+          "ingredient": "fresh cream",
+          "referenceQuantity": {
+            "quantity": 120,
+            "unit": "ml",
+            "approx": false
+          },
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "green-peas",
+          "quantity": 1,
+          "unit": "standard cup",
+          "weightGrams": 130,
+          "ingredient": "green peas",
+          "preparation": "fresh or frozen",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "sugar",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "sugar",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.25,
+            "0.75": 0.5,
+            "1": 0.5,
+            "1.25": 0.5,
+            "1.5": 0.75,
+            "2": 1
+          }
+        },
+        {
+          "id": "salt",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjustable to taste",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.5,
+            "1": 0.75,
+            "1.25": 0.75,
+            "1.5": 1,
+            "2": 1.25
+          }
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.125,
+            "0.75": 0.125,
+            "1": 0.25,
+            "1.25": 0.25,
+            "1.5": 0.375,
+            "2": 0.5
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Soak:",
+      "ingredientIds": [
+        "cashews"
+      ],
+      "after": "Soak in hot water for 30 minutes, then drain."
+    },
+    {
+      "lead": "Pick and clean:",
+      "ingredientIds": [
+        "methi-leaves"
+      ],
+      "after": "Clean the leaves thoroughly."
+    },
+    {
+      "lead": "Chop:",
+      "ingredientIds": [
+        "methi-leaves"
+      ],
+      "after": "Finely chop the cleaned leaves."
+    },
+    {
+      "lead": "Slice:",
+      "ingredientIds": [
+        "onion"
+      ]
+    },
+    {
+      "lead": "Slit:",
+      "ingredientIds": [
+        "green-chillies"
+      ]
+    },
+    {
+      "lead": "Keep ready:",
+      "ingredientIds": [
+        "green-peas"
+      ],
+      "after": "Use fresh or frozen peas; frozen peas do not need thawing."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat:",
+      "ingredientIds": [
+        "masala-oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "onion",
+        "green-chillies",
+        "ginger-garlic-paste"
+      ],
+      "after": "Saute over medium heat until the onion turns translucent. Do not brown it heavily because the curry should retain a pale, creamy colour."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "cashews"
+      ],
+      "after": "Saute for about 1 minute."
+    },
+    {
+      "text": "Cool the mixture slightly and grind it into a smooth paste. If moisture is needed to help the blades move, use only a small amount taken from the measured recipe water. Do not add any extra unlisted water."
+    },
+    {
+      "lead": "Heat in a kadai:",
+      "ingredientIds": [
+        "curry-oil",
+        "cumin-seeds"
+      ],
+      "after": "Let the cumin seeds splutter."
+    },
+    {
+      "text": "Add the prepared masala paste. Saute over medium-low heat until it loses its raw smell and the oil begins separating at the edges. Stir regularly because cashew paste can catch at the bottom."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "methi-leaves"
+      ],
+      "after": "Saute for 2–3 minutes to reduce the rawness and control bitterness."
+    },
+    {
+      "lead": "Lower the heat and add:",
+      "ingredientIds": [
+        "water",
+        "fresh-cream"
+      ],
+      "after": "Add only the remaining measured water after accounting for any amount used while grinding. Mix continuously until smooth. Keep the heat low so the cream does not split."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "green-peas",
+        "sugar",
+        "salt"
+      ],
+      "after": "Mix, cover and simmer on low to medium-low heat for 8–10 minutes, or until the peas are cooked and the gravy becomes creamy. Stir once or twice to prevent sticking."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "garam-masala"
+      ],
+      "after": "Mix gently."
+    },
+    {
+      "text": "Check the consistency. Do not introduce additional unlisted water during the first trial; note whether the measured 1 standard cup total needs adjustment next time."
+    },
+    {
+      "text": "Turn off the heat and rest for 2 minutes before serving."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve with roti.",
+    "Serve with chapati.",
+    "Serve with paratha.",
+    "Serve with naan.",
+    "Serve with Jeera Rice."
+  ],
+  "notes": [
+    "Finely chopping the methi gives a more uniform gravy.",
+    "Clean methi thoroughly because fresh leaves may contain soil.",
+    "At the 1× base, 65 g cleaned methi leaves is roughly 2 loosely packed standard cups. Use grams as the scaling source of truth because leaf volume varies with packing.",
+    "Sauteing methi for 2–3 minutes helps control bitterness.",
+    "Blanching is an optional future variation for someone who prefers very low bitterness, but it is not the default method.",
+    "Add cream only on low heat to reduce the chance of splitting.",
+    "The curry intentionally contains no turmeric or red chilli powder, preserving its pale creamy colour.",
+    "Green chillies provide the main heat.",
+    "This is adapted from Hebbars Kitchen.",
+    "This is a Draft recipe pending household testing."
+  ]
+}
