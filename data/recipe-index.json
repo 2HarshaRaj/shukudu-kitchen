@@ -334,5 +334,19 @@
       "oats muesli",
       "homemade cereal"
     ]
+  },
+  {
+    "name": "Onion\u2013Cauliflower Pakoda",
+    "slug": "onion-cauliflower-pakoda",
+    "category": "Side Dish",
+    "summary": "Draft Indian onion and cauliflower pakoda with thinly sliced onion, small cauliflower florets and a thick besan-rice flour coating for deep-frying.",
+    "searchAliases": [
+      "onion cauliflower pakoda",
+      "onion gobi pakoda",
+      "gobi onion pakoda",
+      "cauliflower pakoda",
+      "gobi pakora",
+      "pyaz gobi pakora"
+    ]
   }
 ]

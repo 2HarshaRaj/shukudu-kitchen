@@ -1,0 +1,331 @@
+{
+  "name": "Onion–Cauliflower Pakoda",
+  "slug": "onion-cauliflower-pakoda",
+  "category": "Side Dish",
+  "summary": "Draft Indian onion and cauliflower pakoda with thinly sliced onion, small cauliflower florets and a thick besan-rice flour coating for deep-frying.",
+  "details": {
+    "Cuisine": "Indian",
+    "Status": "Draft",
+    "Yield": "Approximately 20–24 medium pakodas",
+    "Preparation Time": "15 minutes",
+    "Cooking Time": "20–25 minutes"
+  },
+  "relationships": {
+    "mealTypes": ["Snack"],
+    "dishTypes": ["Side Dish"],
+    "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 1,
+    "label": "2 people × 1 snack meal"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "cauliflower",
+    "baseQuantity": 250,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Cauliflower quantity",
+    "inputMin": 100,
+    "inputStep": 50,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Vegetables and Aromatics",
+      "items": [
+        {
+          "id": "cauliflower",
+          "quantity": 0.5,
+          "countLabel": "medium head",
+          "weightGrams": 250,
+          "ingredient": "cauliflower",
+          "preparation": "cut into small 2–3 cm florets",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "large onion",
+          "weightGrams": 150,
+          "ingredient": "onion",
+          "preparation": "thinly sliced and layers separated",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chilli",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "weightGrams": 8,
+          "ingredient": "green chilli",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
+          }
+        },
+        {
+          "id": "ginger",
+          "quantity": 1,
+          "countLabel": "inch piece",
+          "weightGrams": 10,
+          "ingredient": "ginger",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1.25,
+            "1.5": 1.5,
+            "2": 2
+          }
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 0.25,
+          "unit": "cup",
+          "weightGrams": 15,
+          "ingredient": "fresh coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.125,
+            "0.75": 0.1875,
+            "1": 0.25,
+            "1.25": 0.25,
+            "1.5": 0.375,
+            "2": 0.5
+          }
+        },
+        {
+          "id": "curry-leaves",
+          "quantity": 10,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "preparation": "finely sliced",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 5,
+            "0.75": 8,
+            "1": 10,
+            "1.25": 12,
+            "1.5": 15,
+            "2": 20
+          }
+        }
+      ]
+    },
+    {
+      "section": "Flour and Seasoning",
+      "items": [
+        {
+          "id": "besan",
+          "quantity": 1,
+          "unit": "cup",
+          "weightGrams": 120,
+          "ingredient": "besan",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "rice-flour",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "weightGrams": 25,
+          "ingredient": "rice flour",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "kashmiri-chilli-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "Kashmiri red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "ajwain",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "ajwain",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.125,
+            "0.75": 0.25,
+            "1": 0.25,
+            "1.25": 0.25,
+            "1.5": 0.375,
+            "2": 0.5
+          }
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "hot-oil",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "preparation": "for the pakoda mixture",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 60,
+          "unit": "ml",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "additional-water",
+          "quantity": 20,
+          "unit": "ml",
+          "ingredient": "additional water",
+          "preparation": "use only if required",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "For Frying",
+      "items": [
+        {
+          "id": "deep-frying-oil",
+          "quantity": 500,
+          "unit": "ml",
+          "ingredient": "oil",
+          "preparation": "or enough for deep-frying",
+          "scalable": false
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "text": "Cut the cauliflower into small florets approximately 2–3 cm wide."
+    },
+    {
+      "lead": "Wash thoroughly and drain completely:",
+      "ingredientIds": ["cauliflower"],
+      "after": "Spread the florets on a kitchen towel and allow them to dry for around 10 minutes. The florets should not contain excess surface moisture."
+    },
+    {
+      "lead": "Thinly slice and separate the layers:",
+      "ingredientIds": ["onion"]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Add to a wide mixing bowl:",
+      "ingredientIds": ["cauliflower", "onion", "green-chilli", "ginger", "coriander-leaves", "curry-leaves"]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["kashmiri-chilli-powder", "turmeric-powder", "ajwain", "garam-masala", "salt"],
+      "after": "Mix well. Lightly squeeze the onion with the fingers and rest the mixture for 5 minutes so that the onion releases some moisture."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["besan", "rice-flour"],
+      "after": "Mix until the flour coats the onion and cauliflower evenly."
+    },
+    {
+      "lead": "Heat separately until hot, then add:",
+      "ingredientIds": ["hot-oil"],
+      "after": "Mix again so the hot oil is evenly distributed through the pakoda mixture."
+    },
+    {
+      "lead": "Gradually add:",
+      "ingredientIds": ["water"],
+      "after": "Mix gradually so the flour hydrates and starts binding the onion and cauliflower."
+    },
+    {
+      "lead": "Add only if required:",
+      "ingredientIds": ["additional-water"],
+      "after": "The mixture should remain thick, rough and sticky enough to hold the vegetables together. It must not become a flowing bajji-style batter."
+    },
+    {
+      "lead": "Heat in a kadai over medium heat:",
+      "ingredientIds": ["deep-frying-oil"]
+    },
+    {
+      "text": "Test the oil with a small portion of the mixture. It should rise gradually without immediately becoming dark."
+    },
+    {
+      "text": "Pick up small irregular portions containing both onion and cauliflower and carefully drop them into the oil."
+    },
+    {
+      "text": "Fry around 5–7 pakodas per batch without overcrowding the kadai."
+    },
+    {
+      "text": "Fry over medium heat for approximately 4–6 minutes, turning occasionally, until the pakodas are crisp and deep golden."
+    },
+    {
+      "text": "Remove and drain on a wire rack or absorbent paper."
+    },
+    {
+      "text": "Allow the oil to return to the correct temperature before frying the next batch."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve immediately while hot and crisp.",
+    "Serve with coconut chutney, mint-coriander chutney or tomato ketchup.",
+    "Serve as an evening snack with tea or coffee."
+  ],
+  "notes": [
+    "Untested draft: cook and validate quantity, texture, seasoning and frying time before finalizing.",
+    "Keep the cauliflower florets small so that they cook before the coating becomes too dark.",
+    "Do not blanch or boil the cauliflower for this version.",
+    "Ensure the washed cauliflower is thoroughly drained and surface-dried.",
+    "Rice flour helps produce a crisper exterior.",
+    "Avoid adding excess water. The mixture should remain thick and irregular rather than smooth or flowing.",
+    "High heat may brown the outside before the cauliflower cooks.",
+    "Low heat may cause the pakodas to absorb excess oil.",
+    "For additional crispness, the pakodas may be fried again for 30–45 seconds over medium-high heat immediately before serving."
+  ]
+}
