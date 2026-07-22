@@ -207,8 +207,8 @@
           "id": "hot-oil",
           "quantity": 1,
           "unit": "tablespoon",
-          "ingredient": "hot oil",
-          "preparation": "to add to the pakoda mixture",
+          "ingredient": "oil",
+          "preparation": "for the pakoda mixture",
           "scalable": true,
           "roundingType": "exact"
         },
@@ -217,7 +217,15 @@
           "quantity": 60,
           "unit": "ml",
           "ingredient": "water",
-          "preparation": "plus up to 20 ml more only if required",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "additional-water",
+          "quantity": 20,
+          "unit": "ml",
+          "ingredient": "additional water",
+          "preparation": "use only if required",
           "scalable": true,
           "roundingType": "exact"
         }
@@ -263,13 +271,23 @@
     },
     {
       "lead": "Add:",
-      "ingredientIds": ["besan", "rice-flour", "hot-oil"],
+      "ingredientIds": ["besan", "rice-flour"],
       "after": "Mix until the flour coats the onion and cauliflower evenly."
+    },
+    {
+      "lead": "Heat separately until hot, then add:",
+      "ingredientIds": ["hot-oil"],
+      "after": "Mix again so the hot oil is evenly distributed through the pakoda mixture."
     },
     {
       "lead": "Gradually add:",
       "ingredientIds": ["water"],
-      "after": "Start with 60 ml and add up to 20 ml more only when required. The mixture should be thick, rough and sticky enough to hold the vegetables together. It must not become a flowing bajji-style batter."
+      "after": "Mix gradually so the flour hydrates and starts binding the onion and cauliflower."
+    },
+    {
+      "lead": "Add only if required:",
+      "ingredientIds": ["additional-water"],
+      "after": "The mixture should remain thick, rough and sticky enough to hold the vegetables together. It must not become a flowing bajji-style batter."
     },
     {
       "lead": "Heat in a kadai over medium heat:",
