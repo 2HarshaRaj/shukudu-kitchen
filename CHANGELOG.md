@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.21.0 - 2026-07-22
+
+### Added
+
+- Added Onion–Cauliflower Pakoda as a Draft Indian snack with a 250 g cauliflower base, thinly sliced onion, thick besan-rice flour coating and deep-frying guidance.
+
+### Changed
+
+- Changed site version to `v1.21.0`.
+
 ## 1.20.15 - 2026-07-16
 
 ### Changed
