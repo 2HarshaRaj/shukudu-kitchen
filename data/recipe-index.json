@@ -348,5 +348,20 @@
       "gobi pakora",
       "pyaz gobi pakora"
     ]
+  },
+  {
+    "name": "Potato Sagu | Bombay Sagu – Aloo Saagu for Poori",
+    "slug": "potato-sagu",
+    "category": "Side Dish",
+    "summary": "Finalized Karnataka-style potato sagu with onion, tomato, tempering, besan slurry and lemon, made to stay slightly loose for poori, chapati or rava idli.",
+    "searchAliases": [
+      "potato sagu",
+      "aloo sagu",
+      "aloo saagu",
+      "bombay sagu",
+      "bombay saagu",
+      "potato saagu",
+      "poori sagu"
+    ]
   }
 ]
