@@ -35,7 +35,7 @@
           "countLabel": "medium potato",
           "weightGrams": 400,
           "ingredient": "potatoes",
-          "preparation": "washed and pressure-cooked whole or halved",
+          "preparation": "washed; small or medium potatoes left whole and only unusually large potatoes halved for even cooking",
           "scalable": true,
           "roundingType": "large-produce"
         }
@@ -261,7 +261,7 @@
     {
       "lead": "Wash and prepare for pressure-cooking:",
       "ingredientIds": ["potatoes"],
-      "after": "Leave them whole for approximately 2 whistles or halve them for approximately 1 whistle. Allow natural pressure release; a knife should slide in easily when they are done. Roughly mash while retaining small chunks. Pressure-cooking duration does not scale."
+      "after": "Fully submerge them in water. Leave normal small or medium potatoes whole; if one is unusually large compared with the others, halve only that potato so the pieces cook evenly. Pressure cook for 2 whistles on medium heat regardless of whether an unusually large potato was halved. Switch off and allow natural pressure release. Check the thickest potato or piece with a knife; it should slide in easily. Roughly mash while retaining small chunks. Pressure-cooking duration does not scale."
     },
     {
       "lead": "Slice, chop and grate as specified:",
@@ -282,7 +282,7 @@
     {
       "lead": "Pressure-cook until soft:",
       "ingredientIds": ["potatoes"],
-      "after": "Allow natural pressure release, check that a knife slides in easily, then roughly mash while retaining small chunks."
+      "after": "Fully submerge them in water. Leave normal small or medium potatoes whole, halving only any unusually large potato for even cooking. Pressure cook for 2 whistles on medium heat regardless of whether a large potato was halved. Switch off and allow natural pressure release. Check the thickest potato or piece with a knife; it should slide in easily. Roughly mash while retaining small chunks."
     },
     {
       "lead": "Heat and temper with:",
