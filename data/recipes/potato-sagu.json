@@ -1,0 +1,353 @@
+{
+  "name": "Potato Sagu | Bombay Sagu – Aloo Saagu for Poori",
+  "slug": "potato-sagu",
+  "category": "Side Dish",
+  "summary": "Finalized Karnataka-style potato sagu with onion, tomato, tempering, besan slurry and lemon, made to stay slightly loose for poori, chapati or rava idli.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Finalized",
+    "Health Rating": "4 out of 5"
+  },
+  "relationships": {
+    "mealTypes": ["Breakfast", "Lunch", "Dinner", "Side"],
+    "dishTypes": ["Side Dish"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "potatoes",
+    "baseQuantity": 400,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Potato quantity",
+    "inputMin": 100,
+    "inputStep": 50,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "To Boil",
+      "items": [
+        {
+          "id": "potatoes",
+          "quantity": 3,
+          "countLabel": "medium potato",
+          "weightGrams": 400,
+          "ingredient": "potatoes",
+          "preparation": "washed and pressure-cooked whole or halved",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "section": "To Chop / Slice / Grate",
+      "items": [
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomato",
+          "quantity": 1,
+          "countLabel": "medium tomato",
+          "weightGrams": 100,
+          "ingredient": "tomato",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "weightGrams": 6,
+          "ingredient": "green chillies",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 2.5, "2": 3}
+        },
+        {
+          "id": "ginger",
+          "quantity": 1,
+          "countLabel": "inch piece",
+          "weightGrams": 10,
+          "ingredient": "ginger",
+          "preparation": "grated",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 8,
+          "ingredient": "coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 2.5, "2": 3}
+        },
+        {
+          "id": "lemon",
+          "quantity": 0.5,
+          "countLabel": "medium lemon",
+          "weightGrams": 20,
+          "ingredient": "lemon",
+          "preparation": "juiced",
+          "scalable": true,
+          "roundingType": "large-produce",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 1}
+        }
+      ]
+    },
+    {
+      "section": "Whole Spices for Tempering",
+      "items": [
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}
+        },
+        {
+          "id": "urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}
+        },
+        {
+          "id": "chana-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}
+        },
+        {
+          "id": "dried-red-chilli",
+          "quantity": 1,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chilli",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 1, "0.75": 1, "1": 1, "1.25": 1, "1.5": 1, "2": 2}
+        },
+        {
+          "id": "hing",
+          "displayText": "Hing – a pinch",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "curry-leaves",
+          "displayText": "Curry leaves – a few",
+          "ingredient": "curry leaves",
+          "scalable": false
+        }
+      ]
+    },
+    {
+      "section": "Powdered Spices",
+      "items": [
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust to taste",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}
+        }
+      ]
+    },
+    {
+      "section": "Other",
+      "items": [
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "sagu-water",
+          "quantity": 2,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for the sagu",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "slurry-water",
+          "quantity": 0.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for the besan slurry",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "besan",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "besan / gram flour",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Wash and prepare for pressure-cooking:",
+      "ingredientIds": ["potatoes"],
+      "after": "Leave them whole for approximately 2 whistles or halve them for approximately 1 whistle. Allow natural pressure release; a knife should slide in easily when they are done. Roughly mash while retaining small chunks. Pressure-cooking duration does not scale."
+    },
+    {
+      "lead": "Slice, chop and grate as specified:",
+      "ingredientIds": ["onion", "tomato", "green-chillies", "ginger"]
+    },
+    {
+      "lead": "Prepare for finishing:",
+      "ingredientIds": ["coriander-leaves", "lemon"],
+      "after": "Chop the coriander leaves and keep the lemon ready for juicing."
+    },
+    {
+      "lead": "Measure separately before cooking:",
+      "ingredientIds": ["sagu-water", "slurry-water", "besan"],
+      "after": "Keep the water portions separate so the full measured total is used correctly."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Pressure-cook until soft:",
+      "ingredientIds": ["potatoes"],
+      "after": "Allow natural pressure release, check that a knife slides in easily, then roughly mash while retaining small chunks."
+    },
+    {
+      "lead": "Heat and temper with:",
+      "ingredientIds": ["oil", "mustard-seeds", "cumin-seeds", "urad-dal", "chana-dal", "dried-red-chilli", "hing", "curry-leaves"],
+      "after": "Let the dals become lightly golden before proceeding."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["ginger", "green-chillies"],
+      "after": "Sauté briefly until aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["onion"],
+      "after": "Sauté until slightly softened; deep browning is not required."
+    },
+    {
+      "lead": "Lower the heat and add:",
+      "ingredientIds": ["turmeric-powder", "red-chilli-powder", "salt"],
+      "after": "Sauté briefly until aromatic without burning the powders."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tomato"],
+      "after": "Cook until soft and mushy."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["potatoes", "sagu-water"],
+      "after": "Mix well. Keep the sagu slightly loose because it thickens as it rests."
+    },
+    {
+      "lead": "Make a completely smooth, lump-free slurry with:",
+      "ingredientIds": ["besan", "slurry-water"]
+    },
+    {
+      "lead": "Gradually add while stirring continuously:",
+      "ingredientIds": ["besan", "slurry-water"],
+      "after": "Continuous stirring prevents lumps."
+    },
+    {
+      "text": "Boil for approximately 5 minutes, stirring as needed, until the raw besan smell disappears. Cooking time does not scale."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": ["coriander-leaves", "lemon"],
+      "after": "Mix and switch off the heat."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with poori or chapati.",
+    "Also pairs well with rava idli.",
+    "A slightly loose, pourable consistency works particularly well with rava idli and chapati.",
+    "Add a small amount of hot water while reheating if the sagu thickens after resting."
+  ],
+  "notes": [
+    "Tested successfully on 29-Apr-2025 with the original 3-medium-potato version, now normalized to 400 g potatoes.",
+    "Taste result from the original trial: Excellent. Next-time improvements: None.",
+    "Add the besan slurry while stirring continuously to avoid lumps.",
+    "Sagu thickens as it cools, so keep it slightly loose while cooking.",
+    "For a chunkier sagu, roughly mash rather than completely mashing the potatoes.",
+    "For rava idli, somewhat smaller potato pieces work better than large chunks because they coat the idli more evenly.",
+    "Natural pressure release helps the potatoes cook evenly without unnecessary breakage.",
+    "Practical household rava-idli observation: 500 g MTR rava idli mix yielded 48 idlis in the household idli plates.",
+    "A later sagu batch scaled to approximately 1 kg potatoes was almost double the quantity needed for that 500 g / 48-idli batch.",
+    "Do not use 1 kg potatoes as the rava-idli default or encode a finalized rava-idli scaling ratio yet; keep this for future calibration."
+  ]
+}

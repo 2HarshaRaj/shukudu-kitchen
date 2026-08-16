@@ -12,6 +12,16 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## 1.22.0 - 2026-08-16
+
+### Added
+
+- Added Potato Sagu as a finalized South Indian side dish with a 400 g potato base, structured scaling, cooking guidance, and serving notes.
+
+### Changed
+
+- Changed site version to `v1.22.0`.
+
 ## 1.21.0 - 2026-07-22
 
 ### Added
