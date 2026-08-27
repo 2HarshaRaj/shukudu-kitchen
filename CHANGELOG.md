@@ -18,6 +18,13 @@ Major.Minor.Patch
 
 - Documented the bounded Fast Data Path and Codex Development Path, including a durable-learning checkpoint and selective user-approved Codex Code Review guidance.
 
+## 1.22.1 - 2026-08-27
+
+### Changed
+
+- Reduced Menthya Rice Bath green chillies from 20 g (4 chillies) to 10 g (2 chillies) at 1× after the stronger version proved too spicy, and adjusted its recipe-specific chilli scaling.
+- Changed site version to `v1.22.1`.
+
 ## 1.22.0 - 2026-08-16
 
 ### Added
@@ -239,7 +246,6 @@ Major.Minor.Patch
 ### Changed
 
 - Changed site version to `v1.19.3`.
-
 
 ## 1.19.2 - 2026-06-24
 

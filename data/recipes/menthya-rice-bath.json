@@ -82,20 +82,20 @@
         },
         {
           "id": "green-chillies",
-          "quantity": 4,
+          "quantity": 2,
           "countLabel": "green chilli",
-          "weightGrams": 20,
+          "weightGrams": 10,
           "ingredient": "green chillies",
           "preparation": "slit",
           "scalable": true,
           "roundingType": "small-whole",
           "scaleQuantities": {
-            "0.5": 2,
-            "0.75": 3,
-            "1": 4,
-            "1.25": 4,
-            "1.5": 5,
-            "2": 6
+            "0.5": 1,
+            "0.75": 2,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 3,
+            "2": 4
           }
         },
         {
@@ -482,7 +482,7 @@
     "This recipe uses 250 g methi bunches as the practical purchase quantity before cleaning.",
     "After removing thick stems, 250 g methi bunches usually gives enough cleaned leaves and tender stems for 1 rice cup rice.",
     "Use all leaves and only the tender upper stems; discard thick lower stems.",
-    "The strengthened green chilli, powdered-spice and tamarind balance addresses the earlier bland result while preserving the Karnataka-style methi, tamarind and jaggery character.",
+    "The green chilli quantity was reduced after the 20 g version proved too spicy, while keeping the powdered-spice and tamarind balance unchanged.",
     "Jaggery is intentionally lower than tamarind so it balances methi bitterness without muting the tang.",
     "The boiling liquid should taste more intense than the final cooked rice because rice absorbs and softens the seasoning.",
     "Taste for salt after opening the cooker and adjust if needed.",
