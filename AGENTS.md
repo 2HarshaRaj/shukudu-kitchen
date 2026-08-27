@@ -2,10 +2,11 @@
 
 ## Repository Rules
 
-- Read `README.md`, `docs/ARCHITECTURE.md`, and relevant docs before making changes.
+- Read `README.md`, `docs/ARCHITECTURE.md`, `docs/CODEX-WORKFLOW.md`, and relevant docs before making changes.
 - Keep changes small and focused.
 - Prefer one logical change per PR.
 - Avoid touching unrelated files.
+- Use the bounded Fast Data Path only for routine changes that fit the existing recipe/data model; use the Codex Development Path for model, code, UI, validation, workflow, architecture, bulk, or other higher-risk changes.
 
 ## Codex Prompt and Review Guidance
 

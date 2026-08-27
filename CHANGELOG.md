@@ -12,6 +12,12 @@ Major.Minor.Patch
 - Minor: new user-facing functionality or architecture capability
 - Patch: fixes, styling improvements, and small refinements
 
+## Unreleased
+
+### Changed
+
+- Documented the bounded Fast Data Path and Codex Development Path, including a durable-learning checkpoint and selective user-approved Codex Code Review guidance.
+
 ## 1.22.0 - 2026-08-16
 
 ### Added
