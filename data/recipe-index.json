@@ -363,5 +363,18 @@
       "potato saagu",
       "poori sagu"
     ]
+  },
+  {
+    "name": "Idli Sambar / Hotel-Style Tiffin Sambar",
+    "slug": "idli-sambar",
+    "category": "Side Dish",
+    "summary": "Finalized hotel-style tiffin sambar with smooth toor dal, mixed vegetables and a fresh roasted masala ground with tomato and cooked dal.",
+    "searchAliases": [
+      "idly sambar",
+      "tiffin sambar",
+      "hotel sambar",
+      "hotel style sambar",
+      "fresh masala sambar"
+    ]
   }
 ]
