@@ -18,6 +18,13 @@ Major.Minor.Patch
 
 - Documented the bounded Fast Data Path and Codex Development Path, including a durable-learning checkpoint and selective user-approved Codex Code Review guidance.
 
+## 1.22.3 - 2026-08-29
+
+### Changed
+
+- Refined Idli Sambar so its freshly roasted masala is dry-ground to a powder, removing the reserved-tomato and cooked-dal grinding workaround.
+- Changed site version to `v1.22.3`.
+
 ## 1.22.2 - 2026-08-29
 
 ### Added

@@ -2,7 +2,7 @@
   "name": "Idli Sambar / Hotel-Style Tiffin Sambar",
   "slug": "idli-sambar",
   "category": "Side Dish",
-  "summary": "Finalized hotel-style tiffin sambar with smooth toor dal, mixed vegetables and a fresh roasted masala ground with tomato and cooked dal.",
+  "summary": "Finalized hotel-style tiffin sambar with smooth toor dal, mixed vegetables and a freshly ground roasted masala powder.",
   "details": {
     "Cuisine": "South Indian",
     "Status": "Finalized",
@@ -65,7 +65,7 @@
           "countLabel": "medium tomato",
           "weightGrams": 100,
           "ingredient": "tomato",
-          "preparation": "chopped; reserve 30 g for the fresh masala and keep the remaining approximately 70 g for the sambar",
+          "preparation": "chopped",
           "scalable": true,
           "roundingType": "large-produce"
         },
@@ -202,21 +202,13 @@
           "displayText": "Hing – 1 pinch",
           "ingredient": "hing",
           "scalable": false
-        },
-        {
-          "id": "grinding-water",
-          "quantity": 2.5,
-          "unit": "tablespoon",
-          "ingredient": "water",
-          "preparation": "2–3 tablespoons, only as needed for grinding",
-          "scalable": true,
-          "roundingType": "exact"
         }
       ]
     },
     {
       "section": "Main Sambar",
       "items": [
+        {"id": "fresh-masala-powder", "displayText": "Fresh masala powder (freshly ground from the roasted masala ingredients)", "ingredient": "fresh masala powder", "scalable": false},
         {"id": "oil", "quantity": 2, "unit": "tablespoon", "ingredient": "oil", "scalable": true, "roundingType": "exact"},
         {"id": "salt", "quantity": 2, "unit": "teaspoon", "ingredient": "salt", "preparation": "divided and adjusted to taste", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 2.5, "2": 3}},
         {"id": "turmeric-powder", "quantity": 0.5, "unit": "teaspoon", "ingredient": "turmeric powder", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}},
@@ -243,35 +235,30 @@
     {
       "lead": "Rinse and pressure-cook:",
       "ingredientIds": ["toor-dal", "dal-cooking-water"],
-      "after": "Cook for 3–4 whistles, allow the pressure to release, then whisk or mash until smooth. Reserve 1 tablespoon of the cooked dal for grinding the fresh masala; keep the rest for the sambar. Pressure-cooking duration does not scale."
+      "after": "Cook for 3–4 whistles, allow the pressure to release, then whisk or mash until smooth. Pressure-cooking duration does not scale."
     },
     {
       "lead": "Slice, chop and slit as specified:",
       "ingredientIds": ["onion", "tomato", "carrot", "potato", "beans", "drumstick", "green-chillies", "coriander-leaves"],
-      "after": "Keep the reserved 30 g tomato separate for grinding so the full tomato quantity is not counted twice."
+      "after": "Keep ready for the sambar."
     },
     {
       "lead": "Measure separately for the fresh masala:",
-      "ingredientIds": ["coriander-seeds", "masala-chana-dal", "masala-urad-dal", "masala-dried-red-chillies", "methi-seeds", "masala-curry-leaves", "masala-hing", "grinding-water"]
+      "ingredientIds": ["coriander-seeds", "masala-chana-dal", "masala-urad-dal", "masala-dried-red-chillies", "methi-seeds", "masala-curry-leaves", "masala-hing"]
     }
   ],
   "cookingMethod": [
     {
       "lead": "Dry-roast until aromatic without burning:",
       "ingredientIds": ["coriander-seeds", "masala-chana-dal", "masala-urad-dal", "masala-dried-red-chillies", "methi-seeds", "masala-curry-leaves", "masala-hing"],
-      "after": "Cool slightly."
-    },
-    {
-      "lead": "Grind the roasted mixture with:",
-      "ingredientIds": ["tomato", "toor-dal", "grinding-water"],
-      "after": "Use only the reserved 30 g tomato, the reserved 1 tablespoon cooked dal and just enough of the measured water to make a smooth paste. These portions come from the listed tomato and dal totals and are not additional ingredients."
+      "after": "Cool slightly, then grind to a dry powder."
     },
     {"lead": "Heat:", "ingredientIds": ["oil"]},
     {"lead": "Add:", "ingredientIds": ["onion"], "after": "Sauté until softened."},
     {
       "lead": "Add:",
       "ingredientIds": ["tomato", "carrot", "potato", "beans", "drumstick", "salt", "turmeric-powder", "green-chillies", "main-curry-leaves"],
-      "after": "Use only the remaining approximately 70 g tomato and 1 teaspoon of the measured salt. Stir-fry for about 2 minutes."
+      "after": "Use 1 teaspoon of the measured salt. Stir-fry for about 2 minutes."
     },
     {
       "lead": "Add:",
@@ -285,8 +272,8 @@
     },
     {
       "lead": "Add:",
-      "ingredientIds": ["toor-dal", "final-water", "salt"],
-      "after": "Use the remaining cooked dal and remaining 1 teaspoon measured salt, then mix in all the fresh masala paste. Boil for 5–7 minutes, keeping the consistency slightly thin and pourable."
+      "ingredientIds": ["toor-dal", "final-water", "salt", "fresh-masala-powder"],
+      "after": "Use all the cooked dal and remaining 1 teaspoon measured salt. Boil for 5–7 minutes, keeping the consistency slightly thin and pourable."
     },
     {"lead": "Heat for tempering:", "ingredientIds": ["coconut-oil"]},
     {"lead": "Splutter:", "ingredientIds": ["mustard-seeds"]},
@@ -307,9 +294,7 @@
   ],
   "notes": [
     "This exact fresh-masala version was cooked and approved as good on 29-Aug-2026.",
-    "The fresh paste replaces 1½ tablespoons commercial sambar powder.",
-    "Reserved tomato and a small amount of cooked dal deliberately give the fresh masala enough volume for a small mixer batch without adding coconut.",
-    "The reserved tomato and cooked dal come from the listed totals; do not add them again.",
+    "The fresh masala powder replaces 1½ tablespoons commercial sambar powder.",
     "Keep tiffin sambar slightly thin and pourable.",
     "Add tamarind only after the vegetables are partly cooked so the acidity does not slow softening.",
     "Whisk or mash the dal smooth for the desired hotel-style texture."
