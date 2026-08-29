@@ -18,6 +18,16 @@ Major.Minor.Patch
 
 - Documented the bounded Fast Data Path and Codex Development Path, including a durable-learning checkpoint and selective user-approved Codex Code Review guidance.
 
+## 1.22.2 - 2026-08-29
+
+### Added
+
+- Added the finalized Idli Sambar / Hotel-Style Tiffin Sambar recipe with mixed vegetables and a fresh roasted masala ground with reserved tomato and cooked dal.
+
+### Changed
+
+- Changed site version to `v1.22.2`.
+
 ## 1.22.1 - 2026-08-27
 
 ### Changed

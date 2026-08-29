@@ -1,0 +1,317 @@
+{
+  "name": "Idli Sambar / Hotel-Style Tiffin Sambar",
+  "slug": "idli-sambar",
+  "category": "Side Dish",
+  "summary": "Finalized hotel-style tiffin sambar with smooth toor dal, mixed vegetables and a fresh roasted masala ground with tomato and cooked dal.",
+  "details": {
+    "Cuisine": "South Indian",
+    "Status": "Finalized",
+    "Source / Inspiration": "Hebbars Kitchen"
+  },
+  "relationships": {
+    "mealTypes": ["Breakfast", "Lunch", "Dinner", "Side"],
+    "dishTypes": ["Side Dish", "Dal"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "toor-dal",
+    "baseQuantity": 0.5,
+    "baseUnit": "cup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Dal",
+      "items": [
+        {
+          "id": "toor-dal",
+          "quantity": 0.5,
+          "unit": "cup",
+          "weightGrams": 100,
+          "ingredient": "raw toor dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dal-cooking-water",
+          "quantity": 1.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for pressure-cooking the dal",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Vegetables and Aromatics",
+      "items": [
+        {
+          "id": "onion",
+          "quantity": 1,
+          "countLabel": "medium onion",
+          "weightGrams": 120,
+          "ingredient": "onion",
+          "preparation": "sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomato",
+          "quantity": 1,
+          "countLabel": "medium tomato",
+          "weightGrams": 100,
+          "ingredient": "tomato",
+          "preparation": "chopped; reserve 30 g for the fresh masala and keep the remaining approximately 70 g for the sambar",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "carrot",
+          "quantity": 1,
+          "countLabel": "small carrot",
+          "weightGrams": 80,
+          "ingredient": "carrot",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "potato",
+          "quantity": 1,
+          "countLabel": "small potato",
+          "weightGrams": 100,
+          "ingredient": "potato",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "beans",
+          "quantity": 6,
+          "countLabel": "bean",
+          "weightGrams": 40,
+          "ingredient": "beans",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "drumstick",
+          "quantity": 6,
+          "countLabel": "drumstick piece",
+          "weightGrams": 120,
+          "ingredient": "drumstick",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 2,
+          "countLabel": "small green chilli",
+          "weightGrams": 10,
+          "ingredient": "green chillies",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 2.5, "2": 3}
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 8,
+          "ingredient": "coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 2.5, "2": 3}
+        }
+      ]
+    },
+    {
+      "section": "Fresh Roasted Masala",
+      "items": [
+        {
+          "id": "coriander-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "coriander seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}
+        },
+        {
+          "id": "masala-chana-dal",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}
+        },
+        {
+          "id": "masala-urad-dal",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.125, "0.75": 0.25, "1": 0.25, "1.25": 0.25, "1.5": 0.375, "2": 0.5}
+        },
+        {
+          "id": "masala-dried-red-chillies",
+          "quantity": 3,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chillies",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 2, "0.75": 2, "1": 3, "1.25": 3, "1.5": 4, "2": 5}
+        },
+        {
+          "id": "methi-seeds",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "methi / fenugreek seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 0.125, "0.75": 0.25, "1": 0.25, "1.25": 0.25, "1.5": 0.375, "2": 0.5}
+        },
+        {
+          "id": "masala-curry-leaves",
+          "quantity": 7,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {"0.5": 4, "0.75": 5, "1": 7, "1.25": 7, "1.5": 9, "2": 11}
+        },
+        {
+          "id": "masala-hing",
+          "displayText": "Hing – 1 pinch",
+          "ingredient": "hing",
+          "scalable": false
+        },
+        {
+          "id": "grinding-water",
+          "quantity": 2.5,
+          "unit": "tablespoon",
+          "ingredient": "water",
+          "preparation": "2–3 tablespoons, only as needed for grinding",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Main Sambar",
+      "items": [
+        {"id": "oil", "quantity": 2, "unit": "tablespoon", "ingredient": "oil", "scalable": true, "roundingType": "exact"},
+        {"id": "salt", "quantity": 2, "unit": "teaspoon", "ingredient": "salt", "preparation": "divided and adjusted to taste", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 1, "0.75": 1.5, "1": 2, "1.25": 2, "1.5": 2.5, "2": 3}},
+        {"id": "turmeric-powder", "quantity": 0.5, "unit": "teaspoon", "ingredient": "turmeric powder", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}},
+        {"id": "main-curry-leaves", "displayText": "Curry leaves – a few", "ingredient": "curry leaves", "scalable": false},
+        {"id": "vegetable-cooking-water", "quantity": 3, "unit": "cup", "ingredient": "water", "preparation": "for cooking the vegetables", "scalable": true, "roundingType": "exact"},
+        {"id": "tamarind-paste", "quantity": 1.5, "unit": "tablespoon", "ingredient": "tamarind paste", "scalable": true, "roundingType": "exact"},
+        {"id": "jaggery", "quantity": 1, "unit": "teaspoon", "ingredient": "jaggery", "scalable": true, "roundingType": "exact"},
+        {"id": "final-water", "quantity": 1.5, "unit": "cup", "ingredient": "water", "preparation": "for adding with the dal and adjusting consistency", "scalable": true, "roundingType": "exact"}
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {"id": "coconut-oil", "quantity": 1, "unit": "tablespoon", "ingredient": "coconut oil", "scalable": true, "roundingType": "exact"},
+        {"id": "mustard-seeds", "quantity": 1, "unit": "teaspoon", "ingredient": "mustard seeds", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 0.5, "0.75": 0.75, "1": 1, "1.25": 1, "1.5": 1.25, "2": 1.5}},
+        {"id": "tempering-urad-dal", "quantity": 0.5, "unit": "teaspoon", "ingredient": "urad dal", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}},
+        {"id": "tempering-dried-red-chilli", "quantity": 1, "countLabel": "dried red chilli", "ingredient": "dried red chilli", "scalable": true, "roundingType": "small-whole", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 1, "0.75": 1, "1": 1, "1.25": 1, "1.5": 1, "2": 2}},
+        {"id": "tempering-hing", "displayText": "Hing – 1 pinch", "ingredient": "hing", "scalable": false},
+        {"id": "tempering-curry-leaves", "displayText": "Curry leaves – a few", "ingredient": "curry leaves", "scalable": false}
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Rinse and pressure-cook:",
+      "ingredientIds": ["toor-dal", "dal-cooking-water"],
+      "after": "Cook for 3–4 whistles, allow the pressure to release, then whisk or mash until smooth. Reserve 1 tablespoon of the cooked dal for grinding the fresh masala; keep the rest for the sambar. Pressure-cooking duration does not scale."
+    },
+    {
+      "lead": "Slice, chop and slit as specified:",
+      "ingredientIds": ["onion", "tomato", "carrot", "potato", "beans", "drumstick", "green-chillies", "coriander-leaves"],
+      "after": "Keep the reserved 30 g tomato separate for grinding so the full tomato quantity is not counted twice."
+    },
+    {
+      "lead": "Measure separately for the fresh masala:",
+      "ingredientIds": ["coriander-seeds", "masala-chana-dal", "masala-urad-dal", "masala-dried-red-chillies", "methi-seeds", "masala-curry-leaves", "masala-hing", "grinding-water"]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Dry-roast until aromatic without burning:",
+      "ingredientIds": ["coriander-seeds", "masala-chana-dal", "masala-urad-dal", "masala-dried-red-chillies", "methi-seeds", "masala-curry-leaves", "masala-hing"],
+      "after": "Cool slightly."
+    },
+    {
+      "lead": "Grind the roasted mixture with:",
+      "ingredientIds": ["tomato", "toor-dal", "grinding-water"],
+      "after": "Use only the reserved 30 g tomato, the reserved 1 tablespoon cooked dal and just enough of the measured water to make a smooth paste. These portions come from the listed tomato and dal totals and are not additional ingredients."
+    },
+    {"lead": "Heat:", "ingredientIds": ["oil"]},
+    {"lead": "Add:", "ingredientIds": ["onion"], "after": "Sauté until softened."},
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tomato", "carrot", "potato", "beans", "drumstick", "salt", "turmeric-powder", "green-chillies", "main-curry-leaves"],
+      "after": "Use only the remaining approximately 70 g tomato and 1 teaspoon of the measured salt. Stir-fry for about 2 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["vegetable-cooking-water"],
+      "after": "Boil until the vegetables are about half-cooked; this took about 5 minutes in the tested batch, but use doneness as the cue."
+    },
+    {
+      "lead": "Add only after the vegetables are partly cooked:",
+      "ingredientIds": ["tamarind-paste", "jaggery"],
+      "after": "Continue cooking until the vegetables are fully cooked."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["toor-dal", "final-water", "salt"],
+      "after": "Use the remaining cooked dal and remaining 1 teaspoon measured salt, then mix in all the fresh masala paste. Boil for 5–7 minutes, keeping the consistency slightly thin and pourable."
+    },
+    {"lead": "Heat for tempering:", "ingredientIds": ["coconut-oil"]},
+    {"lead": "Splutter:", "ingredientIds": ["mustard-seeds"]},
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tempering-urad-dal", "tempering-dried-red-chilli", "tempering-hing", "tempering-curry-leaves"],
+      "after": "Fry briefly, then pour the tempering over the sambar."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": ["coriander-leaves"],
+      "after": "Simmer briefly, about 1 minute, then serve."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot and slightly thin with idli and chutney.",
+    "The tested base accompanied 1 kg idli batter with chutney."
+  ],
+  "notes": [
+    "This exact fresh-masala version was cooked and approved as good on 29-Aug-2026.",
+    "The fresh paste replaces 1½ tablespoons commercial sambar powder.",
+    "Reserved tomato and a small amount of cooked dal deliberately give the fresh masala enough volume for a small mixer batch without adding coconut.",
+    "The reserved tomato and cooked dal come from the listed totals; do not add them again.",
+    "Keep tiffin sambar slightly thin and pourable.",
+    "Add tamarind only after the vegetables are partly cooked so the acidity does not slow softening.",
+    "Whisk or mash the dal smooth for the desired hotel-style texture."
+  ]
+}
