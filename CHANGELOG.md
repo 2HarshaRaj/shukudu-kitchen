@@ -22,7 +22,7 @@ Major.Minor.Patch
 
 ### Added
 
-- Added the finalized Idli Sambar / Hotel-Style Tiffin Sambar recipe with mixed vegetables and a fresh roasted masala ground with reserved tomato and cooked dal.
+- Added the finalized Idli Sambar / Hotel-Style Tiffin Sambar recipe with mixed vegetables and a freshly ground roasted masala powder.
 
 ### Changed
 
