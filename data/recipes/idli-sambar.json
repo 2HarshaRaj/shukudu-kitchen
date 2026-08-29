@@ -214,7 +214,7 @@
         {"id": "turmeric-powder", "quantity": 0.5, "unit": "teaspoon", "ingredient": "turmeric powder", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": {"0.5": 0.25, "0.75": 0.5, "1": 0.5, "1.25": 0.5, "1.5": 0.75, "2": 0.75}},
         {"id": "main-curry-leaves", "displayText": "Curry leaves – a few", "ingredient": "curry leaves", "scalable": false},
         {"id": "vegetable-cooking-water", "quantity": 3, "unit": "cup", "ingredient": "water", "preparation": "for cooking the vegetables", "scalable": true, "roundingType": "exact"},
-        {"id": "tamarind-paste", "quantity": 1.5, "unit": "tablespoon", "ingredient": "tamarind paste", "scalable": true, "roundingType": "exact"},
+        {"id": "tamarind-paste", "quantity": 1, "unit": "tablespoon", "ingredient": "tamarind paste", "scalable": true, "roundingType": "exact"},
         {"id": "jaggery", "quantity": 1, "unit": "teaspoon", "ingredient": "jaggery", "scalable": true, "roundingType": "exact"},
         {"id": "final-water", "quantity": 1.5, "unit": "cup", "ingredient": "water", "preparation": "for adding with the dal and adjusting consistency", "scalable": true, "roundingType": "exact"}
       ]
