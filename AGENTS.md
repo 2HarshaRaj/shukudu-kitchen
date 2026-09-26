@@ -7,6 +7,8 @@
 - Prefer one logical change per PR.
 - Avoid touching unrelated files.
 - Use the bounded Fast Data Path only for routine changes that fit the existing recipe/data model; use the Codex Development Path for model, code, UI, validation, workflow, architecture, bulk, or other higher-risk changes.
+- When the user explicitly says **Send to Codex**, use the issue-first Codex Development Path even if the change could otherwise use the Fast Data Path.
+- For Codex Development Path work, create a focused GitHub Issue and post exactly one action-oriented `@codex` dispatch; keep `.codex/tasks/` fallback-only and never merge it to `main`.
 
 ## Codex Prompt and Review Guidance
 

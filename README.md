@@ -50,6 +50,14 @@ Current highlights:
 - Automated validation through GitHub Actions
 - Theme validation through `scripts/validate-theme.js`
 
+## Development Workflow
+
+Repository changes use either the bounded Fast Data Path for routine changes
+that fit the existing recipe/data model, or the issue-first Codex Development
+Path for code, UI, model, workflow, architecture, bulk, and other higher-risk
+work. The development path, authenticated Draft PR publication setup, review
+flow, and fallback behavior are documented in `docs/CODEX-WORKFLOW.md`.
+
 ## Project Structure
 
 Main files include data recipes, docs, icons, validation scripts, index.html, recipe.html, script.js, recipe.js, recipe-scaling.js, homepage-filters.css, theme files, brand.css, style.css, and CHANGELOG.md.
