@@ -376,5 +376,19 @@
       "hotel style sambar",
       "fresh masala sambar"
     ]
+  },
+  {
+    "name": "Tomato-Garlic Vegetable Spaghetti",
+    "slug": "tomato-garlic-vegetable-spaghetti",
+    "category": "Pasta",
+    "summary": "Mild Indian-style vegetable spaghetti with a thick tomato-garlic sauce, carrot, capsicum, sweet corn and herbs.",
+    "searchAliases": [
+      "vegetable spaghetti",
+      "veg spaghetti",
+      "indian style spaghetti",
+      "tomato garlic pasta",
+      "vegetable pasta",
+      "tomato spaghetti"
+    ]
   }
 ]

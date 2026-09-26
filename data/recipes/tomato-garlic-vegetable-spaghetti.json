@@ -1,0 +1,107 @@
+{
+  "name": "Tomato-Garlic Vegetable Spaghetti",
+  "slug": "tomato-garlic-vegetable-spaghetti",
+  "category": "Pasta",
+  "summary": "Mild Indian-style vegetable spaghetti with a thick tomato-garlic sauce, carrot, capsicum, sweet corn and herbs.",
+  "details": {
+    "Cuisine": "Indian-Style Fusion",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Pasta"],
+    "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 1,
+    "label": "2 people × 1 meal"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "spaghetti",
+    "baseQuantity": 180,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Pasta",
+      "items": [
+        { "id": "spaghetti", "quantity": 180, "unit": "g", "ingredient": "dry spaghetti", "preparation": "Borges Durum Wheat Pasta Spaghetti was used in the successful trial", "scalable": true, "roundingType": "exact" },
+        { "id": "pasta-water", "quantity": 2, "unit": "L", "ingredient": "water for boiling pasta", "scalable": true, "roundingType": "exact" },
+        { "id": "pasta-water-salt", "quantity": 1.5, "unit": "teaspoon", "ingredient": "crystal salt for pasta water", "scalable": true, "roundingType": "exact" }
+      ]
+    },
+    {
+      "section": "Vegetables and Aromatics",
+      "items": [
+        { "id": "carrot", "quantity": 80, "unit": "g", "ingredient": "carrot", "preparation": "cut into thin short strips", "scalable": true, "roundingType": "exact" },
+        { "id": "capsicum", "quantity": 110, "unit": "g", "ingredient": "capsicum", "preparation": "stalk, seeds and membrane removed; cut into short strips", "scalable": true, "roundingType": "exact" },
+        { "id": "onion", "quantity": 120, "unit": "g", "ingredient": "onion", "preparation": "finely chopped", "scalable": true, "roundingType": "exact" },
+        { "id": "tomato", "quantity": 350, "unit": "g", "ingredient": "tomato", "preparation": "roughly cut and blended without water", "scalable": true, "roundingType": "exact" },
+        { "id": "garlic", "quantity": 15, "unit": "g", "ingredient": "garlic", "preparation": "finely minced", "scalable": true, "roundingType": "exact" },
+        { "id": "sweet-corn", "quantity": 50, "unit": "g", "ingredient": "sweet corn kernels", "scalable": true, "roundingType": "exact" }
+      ]
+    },
+    {
+      "section": "Sauce and Seasoning",
+      "items": [
+        { "id": "oil", "quantity": 1.5, "unit": "tablespoon", "ingredient": "oil", "scalable": true, "roundingType": "exact" },
+        { "id": "tomato-ketchup", "quantity": 1, "unit": "tablespoon", "ingredient": "regular tomato ketchup", "preparation": "MAGGI Rich Tomato Ketchup was used; do not use Hot & Sweet ketchup", "scalable": true, "roundingType": "exact" },
+        { "id": "reserved-pasta-water", "quantity": 0.5, "unit": "cup", "ingredient": "reserved pasta water", "preparation": "1/2 standard cup (120 ml)", "scalable": true, "roundingType": "exact" },
+        { "id": "chilli-flakes", "quantity": 0.5, "unit": "teaspoon", "ingredient": "chilli flakes", "scalable": true, "roundingType": "exact" },
+        { "id": "red-chilli-powder", "quantity": 0.25, "unit": "teaspoon", "ingredient": "red chilli powder", "scalable": true, "roundingType": "exact" },
+        { "id": "oregano", "quantity": 1, "unit": "teaspoon", "ingredient": "oregano", "scalable": true, "roundingType": "exact" },
+        { "id": "mixed-herbs", "quantity": 1, "unit": "teaspoon", "ingredient": "mixed herbs", "scalable": true, "roundingType": "exact" },
+        { "id": "black-pepper", "quantity": 0.25, "unit": "teaspoon", "ingredient": "black pepper", "scalable": true, "roundingType": "exact" },
+        { "id": "garam-masala", "quantity": 0.25, "unit": "teaspoon", "ingredient": "garam masala", "scalable": true, "roundingType": "exact", "scalingMode": "non-linear", "scaleQuantities": { "0.5": 0.125, "0.75": 0.25, "1": 0.25, "1.25": 0.25, "1.5": 0.375, "2": 0.5 } },
+        { "id": "sauce-salt", "quantity": 2, "unit": "teaspoon", "ingredient": "salt for the sauce/cooking stage", "preparation": "approximately 2 teaspoons total at 1×; the user's best recall, not a precisely measured confirmed quantity", "scalable": true, "roundingType": "exact" },
+        { "id": "sugar", "quantity": 0.25, "unit": "teaspoon", "ingredient": "sugar", "scalable": true, "roundingType": "exact" }
+      ]
+    },
+    {
+      "section": "Optional Finish",
+      "items": [
+        { "id": "cheese", "displayText": "Cheese – 25–30 g, optional", "ingredient": "cheese", "scalable": false },
+        { "id": "coriander-leaves", "displayText": "Coriander leaves – 1 tablespoon, optional", "ingredient": "coriander leaves", "preparation": "leaves and tender stems finely chopped", "scalable": false }
+      ]
+    }
+  ],
+  "preparation": [
+    { "lead": "Blend:", "ingredientIds": ["tomato"], "after": "Use roughly 3–4 medium tomatoes as approximate preparation guidance. Cut roughly and blend smooth or slightly coarse with no added water." },
+    { "lead": "Finely chop:", "ingredientIds": ["onion"], "after": "Cut to around 5–7 mm; do not slice into strips." },
+    { "lead": "Finely mince:", "ingredientIds": ["garlic"], "after": "The tested batch used approximately 4–5 large cloves." },
+    { "lead": "Cut into thin short strips:", "ingredientIds": ["carrot"], "after": "Make the strips about 3–4 cm long and 3–4 mm thick." },
+    { "lead": "Prepare:", "ingredientIds": ["capsicum"], "after": "Remove the stalk, seeds and membrane. Cut into short strips about 3–4 cm long and 5–7 mm thick; slightly thicker than the carrot is fine." },
+    { "lead": "Keep as whole kernels:", "ingredientIds": ["sweet-corn"], "after": "Frozen corn may be used directly." },
+    { "lead": "If using, finely chop:", "ingredientIds": ["coriander-leaves"], "after": "Use both leaves and tender stems." }
+  ],
+  "cookingMethod": [
+    { "lead": "Bring to a rolling boil and add:", "ingredientIds": ["pasta-water", "pasta-water-salt"] },
+    { "lead": "Add unbroken:", "ingredientIds": ["spaghetti"], "after": "Let it soften, gently push it into the water, and stir so it does not stick." },
+    { "text": "For the Borges spaghetti used in the trial, the packet guidance was approximately 10 minutes. Start tasting around 9 minutes; cook about 10 minutes, or 30–60 seconds longer only if still too firm." },
+    { "lead": "Before draining, reserve:", "ingredientIds": ["reserved-pasta-water"], "after": "Drain the spaghetti and do not rinse." },
+    { "lead": "Heat over medium heat:", "ingredientIds": ["oil"] },
+    { "lead": "Add:", "ingredientIds": ["carrot"], "after": "Cook for about 2–3 minutes." },
+    { "lead": "Add:", "ingredientIds": ["onion"], "after": "Cook for about 3 minutes, until soft and translucent but not browned." },
+    { "lead": "Add:", "ingredientIds": ["garlic"], "after": "Cook for 30–45 seconds, until fragrant without browning." },
+    { "lead": "Add:", "ingredientIds": ["capsicum", "sweet-corn"], "after": "Cook for 3–4 minutes. The capsicum should retain a slight bite." },
+    { "lead": "Add:", "ingredientIds": ["tomato"], "after": "Cook uncovered over medium heat for about 6–8 minutes, until the raw tomato smell is gone, the colour deepens, and the mixture is thick rather than watery." },
+    { "lead": "Add:", "ingredientIds": ["tomato-ketchup", "chilli-flakes", "red-chilli-powder", "oregano", "mixed-herbs", "black-pepper", "garam-masala", "sauce-salt", "sugar"], "after": "Mix and cook over medium-low heat for about 1 minute. The sauce-stage salt is an approximate recall, unlike the confirmed pasta-water salt." },
+    { "lead": "Add:", "ingredientIds": ["reserved-pasta-water"], "after": "Simmer for about 2 minutes. If the tomato mixture is already loose, add the reserved water gradually rather than making the sauce watery." },
+    { "lead": "Add the drained:", "ingredientIds": ["spaghetti"], "after": "Toss over low-medium heat for about 2 minutes, until the sauce clings to the spaghetti." },
+    { "lead": "Switch off the heat and, if using, add:", "ingredientIds": ["cheese", "coriander-leaves"] }
+  ],
+  "servingSuggestions": [
+    "Serve hot while the tomato-garlic sauce is clinging to the spaghetti."
+  ],
+  "notes": [
+    "The successfully tested batch was cooked on 26 September 2026 and had good spice balance and texture.",
+    "The target is a mild Indian-style tomato-garlic flavour with sauce that coats the spaghetti instead of pooling like curry or gravy.",
+    "Keep the carrot, capsicum and corn distinct, with some bite remaining in the capsicum.",
+    "The 1 1/2 teaspoons crystal salt in the pasta water was confirmed; the approximately 2 teaspoons salt used during the sauce/cooking stage is the user's best recall and was not precisely measured."
+  ]
+}

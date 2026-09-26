@@ -119,6 +119,7 @@ Dal
 Side Dish
 One Pot
 Cereal
+Pasta
 ```
 
 Rules:
@@ -144,6 +145,10 @@ Examples:
 
 ```json
 "dishTypes": ["Dal"]
+```
+
+```json
+"dishTypes": ["Pasta"]
 ```
 
 ### `One Pot` Rule
