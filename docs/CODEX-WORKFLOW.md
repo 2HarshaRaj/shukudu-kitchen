@@ -137,7 +137,12 @@ test -n "${GITHUB_TOKEN_CODEX_REPO:-}" || {
 printf '%s' "$GITHUB_TOKEN_CODEX_REPO" | gh auth login --hostname github.com --git-protocol https --with-token
 unset GITHUB_TOKEN_CODEX_REPO
 gh auth setup-git
-git remote set-url origin https://github.com/2HarshaRaj/shukudu-kitchen.git
+repo_url="https://github.com/2HarshaRaj/shukudu-kitchen.git"
+if git remote get-url origin >/dev/null 2>&1; then
+  git remote set-url origin "${repo_url}"
+else
+  git remote add origin "${repo_url}"
+fi
 gh auth status
 gh repo view 2HarshaRaj/shukudu-kitchen --json nameWithOwner
 git remote get-url origin
@@ -147,8 +152,7 @@ The final command must show
 `https://github.com/2HarshaRaj/shukudu-kitchen.git`, with no embedded token.
 Store and rotate the PAT through the environment's secret-management controls;
 never save it in this repository. This setup follows the tested Personal
-Automation Library pattern, adapted for Shukudu Kitchen; it is not verified for
-Shukudu Kitchen until the smoke test below succeeds.
+Automation Library pattern, adapted for and verified with Shukudu Kitchen.
 
 ### Disposable publication smoke test
 
@@ -174,6 +178,14 @@ Confirm that `isDraft` is `true`, `headRefName` is the disposable branch, and
 `baseRefName` is `main` before closing the PR unmerged. The final close command
 removes the remote branch; delete the local disposable branch afterward if it
 still exists.
+
+Shukudu Kitchen's authenticated publication path was successfully smoke-tested
+through Issue #63 and disposable Draft PR #64. Authentication and repository
+identity checks passed, the token-free HTTPS `origin` was retained, and branch
+`codex/smoke-test-draft-pr-20260926211538` was pushed. GitHub confirmed the
+expected base, head, and commit SHA before PR #64 was closed unmerged and its
+remote branch was deleted. Local cleanup completed and `main` remained
+unchanged.
 
 ## Durable-learning checkpoint
 
