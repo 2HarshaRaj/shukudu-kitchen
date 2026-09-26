@@ -239,6 +239,7 @@ Dal
 Side Dish
 One Pot
 Cereal
+Pasta
 ```
 
 Rules:
