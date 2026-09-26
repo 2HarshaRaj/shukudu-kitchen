@@ -109,21 +109,33 @@ Use this dispatch, publication, and review sequence:
 ## One-time GitHub publication setup
 
 Codex publication requires a separate fine-grained personal access token scoped
-only to `2HarshaRaj/shukudu-kitchen`. Give it the minimum repository permissions:
+only to `2HarshaRaj/shukudu-kitchen`. A repository administrator creates this
+dedicated token and gives it the minimum repository permissions:
 
 - Contents: read and write;
 - Pull requests: read and write; and
 - normal metadata read access.
 
-Never commit the token, put it in a remote URL, paste it into documentation or
-logs, or reuse a broader personal token. In the Codex environment, enter the
-token without echoing it, authenticate GitHub CLI, configure Git to use that
-authentication, and retain a normal token-free HTTPS remote:
+Store the token as a Secret in the Shukudu Kitchen Codex Cloud environment; for
+example, use the sanitized secret name `GITHUB_TOKEN_CODEX_REPO`. The environment
+setup script consumes the injected secret non-interactively. Never print the
+token, enable shell tracing while handling it, commit it, put it in a remote URL,
+paste it into documentation or logs, or reuse a broader personal token.
+
+Use this pattern in the environment setup script to clear tokens that GitHub CLI
+might otherwise prefer, authenticate with the injected repository-scoped secret,
+remove that secret from the process environment, configure Git, and retain the
+normal token-free HTTPS remote:
 
 ```bash
-read -rsp "Shukudu Kitchen fine-grained PAT: " GH_TOKEN_INPUT && echo
-printf '%s' "$GH_TOKEN_INPUT" | gh auth login --hostname github.com --git-protocol https --with-token
-unset GH_TOKEN_INPUT
+set +x
+unset GH_TOKEN GITHUB_TOKEN
+test -n "${GITHUB_TOKEN_CODEX_REPO:-}" || {
+  echo "Missing required Codex Cloud secret: GITHUB_TOKEN_CODEX_REPO" >&2
+  exit 1
+}
+printf '%s' "$GITHUB_TOKEN_CODEX_REPO" | gh auth login --hostname github.com --git-protocol https --with-token
+unset GITHUB_TOKEN_CODEX_REPO
 gh auth setup-git
 git remote set-url origin https://github.com/2HarshaRaj/shukudu-kitchen.git
 gh auth status
@@ -134,7 +146,9 @@ git remote get-url origin
 The final command must show
 `https://github.com/2HarshaRaj/shukudu-kitchen.git`, with no embedded token.
 Store and rotate the PAT through the environment's secret-management controls;
-never save it in this repository.
+never save it in this repository. This setup follows the tested Personal
+Automation Library pattern, adapted for Shukudu Kitchen; it is not verified for
+Shukudu Kitchen until the smoke test below succeeds.
 
 ### Disposable publication smoke test
 

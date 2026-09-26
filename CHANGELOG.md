@@ -16,7 +16,7 @@ Major.Minor.Patch
 
 ### Changed
 
-- Upgraded the Codex Development Path to an issue-first workflow with verified authenticated Draft PR publication, same-PR correction dispatch, fallback-only temporary tasks, and sanitized repository-scoped authentication guidance, while preserving the bounded Fast Data Path.
+- Upgraded the Codex Development Path to an issue-first workflow that requires GitHub-verified Draft PR publication, same-PR correction dispatch, fallback-only temporary tasks, and repository-scoped authentication guidance, while preserving the bounded Fast Data Path; the Shukudu Kitchen authenticated publication smoke test remains pending.
 - Documented the bounded Fast Data Path and Codex Development Path, including a durable-learning checkpoint and selective user-approved Codex Code Review guidance.
 
 ## 1.22.3 - 2026-08-29
