@@ -9,6 +9,7 @@
 - Use the bounded Fast Data Path only for routine changes that fit the existing recipe/data model; use the Codex Development Path for model, code, UI, validation, workflow, architecture, bulk, or other higher-risk changes.
 - When the user explicitly says **Send to Codex**, use the issue-first Codex Development Path even if the change could otherwise use the Fast Data Path.
 - For Codex Development Path work, create a focused GitHub Issue and post exactly one action-oriented `@codex` dispatch; keep `.codex/tasks/` fallback-only and never merge it to `main`.
+- Treat task completion and Issue closure as separate states. Reconcile finite Issues against actual GitHub and current `main` state: use a closing keyword when a dedicated PR fully resolves an Issue, explicitly close verified direct-to-`main` or unmerged-test Issues, and leave explicitly persistent or incomplete Issues open.
 
 ## Codex Prompt and Review Guidance
 
@@ -36,6 +37,7 @@ Review Shukudu Kitchen changes for:
 - light/dark mode, hover, active, pressed, and disabled states for UI changes
 - relevant validation scripts
 - changelog and visible site version impact for shipped user-facing changes
+- finite linked and correction Issues have an appropriate merge-closing or verified explicit-close path, without closing related incomplete or intentionally persistent Issues
 
 ## Recipe Data Rules
 
