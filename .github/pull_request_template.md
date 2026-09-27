@@ -33,6 +33,9 @@
 
 ## Review checklist
 
+- [ ] Linked finite Issue(s) are identified and use a closing keyword when this PR fully resolves them
+- [ ] Intentionally persistent or related incomplete Issues remain open
+- [ ] Finite correction Issue(s) resolved by this PR are accounted for
 - [ ] Recipe JSON is valid where recipe data changed
 - [ ] `data/recipe-index.json` is synchronized where recipe files changed
 - [ ] Slugs are stable, lowercase, and hyphenated

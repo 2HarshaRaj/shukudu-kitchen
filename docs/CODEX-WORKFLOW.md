@@ -36,6 +36,13 @@ If the current model cannot represent the request cleanly, stop and use the
 Codex Development Path. Do not introduce a field, relationship meaning, schema
 workaround, UI behavior, or convention on the Fast Data Path.
 
+Before creating a backlog Issue for existing functionality or a previously
+discussed change, inspect current `main` and the relevant merged PR history.
+Do not reintroduce work that is already complete as an open backlog item. When
+direct-to-`main` work satisfies an existing finite Issue, verify that the
+requested result is present on current `main`, then explicitly close the Issue;
+there is no PR merge event to close it automatically.
+
 When the user explicitly says **Send to Codex**, use the Codex Development Path
 even when the requested recipe or data change would otherwise qualify for this
 path.
@@ -89,12 +96,18 @@ Use this dispatch, publication, and review sequence:
    PR** or **Create draft PR** flow as the supported fallback, then verify the
    result on GitHub. Do not create a duplicate branch or PR.
 6. When the user says Codex is done or the PR exists, ChatGPT independently
-   inspects the actual PR, its diff, and its checks. No manual **Update branch**
-   step is part of the normal workflow.
+   inspects the actual PR, its diff, and its checks. For every linked finite
+   Issue, this review also verifies that the PR includes an appropriate GitHub
+   closing keyword, such as `Closes #<issue>`, when the PR genuinely completes
+   the Issue. Related but incomplete Issues must not use a closing keyword. No
+   manual **Update branch** step is part of the normal workflow.
 7. If corrections are required, ChatGPT posts one new structured,
    action-oriented comment such as `@codex Fix...` on the same PR. Codex should
    update that PR's existing head branch directly where practical and verify the
-   updated remote state.
+   updated remote state. When a finite follow-up or correction Issue is fully
+   resolved by that PR, ensure the parent PR accounts for it with a closing
+   keyword before merge, or explicitly close it after the verified merge. Codex
+   task completion alone is not evidence that the Issue should close.
 8. Before completing implementation, Codex performs the durable-learning
    checkpoint below. `.codex/tasks/` is a fallback-only dispatch mechanism when
    an Issue cannot be used; any temporary task file must be deleted and must
@@ -105,6 +118,32 @@ Use this dispatch, publication, and review sequence:
     merge and branch cleanup where tooling permits.
 11. Implementation and deployment are separate approvals. Never deploy without
     an explicit request.
+
+### Issue lifecycle reconciliation
+
+Task completion, PR publication, merge, and Issue closure are separate states.
+Reconcile finite Issues against actual GitHub state and the authoritative
+contents of current `main`:
+
+- A dedicated PR that fully completes a normal finite Issue should include an
+  appropriate GitHub closing keyword such as `Closes #<issue>`. Do not attach a
+  closing keyword to a merely related or partially completed Issue.
+- A finite follow-up or correction Issue should be handled on the existing PR.
+  Before merge, add the correction Issue's closing keyword to the parent PR when
+  the correction is fully resolved; if that was not possible, explicitly close
+  the Issue only after verifying the merged result on `main`.
+- Direct-to-`main` work has no merge-triggered closure. If it completes an
+  existing finite Issue, verify the result on current `main` and then explicitly
+  close the Issue.
+- An intentionally persistent control or operational Issue remains open when
+  related work merges. Its persistent status must be explicit in the Issue or
+  workflow context, and related PRs must not use a closing keyword for it.
+- If a workflow or publication smoke-test Issue has a PR intentionally closed
+  without merge, verify the test result and then explicitly close the Issue;
+  never depend on a merge closing keyword for a disposable test.
+
+GitHub remains authoritative for branch, PR, merge, and Issue state. Never use
+blind Issue-closing automation as a substitute for this review.
 
 ## One-time GitHub publication setup
 
@@ -177,7 +216,9 @@ git switch main
 Confirm that `isDraft` is `true`, `headRefName` is the disposable branch, and
 `baseRefName` is `main` before closing the PR unmerged. The final close command
 removes the remote branch; delete the local disposable branch afterward if it
-still exists.
+still exists. If the smoke test was tracked by a finite Issue, verify the test
+result and explicitly close that Issue after closing the PR; because the PR is
+not merged, a merge closing keyword cannot complete its lifecycle.
 
 Shukudu Kitchen's authenticated publication path was successfully smoke-tested
 through Issue #63 and disposable Draft PR #64. Authentication and repository
