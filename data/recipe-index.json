@@ -393,6 +393,19 @@
     ]
   },
   {
+    "name": "Cabbage Huli",
+    "slug": "cabbage-huli",
+    "category": "Side Dish",
+    "summary": "Finalized Karnataka-style cabbage huli with toor dal, roasted desiccated coconut masala, tamarind, jaggery and tempering.",
+    "searchAliases": [
+      "cabbage sambar",
+      "cabbage huli",
+      "kosu huli",
+      "yele kosu huli",
+      "ele kosu huli"
+    ]
+  },
+  {
     "name": "Tomato-Garlic Vegetable Spaghetti",
     "slug": "tomato-garlic-vegetable-spaghetti",
     "category": "Pasta",

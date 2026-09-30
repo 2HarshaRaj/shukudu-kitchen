@@ -1,0 +1,382 @@
+{
+  "name": "Cabbage Huli",
+  "slug": "cabbage-huli",
+  "category": "Side Dish",
+  "summary": "Finalized Karnataka-style cabbage huli with toor dal, roasted desiccated coconut masala, tamarind, jaggery and tempering.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Side Dish",
+      "Dal"
+    ],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "cabbage",
+    "baseQuantity": 550,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Cleaned cabbage quantity",
+    "inputMin": 100,
+    "inputStep": 50,
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Cabbage and Dal",
+      "items": [
+        {
+          "id": "cabbage",
+          "quantity": 550,
+          "unit": "g",
+          "ingredient": "cleaned cabbage",
+          "preparation": "from 670 g whole cabbage before cleaning; remove unwanted outer leaves and the hard core, then chop into roughly 1.5–2 cm pieces",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "toor-dal",
+          "quantity": 0.75,
+          "unit": "cup",
+          "ingredient": "toor dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dal-cooking-water",
+          "quantity": 3,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for pressure-cooking the dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cabbage-cooking-water",
+          "quantity": 0.75,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for initially cooking the cabbage",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tamarind-paste",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "tamarind paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "jaggery",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "jaggery",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 2.25,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "finishing-water",
+          "quantity": 1,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for finishing the huli",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Roasted Coconut Masala",
+      "items": [
+        {
+          "id": "masala-oil",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "preparation": "for roasting the masala",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-chana-dal",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "masala-urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "coriander-seeds",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "ingredient": "coriander seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "methi-seeds",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "methi / fenugreek seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-dried-red-chillies",
+          "quantity": 6,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chillies",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "masala-curry-leaves",
+          "quantity": 8,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "masala-hing",
+          "quantity": 0.125,
+          "unit": "teaspoon",
+          "ingredient": "hing",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "desiccated-coconut",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "desiccated coconut",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-grinding-water",
+          "quantity": 0.75,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for grinding the masala",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "tempering-oil",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "tempering-dried-red-chilli",
+          "quantity": 1,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chilli",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "tempering-curry-leaves",
+          "quantity": 8,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "tempering-hing",
+          "quantity": 0.125,
+          "unit": "teaspoon",
+          "ingredient": "hing",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "cabbage"
+      ],
+      "after": "Remove unwanted outer leaves and the hard core, then chop the 550 g cleaned cabbage into roughly 1.5–2 cm pieces."
+    },
+    {
+      "lead": "Rinse and pressure-cook:",
+      "ingredientIds": [
+        "toor-dal",
+        "turmeric-powder",
+        "dal-cooking-water"
+      ],
+      "after": "Cook until the dal is completely soft, allow the pressure to release, then mash it well. Pressure-cooking duration does not scale."
+    },
+    {
+      "lead": "Measure for the roasted masala:",
+      "ingredientIds": [
+        "masala-oil",
+        "masala-chana-dal",
+        "masala-urad-dal",
+        "coriander-seeds",
+        "methi-seeds",
+        "masala-dried-red-chillies",
+        "masala-curry-leaves",
+        "masala-hing",
+        "desiccated-coconut",
+        "masala-grinding-water"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "In a large kadai or pot, combine:",
+      "ingredientIds": [
+        "cabbage",
+        "cabbage-cooking-water"
+      ],
+      "after": "Cover and cook over medium heat for about 8–10 minutes, stirring once or twice, until tender but not mushy."
+    },
+    {
+      "lead": "Heat for the masala:",
+      "ingredientIds": [
+        "masala-oil"
+      ]
+    },
+    {
+      "lead": "Roast on low-medium heat until aromatic and the dals turn golden:",
+      "ingredientIds": [
+        "masala-chana-dal",
+        "masala-urad-dal",
+        "coriander-seeds",
+        "methi-seeds"
+      ]
+    },
+    {
+      "lead": "Add and roast for 30–45 seconds:",
+      "ingredientIds": [
+        "masala-dried-red-chillies",
+        "masala-curry-leaves",
+        "masala-hing"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "desiccated-coconut"
+      ],
+      "after": "Roast on low heat for about 1 minute without allowing the coconut to brown heavily, then cool slightly."
+    },
+    {
+      "lead": "Grind smooth with:",
+      "ingredientIds": [
+        "masala-grinding-water"
+      ],
+      "after": "Keep the ground masala ready."
+    },
+    {
+      "lead": "Add to the cooked cabbage:",
+      "ingredientIds": [
+        "toor-dal",
+        "tamarind-paste",
+        "jaggery",
+        "salt",
+        "finishing-water"
+      ],
+      "after": "Stir in the mashed dal and the ground roasted coconut masala, mix thoroughly, bring to a gentle boil, then simmer uncovered over low-medium heat for 10–12 minutes, stirring occasionally."
+    },
+    {
+      "lead": "Heat for tempering:",
+      "ingredientIds": [
+        "tempering-oil"
+      ]
+    },
+    {
+      "lead": "Splutter:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "tempering-dried-red-chilli",
+        "tempering-curry-leaves",
+        "tempering-hing"
+      ],
+      "after": "Fry briefly, pour the tempering over the finished huli, mix, and switch off the heat."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain rice and papad."
+  ],
+  "notes": [
+    "The tested 1× batch started with 670 g whole cabbage and yielded 550 g cleaned usable cabbage after removing unwanted outer leaves and the hard core.",
+    "Use 550 g cleaned cabbage as the authoritative 1× scaling base because trimming loss varies between heads.",
+    "The tested batch was good overall; 2 teaspoons salt tasted slightly low, so the finalized baseline is 2¼ teaspoons.",
+    "Do not overcook the cabbage during the initial 8–10 minute cook because it simmers again after the dal and masala are added."
+  ]
+}
