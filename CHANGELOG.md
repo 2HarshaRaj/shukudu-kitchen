@@ -21,6 +21,7 @@ Major.Minor.Patch
 
 ### Changed
 
+- Recorded Cabbage Huli's tested 1× household base as 2 people × 4 meals and changed the visible site version to `v1.25.1`.
 - Changed site version to `v1.25.0`.
 - Changed site version to `v1.24.0`.
 - Upgraded the Codex Development Path to an issue-first workflow that requires GitHub-verified Draft PR publication, same-PR correction dispatch, fallback-only temporary tasks, and repository-scoped authentication guidance, while preserving the bounded Fast Data Path; the authenticated Draft PR publication path was validated through Issue #63 and disposable Draft PR #64.

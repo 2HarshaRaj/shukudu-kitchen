@@ -19,6 +19,11 @@
     ],
     "goesWellWith": []
   },
+  "householdBase": {
+    "people": 2,
+    "meals": 4,
+    "label": "2 people × 4 meals"
+  },
   "scaling": {
     "enabled": true,
     "baseIngredient": "cabbage",
