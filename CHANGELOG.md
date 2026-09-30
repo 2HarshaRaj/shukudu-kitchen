@@ -14,8 +14,13 @@ Major.Minor.Patch
 
 ## Unreleased
 
+### Added
+
+- Added the finalized Mangalore Southekai Huli recipe with a whole-vegetable quantity base, fresh roasted coconut masala and traditional temple-lunch style flavour profile.
+
 ### Changed
 
+- Changed site version to `v1.24.0`.
 - Upgraded the Codex Development Path to an issue-first workflow that requires GitHub-verified Draft PR publication, same-PR correction dispatch, fallback-only temporary tasks, and repository-scoped authentication guidance, while preserving the bounded Fast Data Path; the authenticated Draft PR publication path was validated through Issue #63 and disposable Draft PR #64.
 - Documented the bounded Fast Data Path and Codex Development Path, including a durable-learning checkpoint and selective user-approved Codex Code Review guidance.
 
