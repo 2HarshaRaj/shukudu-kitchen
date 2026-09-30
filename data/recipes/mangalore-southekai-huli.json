@@ -1,0 +1,145 @@
+{
+  "name": "Mangalore Southekai Huli",
+  "slug": "mangalore-southekai-huli",
+  "category": "Side Dish",
+  "summary": "Finalized Karnataka-style Mangalore southekai huli with toor dal, a fresh roasted coconut masala, tamarind, jaggery and tempering.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner", "Side"],
+    "dishTypes": ["Side Dish", "Dal"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "mangalore-southekai",
+    "baseQuantity": 850,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Whole Mangalore southekai quantity",
+    "inputMin": 100,
+    "inputStep": 50,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Southekai and Dal",
+      "items": [
+        {
+          "id": "mangalore-southekai",
+          "quantity": 850,
+          "unit": "g",
+          "ingredient": "whole Mangalore southekai",
+          "preparation": "retain the skin; remove the ends and mature seed/core, then cut into roughly 3 cm chunks (about 600–650 g usable pieces)",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {"id": "toor-dal", "quantity": 0.75, "unit": "cup", "ingredient": "toor dal", "scalable": true, "roundingType": "exact"},
+        {"id": "turmeric-powder", "quantity": 0.25, "unit": "teaspoon", "ingredient": "turmeric powder", "scalable": true, "roundingType": "exact"},
+        {"id": "dal-cooking-water", "quantity": 2.25, "unit": "cup", "ingredient": "water", "preparation": "for pressure-cooking the dal", "scalable": true, "roundingType": "exact"},
+        {"id": "southekai-cooking-water", "quantity": 0.5, "unit": "cup", "ingredient": "water", "preparation": "for initially cooking the southekai", "scalable": true, "roundingType": "exact"},
+        {"id": "tamarind-paste", "quantity": 1, "unit": "tablespoon", "ingredient": "tamarind paste", "scalable": true, "roundingType": "exact"},
+        {"id": "jaggery", "quantity": 2, "unit": "teaspoon", "ingredient": "jaggery", "scalable": true, "roundingType": "exact"},
+        {"id": "salt", "quantity": 1.75, "unit": "teaspoon", "ingredient": "salt", "scalable": true, "roundingType": "exact"},
+        {"id": "finishing-water", "quantity": 0.5, "unit": "cup", "ingredient": "water", "preparation": "for finishing the huli", "scalable": true, "roundingType": "exact"}
+      ]
+    },
+    {
+      "section": "Fresh Roasted Coconut Masala",
+      "items": [
+        {"id": "fresh-coconut", "quantity": 80, "unit": "g", "ingredient": "fresh coconut flesh", "preparation": "cut into small pieces; grating is not required", "scalable": true, "roundingType": "exact"},
+        {"id": "masala-oil", "quantity": 1.5, "unit": "teaspoon", "ingredient": "oil", "preparation": "for roasting the masala", "scalable": true, "roundingType": "exact"},
+        {"id": "masala-chana-dal", "quantity": 1.5, "unit": "teaspoon", "ingredient": "chana dal", "scalable": true, "roundingType": "exact", "scalingMode": "linear"},
+        {"id": "coriander-seeds", "quantity": 2, "unit": "teaspoon", "ingredient": "coriander seeds", "scalable": true, "roundingType": "exact"},
+        {"id": "methi-seeds", "quantity": 0.125, "unit": "teaspoon", "ingredient": "methi / fenugreek seeds", "scalable": true, "roundingType": "exact"},
+        {"id": "masala-dried-red-chillies", "quantity": 5, "countLabel": "dried red chilli", "ingredient": "dried red chillies", "scalable": true, "roundingType": "small-whole"},
+        {"id": "cumin-seeds", "quantity": 0.5, "unit": "teaspoon", "ingredient": "cumin seeds", "scalable": true, "roundingType": "exact"},
+        {"id": "masala-grinding-water", "quantity": 0.75, "unit": "cup", "ingredient": "water", "preparation": "for grinding the masala", "scalable": true, "roundingType": "exact"}
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {"id": "tempering-oil", "quantity": 2, "unit": "teaspoon", "ingredient": "oil", "scalable": true, "roundingType": "exact"},
+        {"id": "mustard-seeds", "quantity": 1, "unit": "teaspoon", "ingredient": "mustard seeds", "scalable": true, "roundingType": "exact", "scalingMode": "linear"},
+        {"id": "tempering-dried-red-chilli", "quantity": 1, "countLabel": "dried red chilli", "ingredient": "dried red chilli", "scalable": true, "roundingType": "small-whole"},
+        {"id": "curry-leaves", "quantity": 8, "countLabel": "curry leaf", "ingredient": "curry leaves", "scalable": true, "roundingType": "small-whole", "scalingMode": "linear"},
+        {"id": "hing", "quantity": 0.125, "unit": "teaspoon", "ingredient": "hing", "scalable": true, "roundingType": "exact"}
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare:",
+      "ingredientIds": ["mangalore-southekai"],
+      "after": "Keep the skin on, discard the ends and mature seed/core, and cut the usable flesh into roughly 3 cm chunks."
+    },
+    {
+      "lead": "Rinse and pressure-cook:",
+      "ingredientIds": ["toor-dal", "turmeric-powder", "dal-cooking-water"],
+      "after": "Cook until the dal is soft, allow the pressure to release, then mash it smooth. Pressure-cooking duration does not scale."
+    },
+    {
+      "lead": "Measure for the fresh masala:",
+      "ingredientIds": ["fresh-coconut", "masala-oil", "masala-chana-dal", "coriander-seeds", "methi-seeds", "masala-dried-red-chillies", "cumin-seeds", "masala-grinding-water"]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat for the masala:",
+      "ingredientIds": ["masala-oil"]
+    },
+    {
+      "lead": "Roast until aromatic without burning:",
+      "ingredientIds": ["masala-chana-dal", "coriander-seeds", "methi-seeds", "masala-dried-red-chillies", "cumin-seeds"]
+    },
+    {
+      "lead": "Turn off the heat and add:",
+      "ingredientIds": ["fresh-coconut"],
+      "after": "Stir the coconut pieces through the roasted spices in the residual heat, then cool completely."
+    },
+    {
+      "lead": "Grind smooth with:",
+      "ingredientIds": ["masala-grinding-water"],
+      "after": "Keep the ground masala ready."
+    },
+    {
+      "lead": "In a separate pot, combine:",
+      "ingredientIds": ["mangalore-southekai", "southekai-cooking-water"],
+      "after": "Cook only until partly done. Do not pressure-cook: the skin should become tender while the pieces remain intact and clearly biteable."
+    },
+    {
+      "lead": "Add to the partially cooked southekai:",
+      "ingredientIds": ["tamarind-paste", "jaggery", "salt"],
+      "after": "Continue cooking briefly so the flavours enter the pieces."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["toor-dal", "finishing-water"],
+      "after": "Mix in all the mashed dal."
+    },
+    {
+      "lead": "Stir in the ground masala made from:",
+      "ingredientIds": ["fresh-coconut", "masala-chana-dal", "coriander-seeds", "methi-seeds", "masala-dried-red-chillies", "cumin-seeds"],
+      "after": "Simmer until the huli is well combined and the southekai is tender but still intact."
+    },
+    {"lead": "Heat for tempering:", "ingredientIds": ["tempering-oil"]},
+    {"lead": "Splutter:", "ingredientIds": ["mustard-seeds"]},
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tempering-dried-red-chilli", "curry-leaves", "hing"],
+      "after": "Fry briefly, then pour the tempering over the finished huli."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain rice as part of a traditional Karnataka lunch."
+  ],
+  "notes": [
+    "The finalized base starts with 850 g whole Mangalore southekai before trimming and targets approximately 600–650 g usable pieces.",
+    "This formulation preserves the tested traditional temple-lunch style balance of salt, chilli, sourness, sweetness and thickness.",
+    "Cook the southekai separately rather than under pressure so its skin turns tender while the chunks remain intact and clearly biteable."
+  ]
+}
