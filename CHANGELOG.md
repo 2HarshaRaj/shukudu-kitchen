@@ -16,11 +16,13 @@ Major.Minor.Patch
 
 ### Added
 
+- Added Mixed Vegetable Sambar as a Draft Karnataka-style rice sambar with ¾ cup toor dal, a 600 g drumstick-shallot-knol-khol mixed vegetable base, fresh roasted masala, tamarind and jaggery, without coconut or packaged sambar powder.
 - Added the finalized Cabbage Huli recipe with a tested 550 g cleaned-cabbage base (670 g before cleaning), ¾ cup toor dal, 80 g desiccated coconut masala and a finalized 2¼ teaspoons salt baseline.
 - Added the finalized Mangalore Southekai Huli recipe with a whole-vegetable quantity base, fresh roasted coconut masala and traditional temple-lunch style flavour profile.
 
 ### Changed
 
+- Changed site version to `v1.26.0`.
 - Recorded Cabbage Huli's tested 1× household base as 2 people × 4 meals and changed the visible site version to `v1.25.1`.
 - Changed site version to `v1.25.0`.
 - Changed site version to `v1.24.0`.
