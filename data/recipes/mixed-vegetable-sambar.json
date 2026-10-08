@@ -1,0 +1,454 @@
+{
+  "name": "Mixed Vegetable Sambar",
+  "slug": "mixed-vegetable-sambar",
+  "category": "Side Dish",
+  "summary": "Draft Karnataka-style mixed vegetable rice sambar with toor dal, drumstick, shallots, knol-khol and a fresh roasted masala, without coconut.",
+  "details": {
+    "Cuisine": "South Indian · Karnataka",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner",
+      "Side"
+    ],
+    "dishTypes": [
+      "Side Dish",
+      "Dal"
+    ],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "toor-dal",
+    "baseQuantity": 0.75,
+    "baseUnit": "cup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Toor Dal",
+      "items": [
+        {
+          "id": "toor-dal",
+          "quantity": 0.75,
+          "unit": "cup",
+          "ingredient": "toor dal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "turmeric-powder",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dal-cooking-water",
+          "quantity": 2.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for pressure-cooking the dal",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Mixed Vegetables",
+      "items": [
+        {
+          "id": "drumstick",
+          "quantity": 100,
+          "unit": "g",
+          "ingredient": "drumstick",
+          "preparation": "about 1 medium drumstick; cut into 5–6 cm pieces",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "sambar-onion",
+          "quantity": 100,
+          "unit": "g",
+          "ingredient": "sambar onion / shallots",
+          "preparation": "about 10–12 small shallots, peeled; leave whole and halve only unusually large ones lengthwise",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "knol-khol",
+          "quantity": 100,
+          "unit": "g",
+          "ingredient": "knol-khol",
+          "preparation": "peeled and cut into roughly 2 cm cubes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "carrot",
+          "quantity": 90,
+          "unit": "g",
+          "ingredient": "carrot",
+          "preparation": "about 1 medium carrot; halve lengthwise and cut into 5–7 mm half-moons, or quarter lengthwise first if very thick",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "french-beans",
+          "quantity": 90,
+          "unit": "g",
+          "ingredient": "French beans",
+          "preparation": "about 12–15 beans; trim and cut into 3–4 cm pieces",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "potato",
+          "quantity": 80,
+          "unit": "g",
+          "ingredient": "potato",
+          "preparation": "about 1 small-medium potato; peel and cut into roughly 2 cm cubes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "brinjal",
+          "quantity": 40,
+          "unit": "g",
+          "ingredient": "brinjal",
+          "preparation": "about 1–2 small brinjals; cut into 2–3 cm chunks",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "vegetable-cooking-water",
+          "quantity": 2,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for cooking the vegetables",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Fresh Sambar Masala",
+      "items": [
+        {
+          "id": "masala-oil",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "preparation": "for roasting the masala",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-chana-dal",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "chana dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "masala-urad-dal",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "urad dal",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "coriander-seeds",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "ingredient": "coriander seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "methi-seeds",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "methi / fenugreek seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-dried-red-chillies",
+          "quantity": 6,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chillies",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "masala-curry-leaves",
+          "quantity": 8,
+          "countLabel": "curry leaf",
+          "ingredient": "curry leaves",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "masala-hing",
+          "quantity": 0.125,
+          "unit": "teaspoon",
+          "ingredient": "hing",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "masala-grinding-water",
+          "quantity": 0.5,
+          "unit": "cup",
+          "ingredient": "water",
+          "preparation": "for grinding the masala",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Sambar",
+      "items": [
+        {
+          "id": "tamarind-paste",
+          "quantity": 1.5,
+          "unit": "tablespoon",
+          "ingredient": "tamarind paste",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "jaggery",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "jaggery",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Tempering",
+      "items": [
+        {
+          "id": "tempering-oil",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mustard-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "mustard seeds",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "tempering-dried-red-chilli",
+          "quantity": 1,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chilli",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "tempering-curry-leaves",
+          "displayText": "Curry leaves – 8–10 leaves",
+          "ingredient": "curry leaves",
+          "scalable": false
+        },
+        {
+          "id": "tempering-hing",
+          "quantity": 0.125,
+          "unit": "teaspoon",
+          "ingredient": "hing",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Rinse and pressure-cook:",
+      "ingredientIds": [
+        "toor-dal",
+        "turmeric-powder",
+        "dal-cooking-water"
+      ],
+      "after": "Cook until the dal is completely soft, allow the pressure to release, then mash it well. Pressure-cooking duration does not scale."
+    },
+    {
+      "lead": "Prepare the vegetables as specified:",
+      "ingredientIds": [
+        "drumstick",
+        "sambar-onion",
+        "knol-khol",
+        "carrot",
+        "french-beans",
+        "potato",
+        "brinjal"
+      ],
+      "after": "Keep the brinjal separate because it is added later."
+    },
+    {
+      "lead": "Measure separately for the fresh sambar masala:",
+      "ingredientIds": [
+        "masala-oil",
+        "masala-chana-dal",
+        "masala-urad-dal",
+        "coriander-seeds",
+        "methi-seeds",
+        "masala-dried-red-chillies",
+        "masala-curry-leaves",
+        "masala-hing",
+        "masala-grinding-water"
+      ]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat for the masala:",
+      "ingredientIds": [
+        "masala-oil"
+      ]
+    },
+    {
+      "lead": "Roast on low-medium heat until aromatic and the dals turn golden:",
+      "ingredientIds": [
+        "masala-chana-dal",
+        "masala-urad-dal",
+        "coriander-seeds",
+        "methi-seeds"
+      ]
+    },
+    {
+      "lead": "Add and roast for 30–45 seconds:",
+      "ingredientIds": [
+        "masala-dried-red-chillies",
+        "masala-curry-leaves",
+        "masala-hing"
+      ],
+      "after": "Cool slightly."
+    },
+    {
+      "lead": "Grind smooth with:",
+      "ingredientIds": [
+        "masala-grinding-water"
+      ],
+      "after": "Keep the ground fresh sambar masala ready."
+    },
+    {
+      "lead": "In a large pot, combine:",
+      "ingredientIds": [
+        "drumstick",
+        "sambar-onion",
+        "knol-khol",
+        "carrot",
+        "french-beans",
+        "potato",
+        "vegetable-cooking-water"
+      ],
+      "after": "Cover and cook over medium heat for about 10–12 minutes, until the vegetables are partly cooked but still hold their shape."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "brinjal"
+      ],
+      "after": "Cover and continue cooking for about 5–7 minutes, until all the vegetables are tender but intact."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "tamarind-paste",
+        "jaggery",
+        "salt"
+      ],
+      "after": "Mix well and simmer uncovered for 4–5 minutes so the raw tamarind flavour cooks out."
+    },
+    {
+      "lead": "Stir in the ground masala prepared from:",
+      "ingredientIds": [
+        "masala-chana-dal",
+        "masala-urad-dal",
+        "coriander-seeds",
+        "methi-seeds",
+        "masala-dried-red-chillies",
+        "masala-curry-leaves",
+        "masala-hing"
+      ],
+      "after": "Simmer for 4–5 minutes."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "toor-dal"
+      ],
+      "after": "Stir in all the cooked and mashed dal, bring to a gentle boil, then simmer for 8–10 minutes. Keep the finished sambar medium-thick and pourable for mixing with rice."
+    },
+    {
+      "lead": "Heat for tempering:",
+      "ingredientIds": [
+        "tempering-oil"
+      ]
+    },
+    {
+      "lead": "Splutter:",
+      "ingredientIds": [
+        "mustard-seeds"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "tempering-dried-red-chilli",
+        "tempering-curry-leaves",
+        "tempering-hing"
+      ],
+      "after": "Fry briefly, pour the tempering over the finished sambar, mix once, and switch off the heat."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with plain rice, ghee and papad.",
+    "Pickle or a dry vegetable palya can be served on the side."
+  ],
+  "notes": [
+    "This is a rice-focused mixed vegetable sambar, designed to be more robust and vegetable-heavy than the separate Idli Sambar / Hotel-Style Tiffin Sambar recipe.",
+    "The 1× vegetable mix totals 600 g: 100 g drumstick, 100 g peeled sambar onion, 100 g knol-khol, 90 g carrot, 90 g French beans, 80 g potato and 40 g brinjal.",
+    "No coconut or packaged sambar powder is used; the freshly roasted and ground masala is the full spice base.",
+    "The 100 g sambar onion quantity is peeled weight; roughly 120–130 g unpeeled shallots should usually be enough before trimming and peeling.",
+    "This recipe is stored as Draft until the exact batch is cooked and approved."
+  ]
+}
