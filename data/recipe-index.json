@@ -336,7 +336,7 @@
     ]
   },
   {
-    "name": "Onion\u2013Cauliflower Pakoda",
+    "name": "Onion–Cauliflower Pakoda",
     "slug": "onion-cauliflower-pakoda",
     "category": "Side Dish",
     "summary": "Draft Indian onion and cauliflower pakoda with thinly sliced onion, small cauliflower florets and a thick besan-rice flour coating for deep-frying.",
@@ -417,6 +417,19 @@
       "tomato garlic pasta",
       "vegetable pasta",
       "tomato spaghetti"
+    ]
+  },
+  {
+    "name": "Mixed Vegetable Sambar",
+    "slug": "mixed-vegetable-sambar",
+    "category": "Side Dish",
+    "summary": "Draft Karnataka-style mixed vegetable rice sambar with toor dal, drumstick, shallots, knol-khol and a fresh roasted masala, without coconut.",
+    "searchAliases": [
+      "mixed veg sambar",
+      "vegetable sambar",
+      "veg sambar",
+      "rice sambar",
+      "karnataka sambar"
     ]
   }
 ]
