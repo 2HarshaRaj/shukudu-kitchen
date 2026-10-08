@@ -22,6 +22,8 @@ Major.Minor.Patch
 
 ### Changed
 
+- Finalized Mixed Vegetable Sambar after a successful household cooking trial, confirmed the 1× base as 2 people × 4 meals, and reduced tamarind paste from 1½ tablespoons to 1¼ tablespoons after tasting.
+- Changed site version to `v1.26.1`.
 - Changed site version to `v1.26.0`.
 - Recorded Cabbage Huli's tested 1× household base as 2 people × 4 meals and changed the visible site version to `v1.25.1`.
 - Changed site version to `v1.25.0`.

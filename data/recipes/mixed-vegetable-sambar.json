@@ -2,10 +2,10 @@
   "name": "Mixed Vegetable Sambar",
   "slug": "mixed-vegetable-sambar",
   "category": "Side Dish",
-  "summary": "Draft Karnataka-style mixed vegetable rice sambar with toor dal, drumstick, shallots, knol-khol and a fresh roasted masala, without coconut.",
+  "summary": "Finalized Karnataka-style mixed vegetable rice sambar with toor dal, drumstick, shallots, knol-khol and a fresh roasted masala, without coconut.",
   "details": {
     "Cuisine": "South Indian · Karnataka",
-    "Status": "Draft"
+    "Status": "Finalized"
   },
   "relationships": {
     "mealTypes": [
@@ -230,7 +230,7 @@
       "items": [
         {
           "id": "tamarind-paste",
-          "quantity": 1.5,
+          "quantity": 1.25,
           "unit": "tablespoon",
           "ingredient": "tamarind paste",
           "scalable": true,
@@ -449,6 +449,12 @@
     "The 1× vegetable mix totals 600 g: 100 g drumstick, 100 g peeled sambar onion, 100 g knol-khol, 90 g carrot, 90 g French beans, 80 g potato and 40 g brinjal.",
     "No coconut or packaged sambar powder is used; the freshly roasted and ground masala is the full spice base.",
     "The 100 g sambar onion quantity is peeled weight; roughly 120–130 g unpeeled shallots should usually be enough before trimming and peeling.",
-    "This recipe is stored as Draft until the exact batch is cooked and approved."
-  ]
+    "The tested 1× batch was approved for 2 people × 4 meals.",
+    "Tamarind paste was reduced from 1½ tablespoons to 1¼ tablespoons after tasting because the original batch was slightly more sour than preferred."
+  ],
+  "householdBase": {
+    "people": 2,
+    "meals": 4,
+    "label": "2 people × 4 meals"
+  }
 }
