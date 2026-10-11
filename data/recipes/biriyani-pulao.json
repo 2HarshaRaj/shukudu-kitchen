@@ -1,0 +1,360 @@
+{
+  "name": "Biriyani Pulao",
+  "slug": "biriyani-pulao",
+  "category": "Rice",
+  "summary": "A one-pot pressure-cooker biriyani pulao with basmati rice, mixed vegetables, curd, whole spices and fresh herbs.",
+  "details": {
+    "Cuisine": "Indian",
+    "Cooking Method": "Pressure cooker",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner"],
+    "dishTypes": ["Rice", "One Pot"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "rice",
+    "baseQuantity": 1,
+    "baseUnit": "riceCup",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "Main Ingredients",
+      "items": [
+        {
+          "id": "rice",
+          "quantity": 1,
+          "unit": "rice cup",
+          "ingredient": "basmati rice",
+          "preparation": "rinsed well, soaked for 20 minutes and drained",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "water",
+          "quantity": 1.6875,
+          "unit": "rice cup",
+          "ingredient": "water",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "ghee",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "ghee",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "oil",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "onions",
+          "quantity": 2,
+          "countLabel": "medium onion",
+          "weightGrams": 240,
+          "ingredient": "onions",
+          "preparation": "thinly sliced",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "ginger-garlic-paste",
+          "quantity": 1,
+          "unit": "tablespoon",
+          "ingredient": "ginger-garlic paste",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "green-chilli",
+          "quantity": 1,
+          "countLabel": "green chilli",
+          "weightGrams": 3,
+          "ingredient": "green chilli",
+          "preparation": "slit",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "curd",
+          "quantity": 0.667,
+          "unit": "cup",
+          "ingredient": "curd",
+          "preparation": "whisked",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Whole Spices",
+      "items": [
+        {
+          "id": "cumin-seeds",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "bay-leaf",
+          "quantity": 1,
+          "countLabel": "bay leaf",
+          "ingredient": "bay leaf",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "black-pepper",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "whole black pepper",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cloves",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "cloves",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cinnamon",
+          "quantity": 1,
+          "unit": "inch",
+          "ingredient": "cinnamon stick",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "javitri",
+          "quantity": 1,
+          "countLabel": "blade",
+          "ingredient": "javitri (mace)",
+          "scalable": true,
+          "roundingType": "small-whole"
+        }
+      ]
+    },
+    {
+      "section": "Vegetables",
+      "items": [
+        {
+          "id": "carrot",
+          "quantity": 1,
+          "countLabel": "medium carrot",
+          "weightGrams": 100,
+          "ingredient": "carrot",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "potato",
+          "quantity": 1,
+          "countLabel": "medium potato",
+          "weightGrams": 160,
+          "ingredient": "potato",
+          "preparation": "cubed",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "french-beans",
+          "quantity": 5,
+          "countLabel": "French bean",
+          "weightGrams": 40,
+          "ingredient": "French beans",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "green-peas",
+          "quantity": 3,
+          "unit": "tablespoon",
+          "weightGrams": 36,
+          "ingredient": "green peas",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 0.5,
+          "countLabel": "medium capsicum",
+          "weightGrams": 75,
+          "ingredient": "capsicum",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        },
+        {
+          "id": "tomato",
+          "quantity": 1,
+          "countLabel": "medium tomato",
+          "weightGrams": 100,
+          "ingredient": "tomato",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "large-produce"
+        }
+      ]
+    },
+    {
+      "section": "Powdered Spices and Herbs",
+      "items": [
+        {
+          "id": "turmeric",
+          "quantity": 0.5,
+          "unit": "teaspoon",
+          "ingredient": "turmeric powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "red-chilli-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "red chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "biryani-masala",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "biryani masala",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 5,
+          "ingredient": "coriander leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "linear"
+        },
+        {
+          "id": "mint-leaves",
+          "quantity": 2,
+          "unit": "tablespoon",
+          "weightGrams": 6,
+          "ingredient": "mint leaves",
+          "preparation": "chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Rinse, soak and drain:",
+      "ingredientIds": ["rice"],
+      "after": "Soak for 20 minutes, then drain completely before cooking."
+    },
+    {
+      "lead": "Prepare:",
+      "ingredientIds": [
+        "onions",
+        "green-chilli",
+        "carrot",
+        "potato",
+        "french-beans",
+        "capsicum",
+        "tomato",
+        "coriander-leaves",
+        "mint-leaves"
+      ]
+    },
+    {
+      "lead": "Whisk until smooth:",
+      "ingredientIds": ["curd"]
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Heat in a pressure cooker:",
+      "ingredientIds": ["ghee", "oil"]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["cumin-seeds", "bay-leaf", "black-pepper", "cloves", "cinnamon", "javitri"],
+      "after": "Sauté until aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["onions", "ginger-garlic-paste", "green-chilli"],
+      "after": "Sauté until the onions turn golden brown."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["carrot", "potato", "french-beans", "green-peas", "capsicum", "tomato"],
+      "after": "Sauté for 2 minutes, until the vegetables shrink slightly."
+    },
+    {
+      "lead": "Reduce the heat to low and add:",
+      "ingredientIds": ["curd"],
+      "after": "Mix well."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["turmeric", "red-chilli-powder", "biryani-masala", "salt", "coriander-leaves", "mint-leaves"],
+      "after": "Sauté on low heat until aromatic."
+    },
+    {
+      "lead": "Pour in:",
+      "ingredientIds": ["water"],
+      "after": "Bring to a boil."
+    },
+    {
+      "lead": "Drain and add:",
+      "ingredientIds": ["rice"],
+      "after": "Mix gently without breaking the grains."
+    },
+    {
+      "text": "Cover the pressure cooker and cook for 2 whistles."
+    },
+    {
+      "text": "Allow the pressure to release naturally, then open the cooker and fluff the rice gently."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot with raita."
+  ],
+  "notes": [
+    "This Draft recipe is untested and should remain Draft until a cooking trial confirms the quantities and method.",
+    "At 1×, 1 rice cup basmati rice equals 1⅓ standard cups; the exact 1.6875 rice cups water equals 2¼ standard cups.",
+    "The 1× quantities were doubled from the supplied 0.5-rice-cup adaptation rather than recalculated from the source recipe's 1½-standard-cup batch.",
+    "Adapted from Hebbars Kitchen's Biriyani Pulao Recipe: https://hebbarskitchen.com/biriyani-pulao-recipe-10-mins-healthy/"
+  ]
+}

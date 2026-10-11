@@ -16,11 +16,15 @@ Major.Minor.Patch
 
 ### Added
 
+- Added Biriyani Pulao as an untested Draft pressure-cooker recipe with a 1-rice-cup basmati base, exact 1.6875-rice-cup water quantity, mixed vegetables, curd, whole spices and fresh herbs.
+
 - Added Mixed Vegetable Sambar as a Draft Karnataka-style rice sambar with ¾ cup toor dal, a 600 g drumstick-shallot-knol-khol mixed vegetable base, fresh roasted masala, tamarind and jaggery, without coconut or packaged sambar powder.
 - Added the finalized Cabbage Huli recipe with a tested 550 g cleaned-cabbage base (670 g before cleaning), ¾ cup toor dal, 80 g desiccated coconut masala and a finalized 2¼ teaspoons salt baseline.
 - Added the finalized Mangalore Southekai Huli recipe with a whole-vegetable quantity base, fresh roasted coconut masala and traditional temple-lunch style flavour profile.
 
 ### Changed
+
+- Changed site version to `v1.27.0`.
 
 - Finalized Mixed Vegetable Sambar after a successful household cooking trial, confirmed the 1× base as 2 people × 4 meals, and reduced tamarind paste from 1½ tablespoons to 1¼ tablespoons after tasting.
 - Changed site version to `v1.26.1`.
