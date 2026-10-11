@@ -14,6 +14,10 @@ Major.Minor.Patch
 
 ## Unreleased
 
+### Changed
+
+- Clarified the Biriyani Pulao whole spice as a javitri blade (mace), using a small 2–3 cm section, and bumped the site version to `v1.27.1`.
+
 ### Added
 
 - Added Biriyani Pulao as an untested Draft pressure-cooker recipe with a 1-rice-cup basmati base, exact 1.6875-rice-cup water quantity, mixed vegetables, curd, whole spices and fresh herbs.
