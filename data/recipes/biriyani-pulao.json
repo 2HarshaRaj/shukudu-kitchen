@@ -154,8 +154,9 @@
         {
           "id": "javitri",
           "quantity": 1,
-          "countLabel": "blade",
-          "ingredient": "javitri (mace)",
+          "countLabel": "small",
+          "ingredient": "javitri blade (mace)",
+          "preparation": "use a small 2–3 cm section; break it off if the whole lace-like piece is large",
           "scalable": true,
           "roundingType": "small-whole"
         }
