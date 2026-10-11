@@ -1,5 +1,16 @@
 [
   {
+    "name": "Biriyani Pulao",
+    "slug": "biriyani-pulao",
+    "category": "Rice",
+    "summary": "A one-pot pressure-cooker biriyani pulao with basmati rice, mixed vegetables, curd, whole spices and fresh herbs.",
+    "searchAliases": [
+      "biryani pulao",
+      "vegetable biryani",
+      "veg biryani"
+    ]
+  },
+  {
     "name": "Tomato Bath",
     "slug": "tomato-bath",
     "category": "Rice",
