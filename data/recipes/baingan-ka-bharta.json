@@ -1,0 +1,289 @@
+{
+  "name": "Baingan Ka Bharta",
+  "slug": "baingan-ka-bharta",
+  "category": "Side Dish",
+  "summary": "Draft North Indian roasted brinjal bharta with onion, tomato, garlic, ginger, chillies and spices.",
+  "details": {
+    "Cuisine": "North Indian",
+    "Status": "Draft"
+  },
+  "relationships": {
+    "mealTypes": ["Lunch", "Dinner", "Side"],
+    "dishTypes": ["Side Dish"],
+    "goesWellWith": []
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "brinjal",
+    "baseQuantity": 700,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "quantity",
+    "inputLabel": "Whole raw brinjal quantity",
+    "inputMin": 100,
+    "inputStep": 50,
+    "options": [0.5, 0.75, 1, 1.25, 1.5, 2]
+  },
+  "ingredients": [
+    {
+      "section": "For Roasting",
+      "items": [
+        {
+          "id": "brinjal",
+          "quantity": 700,
+          "unit": "g",
+          "ingredient": "whole raw brinjal",
+          "preparation": "washed and dried",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "roasting-garlic",
+          "quantity": 5,
+          "countLabel": "garlic clove",
+          "ingredient": "garlic",
+          "preparation": "peeled",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "green-chillies",
+          "quantity": 2,
+          "countLabel": "green chilli",
+          "ingredient": "green chillies",
+          "scalable": true,
+          "roundingType": "small-whole",
+          "scaleQuantities": {
+            "0.5": 1,
+            "0.75": 1.5,
+            "1": 2,
+            "1.25": 2,
+            "1.5": 2.5,
+            "2": 3
+          }
+        },
+        {
+          "id": "roasting-oil",
+          "quantity": 2,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "preparation": "for coating the brinjal",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "rescue-water",
+          "ingredient": "water",
+          "displayText": "Water – a small splash, only if needed to finish softening the brinjal in a covered pan",
+          "scalable": false
+        }
+      ]
+    },
+    {
+      "section": "For the Masala",
+      "items": [
+        {
+          "id": "masala-oil",
+          "quantity": 3.5,
+          "unit": "tablespoon",
+          "ingredient": "oil",
+          "preparation": "for the masala",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cumin-seeds",
+          "quantity": 1.75,
+          "unit": "teaspoon",
+          "ingredient": "cumin seeds",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "dried-red-chillies",
+          "quantity": 2,
+          "countLabel": "dried red chilli",
+          "ingredient": "dried red chillies",
+          "preparation": "broken",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "ginger",
+          "quantity": 20,
+          "unit": "g",
+          "ingredient": "ginger",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 10,
+            "0.75": 15,
+            "1": 20,
+            "1.25": 22,
+            "1.5": 25,
+            "2": 30
+          }
+        },
+        {
+          "id": "masala-garlic",
+          "quantity": 4,
+          "countLabel": "garlic clove",
+          "ingredient": "garlic",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "small-whole"
+        },
+        {
+          "id": "onion",
+          "quantity": 240,
+          "unit": "g",
+          "ingredient": "onion",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "kashmiri-chilli-powder",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "Kashmiri chilli powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "coriander-powder",
+          "quantity": 1.75,
+          "unit": "teaspoon",
+          "ingredient": "coriander powder",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "tomatoes",
+          "quantity": 240,
+          "unit": "g",
+          "ingredient": "tomatoes",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "salt",
+          "quantity": 1.75,
+          "unit": "teaspoon",
+          "ingredient": "salt",
+          "preparation": "adjust after tasting",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garam-masala",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "garam masala",
+          "scalable": true,
+          "roundingType": "exact",
+          "scalingMode": "non-linear",
+          "scaleQuantities": {
+            "0.5": 0.5,
+            "0.75": 0.75,
+            "1": 1,
+            "1.25": 1,
+            "1.5": 1.25,
+            "2": 1.5
+          }
+        },
+        {
+          "id": "coriander-leaves",
+          "quantity": 4,
+          "unit": "tablespoon",
+          "ingredient": "coriander leaves",
+          "preparation": "finely chopped",
+          "scalable": true,
+          "roundingType": "exact",
+          "scaleQuantities": {
+            "0.5": 2,
+            "0.75": 3,
+            "1": 4,
+            "1.25": 4,
+            "1.5": 5,
+            "2": 6
+          }
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Prepare the brinjal:",
+      "ingredientIds": ["brinjal", "roasting-garlic", "green-chillies", "roasting-oil"],
+      "after": "Make several deep slits without cutting all the way through. Tuck the garlic cloves and green chillies into the slits, then coat the skin with the roasting oil. Keep the stem attached for turning."
+    },
+    {
+      "lead": "Prepare the masala ingredients:",
+      "ingredientIds": ["ginger", "masala-garlic", "onion", "tomatoes", "coriander-leaves", "dried-red-chillies"],
+      "after": "Chop and measure everything before cooking. Keep the masala garlic separate from the garlic stuffed into the brinjal."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "text": "Place the prepared brinjal over a medium-low flame. Rotate it slowly and repeatedly so every side cooks through rather than only charring the skin."
+    },
+    {
+      "text": "Push a skewer or fork into the deepest centre, not just beneath the skin. The flesh must be completely soft with no firm resistance. If the centre is hard, continue cooking and test again."
+    },
+    {
+      "lead": "If direct roasting has charred the outside before the centre softens, transfer the brinjal to a pan and add:",
+      "ingredientIds": ["rescue-water"],
+      "after": "Cover and cook on low heat until a skewer or fork reaches the deep centre without resistance."
+    },
+    {
+      "text": "Cool until safe to handle. Pull away and discard the burnt peel, stem and any loose char. Retain the soft roasted flesh, stuffed garlic and chillies, then mash them together."
+    },
+    {
+      "lead": "Heat in a kadai:",
+      "ingredientIds": ["masala-oil", "cumin-seeds", "dried-red-chillies"],
+      "after": "Sauté until the cumin becomes aromatic."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["ginger", "masala-garlic"],
+      "after": "Sauté briefly until aromatic without browning the garlic heavily."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["onion"],
+      "after": "Cook over medium heat until softened and lightly golden."
+    },
+    {
+      "lead": "Lower the heat and add:",
+      "ingredientIds": ["kashmiri-chilli-powder", "coriander-powder"],
+      "after": "Stir briefly so the spices do not burn."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": ["tomatoes", "salt"],
+      "after": "Cook until the tomatoes are soft and the masala no longer looks watery."
+    },
+    {
+      "lead": "Fold in:",
+      "ingredientIds": ["brinjal"],
+      "after": "Mix the mashed roasted flesh through the masala and cook for 3–5 minutes."
+    },
+    {
+      "lead": "Finish with:",
+      "ingredientIds": ["garam-masala", "coriander-leaves"],
+      "after": "Mix well, check the salt and switch off the heat."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot as a side dish with an Indian meal."
+  ],
+  "notes": [
+    "This 700 g base is provisional and remains untested; no household yield is confirmed.",
+    "Enter the whole raw brinjal weight when it differs from 700 g. The website calculates the scale automatically.",
+    "Firm flesh at the deep centre usually means the brinjal needs more cooking; it does not by itself establish spoilage.",
+    "While peeling and mashing, inspect the flesh for insects, tunnels, extensive discolouration or an off smell. Discard an affected brinjal rather than mixing it into the bharta."
+  ]
+}
