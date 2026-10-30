@@ -85,6 +85,19 @@
     ]
   },
   {
+    "name": "Baingan Ka Bharta",
+    "slug": "baingan-ka-bharta",
+    "category": "Side Dish",
+    "summary": "Draft North Indian roasted brinjal bharta with onion, tomato, garlic, ginger, chillies and spices.",
+    "searchAliases": [
+      "baingan bharta",
+      "brinjal bharta",
+      "eggplant bharta",
+      "roasted eggplant mash",
+      "begun bharta"
+    ]
+  },
+  {
     "name": "Creamy Mushroom Masala",
     "slug": "creamy-mushroom-masala",
     "category": "Side Dish",

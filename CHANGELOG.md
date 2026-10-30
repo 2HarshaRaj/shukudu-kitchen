@@ -20,6 +20,8 @@ Major.Minor.Patch
 
 ### Added
 
+- Added Baingan Ka Bharta as an untested Draft recipe with a 700 g whole raw brinjal quantity base, separate roasting and masala aromatics, and deep-centre doneness guidance.
+
 - Added Biriyani Pulao as an untested Draft pressure-cooker recipe with a 1-rice-cup basmati base, exact 1.6875-rice-cup water quantity, mixed vegetables, curd, whole spices and fresh herbs.
 
 - Added Mixed Vegetable Sambar as a Draft Karnataka-style rice sambar with ¾ cup toor dal, a 600 g drumstick-shallot-knol-khol mixed vegetable base, fresh roasted masala, tamarind and jaggery, without coconut or packaged sambar powder.
@@ -27,6 +29,8 @@ Major.Minor.Patch
 - Added the finalized Mangalore Southekai Huli recipe with a whole-vegetable quantity base, fresh roasted coconut masala and traditional temple-lunch style flavour profile.
 
 ### Changed
+
+- Changed site version to `v1.28.0`.
 
 - Changed site version to `v1.27.0`.
 
