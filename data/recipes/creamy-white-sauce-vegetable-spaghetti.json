@@ -1,0 +1,419 @@
+{
+  "name": "Creamy White Sauce Vegetable Spaghetti",
+  "slug": "creamy-white-sauce-vegetable-spaghetti",
+  "category": "Pasta",
+  "summary": "Creamy cheddar white-sauce spaghetti with brown button mushrooms, capsicum, sweet corn and garlic.",
+  "details": {
+    "Cuisine": "Italian-Inspired Vegetarian",
+    "Status": "Finalized"
+  },
+  "relationships": {
+    "mealTypes": [
+      "Lunch",
+      "Dinner"
+    ],
+    "dishTypes": [
+      "Pasta"
+    ],
+    "goesWellWith": []
+  },
+  "householdBase": {
+    "people": 2,
+    "meals": 1,
+    "label": "2 people × 1 meal"
+  },
+  "scaling": {
+    "enabled": true,
+    "baseIngredient": "spaghetti",
+    "baseQuantity": 145,
+    "baseUnit": "g",
+    "baseScale": 1,
+    "inputMode": "options",
+    "options": [
+      0.5,
+      0.75,
+      1,
+      1.25,
+      1.5,
+      2
+    ]
+  },
+  "ingredients": [
+    {
+      "section": "Pasta",
+      "items": [
+        {
+          "id": "spaghetti",
+          "quantity": 145,
+          "unit": "g",
+          "ingredient": "dry spaghetti",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "pasta-water",
+          "quantity": 2,
+          "unit": "L",
+          "ingredient": "water",
+          "preparation": "for boiling spaghetti",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "pasta-water-salt",
+          "quantity": 1.5,
+          "unit": "teaspoon",
+          "ingredient": "crystal salt",
+          "preparation": "for boiling spaghetti",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Vegetables and Garlic",
+      "items": [
+        {
+          "id": "brown-button-mushrooms",
+          "quantity": 200,
+          "unit": "g",
+          "ingredient": "brown button mushrooms",
+          "preparation": "cleaned, thoroughly dried and sliced 4–5 mm thick; no peeling needed",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "capsicum",
+          "quantity": 65,
+          "unit": "g",
+          "ingredient": "capsicum",
+          "preparation": "seeds and membrane removed; short strips 3–4 cm long and 5–7 mm thick",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "sweet-corn",
+          "quantity": 40,
+          "unit": "g",
+          "ingredient": "sweet corn kernels",
+          "preparation": "frozen corn may be used directly",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "garlic",
+          "quantity": 10,
+          "unit": "g",
+          "ingredient": "garlic",
+          "preparation": "approximately 3–4 large cloves, finely minced",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "saute-oil",
+          "quantity": 1,
+          "unit": "teaspoon",
+          "ingredient": "oil",
+          "preparation": "for sautéing vegetables",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "White Sauce",
+      "items": [
+        {
+          "id": "butter",
+          "quantity": 17,
+          "unit": "g",
+          "ingredient": "butter",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "maida",
+          "quantity": 17,
+          "unit": "g",
+          "ingredient": "maida (all-purpose flour)",
+          "preparation": "approximately 2 level tablespoons",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "milk",
+          "quantity": 360,
+          "unit": "ml",
+          "ingredient": "milk",
+          "preparation": "add gradually in 4–5 batches",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "cheddar-cheese",
+          "quantity": 20,
+          "unit": "g",
+          "ingredient": "cheddar cheese",
+          "preparation": "finely grated; Milky Mist Cheddar was recommended",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "black-pepper",
+          "quantity": 0.375,
+          "unit": "teaspoon",
+          "ingredient": "black pepper powder",
+          "preparation": "⅜ teaspoon at the tested 1× base",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "oregano",
+          "quantity": 0.75,
+          "unit": "teaspoon",
+          "ingredient": "oregano",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "mixed-herbs",
+          "quantity": 0.375,
+          "unit": "teaspoon",
+          "ingredient": "mixed herbs",
+          "preparation": "⅜ teaspoon at the tested 1× base",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "chilli-flakes",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "chilli flakes",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "initial-salt",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "fine salt",
+          "preparation": "start with this amount before tasting",
+          "scalable": true,
+          "roundingType": "exact"
+        },
+        {
+          "id": "extra-salt",
+          "quantity": 0.25,
+          "unit": "teaspoon",
+          "ingredient": "fine salt",
+          "preparation": "optional: add only if needed after tasting; total fine salt up to ½ teaspoon at 1×",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    },
+    {
+      "section": "Consistency Adjustment",
+      "items": [
+        {
+          "id": "reserved-pasta-water",
+          "quantity": 50,
+          "unit": "ml",
+          "ingredient": "reserved pasta water",
+          "preparation": "up to this amount, only if required to loosen the sauce",
+          "scalable": true,
+          "roundingType": "exact"
+        }
+      ]
+    }
+  ],
+  "preparation": [
+    {
+      "lead": "Clean, thoroughly dry and slice:",
+      "ingredientIds": [
+        "brown-button-mushrooms"
+      ],
+      "after": "Slice 4–5 mm thick; do not peel. Dry well to help the mushrooms brown instead of steam."
+    },
+    {
+      "lead": "Cut into short strips:",
+      "ingredientIds": [
+        "capsicum"
+      ],
+      "after": "Remove the stalk, seeds and membrane. Cut about 3–4 cm long and 5–7 mm thick."
+    },
+    {
+      "lead": "Keep the kernels ready:",
+      "ingredientIds": [
+        "sweet-corn"
+      ],
+      "after": "Frozen sweet corn can be used directly."
+    },
+    {
+      "lead": "Peel and finely mince:",
+      "ingredientIds": [
+        "garlic"
+      ],
+      "after": "The tested guidance was approximately 3–4 large cloves."
+    },
+    {
+      "lead": "Finely grate:",
+      "ingredientIds": [
+        "cheddar-cheese"
+      ],
+      "after": "Keep aside until the white sauce is cooked."
+    },
+    {
+      "lead": "Measure before cooking:",
+      "ingredientIds": [
+        "butter",
+        "maida",
+        "milk",
+        "black-pepper",
+        "oregano",
+        "mixed-herbs",
+        "chilli-flakes",
+        "initial-salt",
+        "extra-salt"
+      ],
+      "after": "Keep a whisk ready to make the sauce without lumps."
+    }
+  ],
+  "cookingMethod": [
+    {
+      "lead": "Bring to a rolling boil:",
+      "ingredientIds": [
+        "pasta-water",
+        "pasta-water-salt"
+      ]
+    },
+    {
+      "lead": "Add unbroken:",
+      "ingredientIds": [
+        "spaghetti"
+      ],
+      "after": "Let the strands soften, gently push them into the water and stir to prevent sticking. Start checking around 9 minutes and cook according to the packet, approximately 9–11 minutes, until just tender with slight firmness."
+    },
+    {
+      "lead": "Before draining, reserve up to:",
+      "ingredientIds": [
+        "reserved-pasta-water"
+      ],
+      "after": "Drain the spaghetti without rinsing or adding oil. Keep the water aside only for consistency adjustment."
+    },
+    {
+      "lead": "Heat in a wide pan over medium-high heat:",
+      "ingredientIds": [
+        "saute-oil"
+      ]
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "brown-button-mushrooms"
+      ],
+      "after": "Sauté 5–7 minutes, stirring occasionally, until released moisture mostly evaporates and the mushrooms begin to brown lightly. Avoid overcrowding the pan."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "capsicum",
+        "sweet-corn"
+      ],
+      "after": "Sauté for 2–3 minutes; the capsicum should retain a slight bite."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "garlic"
+      ],
+      "after": "Sauté for 30–45 seconds until fragrant, without browning. Transfer the vegetables to a plate."
+    },
+    {
+      "lead": "In the same pan on low-medium heat, melt:",
+      "ingredientIds": [
+        "butter"
+      ],
+      "after": "Do not let the butter brown."
+    },
+    {
+      "lead": "Add:",
+      "ingredientIds": [
+        "maida"
+      ],
+      "after": "Stir continuously for 1–1½ minutes until the paste is smooth, pale and lightly bubbly, without browning."
+    },
+    {
+      "lead": "Gradually whisk in:",
+      "ingredientIds": [
+        "milk"
+      ],
+      "after": "Add in 4–5 small batches, whisking smooth after each. Simmer on low-medium heat for 3–5 minutes, stirring often, until lightly thickened but still pourable."
+    },
+    {
+      "lead": "Reduce heat to low and add:",
+      "ingredientIds": [
+        "black-pepper",
+        "oregano",
+        "mixed-herbs",
+        "chilli-flakes",
+        "initial-salt"
+      ],
+      "after": "Mix gently for about 30 seconds."
+    },
+    {
+      "lead": "Switch off the heat and stir in:",
+      "ingredientIds": [
+        "cheddar-cheese"
+      ],
+      "after": "Mix until melted. Avoid boiling the sauce after adding the cheese."
+    },
+    {
+      "lead": "Taste and add only if required:",
+      "ingredientIds": [
+        "extra-salt"
+      ],
+      "after": "Cheddar already contributes saltiness; do not automatically add the extra salt."
+    },
+    {
+      "lead": "Return the sautéed vegetables:",
+      "ingredientIds": [
+        "brown-button-mushrooms",
+        "capsicum",
+        "sweet-corn",
+        "garlic"
+      ],
+      "after": "Mix gently until coated in the white sauce."
+    },
+    {
+      "lead": "Add the cooked:",
+      "ingredientIds": [
+        "spaghetti"
+      ],
+      "after": "Toss on low heat for 1–2 minutes until evenly coated."
+    },
+    {
+      "lead": "If the sauce is too thick, gradually use:",
+      "ingredientIds": [
+        "reserved-pasta-water"
+      ],
+      "after": "Add a little at a time, up to the reserved amount. Stop once the sauce coats the spaghetti smoothly and remains creamy, not watery."
+    },
+    {
+      "text": "Switch off the heat and serve immediately. The sauce will thicken as it cools."
+    }
+  ],
+  "servingSuggestions": [
+    "Serve hot as a complete main dish for 2 people × 1 meal.",
+    "Distribute the mushrooms and vegetables evenly; the sauce should cling to the spaghetti rather than pool."
+  ],
+  "notes": [
+    "Finalized after the user reported that the 145 g spaghetti and 200 g brown button mushroom batch tasted good on 8 November 2026.",
+    "The 1× base deliberately keeps the full 200 g mushrooms rather than proportionally reducing them with the spaghetti.",
+    "Milk is 360 ml for this tested ratio; reserved pasta water is optional and must not be added automatically.",
+    "The tested 1× amounts for black pepper powder and mixed herbs were ⅜ teaspoon each; the site's normal practical spoon formatter may round their on-screen quantities.",
+    "Sauté mushrooms until their released moisture has mostly evaporated; add garlic only toward the end.",
+    "Keep the flour-butter paste pale and whisk milk in gradually to avoid lumps.",
+    "Cheese goes in off the heat. Start with ¼ teaspoon fine salt and add the remaining ¼ teaspoon only after tasting."
+  ]
+}

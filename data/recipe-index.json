@@ -455,5 +455,19 @@
       "rice sambar",
       "karnataka sambar"
     ]
+  },
+  {
+    "name": "Creamy White Sauce Vegetable Spaghetti",
+    "slug": "creamy-white-sauce-vegetable-spaghetti",
+    "category": "Pasta",
+    "summary": "Creamy cheddar white-sauce spaghetti with brown button mushrooms, capsicum, sweet corn and garlic.",
+    "searchAliases": [
+      "white sauce spaghetti",
+      "white sauce pasta",
+      "creamy mushroom spaghetti",
+      "mushroom white sauce pasta",
+      "creamy vegetable spaghetti",
+      "cheddar mushroom pasta"
+    ]
   }
 ]

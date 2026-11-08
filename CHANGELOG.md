@@ -20,6 +20,8 @@ Major.Minor.Patch
 
 ### Added
 
+- Added the finalized Creamy White Sauce Vegetable Spaghetti recipe with the successfully tested 145 g spaghetti, 200 g brown button mushroom, 360 ml milk and 20 g cheddar base for 2 people × 1 meal.
+
 - Added Baingan Ka Bharta as an untested Draft recipe with a 700 g whole raw brinjal quantity base, separate roasting and masala aromatics, and deep-centre doneness guidance.
 
 - Added Biriyani Pulao as an untested Draft pressure-cooker recipe with a 1-rice-cup basmati base, exact 1.6875-rice-cup water quantity, mixed vegetables, curd, whole spices and fresh herbs.
@@ -29,6 +31,8 @@ Major.Minor.Patch
 - Added the finalized Mangalore Southekai Huli recipe with a whole-vegetable quantity base, fresh roasted coconut masala and traditional temple-lunch style flavour profile.
 
 ### Changed
+
+- Changed site version to `v1.29.0`.
 
 - Changed site version to `v1.28.0`.
 
